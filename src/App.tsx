@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import DesktopLayout from "components/Layouts/DesktopLayout";
 import PhoneLayout from "components/Layouts/PhoneLayout";
+import { ThemeContext } from "contexts/Theme/ThemeContext";
+import { themeContextType } from "types/theme";
+import { useLang } from "./hooks/useLang";
 
 const App = () => {
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
+    const { theme } = useContext(ThemeContext) as themeContextType;
+    const { lang } = useLang();
 
     useEffect(() => {
         const handleResize = () => {
@@ -17,7 +22,11 @@ const App = () => {
         };
     }, []);
     return (
-        <div dir="rtl" className="flex overflow-hidden h-dvh w-screen [&>*]:grow ">
+        <div
+            dir={lang == "fa" ? "rtl" : "ltr"}
+            className={`${theme ? "dark" : null}
+            bg-background2 dark:bg-dbackground2 flex overflow-hidden h-dvh w-screen [&>*]:grow `}
+        >
             {isLargeScreen ? <DesktopLayout /> : <PhoneLayout />}
         </div>
     );

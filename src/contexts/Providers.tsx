@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { BrowserRouter } from "react-router-dom";
-import LangProvider from "contexts/LangContext";
+import LangProvider from "contexts/Lang/LangContext";
+import ThemeProvider from "./Theme/ThemeContext";
 
 //Providers component for setting all the Providers for project in one seperate file
 type ProvidersProps = {
@@ -10,7 +11,9 @@ const Providers = ({ children }: ProvidersProps) => {
     return (
         <>
             <LangProvider>
-                <BrowserRouter>{children}</BrowserRouter>
+                <ThemeProvider>
+                    <BrowserRouter>{children}</BrowserRouter>
+                </ThemeProvider>
             </LangProvider>
         </>
     );

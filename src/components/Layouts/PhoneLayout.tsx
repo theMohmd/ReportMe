@@ -2,6 +2,7 @@ import { Menu } from "lucide-react";
 import { useState } from "react";
 import Nav from "./Nav/Nav";
 import { AnimatePresence, motion } from "framer-motion";
+import Content from "./Content";
 
 //PhoneLayout component
 const PhoneLayout = () => {
@@ -14,7 +15,9 @@ const PhoneLayout = () => {
                 </button>
                 ReportMe
             </div>
-            <div className="bg-violet-500 grow"></div>
+            <div className=" grow">
+                <Content />
+            </div>
             <AnimatePresence>
                 {navVisibility && (
                     <motion.div
