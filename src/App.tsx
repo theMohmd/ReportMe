@@ -1,4 +1,29 @@
+import { useEffect, useState } from "react";
+import DesktopLayout from "./components/Layouts/DesktopLayout";
+import PhoneLayout from "./components/Layouts/PhoneLayout";
+
 const App = () => {
-    return <div>App</div>;
+    const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsLargeScreen(window.innerWidth > 768);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+    return (
+        <div dir="rtl">
+            {isLargeScreen ? (
+            <DesktopLayout />
+            ) : (
+            <PhoneLayout />
+            )}
+        </div>
+    );
 };
 export default App;
