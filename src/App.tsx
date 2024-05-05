@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import DesktopLayout from "./components/Layouts/DesktopLayout";
-import PhoneLayout from "./components/Layouts/PhoneLayout";
+import DesktopLayout from "components/Layouts/DesktopLayout";
+import PhoneLayout from "components/Layouts/PhoneLayout";
 
 const App = () => {
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
@@ -17,12 +17,8 @@ const App = () => {
         };
     }, []);
     return (
-        <div dir="rtl">
-            {isLargeScreen ? (
-            <DesktopLayout />
-            ) : (
-            <PhoneLayout />
-            )}
+        <div dir="rtl" className="flex overflow-hidden h-dvh w-screen [&>*]:grow ">
+            {isLargeScreen ? <DesktopLayout /> : <PhoneLayout />}
         </div>
     );
 };

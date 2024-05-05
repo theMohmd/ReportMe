@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 
 export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+    darkMode: "selector",
     theme: {
         extend: {
             colors: {
@@ -13,7 +14,6 @@ export default {
                 dbackground2: "#060813",
                 dprimary: "#E5EAFF",
                 dlightBorder: "#080E2B",
-
             },
         },
     },

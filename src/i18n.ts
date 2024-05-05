@@ -5,12 +5,18 @@ import { initReactI18next } from "react-i18next";
 const resources = {
     en: {
         translation: {
-            test: "Hello!",
+            navProjects: "Projects",
+            navMessages: "Messages",
+            navTickets: "Tickets",
+            navAccount: "Account",
         },
     },
     fa: {
         translation: {
-            test: "سلام",
+            navProjects: "پروژه‌ها",
+            navMessages: "پیام‌ها",
+            navTickets: "تیکت‌ها",
+            navAccount: "حساب کاربری",
         },
     },
 };
@@ -18,7 +24,7 @@ const resources = {
 // Initialize i18next
 i18n.use(initReactI18next).init({
     resources,
-    lng: "en", // Set default language
+    lng: "fa", // Set default language
     interpolation: {
         escapeValue: false, // React already safely escapes interpolation
     },
