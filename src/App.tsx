@@ -8,13 +8,14 @@ import Login from "components/Login/Login";
 import axios from "axios";
 import Loader from "components/ui/Loader";
 import { useGetUser } from "./hooks/useGetUser";
+import { useWindowSize } from "./hooks/useWindowSize";
 
 const App = () => {
-    const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
     const { theme } = useTheme();
     const { lang } = useLang();
     const { user, token } = useAuth();
     const { isLoading } = useGetUser();
+    const isLargeScreen = useWindowSize(768);
 
     useEffect(() => {
         axios.interceptors.request.use(function (config) {
@@ -23,17 +24,6 @@ const App = () => {
         });
     }, [token]);
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsLargeScreen(window.innerWidth > 768);
-        };
-
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
     return (
         <div
             dir={lang == "fa" ? "rtl" : "ltr"}
@@ -41,8 +31,10 @@ const App = () => {
             bg-background2 dark:bg-dbackground2 flex overflow-hidden h-dvh w-screen [&>*]:grow `}
         >
             {isLoading ? (
-                <div className="text-primary size-full p-96">
-                    <Loader />
+                <div className="text-primary size-full flex items-center justify-center">
+                    <div className="size-32">
+                        <Loader />
+                    </div>
                 </div>
             ) : !user ? (
                 <Login />
