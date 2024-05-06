@@ -1,9 +1,11 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { loginDataType as FormFields } from "src/types/loginDataType";
-import { Loader } from "lucide-react";
+import Loader from "components/ui/Loader";
 import { t } from "i18next";
 import { motion } from "framer-motion";
-import { apiLogin } from "src/api/apiLogin";
+import { apiLogin } from "api/apiLogin";
+import { useAuth } from "src/contexts/Auth/useAuth";
+import { apiGetUser } from "src/api/apiGetUser";
 const LoginForm = () => {
     const {
         register,
@@ -11,11 +13,22 @@ const LoginForm = () => {
         setError,
         formState: { errors, isSubmitting },
     } = useForm<FormFields>();
+
+    const { _setToken, setUser } = useAuth();
+
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         try {
             const response = await apiLogin(data);
-            console.log("Response:", response.data);
+            _setToken(response.data.token);
+            await apiGetUser().then((res) => {
+                setUser({
+                    email: res.data.user.email,
+                    name: res.data.user.name,
+                    id: res.data.user.id,
+                });
+            });
         } catch (error) {
+            console.error(error)
             setError("root", {
                 type: "400",
                 message: t("login.credentialError"),
@@ -64,7 +77,7 @@ const LoginForm = () => {
                             message: t("login.passwordMinError"),
                         },
                     })}
-                    value={"assword"} //todo delete
+                    value={"password"} //todo delete
                     className="Input"
                     type="password"
                 />
@@ -81,7 +94,7 @@ const LoginForm = () => {
             )}
             <button
                 type="submit"
-                className="flex justify-center items-center p-3 mt-5 font-bold rounded-lg bg-primary text-background dark:bg-dprimary dark:text-dbackground"
+                className="flex justify-center items-center p-3 mt-5 font-bold rounded-lg bg-primary text-background "
                 disabled={isSubmitting}
             >
                 {isSubmitting ? (

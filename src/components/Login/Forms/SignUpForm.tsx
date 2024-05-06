@@ -1,30 +1,49 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { signUpDataType as FormFields } from "types/signUpDataType";
 import { useAuth } from "contexts/Auth/useAuth";
-import { Loader } from "lucide-react";
+import Loader from "components/ui/Loader";
 import { t } from "i18next";
 import { motion } from "framer-motion";
+import { apiRegister } from "src/api/apiRegister";
 
 const SignupForm = () => {
-    const auth = useAuth();
+    const { _setToken, setUser } = useAuth();
     const {
         register,
         handleSubmit,
+        setError,
         formState: { errors, isSubmitting },
     } = useForm<FormFields>();
-    const onSubmit: SubmitHandler<FormFields> = (data) => {
-        auth?.signUpActon(data);
+
+    const onSubmit: SubmitHandler<FormFields> = async (data) => {
+        try {
+            const response = await apiRegister(data);
+            _setToken(response.data.token);
+            setUser({
+                email: response.data.user.email,
+                name: response.data.user.name,
+                id: response.data.user.id,
+            });
+        } catch (error) {
+            console.error(error);
+            setError("root", {
+                type: "400",
+                message: t("login.credentialError"),
+            });
+        }
     };
     return (
         <motion.form
-        initial={{opacity:0,y:-10}}
-        animate={{opacity:1,y:0,transition:{duration:.2}}}
-        exit={{opacity:0}}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
+            exit={{ opacity: 0 }}
             className="flex flex-col gap-2 justify-center py-16 px-5 rounded-xl w-full grow bg-background2"
             onSubmit={handleSubmit(onSubmit)}
         >
             <div className="flex gap-2 [&>input]:grow items-center justify-center">
-                <p className="w-20 font-semibold flex justify-end ">{t("login.username")}</p>
+                <p className="w-20 font-semibold flex justify-end ">
+                    {t("login.username")}
+                </p>
                 <input
                     {...register("name", {
                         required: t("login.nameEmptyError"),
@@ -39,7 +58,9 @@ const SignupForm = () => {
                 </p>
             )}
             <div className="flex gap-2 [&>input]:grow items-center justify-center">
-                <p className="w-20 font-semibold flex justify-end ">{t("login.email")}</p>
+                <p className="w-20 font-semibold flex justify-end ">
+                    {t("login.email")}
+                </p>
                 <input
                     {...register("email", {
                         required: t("login.emailEmptyError"),
@@ -58,7 +79,9 @@ const SignupForm = () => {
                 </p>
             )}
             <div className="flex gap-2 [&>input]:grow items-center justify-center">
-                <p className="w-20 font-semibold flex justify-end ">{t("login.password")}</p>
+                <p className="w-20 font-semibold flex justify-end ">
+                    {t("login.password")}
+                </p>
                 <input
                     {...register("password", {
                         required: t("login.passwordEmptyError"),
@@ -84,7 +107,7 @@ const SignupForm = () => {
             )}
             <button
                 type="submit"
-                className="flex justify-center items-center p-3 mt-5 font-bold rounded-lg bg-primary text-background dark:bg-dprimary dark:text-dbackground"
+                className="flex justify-center items-center p-3 mt-5 font-bold rounded-lg bg-primary text-background"
                 disabled={isSubmitting}
             >
                 {isSubmitting ? (

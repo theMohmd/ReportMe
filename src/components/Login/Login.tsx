@@ -9,7 +9,7 @@ import { AnimatePresence } from "framer-motion";
 const Login = () => {
     const [mode, setmode] = useState<"login" | "signup">("login");
     return (
-        <div className="flex flex-col justify-center items-center p-5">
+        <div className="flex flex-col justify-center items-center p-5 bg-background2">
             <p className="p-5 text-5xl font-black text-primary">ReportMe</p>
             <div className="flex flex-col items-center p-5 rounded-3xl bg-primary size-full max-h-[600px] max-w-[800px]">
                 <p className="p-5 text-3xl font-bold text-background">

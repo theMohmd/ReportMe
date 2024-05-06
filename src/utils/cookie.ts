@@ -1,22 +1,26 @@
-export const setCookie = (cname: string, cvalue: string, exhours: number) => {
-    const d = new Date();
-    d.setTime(d.getTime() + exhours * 60 * 60 * 1000);
-    const expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+export const setCookie = (cname: string, cvalue: string) => {
+    document.cookie = cname + "=" + cvalue + ";path=/";
 };
-
 export const getCookie = (cname: string) => {
-    const name = cname + "=";
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const ca = decodedCookie.split(";");
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == " ") {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
+    // Split all cookies into an array of key-value pairs
+    const cookies = document.cookie.split(";").map((cookie) => cookie.trim());
+
+    // Iterate over the array to find the cookie with the specified key
+    for (const cookie of cookies) {
+        const [cookieKey, cookieValue] = cookie.split("=");
+
+        // If the key matches, return the corresponding value
+        if (cookieKey === cname) {
+            return decodeURIComponent(cookieValue);
         }
     }
-    return "";
+
+    // If the key is not found, return null
+    return null;
+};
+export const deleteCookie = (cname: string) => {
+    const d = new Date();
+    d.setTime(d.getTime());
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + "" + ";" + expires + ";path=/";
 };
