@@ -3,11 +3,14 @@ import DesktopLayout from "components/Layouts/DesktopLayout";
 import PhoneLayout from "components/Layouts/PhoneLayout";
 import { useLang } from "contexts/Lang/useLang";
 import { useTheme } from "contexts/Theme/useTheme";
+import { useAuth } from "./contexts/Auth/useAuth";
+import Login from "./components/Login/Login";
 
 const App = () => {
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
     const { theme } = useTheme();
     const { lang } = useLang();
+    const { user } = useAuth();
 
     useEffect(() => {
         const handleResize = () => {
@@ -26,7 +29,13 @@ const App = () => {
             className={`${theme ? "dark" : null}
             bg-background2 dark:bg-dbackground2 flex overflow-hidden h-dvh w-screen [&>*]:grow `}
         >
-            {isLargeScreen ? <DesktopLayout /> : <PhoneLayout />}
+            {!user ? (
+                <Login />
+            ) : isLargeScreen ? (
+                <DesktopLayout />
+            ) : (
+                <PhoneLayout />
+            )}
         </div>
     );
 };

@@ -1,3 +1,7 @@
 @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
+
+.input {
+    @apply dark:bg-neutral-800 dark:text-white outline-primary border rounded-md p-2 border-primary;
+}
