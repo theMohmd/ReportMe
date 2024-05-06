@@ -1,15 +1,14 @@
-import { ReactNode, useContext } from "react";
+import { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 import { color } from "../../../../tailwind.config";
-import { ThemeContext } from "src/contexts/Theme/ThemeContext";
-import { themeContextType } from "src/types/theme";
+import { useTheme } from "src/contexts/Theme/useTheme";
 //NavButton component
 type NavButtonProps = {
     children: ReactNode;
     to: string;
 };
 const NavButton = ({ children, to }: NavButtonProps) => {
-    const { theme } = useContext(ThemeContext) as themeContextType;
+    const { theme } = useTheme();
     return (
         <NavLink
             to={to}

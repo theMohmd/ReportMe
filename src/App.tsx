@@ -1,13 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DesktopLayout from "components/Layouts/DesktopLayout";
 import PhoneLayout from "components/Layouts/PhoneLayout";
-import { ThemeContext } from "contexts/Theme/ThemeContext";
-import { themeContextType } from "types/theme";
-import { useLang } from "./hooks/useLang";
+import { useLang } from "contexts/Lang/useLang";
+import { useTheme } from "contexts/Theme/useTheme";
 
 const App = () => {
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
-    const { theme } = useContext(ThemeContext) as themeContextType;
+    const { theme } = useTheme();
     const { lang } = useLang();
 
     useEffect(() => {

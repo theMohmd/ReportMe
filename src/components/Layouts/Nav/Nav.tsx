@@ -9,17 +9,17 @@ import {
     UserRound,
 } from "lucide-react";
 import { useContext } from "react";
-import { ThemeContext } from "src/contexts/Theme/ThemeContext";
-import { themeContextType } from "src/types/theme";
-import { useLang } from "src/hooks/useLang";
+import { ThemeContext } from "contexts/Theme/ThemeContext";
+import { themeContextType } from "types/theme";
+import { useLang } from "contexts/Lang/useLang";
 
 //Nav component
 const Nav = () => {
     const { t } = useTranslation();
     const { settheme } = useContext(ThemeContext) as themeContextType;
-    const { lang } = useLang();
+    const { setLang } = useLang();
     return (
-        <div className="flex flex-col gap-4 p-4 grow w-[250px] bg-background dark:bg-dbackground">
+        <div className="flex flex-col gap-4 p-4 grow w-[200px] md:w-[250px] bg-background dark:bg-dbackground">
             <NavButton to="projects">
                 <ListChecks size={32} />
                 {t("navProjects")}
@@ -39,7 +39,7 @@ const Nav = () => {
             <div className="mt-auto flex gap-2 ">
                 <button
                     onClick={() => {
-                        settheme((prev) => !prev);
+                        setLang();
                     }}
                     className="flex justify-center items-center bg-primary dark:bg-dprimary text-background dark:text-dbackground size-10 rounded-lg "
                 >
