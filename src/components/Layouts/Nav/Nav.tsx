@@ -1,23 +1,17 @@
 import { useTranslation } from "react-i18next";
 import NavButton from "./NavButton";
 import {
-    Languages,
     ListChecks,
     Mail,
-    SunMoon,
     Ticket,
     UserRound,
 } from "lucide-react";
-import { useContext } from "react";
-import { ThemeContext } from "contexts/Theme/ThemeContext";
-import { themeContextType } from "types/theme";
-import { useLang } from "contexts/Lang/useLang";
+import LangButton from "src/components/ui/LangButton";
+import ThemeButton from "src/components/ui/ThemeButton";
 
 //Nav component
 const Nav = () => {
     const { t } = useTranslation();
-    const { settheme } = useContext(ThemeContext) as themeContextType;
-    const { setLang } = useLang();
     return (
         <div className="flex flex-col gap-4 p-4 grow w-[200px] md:w-[250px] bg-background dark:bg-dbackground">
             <NavButton to="projects">
@@ -37,22 +31,8 @@ const Nav = () => {
                 {t("navAccount")}
             </NavButton>
             <div className="mt-auto flex gap-2 ">
-                <button
-                    onClick={() => {
-                        setLang();
-                    }}
-                    className="flex justify-center items-center bg-primary dark:bg-dprimary text-background dark:text-dbackground size-10 rounded-lg "
-                >
-                    <Languages size={32} />
-                </button>
-                <button
-                    onClick={() => {
-                        settheme((prev) => !prev);
-                    }}
-                    className="flex justify-center items-center bg-primary dark:bg-dprimary text-background dark:text-dbackground size-10 rounded-lg "
-                >
-                    <SunMoon size={32} />
-                </button>
+                <LangButton />
+                <ThemeButton/>
             </div>
         </div>
     );

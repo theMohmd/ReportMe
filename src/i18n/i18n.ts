@@ -1,22 +1,19 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-
+import { nav_en, nav_fa } from "./nav";
+import { login_en, login_fa } from "./login";
 // Define translations
 const resources = {
     en: {
         translation: {
-            navProjects: "Projects",
-            navMessages: "Messages",
-            navTickets: "Tickets",
-            navAccount: "Account",
+            nav: nav_en,
+            login:login_en,
         },
     },
     fa: {
         translation: {
-            navProjects: "پروژه‌ها",
-            navMessages: "پیام‌ها",
-            navTickets: "تیکت‌ها",
-            navAccount: "حساب کاربری",
+            nav: nav_fa,
+            login:login_fa,
         },
     },
 };
