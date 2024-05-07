@@ -2,32 +2,43 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Dialog from "components/Common/Dialog";
 import { t } from "i18next";
 import Loader from "components/ui/Loader";
-import { PaperclipIcon, SendHorizonalIcon  } from "lucide-react";
+import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
+import Select from "../Common/Select/Select";
+import { useEffect, useRef, useState } from "react";
 
-type FormFields = { title: string; content: string; recepientId: number };
+type FormFields = { title: string; content: string; to: number };
+
 //NewMessageDialog component
 const NewMessageDialog = ({ close }: { close: () => void }) => {
+    const [recipientId, setrecipientId] = useState<number | null>(null);
+
     const {
         register,
         handleSubmit,
         setError,
         formState: { errors, isSubmitting },
     } = useForm<FormFields>();
-    const onSubmit: SubmitHandler<FormFields> = async (data) => {};
+
+    const onSubmit: SubmitHandler<FormFields> = async (data) => {
+        if (!recipientId)
+            setError("to", {
+                type: "empty",
+                message: t("messages.toEmptyError"),
+            });
+        console.log({ ...data, recipientId: recipientId });
+    };
     return (
         <Dialog close={close} title={t("messages.sendTitle")}>
+            <Select set={(input) => setrecipientId(input)} />
+            {errors.to && (
+                <p className="font-medium ps-2 text-red-600 mt-2 ">
+                    {errors.to.message}
+                </p>
+            )}
             <form
-                className="size-full flex flex-col text-primary dark:text-dprimary gap-2"
+                className="size-full flex flex-col mt-2 text-primary dark:text-dprimary gap-2"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <input
-                    {...register("recepientId", {
-                        required: t("messages.toEmptyError"),
-                    })}
-                    placeholder={t("messages.to")}
-                    className="Input"
-                    type="text"
-                />
                 <input
                     {...register("title", {
                         required: t("messages.titleEmptyError"),
@@ -36,6 +47,11 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                     className="Input"
                     type="text"
                 />
+                {errors.title && (
+                    <p className="font-medium ps-2 text-red-600 ">
+                        {errors.title.message}
+                    </p>
+                )}
                 <textarea
                     className="Input resize-none grow"
                     placeholder={t("messages.message")}

@@ -2,12 +2,12 @@
 const Projects = () => {
     return (
         <div>
-            <p className="text-4xl font-black">تست</p>
-            <p className="text-4xl font-bold">تست</p>
-            <p className="text-4xl font-semibold">تست</p>
-            <p className="text-4xl font-medium">تست</p>
-            <p className="text-4xl font-normal">تست</p>
-            <p className="text-4xl font-light">تست</p>
+            <p className="text-4xl font-black">Test</p>
+            <p className="text-4xl font-bold">Test</p>
+            <p className="text-4xl font-semibold">A quick brown fox jumped over the lazy frog</p>
+            <p className="text-4xl font-medium">Test</p>
+            <p className="text-4xl font-normal">Test</p>
+            <p className="text-4xl font-light">Test</p>
         </div>
     );
 };

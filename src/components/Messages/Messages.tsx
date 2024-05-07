@@ -9,7 +9,6 @@ const Messages = () => {
         queryKey: ["Messeges"],
         queryFn: apiGetMesseges,
     });
-    console.log(data)
     if (error) return <div>error</div>;
     if (isLoading) return <Loader size={100} className=" text-primary dark:text-dprimary " />;
 

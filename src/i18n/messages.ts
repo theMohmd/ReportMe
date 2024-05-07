@@ -7,6 +7,10 @@ export const messages_en = {
     message:"Message",
     sendTitle:"Send message",
     to:"Send to",
+    modeEmail:"Email",
+    modeUsername:"Username",
+    userNotFound:"Couldn't find any user with given information",
+    selectInput:"Start typing to search",
 };
 export const messages_fa = {
     messages:"پیام‌ها",
@@ -17,4 +21,8 @@ export const messages_fa = {
     message:"پیام",
     sendTitle:"ارسال پیام",
     to:"ارسال به",
+    modeEmail:"ایمیل",
+    modeUsername:"نام کاربری",
+    userNotFound:"کاربری با مشخصات داده شده پیدا نشد",
+    selectInput:"برای جست‌و‌جو تایپ کنید",
 };
