@@ -1,7 +1,7 @@
 //LangButton component
 import { useLang } from "contexts/Lang/useLang";
 import { Languages } from "lucide-react";
-import SmallButton from "./SmallButton";
+import SmallButton from "components/ui/SmallButton";
 const LangButton = () => {
     const { setLang } = useLang();
     return (

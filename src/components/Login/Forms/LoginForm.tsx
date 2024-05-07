@@ -1,11 +1,11 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { loginDataType as FormFields } from "src/types/loginDataType";
+import { loginDataType as FormFields } from "types/loginDataType";
 import Loader from "components/ui/Loader";
 import { t } from "i18next";
 import { motion } from "framer-motion";
 import { apiLogin } from "api/apiLogin";
-import { useAuth } from "src/contexts/Auth/useAuth";
-import { apiGetUser } from "src/api/apiGetUser";
+import { useAuth } from "contexts/Auth/useAuth";
+import { apiGetUser } from "api/apiGetUser";
 const LoginForm = () => {
     const {
         register,

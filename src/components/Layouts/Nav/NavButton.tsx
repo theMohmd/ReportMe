@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
-import { color } from "../../../../tailwind.config";
-import { useTheme } from "src/contexts/Theme/useTheme";
+import { color } from "src/../tailwind.config";
+import { useTheme } from "contexts/Theme/useTheme";
 //NavButton component
 type NavButtonProps = {
     children: ReactNode;

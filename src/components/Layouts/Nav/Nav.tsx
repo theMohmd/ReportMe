@@ -6,9 +6,9 @@ import {
     Ticket,
     UserRound,
 } from "lucide-react";
-import LangButton from "src/components/ui/LangButton";
-import ThemeButton from "src/components/ui/ThemeButton";
-import LogoutButton from "src/components/ui/LogoutButton";
+import LangButton from "components/Common/LangButton";
+import ThemeButton from "components/Common/ThemeButton";
+import LogoutButton from "components/Common/LogoutButton";
 
 //Nav component
 const Nav = () => {

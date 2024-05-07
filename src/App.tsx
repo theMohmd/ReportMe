@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import DesktopLayout from "components/Layouts/DesktopLayout";
 import PhoneLayout from "components/Layouts/PhoneLayout";
 import { useLang } from "contexts/Lang/useLang";
@@ -9,6 +9,7 @@ import axios from "axios";
 import Loader from "components/ui/Loader";
 import { useGetUser } from "./hooks/useGetUser";
 import { useWindowSize } from "./hooks/useWindowSize";
+import { Route, Routes } from "react-router-dom";
 
 const App = () => {
     const { theme } = useTheme();
@@ -30,19 +31,27 @@ const App = () => {
             className={`${theme ? "dark" : null}
             bg-background2 dark:bg-dbackground2 flex overflow-hidden h-dvh w-screen [&>*]:grow `}
         >
-            {isLoading ? (
-                <div className="text-primary size-full flex items-center justify-center">
-                    <div className="size-32">
-                        <Loader />
-                    </div>
-                </div>
-            ) : !user ? (
-                <Login />
-            ) : isLargeScreen ? (
-                <DesktopLayout />
-            ) : (
-                <PhoneLayout />
-            )}
+            <Routes>
+                <Route
+                    path="/"
+                    element={
+                        isLoading ? (
+                            <div className="text-primary size-full flex items-center justify-center">
+                                <div className="size-32">
+                                    <Loader />
+                                </div>
+                            </div>
+                        ) : !user ? (
+                            <Login />
+                        ) : isLargeScreen ? (
+                            <DesktopLayout />
+                        ) : (
+                            <PhoneLayout />
+                        )
+                    }
+                />
+                <Route path="/*" element={<div>404</div>} />
+            </Routes>
         </div>
     );
 };

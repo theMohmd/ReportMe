@@ -4,7 +4,7 @@ import { useAuth } from "contexts/Auth/useAuth";
 import Loader from "components/ui/Loader";
 import { t } from "i18next";
 import { motion } from "framer-motion";
-import { apiRegister } from "src/api/apiRegister";
+import { apiRegister } from "api/apiRegister";
 
 const SignupForm = () => {
     const { _setToken, setUser } = useAuth();

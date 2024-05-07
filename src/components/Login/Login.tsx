@@ -2,7 +2,7 @@ import { t } from "i18next";
 import { useState } from "react";
 import LoginForm from "./Forms/LoginForm";
 import SignupForm from "./Forms/SignUpForm";
-import LangButton from "../ui/LangButton";
+import LangButton from "components/Common/LangButton";
 import { AnimatePresence } from "framer-motion";
 
 //Login component
@@ -32,7 +32,9 @@ const Login = () => {
                         }
                         className="text-center font-bold text-background p-2 mt-2"
                     >
-                        {mode === "login" ? t("login.signup") : t("login.login")}
+                        {mode === "login"
+                            ? t("login.signup")
+                            : t("login.login")}
                     </button>
                 </div>
             </div>

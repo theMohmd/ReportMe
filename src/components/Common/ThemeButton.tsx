@@ -1,6 +1,6 @@
 import { SunMoon } from "lucide-react";
-import { useTheme } from "src/contexts/Theme/useTheme";
-import SmallButton from "./SmallButton";
+import { useTheme } from "contexts/Theme/useTheme";
+import SmallButton from "components/ui/SmallButton";
 
 //ThemeButton component
 const ThemeButton = () => {
