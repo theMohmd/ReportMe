@@ -7,13 +7,21 @@ const resources = {
     en: {
         translation: {
             nav: nav_en,
-            login:login_en,
+            login: login_en,
+            common: {
+                pageNotFound: "Page not found!",
+                pageNotFoundLink: "Click here to go back to home",
+            },
         },
     },
     fa: {
         translation: {
             nav: nav_fa,
-            login:login_fa,
+            login: login_fa,
+            common: {
+                pageNotFound: "صفحه مورد نظر یافت نشد!",
+                pageNotFoundLink: "برای برگشت به خانه اینجا کلیک کنید",
+            },
         },
     },
 };

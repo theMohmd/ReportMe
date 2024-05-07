@@ -10,6 +10,7 @@ import Loader from "components/ui/Loader";
 import { useGetUser } from "./hooks/useGetUser";
 import { useWindowSize } from "./hooks/useWindowSize";
 import { Route, Routes } from "react-router-dom";
+import NotFound from "./components/NotFound/NotFound";
 
 const App = () => {
     const { theme } = useTheme();
@@ -50,7 +51,7 @@ const App = () => {
                         )
                     }
                 />
-                <Route path="/*" element={<div>404</div>} />
+                <Route path="/*" element={<NotFound />} />
             </Routes>
         </div>
     );
