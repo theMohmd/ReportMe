@@ -86,7 +86,7 @@ const LoginForm = () => {
                     })}
                     value={"password"} //todo delete
                     className="Input"
-                    type={visiblePassword?"text":"password"}
+                    type={visiblePassword ? "text" : "password"}
                 />
                 <button
                     type="button"
@@ -111,13 +111,7 @@ const LoginForm = () => {
                 className="flex justify-center items-center p-3 mt-5 font-bold rounded-lg bg-primary text-background"
                 disabled={isSubmitting}
             >
-                {isSubmitting ? (
-                    <div className="flex items-center w-10 h-7">
-                        <Loader />
-                    </div>
-                ) : (
-                    t("login.login")
-                )}
+                {isSubmitting ? <Loader size={28} /> : t("login.login")}
             </button>
         </motion.form>
     );

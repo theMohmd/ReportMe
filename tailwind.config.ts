@@ -4,10 +4,10 @@ export const color = {
     background2: "#E5EAFF",
     primary: "#070D2F",
     lightBorder: "#CCD4FF",
-    dbackground: "#050A1E",
+    dbackground: "#090C1B",
     dbackground2: "#060813",
-    dprimary: "#E5EAFF",
-    dlightBorder: "#080E2B",
+    dprimary: "#C7CEF5",
+    dlightBorder: "#0D1126",
 };
 export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],

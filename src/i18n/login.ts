@@ -3,6 +3,7 @@ export const login_en = {
     signup: "Sign Up",
     emailEmptyError: "Email can't be empty",
     emailValidError: "Email is not valid",
+    email: "Email",
     password: "Password",
     passwordEmptyError: "Password can't be empty",
     passwordMinError: "Password must contain at least 6 characters",

@@ -25,17 +25,13 @@ const App = () => {
         >
             {/* todo delete */}
             <button
-                className="hidden absolute top-5 right-5 z-50 bg-red-600 p-2 text-white"
-                onClick={() => console.log(user)}
+                className=" absolute top-5 right-5 z-50 bg-red-600 p-2 text-white"
+                onClick={() => console.log()}
             >
                 click me
             </button>
             {isLoading ? (
-                <div className="text-primary size-full flex items-center justify-center">
-                    <div className="size-32">
-                        <Loader />
-                    </div>
-                </div>
+                <Loader className="text-primary" size={100} />
             ) : (
                 <Routes>
                     <Route

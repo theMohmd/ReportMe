@@ -28,7 +28,7 @@ const PhoneLayout = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute backdrop-blur-lg flex w-full h-[calc(100dvh-60px)] top-[60px]"
+                        className="absolute backdrop-blur-sm flex w-full h-[calc(100dvh-60px)] top-[60px]"
                     >
                         <div className="h-full flex  ">
                             <Nav />
