@@ -5,6 +5,7 @@ import Loader from "components/ui/Loader";
 import { t } from "i18next";
 import { motion } from "framer-motion";
 import { apiRegister } from "api/apiRegister";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
     const { setToken, setUser } = useAuth();
@@ -15,6 +16,7 @@ const SignupForm = () => {
         formState: { errors, isSubmitting },
     } = useForm<FormFields>();
 
+    const navigate = useNavigate();
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         try {
             const response = await apiRegister(data);
@@ -24,6 +26,7 @@ const SignupForm = () => {
                 name: response.data.user.name,
                 id: response.data.user.id,
             });
+            navigate("/");
         } catch (error) {
             console.error(error);
             setError("root", {

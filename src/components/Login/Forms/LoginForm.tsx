@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { apiLogin } from "api/apiLogin";
 import { useAuth } from "contexts/Auth/useAuth";
 import { apiGetUser } from "api/apiGetUser";
+import { useNavigate } from "react-router-dom";
 const LoginForm = () => {
     const {
         register,
@@ -15,20 +16,23 @@ const LoginForm = () => {
     } = useForm<FormFields>();
 
     const { setToken, setUser } = useAuth();
+    const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         try {
             const response = await apiLogin(data);
             setToken(response.data.token);
-            await apiGetUser().then((res) => {
-                setUser({
-                    email: res.data.user.email,
-                    name: res.data.user.name,
-                    id: res.data.user.id,
-                });
-            });
+            await apiGetUser()
+                .then((res) => {
+                    setUser({
+                        email: res.data.user.email,
+                        name: res.data.user.name,
+                        id: res.data.user.id,
+                    });
+                })
+                .then(() => navigate("/"));
         } catch (error) {
-            console.error(error)
+            console.error(error);
             setError("root", {
                 type: "400",
                 message: t("login.credentialError"),
