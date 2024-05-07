@@ -6,6 +6,8 @@ import { t } from "i18next";
 import { motion } from "framer-motion";
 import { apiRegister } from "api/apiRegister";
 import { useNavigate } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
 const SignupForm = () => {
     const { setToken, setUser } = useAuth();
@@ -16,6 +18,7 @@ const SignupForm = () => {
         formState: { errors, isSubmitting },
     } = useForm<FormFields>();
 
+    const [visiblePassword, setvisiblePassword] = useState(false);
     const navigate = useNavigate();
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         try {
@@ -40,11 +43,11 @@ const SignupForm = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
             exit={{ opacity: 0 }}
-            className="flex flex-col gap-2 justify-center py-16 px-5 rounded-xl w-full grow bg-background2"
+            className="flex flex-col gap-2 justify-center py-16 px-5 w-full rounded-xl grow bg-background2"
             onSubmit={handleSubmit(onSubmit)}
         >
             <div className="flex gap-2 [&>input]:grow items-center justify-center">
-                <p className="w-20 font-semibold flex justify-end ">
+                <p className="flex justify-end w-20 font-semibold">
                     {t("login.username")}
                 </p>
                 <input
@@ -56,12 +59,12 @@ const SignupForm = () => {
                 />
             </div>
             {errors.name && (
-                <p className="md:px-24 font-semibold text-red-600">
+                <p className="font-semibold text-red-600 md:px-24">
                     {errors.name.message}
                 </p>
             )}
             <div className="flex gap-2 [&>input]:grow items-center justify-center">
-                <p className="w-20 font-semibold flex justify-end ">
+                <p className="flex justify-end w-20 font-semibold">
                     {t("login.email")}
                 </p>
                 <input
@@ -77,12 +80,12 @@ const SignupForm = () => {
                 />
             </div>
             {errors.email && (
-                <p className="md:px-24 font-semibold text-red-600">
+                <p className="font-semibold text-red-600 md:px-24">
                     {errors.email.message}
                 </p>
             )}
-            <div className="flex gap-2 [&>input]:grow items-center justify-center">
-                <p className="w-20 font-semibold flex justify-end ">
+            <div className="flex gap-2 relative [&>input]:grow items-center justify-center">
+                <p className="flex justify-end w-20 font-semibold">
                     {t("login.password")}
                 </p>
                 <input
@@ -95,16 +98,23 @@ const SignupForm = () => {
                         },
                     })}
                     className="Input"
-                    type="password"
+                    type={visiblePassword ? "text" : "password"}
                 />
+                <button
+                    type="button"
+                    className="absolute end-2 text-primary"
+                    onClick={() => setvisiblePassword((prev) => !prev)}
+                >
+                    {visiblePassword ? <EyeOff /> : <Eye />}
+                </button>
             </div>
             {errors.password && (
-                <p className="md:px-24 font-semibold text-red-600">
+                <p className="font-semibold text-red-600 md:px-24">
                     {errors.password.message}
                 </p>
             )}
             {errors.root && (
-                <p className="md:px-24 font-semibold text-red-600">
+                <p className="font-semibold text-red-600 md:px-24">
                     {errors.root.message}
                 </p>
             )}
