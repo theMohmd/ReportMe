@@ -5,14 +5,18 @@ export const useGetUser = () => {
     const { setUser } = useAuth();
     return useQuery({
         queryFn: async () => {
-            await apiGetUser().then((res) => {
-                setUser({
-                    email: res.data.user.email,
-                    name: res.data.user.name,
-                    id: res.data.user.id,
+            try {
+                await apiGetUser().then((res) => {
+                    setUser({
+                        email: res.data.user.email,
+                        name: res.data.user.name,
+                        id: res.data.user.id,
+                    });
                 });
-            });
-            return "ready";
+                return "ready";
+            } catch (err) {
+                return "noUser"
+            }
         },
         retry: 1,
         queryKey: ["getUser"],

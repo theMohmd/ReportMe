@@ -25,7 +25,7 @@ const App = () => {
         >
             {/* todo delete */}
             <button
-                className="absolute top-5 right-5 z-50 bg-red-600 p-2 text-white"
+                className="hidden absolute top-5 right-5 z-50 bg-red-600 p-2 text-white"
                 onClick={() => console.log(user)}
             >
                 click me
@@ -39,13 +39,13 @@ const App = () => {
             ) : (
                 <Routes>
                     <Route
-                        path="login"
+                        path="/login"
                         element={!user ? <Login /> : <Navigate to="/" />}
                     />
                     <Route path="404" element={<NotFound />} />
                     <Route
                         path="*"
-                        element={!user ? <Navigate to="login" /> : <Layout />}
+                        element={!user ? <Navigate to="/login" /> : <Layout />}
                     />
                 </Routes>
             )}
