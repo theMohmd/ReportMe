@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { apiRegister } from "api/apiRegister";
 
 const SignupForm = () => {
-    const { _setToken, setUser } = useAuth();
+    const { setToken, setUser } = useAuth();
     const {
         register,
         handleSubmit,
@@ -18,7 +18,7 @@ const SignupForm = () => {
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         try {
             const response = await apiRegister(data);
-            _setToken(response.data.token);
+            setToken(response.data.token);
             setUser({
                 email: response.data.user.email,
                 name: response.data.user.name,

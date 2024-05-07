@@ -1,30 +1,21 @@
-import { useEffect } from "react";
 import DesktopLayout from "components/Layouts/DesktopLayout";
 import PhoneLayout from "components/Layouts/PhoneLayout";
 import { useLang } from "contexts/Lang/useLang";
 import { useTheme } from "contexts/Theme/useTheme";
 import { useAuth } from "contexts/Auth/useAuth";
 import Login from "components/Login/Login";
-import axios from "axios";
 import Loader from "components/ui/Loader";
 import { useGetUser } from "./hooks/useGetUser";
 import { useWindowSize } from "./hooks/useWindowSize";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import NotFound from "./components/NotFound/NotFound";
 
 const App = () => {
     const { theme } = useTheme();
     const { lang } = useLang();
-    const { user, token } = useAuth();
+    const { user } = useAuth();
     const { isLoading } = useGetUser();
     const isLargeScreen = useWindowSize(768);
-
-    useEffect(() => {
-        axios.interceptors.request.use(function (config) {
-            config.headers.Authorization = "Bearer " + token;
-            return config;
-        });
-    }, [token]);
 
     return (
         <div
@@ -32,6 +23,7 @@ const App = () => {
             className={`${theme ? "dark" : null}
             bg-background2 dark:bg-dbackground2 flex overflow-hidden h-dvh w-screen [&>*]:grow `}
         >
+        <button className="absolute top-5 right-5 z-50 bg-red-600 p-2 text-white" onClick={()=>console.log(user)}>click me</button>{/* todo delete */}
             <Routes>
                 <Route
                     path="/"
@@ -43,7 +35,7 @@ const App = () => {
                                 </div>
                             </div>
                         ) : !user ? (
-                            <Login />
+                        <Navigate to={"/login"}/>
                         ) : isLargeScreen ? (
                             <DesktopLayout />
                         ) : (
@@ -51,7 +43,8 @@ const App = () => {
                         )
                     }
                 />
-                <Route path="/*" element={<NotFound />} />
+                <Route path="login" element={<Login />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </div>
     );

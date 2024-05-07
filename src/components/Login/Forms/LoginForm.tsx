@@ -14,12 +14,12 @@ const LoginForm = () => {
         formState: { errors, isSubmitting },
     } = useForm<FormFields>();
 
-    const { _setToken, setUser } = useAuth();
+    const { setToken, setUser } = useAuth();
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         try {
             const response = await apiLogin(data);
-            _setToken(response.data.token);
+            setToken(response.data.token);
             await apiGetUser().then((res) => {
                 setUser({
                     email: res.data.user.email,
