@@ -5,7 +5,7 @@ import { AuthContextType, userType } from "types/auth";
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [user, setUser] = useState<userType | null>(null); //request by cookie
+    const [user, setUser] = useState<userType | null>(null);
 
     const setToken = (token: string) => {
         setCookie("token", token);

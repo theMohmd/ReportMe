@@ -1,4 +1,4 @@
-import Content from "./Content";
+import LayoutRoutes from "./LayoutRoutes";
 import Nav from "./Nav/Nav";
 
 //DesktopLayout component
@@ -11,7 +11,9 @@ const DesktopLayout = () => {
                 </div>
                 <Nav />
             </div>
-            <div className="grow"><Content /></div>
+            <div className="grow">
+                <LayoutRoutes />
+            </div>
         </div>
     );
 };

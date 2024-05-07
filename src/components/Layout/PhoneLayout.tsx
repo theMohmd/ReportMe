@@ -2,7 +2,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import Nav from "./Nav/Nav";
 import { AnimatePresence, motion } from "framer-motion";
-import Content from "./Content";
+import LayoutRoutes from "./LayoutRoutes";
 
 //PhoneLayout component
 const PhoneLayout = () => {
@@ -20,7 +20,7 @@ const PhoneLayout = () => {
                 ReportMe
             </div>
             <div className=" grow">
-                <Content />
+                <LayoutRoutes />
             </div>
             <AnimatePresence>
                 {navVisibility && (
