@@ -31,10 +31,10 @@ const SignupForm = () => {
             });
             navigate("/");
         } catch (error) {
-            console.error(error);
+            console.log(error);
             setError("root", {
-                type: "400",
-                message: t("login.credentialError"),
+                type: "422",
+                message: t("login.signupError"),
             });
         }
     };
@@ -43,7 +43,7 @@ const SignupForm = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
             exit={{ opacity: 0 }}
-            className="flex overflow-y-auto flex-col gap-2 justify-center py-16 px-5 w-full rounded-xl grow bg-background2"
+            className=" text-primary dark:text-dprimary flex overflow-y-auto flex-col gap-2 justify-center py-16 px-5 w-full rounded-xl grow bg-background2 dark:bg-dbackground2 "
             onSubmit={handleSubmit(onSubmit)}
         >
             <div className="flex gap-2 [&>input]:grow flex-col sm:flex-row sm:items-center justify-center">
@@ -102,7 +102,7 @@ const SignupForm = () => {
                 />
                 <button
                     type="button"
-                    className="absolute end-2 top-2 text-primary"
+                    className="absolute end-2 top-2 text-primary dark:text-dprimary "
                     onClick={() => setvisiblePassword((prev) => !prev)}
                 >
                     {visiblePassword ? <EyeOff /> : <Eye />}
@@ -120,10 +120,10 @@ const SignupForm = () => {
             )}
             <button
                 type="submit"
-                className="flex justify-center items-center p-3 mt-5 font-bold rounded-lg bg-primary text-background"
+                className="flex justify-center max-h-12 items-center p-3 mt-5 font-bold rounded-lg bg-primary dark:bg-dprimary text-background dark:text-dbackground "
                 disabled={isSubmitting}
             >
-                {isSubmitting ? <Loader size={28} /> : t("login.login")}
+                {isSubmitting ? <Loader /> : t("login.signup")}
             </button>
         </motion.form>
     );

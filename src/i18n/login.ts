@@ -12,6 +12,7 @@ export const login_en = {
     nameEmptyError: "Username can't be empty",
     username: "Username",
     credentialError: "Wrong email or password",
+    signupError: "This email already has an account",
 };
 export const login_fa = {
     login: "ورود",
@@ -27,4 +28,5 @@ export const login_fa = {
     nameEmptyError: "نام کاربری نمی‌تواند خالی باشد",
     username: "نام کاربری",
     credentialError: "ایمیل یا کلمه عبور اشتباه است",
+    signupError: "حسابی با این ایمیل وجود دارد",
 };

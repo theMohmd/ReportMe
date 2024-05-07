@@ -9,17 +9,17 @@ import { AnimatePresence } from "framer-motion";
 const Login = () => {
     const [mode, setmode] = useState<"login" | "signup">("login");
     return (
-        <div className="flex flex-col justify-center overflow-y-auto items-center p-5 bg-background2">
-            <p className="p-5 text-5xl font-black text-primary">ReportMe</p>
-            <div className="flex flex-col items-center p-5 rounded-3xl bg-primary size-full max-h-[600px] max-w-[800px]">
-                <p className="p-5 text-3xl font-bold text-background">
+        <div className="flex flex-col justify-center overflow-y-auto items-center p-5 bg-background2 dark:bg-dbackground2 ">
+            <p className="p-5 text-5xl font-black text-primary dark:text-dprimary ">ReportMe</p>
+            <div className="flex flex-col items-center p-5 rounded-3xl bg-primary dark:bg-dprimary size-full max-h-[600px] max-w-[800px]">
+                <p className="p-5 text-3xl font-bold text-background dark:text-dbackground ">
                     {mode === "login" ? t("login.login") : t("login.signup")}
                 </p>
                 <AnimatePresence>
                     {mode === "login" ? <LoginForm /> : <SignupForm />}
                 </AnimatePresence>
                 <div className="flex">
-                    <p className="p-2 mt-2 text-center text-background">
+                    <p className="p-2 mt-2 text-center text-background dark:text-dbackground ">
                         {mode === "login"
                             ? t("login.signupQuestion")
                             : t("login.loginQuestion")}
@@ -30,7 +30,7 @@ const Login = () => {
                                 prev === "login" ? "signup" : "login"
                             )
                         }
-                        className="p-2 mt-2 font-bold text-center text-background"
+                        className="p-2 mt-2 font-bold text-center text-background dark:text-dbackground "
                     >
                         {mode === "login"
                             ? t("login.signup")

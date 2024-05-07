@@ -20,12 +20,12 @@ const App = () => {
     return (
         <div
             dir={lang == "fa" ? "rtl" : "ltr"}
-            className={`${theme ? "dark" : null}
+            className={`${theme === "dark" ? "dark" : null}
             bg-background2 dark:bg-dbackground2 flex overflow-hidden h-dvh w-screen [&>*]:grow `}
         >
             {/* todo delete */}
             <button
-                className=" absolute top-5 right-5 z-50 bg-red-600 p-2 text-white"
+                className=" hidden absolute top-5 right-5 z-50 bg-red-600 p-2 text-white"
                 onClick={() => console.log()}
             >
                 click me

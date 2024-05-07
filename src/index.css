@@ -3,5 +3,28 @@
 @tailwind utilities;
 
 .Input {
-    @apply outline-primary min-w-0 border rounded-lg p-2 bg-background border-lightBorder;
+    @apply outline-none min-w-0 border rounded-lg p-2 bg-background dark:bg-dbackground border-lightBorder dark:border-dlightBorder;
+}
+
+/*custom scroll bar*/
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    @apply bg-lightBorder dark:bg-dlightBorder;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

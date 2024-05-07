@@ -15,12 +15,12 @@ const NavButton = ({ children, to }: NavButtonProps) => {
             style={({ isActive }) => {
                 return {
                     color: isActive
-                        ? theme
+                        ? theme === "dark"
                             ? color.dbackground
                             : color.background
                         : "",
                     backgroundColor: isActive
-                        ? theme
+                        ? theme === "dark"
                             ? color.dprimary
                             : color.primary
                         : "",

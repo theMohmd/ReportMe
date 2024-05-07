@@ -1,5 +1,5 @@
 //Loader component
-const Loader = ({ className, size }: { className?: string; size: number }) => {
+const Loader = ({ className, size="100%" }: { className?: string; size?: number|"100%" }) => {
     return (
         <div className="size-full flex items-center justify-center">
             <svg

@@ -4,9 +4,9 @@ import SmallButton from "components/ui/SmallButton";
 
 //ThemeButton component
 const ThemeButton = () => {
-    const { settheme } = useTheme();
+    const { changeTheme } = useTheme();
     return (
-        <SmallButton onClick={() => settheme((prev) => !prev)}>
+        <SmallButton onClick={changeTheme}>
             <SunMoon size={32} />
         </SmallButton>
     );

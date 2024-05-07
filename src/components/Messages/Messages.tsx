@@ -11,7 +11,7 @@ const Messages = () => {
     });
     console.log(data)
     if (error) return <div>error</div>;
-    if (isLoading) return <Loader size={100} className="text-primary" />;
+    if (isLoading) return <Loader size={100} className=" text-primary dark:text-dprimary " />;
 
     return <MessagesUi />;
 };
