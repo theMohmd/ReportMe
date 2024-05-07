@@ -47,11 +47,11 @@ const LoginForm = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
             exit={{ opacity: 0 }}
-            className="flex flex-col gap-2 justify-center py-16 px-5 w-full rounded-xl grow bg-background2"
+            className="flex flex-col gap-2 justify-center overflow-y-auto py-16 px-5 size-full rounded-xl grow bg-background2"
             onSubmit={handleSubmit(onSubmit)}
         >
-            <div className="flex gap-2 [&>input]:grow items-center justify-center">
-                <p className="flex justify-end w-20 font-semibold">
+            <div className="flex gap-2 [&>input]:grow flex-col sm:flex-row sm:items-center justify-center">
+                <p className="flex sm:justify-end w-20 font-semibold">
                     {t("login.email")}
                 </p>
                 <input
@@ -72,8 +72,8 @@ const LoginForm = () => {
                     {errors.email.message}
                 </p>
             )}
-            <div className="flex gap-2 relative [&>input]:grow items-center justify-center">
-                <p className="flex justify-end w-20 font-semibold">
+            <div className="flex gap-2 relative [&>input]:grow flex-col sm:flex-row sm:items-center justify-center">
+                <p className="flex sm:justify-end w-20 font-semibold">
                     {t("login.password")}
                 </p>
                 <input
@@ -90,7 +90,7 @@ const LoginForm = () => {
                 />
                 <button
                     type="button"
-                    className="absolute end-2 text-primary"
+                    className="absolute end-2 top-2 text-primary"
                     onClick={() => setvisiblePassword((prev) => !prev)}
                 >
                     {visiblePassword ? <EyeOff /> : <Eye />}
