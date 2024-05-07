@@ -14,6 +14,7 @@ export default {
     darkMode: "selector",
     theme: {
         extend: {
+            fontFamily: { vazir: ["Vazir", "sans"] },
             colors: color,
         },
     },

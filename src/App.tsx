@@ -21,7 +21,7 @@ const App = () => {
         <div
             dir={lang == "fa" ? "rtl" : "ltr"}
             className={`${theme === "dark" ? "dark" : null}
-            bg-background2 dark:bg-dbackground2 flex overflow-hidden h-dvh w-screen [&>*]:grow `}
+            bg-background2 font-vazir dark:bg-dbackground2 flex overflow-hidden h-dvh w-screen [&>*]:grow `}
         >
             {/* todo delete */}
             <button

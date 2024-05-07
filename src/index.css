@@ -28,3 +28,38 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+@font-face {
+  font-family: 'Vazir';
+  font-style: normal;
+  font-weight: 300;
+  src: url('./assets/fonts/Vazir-Thin.woff2') format('woff2'), /* WOFF2 */
+       url('./assets/fonts/Vazir-Thin.woff') format('woff');   /* WOFF */
+}
+@font-face {
+  font-family: 'Vazir';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/Vazir-Light.woff2') format('woff2'), /* WOFF2 */
+       url('./assets/fonts/Vazir-Light.woff') format('woff');   /* WOFF */
+}
+@font-face {
+  font-family: 'Vazir';
+  font-style: normal;
+  font-weight: 500;
+  src: url('./assets/fonts/Vazir.woff2') format('woff2'), /* WOFF2 */
+       url('./assets/fonts/Vazir.woff') format('woff');   /* WOFF */
+}
+@font-face {
+  font-family: 'Vazir';
+  font-style: normal;
+  font-weight: 600;
+  src: url('./assets/fonts/Vazir-Medium.woff2') format('woff2'), /* WOFF2 */
+       url('./assets/fonts/Vazir-Medium.woff') format('woff');   /* WOFF */
+}
+@font-face {
+  font-family: 'Vazir';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./assets/fonts/Vazir-Bold.woff2') format('woff2'), /* WOFF2 */
+       url('./assets/fonts/Vazir-Bold.woff') format('woff');   /* WOFF */
+}

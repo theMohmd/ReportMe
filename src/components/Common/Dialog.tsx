@@ -18,7 +18,7 @@ const Dialog = ({ children, title, close }: DialogProps) => {
             <motion.div
                 initial={{ scale: 0.5 }}
                 animate={{ scale: 1 }}
-                exit={{ scale: 0.5 }}
+                exit={{ scale: 0 }}
                 className="rounded-xl p-5 flex flex-col border bg-background2 grow max-w-[1200px] border-lightBorder dark:border-dlightBorder dark:bg-dbackground2"
             >
                 <div className="grid grid-cols-3 items-center justify-center mb-5">
