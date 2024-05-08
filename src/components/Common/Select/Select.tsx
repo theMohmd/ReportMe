@@ -4,7 +4,7 @@ import { t } from "i18next";
 import ModeSelector from "./ModeSelector";
 import { apiGetUsers } from "src/api/apiGetUsers";
 //Select component
-const Select = ({ set }: { set: (input: number) => void }) => {
+const Select = ({ set }: { set: (input: number|null) => void }) => {
     const [input, setInput] = useState("");
     const [mode, setmode] = useState<"username" | "email">("username");
     const { data } = useQuery({
@@ -32,7 +32,7 @@ const Select = ({ set }: { set: (input: number) => void }) => {
                         ref={inputRef}
                         placeholder={t("messages.selectInput")}
                         className="min-w-0 outline-none grow bg-background dark:bg-dbackground border-t border-lightBorder dark:border-dlightBorder md:border-none pt-2 md:p-0 w-full md:w-fit"
-                        onChange={(e) => setInput(e.target.value)}
+                        onChange={(e) => {set(null);setInput(e.target.value)}}
                     />
                 </div>
                 {!data ? null : !input ? null : data.data.data.length ? (

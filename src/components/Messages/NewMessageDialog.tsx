@@ -4,36 +4,39 @@ import { t } from "i18next";
 import Loader from "components/ui/Loader";
 import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
 import Select from "../Common/Select/Select";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { apiPostMessage } from "src/api/apiPostMessage";
 
-type FormFields = { title: string; content: string; to: number };
+type FormFields = { title: string; content: string };
 
 //NewMessageDialog component
 const NewMessageDialog = ({ close }: { close: () => void }) => {
     const [recipientId, setrecipientId] = useState<number | null>(null);
 
+    const [toError, settoError] = useState<string | null>(null);
+
     const {
         register,
         handleSubmit,
-        setError,
         formState: { errors, isSubmitting },
     } = useForm<FormFields>();
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        if (!recipientId)
-            setError("to", {
-                type: "empty",
-                message: t("messages.toEmptyError"),
-            });
-        console.log({ ...data, recipientId: recipientId });
+        if (!recipientId) {
+            settoError(t("messages.toEmptyError"));
+            return;
+        }
+        const newData = { ...data, receiver_id: recipientId };
+        console.log(newData);
+        const response = await apiPostMessage(newData);
+        console.log(response);
+        close();
     };
     return (
         <Dialog close={close} title={t("messages.sendTitle")}>
             <Select set={(input) => setrecipientId(input)} />
-            {errors.to && (
-                <p className="font-medium ps-2 text-red-600 mt-2 ">
-                    {errors.to.message}
-                </p>
+            {!!toError && !recipientId && (
+                <p className="font-medium ps-2 text-red-600 mt-2 ">{toError}</p>
             )}
             <form
                 className="size-full flex flex-col mt-2 text-primary dark:text-dprimary gap-2"
@@ -55,10 +58,18 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                 <textarea
                     className="Input resize-none grow"
                     placeholder={t("messages.message")}
-                    {...register("content")}
+                    {...register("content", {
+                        required: t("messages.contentEmptyError"),
+                    })}
                 ></textarea>
 
+                {errors.content && (
+                    <p className="font-medium ps-2 text-red-600 ">
+                        {errors.content.message}
+                    </p>
+                )}
                 <div className="flex gap-2">
+                    {/*todo send file*/}
                     <button
                         type="button"
                         className="flex justify-center max-h-16 items-center p-3 mt-5 font-bold rounded-lg bg-primary dark:bg-dprimary text-background dark:text-dbackground "

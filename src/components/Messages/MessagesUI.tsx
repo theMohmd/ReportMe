@@ -9,7 +9,7 @@ import { AnimatePresence } from "framer-motion";
 
 //MessagesUI component
 const MessagesUi = () => {
-    const [dialog, setdialog] = useState(true);
+    const [dialog, setdialog] = useState(true);//todo make it false
     return (
         <div className="flex flex-col gap-2 p-5 pt-10 size-full">
             <AnimatePresence>
