@@ -79,7 +79,7 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                     </button>
                     <button
                         type="submit"
-                        className="flex justify-center gap-2 grow max-h-16 items-center p-3 mt-5 font-bold rounded-lg bg-primary dark:bg-dprimary text-background dark:text-dbackground "
+                        className="flex justify-center gap-2 grow max-h-12 items-center p-3 mt-5 font-bold rounded-lg bg-primary dark:bg-dprimary text-background dark:text-dbackground "
                         disabled={isSubmitting}
                     >
                         {isSubmitting ? (
