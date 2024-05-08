@@ -7,7 +7,7 @@ import Loader from "components/ui/Loader";
 const Messages = () => {
     const { data, isLoading } = useQuery({
         queryKey: ["Messeges"],
-        queryFn: apiGetMesseges,
+        queryFn: ()=>apiGetMesseges(),
     });
     if (isLoading)
         return (

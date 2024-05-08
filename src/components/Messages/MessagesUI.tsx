@@ -7,6 +7,7 @@ import { useState } from "react";
 import NewMessageDialog from "./NewMessageDialog";
 import { AnimatePresence } from "framer-motion";
 import { messageType } from "types/messageType";
+import { useNavigate } from "react-router-dom";
 
 type MessagesUiProps = {
     data: messageType[];
@@ -14,6 +15,7 @@ type MessagesUiProps = {
 //MessagesUI component
 const MessagesUi = ({ data }: MessagesUiProps) => {
     const [dialog, setdialog] = useState(false);
+    const navigate = useNavigate();
     return (
         <div className="flex flex-col gap-2 p-5 pt-10 size-full">
             <AnimatePresence>
@@ -30,13 +32,17 @@ const MessagesUi = ({ data }: MessagesUiProps) => {
                     {t("messages.messages")}
                 </p>
                 <CustomButton onClick={() => setdialog(true)}>
-                    <p>{t("messages.newMessage")}</p>
+                    <p className="px-1">{t("messages.newMessage")}</p>
                     <Plus size={30} />
                 </CustomButton>
             </div>
             <List>
                 {data.map((item) => (
-                    <ListItem key={item.id} title={item.title} />
+                    <ListItem
+                        onClick={() => navigate(item.id.toString())}
+                        key={item.id}
+                        title={item.title}
+                    />
                 ))}
             </List>
         </div>
