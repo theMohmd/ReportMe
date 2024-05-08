@@ -21,7 +21,7 @@ const Dialog = ({ children, title, close }: DialogProps) => {
                 exit={{ scale: 0 }}
                 className="rounded-xl p-5 flex flex-col border bg-background2 grow max-w-[1200px] border-lightBorder dark:border-dlightBorder dark:bg-dbackground2"
             >
-                <div className="grid grid-cols-3 items-center justify-center mb-5">
+                <div className="grid grid-cols-[32px_1fr_32px] items-center justify-center mb-5">
                     <p className="justify-self-center col-start-2 text-xl text-primary dark:text-dprimary font-semibold ">{title}</p>
                     <button onClick={close} className="w-fit col-start-3 justify-self-end">
                         <XIcon

@@ -7,7 +7,7 @@ type ModeSelectorProps = { mode: "email" | "username"; setMode: () => void };
 const ModeSelector = ({ mode, setMode }: ModeSelectorProps) => {
     const [expanded, setexpanded] = useState(false);
     return (
-        <div className="flex z-20 bg-background dark:bg-dbackground relative flex-col w-28">
+        <div className="flex z-20 bg-background dark:bg-dbackground relative flex-col  min-w-24 w-28">
             <button
                 onClick={() => setexpanded((prev) => !prev)}
                 className="flex gap-1 justify-between items-center w-full"
@@ -23,9 +23,9 @@ const ModeSelector = ({ mode, setMode }: ModeSelectorProps) => {
                 <AnimatePresence>
                     {expanded && (
                         <motion.button
-                            initial={{ y: "-50%", opacity: 0 }}
-                            animate={{ y: "0", opacity: 1 }}
-                            exit={{ y: "-50%", opacity: 0 }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
                             onClick={() => {
                                 setMode();
                                 setexpanded(false);

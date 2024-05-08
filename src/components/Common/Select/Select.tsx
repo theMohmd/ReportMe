@@ -13,28 +13,30 @@ const Select = ({ set }: { set: (input: number) => void }) => {
     });
     const inputRef = useRef<HTMLInputElement | null>(null);
     return (
-        <div className="flex relative flex-col h-12">
+        <div className="flex relative flex-col h-[104px] md:h-12">
             <div className="flex absolute flex-col w-full text-primary Input dark:text-dprimary">
-                <div className="flex gap-2 items-center">
-                    <p>{t("messages.to")}</p>
-                    <ModeSelector
-                        mode={mode}
-                        setMode={() =>
-                            setmode((prev) =>
-                                prev === "email" ? "username" : "email"
-                            )
-                        }
-                    />
+                <div className="flex gap-2 md:items-center items-start flex-col md:flex-row">
+                    <div className="flex gap-2 items-center">
+                        <p className="min-w-12">{t("messages.to")}</p>
+                        <ModeSelector
+                            mode={mode}
+                            setMode={() =>
+                                setmode((prev) =>
+                                    prev === "email" ? "username" : "email"
+                                )
+                            }
+                        />
+                    </div>
                     <input
                         type="text"
                         ref={inputRef}
                         placeholder={t("messages.selectInput")}
-                        className="outline-none grow bg-background dark:bg-dbackground"
+                        className="min-w-0 outline-none grow bg-background dark:bg-dbackground border-t border-lightBorder dark:border-dlightBorder md:border-none pt-2 md:p-0 w-full md:w-fit"
                         onChange={(e) => setInput(e.target.value)}
                     />
                 </div>
                 {!data ? null : !input ? null : data.data.data.length ? (
-                    <div className="flex flex-col py-2 ">
+                    <div className="flex flex-col py-2">
                         {data.data.data.map(
                             (item: {
                                 id: number;
@@ -42,7 +44,7 @@ const Select = ({ set }: { set: (input: number) => void }) => {
                                 email: string;
                             }) => (
                                 <button
-                                    className="text-start py-2 border-t border-lightBorder dark:border-dlightBorder px-2"
+                                    className="py-2 px-2 overflow-hidden text-ellipsis border-t text-start border-lightBorder dark:border-dlightBorder"
                                     key={item.id}
                                     onClick={() => {
                                         set(item.id);
@@ -57,7 +59,7 @@ const Select = ({ set }: { set: (input: number) => void }) => {
                         )}
                     </div>
                 ) : (
-                    <p className="p-2 my-2 border-t border-lightBorder dark:border-dlightBorder ">
+                    <p className="p-2 my-2 border-t border-lightBorder dark:border-dlightBorder">
                         {t("messages.userNotFound")}
                     </p>
                 )}
