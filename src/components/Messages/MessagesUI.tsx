@@ -1,12 +1,12 @@
 import { t } from "i18next";
 import { Plus } from "lucide-react";
-import SmallButton from "../ui/SmallButton";
-import List from "../Common/List/List";
-import ListItem from "../Common/List/ListItem";
+import CustomButton from "components/ui/CustomButton";
+import List from "components/Common/List/List";
+import ListItem from "components/Common/List/ListItem";
 import { useState } from "react";
 import NewMessageDialog from "./NewMessageDialog";
 import { AnimatePresence } from "framer-motion";
-import { messageType } from "src/types/messageType";
+import { messageType } from "types/messageType";
 
 type MessagesUiProps = {
     data: messageType[];
@@ -29,9 +29,10 @@ const MessagesUi = ({ data }: MessagesUiProps) => {
                 <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                     {t("messages.messages")}
                 </p>
-                <SmallButton onClick={() => setdialog(true)}>
+                <CustomButton onClick={() => setdialog(true)}>
+                    <p>{t("messages.newMessage")}</p>
                     <Plus size={30} />
-                </SmallButton>
+                </CustomButton>
             </div>
             <List>
                 {data.map((item) => (

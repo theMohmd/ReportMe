@@ -12,6 +12,7 @@ export const messages_en = {
     modeUsername:"Username",
     userNotFound:"Couldn't find any user with given information",
     selectInput:"Start typing to search",
+    newMessage:"New message",
 };
 export const messages_fa = {
     messages:"پیام‌ها",
@@ -27,4 +28,5 @@ export const messages_fa = {
     modeUsername:"نام کاربری",
     userNotFound:"کاربری با مشخصات داده شده پیدا نشد",
     selectInput:"برای جست‌و‌جو تایپ کنید",
+    newMessage:"پیام جدید",
 };

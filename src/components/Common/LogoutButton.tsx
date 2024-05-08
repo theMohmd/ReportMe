@@ -1,14 +1,14 @@
 import { useAuth } from "contexts/Auth/useAuth";
-import SmallButton from "components/ui/SmallButton";
+import CustomButton from "components/ui/CustomButton";
 import { LogOut } from "lucide-react";
 
 //LogoutButton component
 const LogoutButton = () => {
     const { logOut } = useAuth();
     return (
-        <SmallButton onClick={() => logOut()}>
+        <CustomButton onClick={() => logOut()}>
             <LogOut size={32} />
-        </SmallButton>
+        </CustomButton>
     );
 };
 

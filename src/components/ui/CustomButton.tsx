@@ -5,15 +5,15 @@ type SmallButtonProps = {
     children: ReactNode;
     onClick: MouseEventHandler<HTMLButtonElement>;
 };
-const SmallButton = ({ children, onClick }: SmallButtonProps) => {
+const CustomButton = ({ children, onClick }: SmallButtonProps) => {
     return (
         <button
             onClick={onClick}
-            className="flex justify-center items-center bg-primary dark:bg-dprimary text-background dark:text-dbackground size-10 rounded-lg "
+            className="flex justify-center font-bold gap-2 items-center bg-primary dark:bg-dprimary text-background dark:text-dbackground py-2 px-4 rounded-lg "
         >
             {children}
         </button>
     );
 };
 
-export default SmallButton;
+export default CustomButton;

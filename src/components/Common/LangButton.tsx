@@ -1,13 +1,13 @@
 //LangButton component
 import { useLang } from "contexts/Lang/useLang";
 import { Languages } from "lucide-react";
-import SmallButton from "components/ui/SmallButton";
+import CustomButton from "components/ui/CustomButton";
 const LangButton = () => {
     const { setLang } = useLang();
     return (
-        <SmallButton onClick={() => setLang()}>
+        <CustomButton onClick={() => setLang()}>
             <Languages size={32} />
-        </SmallButton>
+        </CustomButton>
     );
 };
 
