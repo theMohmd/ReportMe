@@ -6,10 +6,14 @@ import ListItem from "../Common/List/ListItem";
 import { useState } from "react";
 import NewMessageDialog from "./NewMessageDialog";
 import { AnimatePresence } from "framer-motion";
+import { messageType } from "src/types/messageType";
 
+type MessagesUiProps = {
+    data: messageType[];
+};
 //MessagesUI component
-const MessagesUi = () => {
-    const [dialog, setdialog] = useState(true);//todo make it false
+const MessagesUi = ({ data }: MessagesUiProps) => {
+    const [dialog, setdialog] = useState(false);
     return (
         <div className="flex flex-col gap-2 p-5 pt-10 size-full">
             <AnimatePresence>
@@ -30,11 +34,9 @@ const MessagesUi = () => {
                 </SmallButton>
             </div>
             <List>
-                <ListItem title="test" />
-                <ListItem title="test" />
-                <ListItem title="test" />
-                <ListItem title="test" />
-                <ListItem title="test" />
+                {data.map((item) => (
+                    <ListItem key={item.id} title={item.title} />
+                ))}
             </List>
         </div>
     );

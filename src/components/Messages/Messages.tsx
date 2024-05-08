@@ -5,14 +5,17 @@ import Loader from "components/ui/Loader";
 
 //Messages component
 const Messages = () => {
-    const { data, error, isLoading } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ["Messeges"],
         queryFn: apiGetMesseges,
     });
-    if (error) return <div>error</div>;
-    if (isLoading) return <Loader size={100} className=" text-primary dark:text-dprimary " />;
+    if (isLoading)
+        return (
+            <Loader size={100} className=" text-primary dark:text-dprimary " />
+        );
 
-    return <MessagesUi />;
+    if (data) return <MessagesUi data={data.data.data} />;
+    return <div>error</div>;//todo
 };
 
 export default Messages;
