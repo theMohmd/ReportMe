@@ -5,33 +5,38 @@ import Loader from "components/ui/Loader";
 import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
 import Select from "../Common/Select/Select";
 import { useState } from "react";
-import { apiPostMessage } from "src/api/apiPostMessage";
+import { usePostMessage } from "./postMessageMutation";
 
 type FormFields = { title: string; content: string };
 
 //NewMessageDialog component
 const NewMessageDialog = ({ close }: { close: () => void }) => {
+    //handle recepient id and it's errors
     const [recipientId, setrecipientId] = useState<number | null>(null);
-
     const [toError, settoError] = useState<string | null>(null);
 
+    //post message
+    const { mutate } = usePostMessage();
+
+    //handle form
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
     } = useForm<FormFields>();
 
+    //form submit funciton
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
+        //check empty recipientId
         if (!recipientId) {
             settoError(t("messages.toEmptyError"));
             return;
         }
-        const newData = { ...data, receiver_id: recipientId };
-        console.log(newData);
-        const response = await apiPostMessage(newData);
-        console.log(response);
-        close();
+
+        //send post request
+        mutate({ ...data, receiver_id: recipientId });
     };
+
     return (
         <Dialog close={close} title={t("messages.sendTitle")}>
             <Select set={(input) => setrecipientId(input)} />
