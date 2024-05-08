@@ -1,25 +1,31 @@
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Nav from "./Nav/Nav";
 import { AnimatePresence, motion } from "framer-motion";
 import LayoutRoutes from "./LayoutRoutes";
+import { useLocation } from "react-router-dom";
 
 //PhoneLayout component
 const PhoneLayout = () => {
     const [navVisibility, setnavVisibility] = useState(false);
+    const location = useLocation();
+
+    useEffect(() => {
+        // Hide nav when URL changes
+        setnavVisibility(false);
+    }, [location]);
     return (
         <div className="flex flex-col">
             <div className="grid grid-cols-3 items-center py-2 w-full font-black text-center h-[60px] bg-background text-primary text-[24px] dark:bg-dbackground dark:text-dprimary">
-                <button className="px-2" onClick={() => setnavVisibility((prev) => !prev)}>
-                    {navVisibility ? (
-                        <X size={40} />
-                    ) : (
-                        <Menu size={40}/>
-                    )}
+                <button
+                    className="px-2"
+                    onClick={() => setnavVisibility((prev) => !prev)}
+                >
+                    {navVisibility ? <X size={40} /> : <Menu size={40} />}
                 </button>
                 ReportMe
             </div>
-            <div className=" grow">
+            <div className="grow">
                 <LayoutRoutes />
             </div>
             <AnimatePresence>
@@ -30,7 +36,7 @@ const PhoneLayout = () => {
                         exit={{ opacity: 0 }}
                         className="absolute backdrop-blur-sm flex w-full h-[calc(100dvh-60px)] top-[60px]"
                     >
-                        <div className="h-full flex  ">
+                        <div className="flex h-full">
                             <Nav />
                         </div>
                     </motion.div>
