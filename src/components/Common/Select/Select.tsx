@@ -14,7 +14,7 @@ const Select = ({ set }: { set: (input: number|null) => void }) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
     return (
         <div className="flex relative flex-col h-[104px] md:h-12">
-            <div className="flex absolute flex-col w-full text-primary Input dark:text-dprimary">
+            <div className="flex absolute z-20 flex-col w-full text-primary Input dark:text-dprimary">
                 <div className="flex gap-2 md:items-center items-start flex-col md:flex-row">
                     <div className="flex gap-2 items-center">
                         <p className="min-w-12">{t("messages.to")}</p>
