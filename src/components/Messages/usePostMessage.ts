@@ -7,14 +7,8 @@ export const usePostMessage = () => {
     return useMutation({
         mutationKey: ["messages"],
         mutationFn: async (data: postMessageType) => apiPostMessage(data),
-        onSuccess: (data) => {
-            console.log("Mutation succeeded", data);
+        onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["Messeges"] });
-
-            close();
-        },
-        onError: (error) => {
-            console.error("Mutation failed", error);
         },
     });
 };

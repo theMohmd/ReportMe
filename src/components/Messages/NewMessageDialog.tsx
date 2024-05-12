@@ -5,7 +5,7 @@ import Loader from "components/ui/Loader";
 import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
 import Select from "../Common/Select/Select";
 import { useState } from "react";
-import { usePostMessage } from "./postMessageMutation";
+import { usePostMessage } from "./usePostMessage";
 import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
 
@@ -36,7 +36,13 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
         }
 
         //send post request
-        mutate({ ...data, receiver_id: recipientId });
+        return mutate(
+            { ...data, receiver_id: recipientId },
+            {
+                onSuccess: close,
+                onError: () => console.log("error"),
+            }
+        );
     };
 
     return (
