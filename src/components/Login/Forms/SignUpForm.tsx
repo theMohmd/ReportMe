@@ -4,7 +4,7 @@ import { useAuth } from "contexts/Auth/useAuth";
 import Loader from "components/ui/Loader";
 import { t } from "i18next";
 import { motion } from "framer-motion";
-import { apiRegister } from "api/apiRegister";
+import { apiRegister } from "api/login/apiRegister";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";

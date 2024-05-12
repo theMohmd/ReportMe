@@ -1,4 +1,4 @@
-import { apiGetUser } from "api/apiGetUser";
+import { apiGetUser } from "api/login/apiGetUser";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "contexts/Auth/useAuth";
 export const useGetUser = () => {

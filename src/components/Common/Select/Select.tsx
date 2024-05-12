@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import { t } from "i18next";
 import ModeSelector from "./ModeSelector";
-import { apiGetUsers } from "src/api/apiGetUsers";
+import { apiGetUsers } from "api/login/apiGetUsers";
 //Select component
 const Select = ({ set }: { set: (input: number|null) => void }) => {
     const [input, setInput] = useState("");
