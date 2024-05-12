@@ -7,8 +7,7 @@ import { apiLogin } from "api/login/apiLogin";
 import { useAuth } from "contexts/Auth/useAuth";
 import { apiGetUser } from "api/login/apiGetUser";
 import { useNavigate } from "react-router-dom";
-import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import Input from "components/ui/Input";
 const LoginForm = () => {
     const {
         register,
@@ -19,7 +18,6 @@ const LoginForm = () => {
 
     const { setToken, setUser } = useAuth();
     const navigate = useNavigate();
-    const [visiblePassword, setvisiblePassword] = useState(false);
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         try {
@@ -50,11 +48,12 @@ const LoginForm = () => {
             className=" text-primary dark:text-dprimary flex flex-col gap-2 justify-center overflow-y-auto py-16 px-5 size-full rounded-xl grow bg-background2 dark:bg-dbackground2"
             onSubmit={handleSubmit(onSubmit)}
         >
-            <div className="flex gap-2 [&>input]:grow flex-col sm:flex-row sm:items-center justify-center">
+            <div className="flex gap-2 flex-col sm:flex-row sm:items-center justify-center">
                 <p className="flex sm:justify-end w-20 font-semibold">
                     {t("login.email")}
                 </p>
-                <input
+                <Input
+                    className="grow"
                     {...register("email", {
                         required: t("login.emailEmptyError"),
                         pattern: {
@@ -63,7 +62,6 @@ const LoginForm = () => {
                         },
                     })}
                     value={"test@mail.com"} //todo delete
-                    className="Input"
                     type="email"
                 />
             </div>
@@ -76,7 +74,8 @@ const LoginForm = () => {
                 <p className="flex sm:justify-end w-20 font-semibold">
                     {t("login.password")}
                 </p>
-                <input
+                <Input
+                    className="grow"
                     {...register("password", {
                         required: t("login.passwordEmptyError"),
                         minLength: {
@@ -85,16 +84,8 @@ const LoginForm = () => {
                         },
                     })}
                     value={"password"} //todo delete
-                    className="Input"
-                    type={visiblePassword ? "text" : "password"}
+                    type="password"
                 />
-                <button
-                    type="button"
-                    className="absolute end-2 top-2 text-primary"
-                    onClick={() => setvisiblePassword((prev) => !prev)}
-                >
-                    {visiblePassword ? <EyeOff /> : <Eye />}
-                </button>
             </div>
             {errors.password && (
                 <p className="font-semibold text-red-600 md:px-24">

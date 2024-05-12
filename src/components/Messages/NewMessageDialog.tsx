@@ -6,6 +6,8 @@ import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
 import Select from "../Common/Select/Select";
 import { useState } from "react";
 import { usePostMessage } from "./postMessageMutation";
+import Input from "components/ui/Input";
+import Textarea from "components/ui/Textarea";
 
 type FormFields = { title: string; content: string };
 
@@ -47,12 +49,11 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                 className="size-full flex flex-col mt-2 text-primary dark:text-dprimary gap-2"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <input
+                <Input
                     {...register("title", {
                         required: t("messages.titleEmptyError"),
                     })}
                     placeholder={t("messages.subject")}
-                    className="Input"
                     type="text"
                 />
                 {errors.title && (
@@ -60,13 +61,13 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                         {errors.title.message}
                     </p>
                 )}
-                <textarea
+                <Textarea
                     className="Input resize-none grow"
                     placeholder={t("messages.message")}
                     {...register("content", {
                         required: t("messages.contentEmptyError"),
                     })}
-                ></textarea>
+                />
 
                 {errors.content && (
                     <p className="font-medium ps-2 text-red-600 ">

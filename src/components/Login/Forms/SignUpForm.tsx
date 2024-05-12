@@ -6,8 +6,7 @@ import { t } from "i18next";
 import { motion } from "framer-motion";
 import { apiRegister } from "api/login/apiRegister";
 import { useNavigate } from "react-router-dom";
-import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import Input from "components/ui/Input";
 
 const SignupForm = () => {
     const { setToken, setUser } = useAuth();
@@ -18,7 +17,6 @@ const SignupForm = () => {
         formState: { errors, isSubmitting },
     } = useForm<FormFields>();
 
-    const [visiblePassword, setvisiblePassword] = useState(false);
     const navigate = useNavigate();
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         try {
@@ -50,11 +48,11 @@ const SignupForm = () => {
                 <p className="flex w-20 font-semibold sm:justify-end">
                     {t("login.username")}
                 </p>
-                <input
+                <Input
+                    className="grow"
                     {...register("name", {
                         required: t("login.nameEmptyError"),
                     })}
-                    className="Input"
                     type="text"
                 />
             </div>
@@ -67,7 +65,8 @@ const SignupForm = () => {
                 <p className="flex w-20 font-semibold sm:justify-end">
                     {t("login.email")}
                 </p>
-                <input
+                <Input
+                    className="grow"
                     {...register("email", {
                         required: t("login.emailEmptyError"),
                         pattern: {
@@ -75,7 +74,6 @@ const SignupForm = () => {
                             message: t("login.emailValidError"),
                         },
                     })}
-                    className="Input"
                     type="email"
                 />
             </div>
@@ -84,11 +82,12 @@ const SignupForm = () => {
                     {errors.email.message}
                 </p>
             )}
-            <div className="flex gap-2 relative [&>input]:grow flex-col sm:flex-row sm:items-center justify-center">
+            <div className="flex gap-2 relative flex-col sm:flex-row sm:items-center justify-center">
                 <p className="flex w-20 font-semibold sm:justify-end">
                     {t("login.password")}
                 </p>
-                <input
+                <Input
+                    className="grow"
                     {...register("password", {
                         required: t("login.passwordEmptyError"),
 
@@ -97,16 +96,8 @@ const SignupForm = () => {
                             message: t("login.passwrodMinError"),
                         },
                     })}
-                    className="Input"
-                    type={visiblePassword ? "text" : "password"}
+                    type= "password"
                 />
-                <button
-                    type="button"
-                    className="absolute end-2 top-2 text-primary dark:text-dprimary "
-                    onClick={() => setvisiblePassword((prev) => !prev)}
-                >
-                    {visiblePassword ? <EyeOff /> : <Eye />}
-                </button>
             </div>
             {errors.password && (
                 <p className="font-semibold text-red-600 md:px-24">
