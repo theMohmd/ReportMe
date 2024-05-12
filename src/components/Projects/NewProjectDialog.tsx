@@ -3,18 +3,14 @@ import Dialog from "components/Common/Dialog";
 import { t } from "i18next";
 import Loader from "components/ui/Loader";
 import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
-import Select from "../Common/Select/Select";
-import { useState } from "react";
+import Input from "components/ui/Input";
+import { postProjectType as FormFields } from "src/types/projects/postProjectType";
+import { usePostProjects } from "./usePostProject";
 
-type FormFields = { title: string; content: string };
-
-//NewMessageDialog component
+//NewProjectDialog component
 const NewProjectDialog = ({ close }: { close: () => void }) => {
-    //handle recepient id and it's errors
-    const [recipientId, setrecipientId] = useState<number | null>(null);
-    const [toError, settoError] = useState<string | null>(null);
-
-    //post message
+    //post project
+    const { mutate } = usePostProjects();
 
     //handle form
     const {
@@ -25,31 +21,24 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
 
     //form submit funciton
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        //check empty recipientId
-        if (!recipientId) {
-            settoError(t("messages.toEmptyError"));
-            return;
-        }
-
         //send post request
+        return mutate(data, {
+            onSuccess: close,
+            onError: () => console.log("error"),
+        });
     };
 
     return (
-        <Dialog close={close} title={t("messages.sendTitle")}>
-            <Select set={(input) => setrecipientId(input)} />
-            {!!toError && !recipientId && (
-                <p className="font-medium ps-2 text-red-600 mt-2 ">{toError}</p>
-            )}
+        <Dialog close={close} title={t("projects.newProject")}>
             <form
                 className="size-full flex flex-col mt-2 text-primary dark:text-dprimary gap-2"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <input
+                <Input
                     {...register("title", {
-                        required: t("messages.titleEmptyError"),
+                        required: t("projects.titleEmptyError"),
                     })}
-                    placeholder={t("messages.subject")}
-                    className="Input"
+                    placeholder={t("projects.title")}
                     type="text"
                 />
                 {errors.title && (
@@ -59,15 +48,15 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                 )}
                 <textarea
                     className="Input resize-none grow"
-                    placeholder={t("messages.message")}
-                    {...register("content", {
-                        required: t("messages.contentEmptyError"),
+                    placeholder={t("projects.description")}
+                    {...register("description", {
+                        required: t("projects.descriptionEmptyError"),
                     })}
                 ></textarea>
 
-                {errors.content && (
+                {errors.description && (
                     <p className="font-medium ps-2 text-red-600 ">
-                        {errors.content.message}
+                        {errors.description.message}
                     </p>
                 )}
                 <div className="flex gap-2">
@@ -88,7 +77,7 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                             <Loader />
                         ) : (
                             <>
-                                {t("messages.send")}
+                                {t("projects.create")}
                                 <SendHorizonalIcon />
                             </>
                         )}
