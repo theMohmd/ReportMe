@@ -2,6 +2,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import { nav_en, nav_fa } from "./nav";
 import { messages_en, messages_fa } from "./messages";
+import { projects_en, projects_fa } from "./projects";
 import { login_en, login_fa } from "./login";
 // Define translations
 const resources = {
@@ -9,6 +10,7 @@ const resources = {
         translation: {
             nav: nav_en,
             messages: messages_en,
+            projects: projects_en,
             login: login_en,
             common: {
                 pageNotFound: "Page not found!",
@@ -20,6 +22,7 @@ const resources = {
         translation: {
             nav: nav_fa,
             messages: messages_fa,
+            projects: projects_fa,
             login: login_fa,
             common: {
                 pageNotFound: "صفحه مورد نظر یافت نشد!",

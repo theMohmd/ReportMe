@@ -1,15 +1,22 @@
-//Projects component
+import { useQuery } from "@tanstack/react-query";
+import Loader from "components/ui/Loader";
+import { useState } from "react";
+import ProjectsUi from "./ProjectsUi";
+import { apiGetProjects } from "api/projects/apiGetProjects";
+
+//Projects page component
 const Projects = () => {
-    return (
-        <div>
-            <p className="text-4xl font-black">Test</p>
-            <p className="text-4xl font-bold">Test</p>
-            <p className="text-4xl font-semibold">A quick brown fox jumped over the lazy frog</p>
-            <p className="text-4xl font-medium">Test</p>
-            <p className="text-4xl font-normal">Test</p>
-            <p className="text-4xl font-light">Test</p>
-        </div>
-    );
+    const [page, setpage] = useState(1); //todo pagination
+    const { data, error, isLoading } = useQuery({
+        queryKey: ["Projects", page],
+        queryFn: () => apiGetProjects({ page: page }),
+    });
+    if (isLoading)
+        return (
+            <Loader size={100} className=" text-primary dark:text-dprimary " />
+        );
+    if (error) return <div>error</div>; //todo
+    return data && <ProjectsUi data={data.data.data} />;
 };
 
 export default Projects;
