@@ -15,6 +15,8 @@ const resources = {
             common: {
                 pageNotFound: "Page not found!",
                 pageNotFoundLink: "Click here to go back to home",
+                relogin: "You need to login again",
+                reloginLink: "Click here to go to login page",
             },
         },
     },
@@ -27,6 +29,8 @@ const resources = {
             common: {
                 pageNotFound: "صفحه مورد نظر یافت نشد!",
                 pageNotFoundLink: "برای برگشت به خانه اینجا کلیک کنید",
+                relogin: "باید دوباره وارد شوید",
+                reloginLink: "برای رفتن به صفحه ورود اینجا کلیک کنید",
             },
         },
     },
