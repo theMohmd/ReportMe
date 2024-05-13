@@ -8,20 +8,25 @@ import ErrorPage from "../ui/ErrorPage";
 
 //Messages component
 const Messages = () => {
-    const [page, setpage] = useState(1); //todo pagination
+    const [page, setpage] = useState(0);
     const { data, error, isLoading } = useQuery({
         queryKey: ["Messeges", page],
-        queryFn: () => apiGetMesseges({ page: page }),
+        queryFn: () => apiGetMesseges({ page: page + 1 }),
     });
     if (isLoading)
         return (
             <Loader size={100} className="text-primary dark:text-dprimary" />
         );
-
     if (error) return <ErrorPage error={error as customError} />; //todo
-
-    //todo remove fragment
-    return <>{data && <MessagesUi data={data.data.data[0]} />}</>;
+    return (
+        data && (
+            <MessagesUi
+                setPage={(input: number) => setpage(input)}
+                page={page}
+                data={data.data.data[0]}
+            />
+        )
+    );
 };
 
 export default Messages;

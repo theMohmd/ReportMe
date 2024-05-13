@@ -9,12 +9,16 @@ import { AnimatePresence } from "framer-motion";
 import { messageType } from "types/messageType";
 import { useNavigate } from "react-router-dom";
 import { apiDataType } from "src/types/apiDataType";
+import Pagination from "components/ui/Pagination";
 
 type MessagesUiProps = {
     data: apiDataType<messageType>;
+    setPage: (input: number) => void;
+    page: number;
 };
+
 //MessagesUI component
-const MessagesUi = ({ data }: MessagesUiProps) => {
+const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
     const [dialog, setdialog] = useState(false);
     const navigate = useNavigate();
     return (
@@ -46,6 +50,11 @@ const MessagesUi = ({ data }: MessagesUiProps) => {
                     />
                 ))}
             </List>
+            <Pagination
+                initialPage={page}
+                setPage={setPage}
+                pageCount={Math.ceil(data.total / 10)}
+            />
         </div>
     );
 };

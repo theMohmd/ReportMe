@@ -21,9 +21,9 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
 
     //form submit funciton
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        //send post request
+        //send request
         return mutate(data, {
-            onSuccess: close,
+            //onSuccess: close, //todo uncomment
             onError: () => console.log("error"),
         });
     };

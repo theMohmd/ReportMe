@@ -16,16 +16,16 @@ const PhoneLayout = () => {
     }, [location]);
     return (
         <div className="flex flex-col">
-            <div className="grid grid-cols-3 items-center py-2 w-full font-black text-center h-[60px] bg-background text-primary text-[24px] dark:bg-dbackground dark:text-dprimary">
+            <div className="grid grid-cols-3 items-center justify-center w-full font-black text-center h-[40px] bg-background text-primary text-[20px] dark:bg-dbackground dark:text-dprimary">
                 <button
                     className="px-2"
                     onClick={() => setnavVisibility((prev) => !prev)}
                 >
-                    {navVisibility ? <X size={40} /> : <Menu size={40} />}
+                    {navVisibility ? <X /> : <Menu />}
                 </button>
-                ReportMe
+                <span>ReportMe</span>
             </div>
-            <div className="grow">
+            <div className="grow overflow-auto">
                 <LayoutRoutes />
             </div>
             <AnimatePresence>
@@ -34,7 +34,7 @@ const PhoneLayout = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute backdrop-blur-sm flex w-full h-[calc(100dvh-60px)] top-[60px]"
+                        className="absolute backdrop-blur-sm flex w-full h-[calc(100dvh-40px)] top-[40px]"
                     >
                         <div className="flex h-full">
                             <Nav />

@@ -9,16 +9,20 @@ import ListItem from "components/Common/List/ListItem";
 import NewProjectDialog from "./NewProjectDialog";
 import { apiDataType } from "types/apiDataType";
 import { projectType } from "src/types/projects/projectType";
+import Pagination from "components/ui/Pagination";
 
 type ProjectsUiProps = {
     data: apiDataType<projectType>;
+    setPage: (input: number) => void;
+    page: number;
 };
+
 //ProjectsUi component
-const ProjectsUi = ({ data }: ProjectsUiProps) => {
+const ProjectsUi = ({ data, setPage, page }: ProjectsUiProps) => {
     const [dialog, setdialog] = useState(false);
     const navigate = useNavigate();
     return (
-        <div className="flex flex-col gap-2 p-5 pt-10 size-full">
+        <div className="flex overflow-y-auto flex-col gap-2 p-5 pt-10 size-full">
             <AnimatePresence>
                 {dialog && (
                     <NewProjectDialog
@@ -46,6 +50,11 @@ const ProjectsUi = ({ data }: ProjectsUiProps) => {
                     />
                 ))}
             </List>
+            <Pagination
+                initialPage={page}
+                setPage={setPage}
+                pageCount={Math.ceil(data.total / 10)}
+            />
         </div>
     );
 };
