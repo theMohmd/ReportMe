@@ -1,21 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
-import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
+import {
+    ChevronLeftIcon,
+    PlusIcon,
+    SquarePenIcon,
+    Trash2Icon,
+} from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { apiGetProjects } from "api/projects/apiGetProjects";
 import CustomButton from "components/ui/CustomButton";
 import Loader from "components/ui/Loader";
 import ErrorPage from "../ui/ErrorPage";
 import { customError } from "src/types/customError";
+import UserSelect from "../Common/UserSelect/UserSelect";
+import { t } from "i18next";
+import { useGetSubusers } from "./hooks/useGetSubusers";
 
 //ProjectView component
 const ProjectView = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+
     const { data, error, isLoading } = useQuery({
-        queryKey: ["messages", id],
+        queryKey: ["projects", id],
         queryFn: () => apiGetProjects({ id: id ? parseInt(id) : undefined }),
     });
-    if (isLoading) return <Loader size={100} className="text-primary dark:text-dprimary" />;
+
+    if (isLoading)
+        return (
+            <Loader size={100} className="text-primary dark:text-dprimary" />
+        );
     if (error) return <ErrorPage error={error as customError} />;
     return (
         <>
@@ -25,7 +38,7 @@ const ProjectView = () => {
                         <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                             {data.data.data.title}
                         </p>
-                        <div className=" flex gap-2">
+                        <div className="flex gap-2">
                             <CustomButton onClick={() => navigate(-1)}>
                                 <SquarePenIcon size={30} />
                             </CustomButton>
@@ -37,7 +50,24 @@ const ProjectView = () => {
                             </CustomButton>
                         </div>
                     </div>
-                    <div className="text-primary dark:text-dprimary bg-background dark:bg-dbackground grow p-5 rounded-xl border border-lightBorder dark:border-dlightBorder ">
+                    <div className="flex ">
+                        <div className="flex grow flex-col gap-2 justify-center items-start md:flex-row md:items-center">
+                            <p className="font-medium ps-2">
+                                {t("Projects.assign")}
+                            </p>
+                            <div className="flex grow gap-2 md:w-fit w-full">
+                                <UserSelect
+                                    queryKey="getSubUsers"
+                                    query={useGetSubusers}
+                                    set={(i) => console.log(i)}
+                                />
+                                <CustomButton onClick={() => undefined}>
+                                    <PlusIcon />
+                                </CustomButton>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
                         {data.data.data.description}
                     </div>
                 </div>

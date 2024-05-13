@@ -16,5 +16,5 @@ export const apiGetUsers = async (input: string, mode: string) => {
             Accept: "application/json",
             Authorization: "Bearer " + getCookie("token"),
         },
-    });
+    }).then((res) => res.data.data[0].data);
 };

@@ -2,16 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import { t } from "i18next";
 import UserSelectMode from "./UserSelectMode";
-import { AxiosResponse } from "axios";
+import { userType } from "src/types/auth";
 //Select component
 type UserSelectProps = {
-    query: (input: string, mode: string) => Promise<AxiosResponse>;
+    query: (input: string, mode: string) => Promise<userType[]>;
     set: (input: number | null) => void;
     queryKey: string;
 };
 const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
     const [input, setInput] = useState("");
     const [mode, setmode] = useState<"username" | "email">("username");
+    
     const { data } = useQuery({
         queryKey: ["get user list", input, mode, queryKey],
         queryFn: () => query(input, mode),
@@ -42,10 +43,10 @@ const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
                         }}
                     />
                 </div>
-                {!data ? null : !input ? null : data.data.data[0].data
+                {!data ? null : !input ? null : data
                       .length ? (
                     <div className="flex flex-col py-2">
-                        {data.data.data[0].data.map(
+                        {data.map(
                             (item: {
                                 id: number;
                                 name: string;

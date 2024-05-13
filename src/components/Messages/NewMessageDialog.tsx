@@ -3,13 +3,12 @@ import Dialog from "components/Common/Dialog";
 import { t } from "i18next";
 import Loader from "components/ui/Loader";
 import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { usePostMessage } from "./usePostMessage";
 import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
 import UserSelect from "components/Common/UserSelect/UserSelect";
-import { apiGetUser } from "src/api/login/apiGetUser";
-import { apiGetUsers } from "src/api/login/apiGetUsers";
+import { apiGetUsers } from "api/messages/apiGetUsers";
 
 type FormFields = { title: string; content: string };
 
@@ -51,7 +50,13 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
         <Dialog close={close} title={t("Messages.sendTitle")}>
             <div className="flex flex-col gap-2 justify-center items-start md:flex-row md:items-center">
                 <p className="font-medium ps-2">{t("Messages.to")}</p>
-                <UserSelect queryKey="newMessage" query={apiGetUsers} set={(input) => setrecipientId(input)} />
+                <UserSelect
+                    queryKey="newMessage"
+                    query={useCallback((input, mode) => {
+                        return apiGetUsers(input, mode);
+                    }, [])}
+                    set={(input) => setrecipientId(input)}
+                />
             </div>
             {!!toError && !recipientId && (
                 <p className="mt-2 font-medium text-red-600 ps-2">{toError}</p>

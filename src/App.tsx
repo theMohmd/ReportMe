@@ -11,6 +11,7 @@ import Layout from "components/Layout/Layout";
 
 import { useGetUser } from "hooks/useGetUser";
 import Relogin from "./components/ReLogin/ReLogin";
+import { useGetSubusers } from "./components/Projects/hooks/useGetSubusers";
 
 const App = () => {
     const { theme } = useTheme();
@@ -26,13 +27,19 @@ const App = () => {
         >
             {/* todo delete */}
             <button
-                className=" hidden absolute top-5 right-5 z-50 bg-red-600 p-2 text-white"
-                onClick={() => console.log()}
+                className=" absolute top-5 right-5 z-50 bg-red-600 p-2 text-white"
+                onClick={async () => {
+                    const a = await useGetSubusers(undefined,undefined);
+                    console.log(a);
+                }}
             >
                 click me
             </button>
             {isLoading ? (
-                <Loader className="text-primary dark:text-dprimary" size={100} />
+                <Loader
+                    className="text-primary dark:text-dprimary"
+                    size={100}
+                />
             ) : (
                 <Routes>
                     <Route
