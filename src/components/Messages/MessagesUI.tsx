@@ -8,9 +8,10 @@ import NewMessageDialog from "./NewMessageDialog";
 import { AnimatePresence } from "framer-motion";
 import { messageType } from "types/messageType";
 import { useNavigate } from "react-router-dom";
+import { apiDataType } from "src/types/apiDataType";
 
 type MessagesUiProps = {
-    data: messageType[];
+    data: apiDataType<messageType>;
 };
 //MessagesUI component
 const MessagesUi = ({ data }: MessagesUiProps) => {
@@ -37,7 +38,7 @@ const MessagesUi = ({ data }: MessagesUiProps) => {
                 </CustomButton>
             </div>
             <List>
-                {data.map((item) => (
+                {data.data.map((item) => (
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
