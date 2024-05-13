@@ -17,7 +17,7 @@ const Select = ({ set }: { set: (input: number|null) => void }) => {
             <div className="flex absolute z-20 flex-col w-full text-primary Input dark:text-dprimary">
                 <div className="flex gap-2 md:items-center items-start flex-col md:flex-row">
                     <div className="flex gap-2 items-center">
-                        <p className="min-w-12">{t("messages.to")}</p>
+                        <p className="min-w-12">{t("Messages.to")}</p>
                         <ModeSelector
                             mode={mode}
                             setMode={() =>
@@ -30,7 +30,7 @@ const Select = ({ set }: { set: (input: number|null) => void }) => {
                     <input
                         type="text"
                         ref={inputRef}
-                        placeholder={t("messages.selectInput")}
+                        placeholder={t("Messages.selectInput")}
                         className="min-w-0 outline-none grow bg-background dark:bg-dbackground border-t border-lightBorder dark:border-dlightBorder md:border-none pt-2 md:p-0 w-full md:w-fit"
                         onChange={(e) => {set(null);setInput(e.target.value)}}
                     />
@@ -60,7 +60,7 @@ const Select = ({ set }: { set: (input: number|null) => void }) => {
                     </div>
                 ) : (
                     <p className="p-2 my-2 border-t border-lightBorder dark:border-dlightBorder">
-                        {t("messages.userNotFound")}
+                        {t("Messages.userNotFound")}
                     </p>
                 )}
             </div>

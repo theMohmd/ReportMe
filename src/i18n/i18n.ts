@@ -9,8 +9,8 @@ const resources = {
     en: {
         translation: {
             nav: nav_en,
-            messages: messages_en,
-            projects: projects_en,
+            Messages: messages_en,
+            Projects: projects_en,
             login: login_en,
             common: {
                 pageNotFound: "Page not found!",
@@ -23,8 +23,8 @@ const resources = {
     fa: {
         translation: {
             nav: nav_fa,
-            messages: messages_fa,
-            projects: projects_fa,
+            Messages: messages_fa,
+            Projects: projects_fa,
             login: login_fa,
             common: {
                 pageNotFound: "صفحه مورد نظر یافت نشد!",

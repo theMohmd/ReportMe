@@ -14,8 +14,8 @@ const ModeSelector = ({ mode, setMode }: ModeSelectorProps) => {
             >
                 <p className="relative font-semibold">
                     {mode === "email"
-                        ? t("messages.modeEmail")
-                        : t("messages.modeUsername")}
+                        ? t("Messages.modeEmail")
+                        : t("Messages.modeUsername")}
                 </p>
                 <ChevronDownIcon />
             </button>
@@ -34,8 +34,8 @@ const ModeSelector = ({ mode, setMode }: ModeSelectorProps) => {
                         >
                             <p className="relative font-semibold">
                                 {mode === "username"
-                                    ? t("messages.modeEmail")
-                                    : t("messages.modeUsername")}
+                                    ? t("Messages.modeEmail")
+                                    : t("Messages.modeUsername")}
                             </p>
                         </motion.button>
                     )}

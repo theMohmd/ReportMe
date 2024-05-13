@@ -34,10 +34,10 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
             </AnimatePresence>
             <div className="flex justify-between items-center px-2 mb-5">
                 <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
-                    {t("messages.messages")}
+                    {t("Messages.messages")}
                 </p>
                 <CustomButton onClick={() => setdialog(true)}>
-                    <p className="px-1">{t("messages.newMessage")}</p>
+                    <p className="px-1">{t("Messages.newMessage")}</p>
                     <Plus size={30} />
                 </CustomButton>
             </div>

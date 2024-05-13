@@ -31,7 +31,7 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         //check empty recipientId
         if (!recipientId) {
-            settoError(t("messages.toEmptyError"));
+            settoError(t("Messages.toEmptyError"));
             return;
         }
 
@@ -46,7 +46,7 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
     };
 
     return (
-        <Dialog close={close} title={t("messages.sendTitle")}>
+        <Dialog close={close} title={t("Messages.sendTitle")}>
             <Select set={(input) => setrecipientId(input)} />
             {!!toError && !recipientId && (
                 <p className="font-medium ps-2 text-red-600 mt-2 ">{toError}</p>
@@ -57,9 +57,9 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
             >
                 <Input
                     {...register("title", {
-                        required: t("messages.titleEmptyError"),
+                        required: t("Messages.titleEmptyError"),
                     })}
-                    placeholder={t("messages.subject")}
+                    placeholder={t("Messages.subject")}
                     type="text"
                 />
                 {errors.title && (
@@ -69,9 +69,9 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                 )}
                 <Textarea
                     className="Input resize-none grow"
-                    placeholder={t("messages.message")}
+                    placeholder={t("Messages.message")}
                     {...register("content", {
-                        required: t("messages.contentEmptyError"),
+                        required: t("Messages.contentEmptyError"),
                     })}
                 />
 
@@ -98,7 +98,7 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                             <Loader />
                         ) : (
                             <>
-                                {t("messages.send")}
+                                {t("Messages.send")}
                                 <SendHorizonalIcon />
                             </>
                         )}
