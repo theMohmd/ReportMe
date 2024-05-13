@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import {
     ChevronLeftIcon,
-    PlusIcon,
     SquarePenIcon,
     Trash2Icon,
 } from "lucide-react";
@@ -11,15 +10,13 @@ import CustomButton from "components/ui/CustomButton";
 import Loader from "components/ui/Loader";
 import ErrorPage from "../ui/ErrorPage";
 import { customError } from "src/types/customError";
-import UserSelect from "../Common/UserSelect/UserSelect";
 import { t } from "i18next";
-import { useGetSubusers } from "./hooks/useGetSubusers";
+import AssginProject from "./AssginProject";
 
 //ProjectView component
 const ProjectView = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const query = useGetSubusers();
     const { data, error, isLoading } = useQuery({
         queryKey: ["projects", id],
         queryFn: () => apiGetProjects({ id: id ? parseInt(id) : undefined }),
@@ -30,13 +27,14 @@ const ProjectView = () => {
             <Loader size={100} className="text-primary dark:text-dprimary" />
         );
     if (error) return <ErrorPage error={error as customError} />;
+    console.log(data.data.id)
     return (
         <>
             {data && (
                 <div className="flex flex-col gap-2 p-5 pt-10 size-full">
                     <div className="flex justify-between items-center px-2 mb-5">
                         <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
-                            {data.data.data.title}
+                            {data.data.title}
                         </p>
                         <div className="flex gap-2">
                             <CustomButton onClick={() => navigate(-1)}>
@@ -50,25 +48,9 @@ const ProjectView = () => {
                             </CustomButton>
                         </div>
                     </div>
-                    <div className="flex ">
-                        <div className="flex grow flex-col gap-2 justify-center items-start md:flex-row md:items-center">
-                            <p className="font-medium ps-2">
-                                {t("Projects.assign")}
-                            </p>
-                            <div className="flex grow gap-2 md:w-fit w-full">
-                                <UserSelect
-                                    queryKey="getSubUsers"
-                                    query={query}
-                                    set={(i) => console.log(i)}
-                                />
-                                <CustomButton onClick={() => undefined}>
-                                    <PlusIcon />
-                                </CustomButton>
-                            </div>
-                        </div>
-                    </div>
+                    <AssginProject id={data.data.id}/>
                     <div className="p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
-                        {data.data.data.description}
+                        {data.data.description}
                     </div>
                 </div>
             )}

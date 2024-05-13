@@ -12,5 +12,5 @@ export const apiGetProjects = async (input: { id?: number; page?: number }) => {
                 Authorization: "Bearer " + getCookie("token"),
             },
         }
-    );
+    ).then(res=>res.data)
 };

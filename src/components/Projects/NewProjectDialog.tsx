@@ -5,7 +5,7 @@ import Loader from "components/ui/Loader";
 import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
 import Input from "components/ui/Input";
 import { postProjectType as FormFields } from "src/types/projects/postProjectType";
-import { usePostProjects } from "./usePostProject";
+import { usePostProjects } from "./hooks/usePostProject";
 
 //NewProjectDialog component
 const NewProjectDialog = ({ close }: { close: () => void }) => {

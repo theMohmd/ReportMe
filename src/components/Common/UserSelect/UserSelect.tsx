@@ -21,7 +21,6 @@ const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
         queryFn: () => query(input, mode),
     });
     const inputRef = useRef<HTMLInputElement | null>(null);
-    console.log(data);
     return (
         <div
             ref={ref}
