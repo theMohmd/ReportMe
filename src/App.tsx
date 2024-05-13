@@ -32,7 +32,7 @@ const App = () => {
                 click me
             </button>
             {isLoading ? (
-                <Loader className="text-primary" size={100} />
+                <Loader className="text-primary dark:text-dprimary" size={100} />
             ) : (
                 <Routes>
                     <Route

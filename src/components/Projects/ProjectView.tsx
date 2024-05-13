@@ -15,7 +15,7 @@ const ProjectView = () => {
         queryKey: ["messages", id],
         queryFn: () => apiGetProjects({ id: id ? parseInt(id) : undefined }),
     });
-    if (isLoading) return <Loader size={100} className="text-primary" />;
+    if (isLoading) return <Loader size={100} className="text-primary dark:text-dprimary" />;
     if (error) return <ErrorPage error={error as customError} />;
     return (
         <>
