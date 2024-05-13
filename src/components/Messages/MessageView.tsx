@@ -4,6 +4,8 @@ import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { apiGetMesseges } from "api/messages/apiGetMesseges";
 import Loader from "components/ui/Loader";
+import { customError } from "src/types/customError";
+import ErrorPage from "../ui/ErrorPage";
 
 //MessageView component
 const MessageView = () => {
@@ -13,13 +15,15 @@ const MessageView = () => {
         queryKey: ["messages", id],
         queryFn: () => apiGetMesseges({ id: id ? parseInt(id) : undefined }),
     });
-    console.log(data);
+    if (isLoading)
+        return (
+            <Loader size={100} className="text-primary dark:text-dprimary" />
+        );
+    if (error) return <ErrorPage error={error as customError} />;
     return (
-        <div className="flex flex-col gap-2 p-5 pt-10 size-full">
-            {isLoading && <Loader size={100} className="text-primary" />}
-            {error && <Loader />}
+        <>
             {data && (
-                <>
+                <div className="flex flex-col gap-2 p-5 pt-10 size-full">
                     <div className="flex justify-between items-center px-2 mb-5">
                         <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                             {data.data.data.title}
@@ -39,9 +43,9 @@ const MessageView = () => {
                     <div className=" bg-background dark:bg-dbackground grow p-5 rounded-xl border border-lightBorder dark:border-dlightBorder ">
                         {data.data.data.content}
                     </div>
-                </>
+                </div>
             )}
-        </div>
+        </>
     );
 };
 

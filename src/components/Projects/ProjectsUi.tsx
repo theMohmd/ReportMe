@@ -1,16 +1,17 @@
 import { t } from "i18next";
 import { Plus } from "lucide-react";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import CustomButton from "components/ui/CustomButton";
 import List from "components/Common/List/List";
 import ListItem from "components/Common/List/ListItem";
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import { messageType } from "types/messageType";
-import { useNavigate } from "react-router-dom";
 import NewProjectDialog from "./NewProjectDialog";
+import { apiDataType } from "types/apiDataType";
+import { projectType } from "src/types/projects/projectType";
 
 type ProjectsUiProps = {
-    data: messageType[];
+    data: apiDataType<projectType>;
 };
 //ProjectsUi component
 const ProjectsUi = ({ data }: ProjectsUiProps) => {
@@ -37,7 +38,7 @@ const ProjectsUi = ({ data }: ProjectsUiProps) => {
                 </CustomButton>
             </div>
             <List>
-                {data.map((item) => (
+                {data.data.map((item) => (
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}

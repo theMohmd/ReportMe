@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { customError } from "src/types/customError";
 
 //Error component
-type ErrorProps = {
+type ErrorPageProps = {
     children?: ReactNode;
     error: customError;
 };
-const Error = ({ children, error }: ErrorProps) => {
+const ErrorPage = ({ children, error }: ErrorPageProps) => {
     const navigate = useNavigate();
     useEffect(() => {
         if (error.response.status === 401) navigate("/relogin");
@@ -21,4 +21,4 @@ const Error = ({ children, error }: ErrorProps) => {
     );
 };
 
-export default Error;
+export default ErrorPage;

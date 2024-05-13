@@ -3,8 +3,8 @@ import { apiGetMesseges } from "api/messages/apiGetMesseges";
 import MessagesUi from "./MessagesUI";
 import Loader from "components/ui/Loader";
 import { useState } from "react";
-import Error from "../ui/Error";
 import { customError } from "src/types/customError";
+import ErrorPage from "../ui/ErrorPage";
 
 //Messages component
 const Messages = () => {
@@ -18,7 +18,7 @@ const Messages = () => {
             <Loader size={100} className="text-primary dark:text-dprimary" />
         );
 
-    if (error) return <Error error={error as customError} />; //todo
+    if (error) return <ErrorPage error={error as customError} />; //todo
 
     //todo remove fragment
     return <>{data && <MessagesUi data={data.data.data[0]} />}</>;

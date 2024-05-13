@@ -11,7 +11,7 @@ const DesktopLayout = () => {
                 </div>
                 <Nav />
             </div>
-            <div className="max-w-[1200px] size-full mx-auto">
+            <div className="max-w-[1200px] flex size-full mx-auto">
                 <LayoutRoutes />
             </div>
         </div>

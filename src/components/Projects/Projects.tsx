@@ -3,6 +3,8 @@ import Loader from "components/ui/Loader";
 import { useState } from "react";
 import ProjectsUi from "./ProjectsUi";
 import { apiGetProjects } from "api/projects/apiGetProjects";
+import { customError } from "src/types/customError";
+import ErrorPage from "../ui/ErrorPage";
 
 //Projects page component
 const Projects = () => {
@@ -15,8 +17,8 @@ const Projects = () => {
         return (
             <Loader size={100} className=" text-primary dark:text-dprimary " />
         );
-    if (error) return <div>error</div>; //todo
-    return data && <ProjectsUi data={data.data.data} />;
+    if (error) return <ErrorPage error={error as customError}/>; //todo
+    return data && <ProjectsUi data={data.data.data[0]} />;
 };
 
 export default Projects;
