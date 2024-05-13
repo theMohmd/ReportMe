@@ -28,7 +28,7 @@ const MessageView = () => {
                         <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                             {data.data.data.title}
                         </p>
-                        <div className=" flex gap-2">
+                        <div className="flex gap-2">
                             <CustomButton onClick={() => navigate(-1)}>
                                 <SquarePenIcon size={30} />
                             </CustomButton>
@@ -40,7 +40,7 @@ const MessageView = () => {
                             </CustomButton>
                         </div>
                     </div>
-                    <div className=" bg-background dark:bg-dbackground grow p-5 rounded-xl border border-lightBorder dark:border-dlightBorder ">
+                    <div className="p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
                         {data.data.data.content}
                     </div>
                 </div>
