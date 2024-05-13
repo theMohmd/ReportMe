@@ -2,18 +2,23 @@ import { useQuery } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import { t } from "i18next";
 import UserSelectMode from "./UserSelectMode";
-import { apiGetUsers } from "api/login/apiGetUsers";
+import { AxiosResponse } from "axios";
 //Select component
-const UserSelect = ({ set }: { set: (input: number|null) => void }) => {
+type UserSelectProps = {
+    query: (input: string, mode: string) => Promise<AxiosResponse>;
+    set: (input: number | null) => void;
+    queryKey: string;
+};
+const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
     const [input, setInput] = useState("");
     const [mode, setmode] = useState<"username" | "email">("username");
     const { data } = useQuery({
-        queryKey: ["get user list", input, mode],
-        queryFn: () => apiGetUsers(input, mode),
+        queryKey: ["get user list", input, mode, queryKey],
+        queryFn: () => query(input, mode),
     });
     const inputRef = useRef<HTMLInputElement | null>(null);
     return (
-        <div className="flex relative flex-col h-12">
+        <div className=" grow flex relative flex-col h-10 w-full md:w-fit">
             <div className="flex absolute z-20 flex-col w-full text-primary Input dark:text-dprimary">
                 <div className="flex gap-2 items-center flex-row">
                     <div className="flex gap-2 items-center">
@@ -31,10 +36,14 @@ const UserSelect = ({ set }: { set: (input: number|null) => void }) => {
                         ref={inputRef}
                         placeholder={t("Messages.selectInput")}
                         className="min-w-0 outline-none grow bg-background dark:bg-dbackground w-fit"
-                        onChange={(e) => {set(null);setInput(e.target.value)}}
+                        onChange={(e) => {
+                            set(null);
+                            setInput(e.target.value);
+                        }}
                     />
                 </div>
-                {!data ? null : !input ? null : data.data.data[0].data.length ? (
+                {!data ? null : !input ? null : data.data.data[0].data
+                      .length ? (
                     <div className="flex flex-col py-2">
                         {data.data.data[0].data.map(
                             (item: {

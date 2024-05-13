@@ -8,6 +8,8 @@ import { usePostMessage } from "./usePostMessage";
 import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
 import UserSelect from "components/Common/UserSelect/UserSelect";
+import { apiGetUser } from "src/api/login/apiGetUser";
+import { apiGetUsers } from "src/api/login/apiGetUsers";
 
 type FormFields = { title: string; content: string };
 
@@ -47,12 +49,15 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
 
     return (
         <Dialog close={close} title={t("Messages.sendTitle")}>
-            <UserSelect set={(input) => setrecipientId(input)} />
+            <div className="flex flex-col gap-2 justify-center items-start md:flex-row md:items-center">
+                <p className="font-medium ps-2">{t("Messages.to")}</p>
+                <UserSelect queryKey="newMessage" query={apiGetUsers} set={(input) => setrecipientId(input)} />
+            </div>
             {!!toError && !recipientId && (
-                <p className="font-medium ps-2 text-red-600 mt-2 ">{toError}</p>
+                <p className="mt-2 font-medium text-red-600 ps-2">{toError}</p>
             )}
             <form
-                className="size-full flex flex-col mt-2 text-primary dark:text-dprimary gap-2"
+                className="flex flex-col gap-2 mt-2 size-full text-primary dark:text-dprimary"
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <Input
@@ -63,12 +68,12 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                     type="text"
                 />
                 {errors.title && (
-                    <p className="font-medium ps-2 text-red-600 ">
+                    <p className="font-medium text-red-600 ps-2">
                         {errors.title.message}
                     </p>
                 )}
                 <Textarea
-                    className="Input resize-none grow"
+                    className="resize-none Input grow"
                     placeholder={t("Messages.message")}
                     {...register("content", {
                         required: t("Messages.contentEmptyError"),
@@ -76,7 +81,7 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                 />
 
                 {errors.content && (
-                    <p className="font-medium ps-2 text-red-600 ">
+                    <p className="font-medium text-red-600 ps-2">
                         {errors.content.message}
                     </p>
                 )}
@@ -84,14 +89,14 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                     {/*todo send file*/}
                     <button
                         type="button"
-                        className="flex justify-center max-h-16 items-center p-3 mt-5 font-bold rounded-lg bg-primary dark:bg-dprimary text-background dark:text-dbackground "
+                        className="flex justify-center items-center p-3 mt-5 max-h-16 font-bold rounded-lg bg-primary text-background dark:bg-dprimary dark:text-dbackground"
                         disabled={isSubmitting}
                     >
                         <PaperclipIcon />
                     </button>
                     <button
                         type="submit"
-                        className="flex justify-center gap-2 grow max-h-12 items-center p-3 mt-5 font-bold rounded-lg bg-primary dark:bg-dprimary text-background dark:text-dbackground "
+                        className="flex gap-2 justify-center items-center p-3 mt-5 max-h-12 font-bold rounded-lg grow bg-primary text-background dark:bg-dprimary dark:text-dbackground"
                         disabled={isSubmitting}
                     >
                         {isSubmitting ? (
