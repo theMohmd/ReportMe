@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import { t } from "i18next";
-import ModeSelector from "./ModeSelector";
+import UserSelectMode from "./UserSelectMode";
 import { apiGetUsers } from "api/login/apiGetUsers";
 //Select component
-const Select = ({ set }: { set: (input: number|null) => void }) => {
+const UserSelect = ({ set }: { set: (input: number|null) => void }) => {
     const [input, setInput] = useState("");
     const [mode, setmode] = useState<"username" | "email">("username");
     const { data } = useQuery({
@@ -13,12 +13,11 @@ const Select = ({ set }: { set: (input: number|null) => void }) => {
     });
     const inputRef = useRef<HTMLInputElement | null>(null);
     return (
-        <div className="flex relative flex-col h-[104px] md:h-12">
+        <div className="flex relative flex-col h-12">
             <div className="flex absolute z-20 flex-col w-full text-primary Input dark:text-dprimary">
-                <div className="flex gap-2 md:items-center items-start flex-col md:flex-row">
+                <div className="flex gap-2 items-center flex-row">
                     <div className="flex gap-2 items-center">
-                        <p className="min-w-12">{t("Messages.to")}</p>
-                        <ModeSelector
+                        <UserSelectMode
                             mode={mode}
                             setMode={() =>
                                 setmode((prev) =>
@@ -31,7 +30,7 @@ const Select = ({ set }: { set: (input: number|null) => void }) => {
                         type="text"
                         ref={inputRef}
                         placeholder={t("Messages.selectInput")}
-                        className="min-w-0 outline-none grow bg-background dark:bg-dbackground border-t border-lightBorder dark:border-dlightBorder md:border-none pt-2 md:p-0 w-full md:w-fit"
+                        className="min-w-0 outline-none grow bg-background dark:bg-dbackground w-fit"
                         onChange={(e) => {set(null);setInput(e.target.value)}}
                     />
                 </div>
@@ -68,4 +67,4 @@ const Select = ({ set }: { set: (input: number|null) => void }) => {
     );
 };
 
-export default Select;
+export default UserSelect;

@@ -3,11 +3,11 @@ import Dialog from "components/Common/Dialog";
 import { t } from "i18next";
 import Loader from "components/ui/Loader";
 import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
-import Select from "../Common/Select/Select";
 import { useState } from "react";
 import { usePostMessage } from "./usePostMessage";
 import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
+import UserSelect from "components/Common/UserSelect/UserSelect";
 
 type FormFields = { title: string; content: string };
 
@@ -47,7 +47,7 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
 
     return (
         <Dialog close={close} title={t("Messages.sendTitle")}>
-            <Select set={(input) => setrecipientId(input)} />
+            <UserSelect set={(input) => setrecipientId(input)} />
             {!!toError && !recipientId && (
                 <p className="font-medium ps-2 text-red-600 mt-2 ">{toError}</p>
             )}

@@ -3,8 +3,8 @@ import { t } from "i18next";
 import { ChevronDownIcon } from "lucide-react";
 import { useState } from "react";
 type ModeSelectorProps = { mode: "email" | "username"; setMode: () => void };
-//ModeSelector component
-const ModeSelector = ({ mode, setMode }: ModeSelectorProps) => {
+//user select mode (email/username)
+const UserSelectMode = ({ mode, setMode }: ModeSelectorProps) => {
     const [expanded, setexpanded] = useState(false);
     return (
         <div className="flex z-20 bg-background dark:bg-dbackground relative flex-col  min-w-24 w-28">
@@ -45,4 +45,4 @@ const ModeSelector = ({ mode, setMode }: ModeSelectorProps) => {
     );
 };
 
-export default ModeSelector;
+export default UserSelectMode;
