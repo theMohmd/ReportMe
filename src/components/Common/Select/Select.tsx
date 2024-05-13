@@ -35,9 +35,9 @@ const Select = ({ set }: { set: (input: number|null) => void }) => {
                         onChange={(e) => {set(null);setInput(e.target.value)}}
                     />
                 </div>
-                {!data ? null : !input ? null : data.data.data.length ? (
+                {!data ? null : !input ? null : data.data.data[0].data.length ? (
                     <div className="flex flex-col py-2">
-                        {data.data.data.map(
+                        {data.data.data[0].data.map(
                             (item: {
                                 id: number;
                                 name: string;
