@@ -19,7 +19,7 @@ import { useGetSubusers } from "./hooks/useGetSubusers";
 const ProjectView = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-
+    const query = useGetSubusers();
     const { data, error, isLoading } = useQuery({
         queryKey: ["projects", id],
         queryFn: () => apiGetProjects({ id: id ? parseInt(id) : undefined }),
@@ -58,7 +58,7 @@ const ProjectView = () => {
                             <div className="flex grow gap-2 md:w-fit w-full">
                                 <UserSelect
                                     queryKey="getSubUsers"
-                                    query={useGetSubusers}
+                                    query={query}
                                     set={(i) => console.log(i)}
                                 />
                                 <CustomButton onClick={() => undefined}>

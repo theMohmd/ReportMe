@@ -9,11 +9,15 @@ type data = {
     user: userType;
 };
 
-export const useGetSubusers = async (input: string, mode: string) => {
+//a hook that return a function with utelizes api to return list of subusers
+export const useGetSubusers = () => {
     const { user } = useAuth();
-    return apiGetUserSupervisor(input, mode).then((res) =>
-        res.data.data[0].data.map((item: data) => {
-            if (item.supervisor.id === user?.id) return item.user;
-        })
-    );
+    return (input: string, mode: string) =>
+        apiGetUserSupervisor(input, mode).then((res) =>
+            res.data.data[0].data
+                .filter((item: data) => {
+                    return item.supervisor.id === user?.id;
+                })
+                .map((item: data) => item.user)
+        );
 };

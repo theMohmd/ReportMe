@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { t } from "i18next";
 import UserSelectMode from "./UserSelectMode";
 import { userType } from "src/types/auth";
+import useOutsideClick from "src/hooks/useOutsideClick";
 //Select component
 type UserSelectProps = {
     query: (input: string, mode: string) => Promise<userType[]>;
@@ -12,14 +13,20 @@ type UserSelectProps = {
 const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
     const [input, setInput] = useState("");
     const [mode, setmode] = useState<"username" | "email">("username");
-    
+    const [expanded, setexpanded] = useState(false);
+
+    const ref = useOutsideClick(() => setexpanded(false));
     const { data } = useQuery({
         queryKey: ["get user list", input, mode, queryKey],
         queryFn: () => query(input, mode),
     });
     const inputRef = useRef<HTMLInputElement | null>(null);
+    console.log(data);
     return (
-        <div className=" grow flex relative flex-col h-10 w-full md:w-fit">
+        <div
+            ref={ref}
+            className=" grow flex relative flex-col h-10 w-full md:w-fit"
+        >
             <div className="flex absolute z-20 flex-col w-full text-primary Input dark:text-dprimary">
                 <div className="flex gap-2 items-center flex-row">
                     <div className="flex gap-2 items-center">
@@ -35,6 +42,7 @@ const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
                     <input
                         type="text"
                         ref={inputRef}
+                        onClick={() => setexpanded(true)}
                         placeholder={t("Messages.selectInput")}
                         className="min-w-0 outline-none grow bg-background dark:bg-dbackground w-fit"
                         onChange={(e) => {
@@ -43,8 +51,7 @@ const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
                         }}
                     />
                 </div>
-                {!data ? null : !input ? null : data
-                      .length ? (
+                {!data ? null : !expanded ? null : data.length ? (
                     <div className="flex flex-col py-2">
                         {data.map(
                             (item: {
@@ -57,7 +64,7 @@ const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
                                     key={item.id}
                                     onClick={() => {
                                         set(item.id);
-                                        setInput("");
+                                        setexpanded(false);
                                         if (inputRef.current)
                                             inputRef.current.value = item.name;
                                     }}
