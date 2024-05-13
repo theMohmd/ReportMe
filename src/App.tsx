@@ -10,6 +10,7 @@ import NotFound from "components/NotFound/NotFound";
 import Layout from "components/Layout/Layout";
 
 import { useGetUser } from "hooks/useGetUser";
+import Relogin from "./components/ReLogin/ReLogin";
 
 const App = () => {
     const { theme } = useTheme();
@@ -39,6 +40,7 @@ const App = () => {
                         element={!user ? <Login /> : <Navigate to="/" />}
                     />
                     <Route path="404" element={<NotFound />} />
+                    <Route path="relogin" element={<Relogin />} />
                     <Route
                         path="*"
                         element={!user ? <Navigate to="/login" /> : <Layout />}
