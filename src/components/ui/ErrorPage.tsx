@@ -1,5 +1,6 @@
 import { ReactNode, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "src/contexts/Auth/useAuth";
 import { customError } from "src/types/customError";
 
 //Error component
@@ -9,9 +10,13 @@ type ErrorPageProps = {
 };
 const ErrorPage = ({ children, error }: ErrorPageProps) => {
     const navigate = useNavigate();
+    const { logOut } = useAuth();
     useEffect(() => {
-        if (error.response.status === 401) navigate("/relogin");
-    } );
+        if (error.response.status === 401) {
+            logOut();
+            navigate("/relogin");
+        }
+    });
 
     return (
         <div className="flex flex-col justify-center items-center pb-48 grow text-primary ">
