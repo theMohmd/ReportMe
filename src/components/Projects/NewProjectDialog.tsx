@@ -29,16 +29,16 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
     };
 
     return (
-        <Dialog close={close} title={t("projects.newProject")}>
+        <Dialog close={close} title={t("Projects.newProject")}>
             <form
                 className="size-full flex flex-col mt-2 text-primary dark:text-dprimary gap-2"
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <Input
                     {...register("title", {
-                        required: t("projects.titleEmptyError"),
+                        required: t("Projects.titleEmptyError"),
                     })}
-                    placeholder={t("projects.title")}
+                    placeholder={t("Projects.title")}
                     type="text"
                 />
                 {errors.title && (
@@ -48,9 +48,9 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                 )}
                 <textarea
                     className="Input resize-none grow"
-                    placeholder={t("projects.description")}
+                    placeholder={t("Projects.description")}
                     {...register("description", {
-                        required: t("projects.descriptionEmptyError"),
+                        required: t("Projects.descriptionEmptyError"),
                     })}
                 ></textarea>
 
@@ -77,7 +77,7 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                             <Loader />
                         ) : (
                             <>
-                                {t("projects.create")}
+                                {t("Projects.create")}
                                 <SendHorizonalIcon />
                             </>
                         )}
