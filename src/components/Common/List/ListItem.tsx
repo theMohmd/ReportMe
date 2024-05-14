@@ -1,5 +1,4 @@
 import { Trash2 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { useDeleteProject } from "src/components/Projects/hooks/useDeleteProject";
 
 //ListItem component
@@ -9,15 +8,11 @@ type ListItemProps = {
     onClick?: () => void;
 };
 const ListItem = ({ title, id, onClick }: ListItemProps) => {
-    const navigate = useNavigate();
     const { mutate: deleteRequest } = useDeleteProject();
     const deleteAction = () => {
         deleteRequest(
             { id: id },
             {
-                onSuccess() {
-                    navigate(-1);
-                },
                 onError() {
                     console.log("error");
                 },

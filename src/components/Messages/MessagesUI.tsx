@@ -46,6 +46,7 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
+                        id={item.id}
                         title={item.title}
                     />
                 ))}
