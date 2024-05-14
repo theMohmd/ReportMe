@@ -4,7 +4,7 @@ import { t } from "i18next";
 import Loader from "components/ui/Loader";
 import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
 import { useCallback, useState } from "react";
-import { usePostMessage } from "./usePostMessage";
+import { usePostMessage } from "./hooks/usePostMessage";
 import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
 import UserSelect from "components/Common/UserSelect/UserSelect";
