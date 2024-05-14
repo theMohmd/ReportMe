@@ -9,11 +9,11 @@ type ProjectUsersProps = { id: number };
 const ProjectUsers = ({ id }: ProjectUsersProps) => {
     const { data, error, isLoading } = useQuery({
         queryKey: ["projectUsers", id],
-        queryFn: () => apiGetProjectsUser({ id: id }),
+        queryFn: () => apiGetProjectsUser(), //todo param?
     });
     if (isLoading) <Loader />;
     if (error) <ErrorPage error={error as customError} />;
-    console.log(data)//todo
+    console.log("data",data); //todo
     return (
         <div className="p-5 rounded-xl border text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
             ProjectUsers

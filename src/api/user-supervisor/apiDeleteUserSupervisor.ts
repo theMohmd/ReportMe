@@ -5,7 +5,7 @@ import { getCookie } from "utils/cookie";
 //delete user supervisors request
 export const apiDeleteUserSupervisor = async (input: deleteUserSupervisorType) => {
     return axios
-        .delete(`http://127.0.0.1:8000/api/user-supervisors/${input.id}`, {
+        .delete(`http://127.0.0.1:8000/api/user-supervisors/${input.user_supervisor}`, {
             headers: {
                 "Content-Type": "application/json",
                 Accept: "application/json",

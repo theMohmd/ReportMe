@@ -61,7 +61,6 @@ const LoginForm = () => {
                             message: t("login.emailValidError"),
                         },
                     })}
-                    value={"test@mail.com"} //todo delete
                     type="email"
                 />
             </div>

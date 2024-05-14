@@ -5,6 +5,7 @@ export const account_en = {
     username:"Username",
     email:"Email",
     addSupervisor:"Add supervisor",
+    noSupervisors:"You don't have any supervisors",
 };
 export const account_fa = {
     account:"حساب کاربری",
@@ -13,4 +14,5 @@ export const account_fa = {
     username:"نام کاربری",
     email:"ایمیل",
     addSupervisor:"اضافه کردن کارفرما",
+    noSupervisors:"هنوز کارفرما اضافه نکرده اید",
 };

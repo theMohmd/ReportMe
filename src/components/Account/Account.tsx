@@ -17,7 +17,7 @@ const Account = () => {
                 </p>
             </div>
 
-            <div className="flex flex-col gap-2 grow">
+            <div className="flex flex-col gap-2 grow size-full">
                 {/*personal info*/}
                 <div className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
                     <div className="flex gap-2 justify-between items-center mb-3">
@@ -46,15 +46,15 @@ const Account = () => {
                 </div>
 
                 {/*supervisors*/}
-                <div className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
-                    <div className="flex gap-2 justify-between items-center mb-3">
+                <div className="flex flex-col gap-2 p-5 rounded-xl border grow text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                    <div className="flex gap-2 justify-between items-center mb-3 sticky top-0">
                         <p className="text-lg font-semibold">
                             {t("Account.supervisors")}
                         </p>
                     </div>
                     <AddSupervisor />
 
-                    <div className="mt-5">
+                    <div className="flex mt-5 grow overflow-y-auto h-0">
                         <SupervisorList />
                     </div>
                 </div>
