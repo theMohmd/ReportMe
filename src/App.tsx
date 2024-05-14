@@ -28,7 +28,7 @@ const App = () => {
         >
             {/* todo delete */}
             <button
-                className=" absolute top-5 right-5 z-50 bg-red-600 p-2 text-white"
+                className="hidden absolute top-5 right-5 z-50 bg-red-600 p-2 text-white"
                 onClick={async () => {
                     const a = await deleteme("", "");
                     console.log(a);

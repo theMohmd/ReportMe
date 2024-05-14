@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import Loader from "components/ui/Loader";
 import { useState } from "react";
-import ProjectsUi from "./ProjectsUi";
+
 import { apiGetProjects } from "api/projects/apiGetProjects";
-import { customError } from "src/types/customError";
-import ErrorPage from "../ui/ErrorPage";
+import { customError } from "types/customError";
+
+import Loader from "components/ui/Loader";
+import ProjectsUi from "./ProjectsUi";
+import ErrorPage from "components/ui/ErrorPage";
 
 //Projects page component
 const Projects = () => {
