@@ -13,7 +13,7 @@ const ProjectUsers = ({ id }: ProjectUsersProps) => {
     });
     if (isLoading) <Loader />;
     if (error) <ErrorPage error={error as customError} />;
-    console.log(data)
+    console.log(data)//todo
     return (
         <div className="p-5 rounded-xl border text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
             ProjectUsers
