@@ -7,8 +7,9 @@ type PaginationProps = {
     pageCount: number;
     initialPage: number;
 };
-const Pagination = ({ setPage, pageCount,initialPage }: PaginationProps) => {
+const Pagination = ({ setPage, pageCount, initialPage }: PaginationProps) => {
     const { lang } = useLang();
+    if (pageCount < 2) return null;
     return (
         <ReactPaginate
             containerClassName="flex font-semibold m-2 font-vazir justify-center gap-2 text-primary dark:text-dprimary list-none "
@@ -30,7 +31,7 @@ const Pagination = ({ setPage, pageCount,initialPage }: PaginationProps) => {
             previousClassName="flex items-center justify-center"
             marginPagesDisplayed={1}
             pageRangeDisplayed={3}
-           initialPage={initialPage} 
+            initialPage={initialPage}
         />
     );
 };
