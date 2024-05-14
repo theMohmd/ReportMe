@@ -1,20 +1,37 @@
-import { useNavigate, useParams } from "react-router-dom";
-import CustomButton from "components/ui/CustomButton";
-import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { apiGetMesseges } from "api/messages/apiGetMesseges";
+import { customError } from "types/customError";
+import { useDeleteProject } from "components/Projects/hooks/useDeleteProject";
+
+import CustomButton from "components/ui/CustomButton";
 import Loader from "components/ui/Loader";
-import { customError } from "src/types/customError";
-import ErrorPage from "../ui/ErrorPage";
+import ErrorPage from "components/ui/ErrorPage";
+import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
 
 //MessageView component
 const MessageView = () => {
     const { id } = useParams();
-    const navigate = useNavigate();
     const { data, error, isLoading } = useQuery({
         queryKey: ["messages", id],
         queryFn: () => apiGetMesseges({ id: id ? parseInt(id) : undefined }),
     });
+    const { mutate: deleteRequest } = useDeleteProject();
+    const navigate = useNavigate();
+    const deleteAction = () => {
+        deleteRequest(
+            { id: data?.data.id },
+            {
+                onSuccess() {
+                    navigate(-1);
+                },
+                onError() {
+                    console.log("error");
+                },
+            }
+        );
+    };
     if (isLoading)
         return (
             <Loader size={100} className="text-primary dark:text-dprimary" />
@@ -32,7 +49,7 @@ const MessageView = () => {
                             <CustomButton onClick={() => navigate(-1)}>
                                 <SquarePenIcon size={30} />
                             </CustomButton>
-                            <CustomButton onClick={() => navigate(-1)}>
+                            <CustomButton onClick={deleteAction}>
                                 <Trash2Icon size={30} />
                             </CustomButton>
                             <CustomButton onClick={() => navigate(-1)}>
