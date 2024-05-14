@@ -19,9 +19,5 @@ export const apiGetUserProjects = async (input: {
                 },
             }
         )
-        .then((res) => {
-            const data = res.data.data[0];
-            data.data = data.data.map(item=>item.project)
-            return data;
-        });
+        .then((res) => res.data);
 };

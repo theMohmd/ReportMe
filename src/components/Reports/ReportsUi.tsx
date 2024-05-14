@@ -23,11 +23,11 @@ const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
             <List>
                 {data.data.map(
                     (item) =>
-                        item && (
+                        item.project && (
                             <ListItem
-                                onClick={() => navigate("/projects/"+item.id.toString())}
+                                onClick={() => navigate(item.id.toString())}
                                 key={item.id}
-                                title={item.title}
+                                title={item.project.title}
                             />
                         )
                 )}

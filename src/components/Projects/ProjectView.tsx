@@ -11,10 +11,12 @@ import ErrorPage from "components/ui/ErrorPage";
 import AssignProject from "./AssignProject";
 import ProjectUsers from "./ProjectUsers";
 import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
+import { useAuth } from "src/contexts/Auth/useAuth";
 
 //ProjectView component
 const ProjectView = () => {
     const { id } = useParams();
+    const { user } = useAuth();
     const { data, error, isLoading } = useQuery({
         queryKey: ["projects", id],
         queryFn: () => apiGetProjects({ id: id ? parseInt(id) : undefined }),
@@ -44,23 +46,38 @@ const ProjectView = () => {
             {data && (
                 <div className="flex flex-col gap-2 p-5 pt-10 size-full">
                     <div className="flex justify-between items-center px-2 mb-5">
-                        <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
-                            {data.data.title}
-                        </p>
+                        <div className="flex ">
+                            {data.data.user.id !== user?.id && (
+                                <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
+                                    {data.data.user.email} :
+                                </p>
+                            )}
+                            <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
+                                {data.data.title}
+                            </p>
+                        </div>
                         <div className="flex gap-2">
-                            <CustomButton onClick={() => navigate(-1)}>
-                                <SquarePenIcon size={30} />
-                            </CustomButton>
-                            <CustomButton onClick={deleteAction}>
-                                <Trash2Icon size={30} />
-                            </CustomButton>
-                            <CustomButton onClick={() => navigate(-1)}>
-                                <ChevronLeftIcon size={30} />
-                            </CustomButton>
+                            {data.data.user.id === user?.id && (
+                                <>
+                                    <CustomButton onClick={() => navigate(-1)}>
+                                        <SquarePenIcon size={30} />
+                                    </CustomButton>
+                                    <CustomButton onClick={deleteAction}>
+                                        <Trash2Icon size={30} />
+                                    </CustomButton>
+                                    <CustomButton onClick={() => navigate(-1)}>
+                                        <ChevronLeftIcon size={30} />
+                                    </CustomButton>
+                                </>
+                            )}
                         </div>
                     </div>
-                    <AssignProject id={data.data.id} />
-                    <ProjectUsers id={data.data.id} />
+                    {data.data.user.id === user?.id && (
+                        <>
+                            <AssignProject id={data.data.id} />
+                            <ProjectUsers id={data.data.id} />
+                        </>
+                    )}
                     <div className="p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
                         {data.data.description}
                     </div>

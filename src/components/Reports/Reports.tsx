@@ -6,7 +6,7 @@ import { customError } from "types/customError";
 import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
 import ReportsUi from "./ReportsUi";
-import { apiGetReports } from "src/api/reports/apiGetReports";
+//import { apiGetReports } from "src/api/reports/apiGetReports"; todo
 import { apiGetUserProjects } from "src/api/user-projects/apiGetUserProjects";
 
 //Reports component
@@ -14,7 +14,7 @@ const Reports = () => {
     const [page, setpage] = useState(0);
     const { data, error, isLoading } = useQuery({
         queryKey: ["Reports", page],
-        //queryFn: () => apiGetReports({ page: page + 1 }),
+        //queryFn: () => apiGetReports({ page: page + 1 }), todo
         queryFn: () => apiGetUserProjects({ page: page + 1 }),
     });
     if (isLoading)
@@ -27,7 +27,7 @@ const Reports = () => {
             <ReportsUi
                 setPage={(input: number) => setpage(input)}
                 page={page}
-                data={data}
+                data={data.data[0]}
             />
         )
     );
