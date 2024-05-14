@@ -68,6 +68,7 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                 <Input
                     {...register("title", {
                         required: t("Messages.titleEmptyError"),
+                        maxLength: { value: 255, message: t("Messages.titleLongError")},
                     })}
                     placeholder={t("Messages.subject")}
                     type="text"

@@ -61,6 +61,7 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
                         key={item.id}
                         deleteAction={() => deleteAction(item.id)}
                         title={item.title}
+                        sender={item.sender.email}
                     />
                 ))}
             </List>

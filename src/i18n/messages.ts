@@ -13,6 +13,7 @@ export const messages_en = {
     userNotFound:"Couldn't find any user with given information",
     selectInput:"Start typing to search",
     newMessage:"New message",
+    titleLongError:"Subject can't be longer than 255 characters",
 };
 export const messages_fa = {
     messages:"پیام‌ها",
@@ -29,4 +30,5 @@ export const messages_fa = {
     userNotFound:"کاربری با مشخصات داده شده پیدا نشد",
     selectInput:"برای جست‌و‌جو تایپ کنید",
     newMessage:"پیام جدید",
+    titleLongError:"موضوع نمی‌تواند بیشتر از ۲۵۵ کاراکتر باشد",
 };

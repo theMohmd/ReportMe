@@ -57,8 +57,11 @@ const MessageView = () => {
                             </CustomButton>
                         </div>
                     </div>
-                    <div className="p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
-                        {data.data.data.content}
+                    <div className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                        <p className="py-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
+                            {data.data.data.sender.email}
+                        </p>
+                        <p className="overflow-auto grow h-0">{data.data.data.content}</p>
                     </div>
                 </div>
             )}
