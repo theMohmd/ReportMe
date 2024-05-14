@@ -10,6 +10,7 @@ import { messageType } from "types/messageType";
 import { useNavigate } from "react-router-dom";
 import { apiDataType } from "src/types/apiDataType";
 import Pagination from "components/ui/Pagination";
+import { useDeleteMessage } from "./hooks/useDeleteMessage";
 
 type MessagesUiProps = {
     data: apiDataType<messageType>;
@@ -21,6 +22,18 @@ type MessagesUiProps = {
 const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
     const [dialog, setdialog] = useState(false);
     const navigate = useNavigate();
+
+    const { mutate: deleteRequest } = useDeleteMessage();
+    const deleteAction = (id: number) => {
+        deleteRequest(
+            { id: id },
+            {
+                onError() {
+                    console.log("error");
+                },
+            }
+        );
+    };
     return (
         <div className="flex flex-col gap-2 p-5 pt-10 size-full">
             <AnimatePresence>
@@ -46,7 +59,7 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
-                        id={item.id}
+                        deleteAction={() => deleteAction(item.id)}
                         title={item.title}
                     />
                 ))}
