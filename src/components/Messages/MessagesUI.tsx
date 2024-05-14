@@ -60,9 +60,12 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
                         deleteAction={() => deleteAction(item.id)}
-                        title={item.title}
-                        sender={item.sender.email}
-                    />
+                        title={item.sender.email}
+                    >
+
+                        <p>:</p>
+                        <p>{item.title}</p>
+                    </ListItem>
                 ))}
             </List>
             <Pagination
