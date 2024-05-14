@@ -1,13 +1,16 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { t } from "i18next";
-import { ChevronDownIcon } from "lucide-react";
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { useState } from "react";
+import useOutsideClick from "src/hooks/useOutsideClick";
 type ModeSelectorProps = { mode: "email" | "username"; setMode: () => void };
 //user select mode (email/username)
 const UserSelectMode = ({ mode, setMode }: ModeSelectorProps) => {
     const [expanded, setexpanded] = useState(false);
+
+    const ref = useOutsideClick(()=>setexpanded(false))
     return (
-        <div className="ms-2 flex relative z-20 flex-col w-28 bg-background min-w-24 dark:bg-dbackground">
+        <div ref={ref} className="ms-2 flex relative z-20 flex-col w-28 bg-background min-w-24 dark:bg-dbackground">
             <button
                 onClick={() => setexpanded((prev) => !prev)}
                 className="flex gap-1 justify-between items-center w-full"
@@ -17,7 +20,7 @@ const UserSelectMode = ({ mode, setMode }: ModeSelectorProps) => {
                         ? t("Messages.modeEmail")
                         : t("Messages.modeUsername")}
                 </p>
-                <ChevronDownIcon />
+                {expanded?<ChevronUpIcon/>:<ChevronDownIcon />}
             </button>
             <div className="flex absolute end-0 z-10 top-[calc(100%+8px)] w-[calc(100%+8px)] flex-col bg-background dark:bg-dbackground">
                 <AnimatePresence>
