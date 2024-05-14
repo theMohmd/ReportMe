@@ -5,12 +5,14 @@ import Account from "components/Account/Account";
 import Messages from "components/Messages/Messages";
 import MessageView from "components/Messages/MessageView";
 import ProjectView from "components/Projects/ProjectView";
+import Reports from "components/Reports/Reports";
 
 //Routes for layout component
 const LayoutRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<Navigate to="projects" />} />
+            <Route path="reports" element={<Reports />} />
             <Route path="projects" element={<Projects />} />
             <Route path="projects/:id" element={<ProjectView />} />
             <Route path="messages" element={<Messages />} />

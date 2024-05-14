@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import NavButton from "./NavButton";
 import {
+    ClipboardPenIcon,
     ListChecks,
     Mail,
     Ticket,
@@ -15,6 +16,10 @@ const Nav = () => {
     const { t } = useTranslation();
     return (
         <div className="flex flex-col gap-4 p-4 grow w-[200px] md:w-[250px] bg-background dark:bg-dbackground">
+            <NavButton to="reports">
+                <ClipboardPenIcon size={32} />
+                {t("nav.reports")}
+            </NavButton>
             <NavButton to="projects">
                 <ListChecks size={32} />
                 {t("nav.projects")}
@@ -33,7 +38,7 @@ const Nav = () => {
             </NavButton>
             <div className="mt-auto flex gap-2 ">
                 <LangButton />
-                <ThemeButton/>
+                <ThemeButton />
                 <LogoutButton />
             </div>
         </div>
