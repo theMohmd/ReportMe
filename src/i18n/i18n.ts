@@ -4,6 +4,7 @@ import { nav_en, nav_fa } from "./nav";
 import { messages_en, messages_fa } from "./messages";
 import { projects_en, projects_fa } from "./projects";
 import { login_en, login_fa } from "./login";
+import { account_en, account_fa } from "./account";
 // Define translations
 const resources = {
     en: {
@@ -11,6 +12,7 @@ const resources = {
             nav: nav_en,
             Messages: messages_en,
             Projects: projects_en,
+            Account: account_en,
             login: login_en,
             common: {
                 pageNotFound: "Page not found!",
@@ -25,6 +27,7 @@ const resources = {
             nav: nav_fa,
             Messages: messages_fa,
             Projects: projects_fa,
+            Account: account_fa,
             login: login_fa,
             common: {
                 pageNotFound: "صفحه مورد نظر یافت نشد!",
