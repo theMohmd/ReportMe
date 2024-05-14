@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import NavButton from "./NavButton";
 import {
     ClipboardPenIcon,
-    ListChecks,
+    FolderGit2Icon,
     Mail,
     Ticket,
     UserRound,
@@ -21,7 +21,7 @@ const Nav = () => {
                 {t("nav.reports")}
             </NavButton>
             <NavButton to="projects">
-                <ListChecks size={32} />
+                <FolderGit2Icon size={32} />
                 {t("nav.projects")}
             </NavButton>
             <NavButton to="messages">
