@@ -17,7 +17,7 @@ const Account = () => {
                 </p>
             </div>
 
-            <div className="flex flex-col gap-2 lg:flex-row grow">
+            <div className="flex flex-col gap-2 grow">
                 {/*personal info*/}
                 <div className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
                     <div className="flex gap-2 justify-between items-center mb-3">
@@ -54,7 +54,9 @@ const Account = () => {
                     </div>
                     <AddSupervisor />
 
-                    <SupervisorList />
+                    <div className="mt-5">
+                        <SupervisorList />
+                    </div>
                 </div>
             </div>
         </div>

@@ -13,11 +13,13 @@ type data = {
 export const useGetSupervisors = () => {
     const { user } = useAuth();
     return () =>
-        apiGetUserSupervisor().then((res) => {
+        apiGetUserSupervisor("", "").then((res) => {
             return res.data.data[0].data
                 .filter((item: data) => {
                     return item.user.id === user?.id;
                 })
-                .map((item: data) => item.supervisor);
+                .map((item: data) => {
+                    return { USid: item.id, ...item.supervisor };
+                });
         });
 };
