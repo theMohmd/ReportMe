@@ -8,7 +8,7 @@ import { useDeleteProject } from "./hooks/useDeleteProject";
 import CustomButton from "components/ui/CustomButton";
 import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
-import AssginProject from "./AssginProject";
+import AssignProject from "./AssignProject";
 import ProjectUsers from "./ProjectUsers";
 import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
 
@@ -59,7 +59,7 @@ const ProjectView = () => {
                             </CustomButton>
                         </div>
                     </div>
-                    <AssginProject id={data.data.id} />
+                    <AssignProject id={data.data.id} />
                     <ProjectUsers id={data.data.id} />
                     <div className="p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
                         {data.data.description}
