@@ -1,11 +1,29 @@
 import { Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useDeleteProject } from "src/components/Projects/hooks/useDeleteProject";
 
 //ListItem component
 type ListItemProps = {
     title: string;
+    id: number;
     onClick?: () => void;
 };
-const ListItem = ({ title, onClick }: ListItemProps) => {
+const ListItem = ({ title, id, onClick }: ListItemProps) => {
+    const navigate = useNavigate();
+    const { mutate: deleteRequest } = useDeleteProject();
+    const deleteAction = () => {
+        deleteRequest(
+            { id: id },
+            {
+                onSuccess() {
+                    navigate(-1);
+                },
+                onError() {
+                    console.log("error");
+                },
+            }
+        );
+    };
     return (
         <div
             onClick={onClick ? onClick : undefined}
@@ -13,7 +31,13 @@ const ListItem = ({ title, onClick }: ListItemProps) => {
         >
             <p>{title}</p>
             <div>
-                <button className="hover:text-red-600 flex items-center justify-center">
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        deleteAction();
+                    }}
+                    className="hover:text-red-600 flex items-center justify-center"
+                >
                     <Trash2 />
                 </button>
             </div>

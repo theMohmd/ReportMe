@@ -46,6 +46,7 @@ const ProjectsUi = ({ data, setPage, page }: ProjectsUiProps) => {
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
+                        id={item.id}
                         title={item.title}
                     />
                 ))}

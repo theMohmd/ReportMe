@@ -5,7 +5,7 @@ import { postProjectType } from "src/types/projects/postProjectType";
 export const usePostProjects = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationKey: ["Projects"],
+        mutationKey: ["Projects","post"],
         mutationFn: async (data: postProjectType) => apiPostProject(data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["Projects"] });
