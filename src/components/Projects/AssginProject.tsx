@@ -1,14 +1,14 @@
-import UserSelect from "../Common/UserSelect/UserSelect";
 import { useState } from "react";
-import { useGetSubusers } from "./hooks/useGetSubusers";
+import { t } from "i18next";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import UserSelect from "components/Common/UserSelect/UserSelect";
 import CustomButton from "components/ui/CustomButton";
 import { PlusIcon } from "lucide-react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-    apiPostUserProject,
-    postUserProjectType,
-} from "src/api/projects/apiPostUserProject";
-import { t } from "i18next";
+
+import { useGetSubusers } from "./hooks/useGetSubusers";
+import { apiPostUserProject } from "api/projects/apiPostUserProject";
+import { postUserProjectType } from "types/projects/postUserProjectType";
 
 type AssginProjectProps = { id: number };
 //AssginProject component
@@ -22,8 +22,8 @@ const AssginProject = ({ id }: AssginProjectProps) => {
             apiPostUserProject(data),
         onSuccess: (res) => {
             queryClient.invalidateQueries({ queryKey: ["user-project"] });
-            console.log('succees')
-            console.log(res)
+            console.log("succees");
+            console.log(res);
         },
     });
     const postFunction = () => {
@@ -31,7 +31,7 @@ const AssginProject = ({ id }: AssginProjectProps) => {
             console.log("err");
             return;
         }
-        mutate({user_id:userToAdd,project_id: id});
+        mutate({ user_id: userToAdd, project_id: id });
     };
     return (
         <div className="flex ">
