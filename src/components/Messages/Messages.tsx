@@ -10,7 +10,7 @@ import ErrorPage from "../ui/ErrorPage";
 const Messages = () => {
     const [page, setpage] = useState(0);
     const { data, error, isLoading } = useQuery({
-        queryKey: ["Messeges", page],
+        queryKey: ["Messages", page],
         queryFn: () => apiGetMesseges({ page: page + 1 }),
     });
     if (isLoading)
