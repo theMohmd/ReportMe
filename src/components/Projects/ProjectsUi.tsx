@@ -10,6 +10,7 @@ import NewProjectDialog from "./NewProjectDialog";
 import { apiDataType } from "types/apiDataType";
 import { projectType } from "src/types/projects/projectType";
 import Pagination from "components/ui/Pagination";
+import { useDeleteProject } from "./hooks/useDeleteProject";
 
 type ProjectsUiProps = {
     data: apiDataType<projectType>;
@@ -21,6 +22,18 @@ type ProjectsUiProps = {
 const ProjectsUi = ({ data, setPage, page }: ProjectsUiProps) => {
     const [dialog, setdialog] = useState(false);
     const navigate = useNavigate();
+
+    const { mutate: deleteRequest } = useDeleteProject();
+    const deleteAction = (id: number) => {
+        deleteRequest(
+            { id: id },
+            {
+                onError() {
+                    console.log("error");
+                },
+            }
+        );
+    };
     return (
         <div className="flex overflow-y-auto flex-col gap-2 p-5 pt-10 size-full">
             <AnimatePresence>
@@ -46,7 +59,7 @@ const ProjectsUi = ({ data, setPage, page }: ProjectsUiProps) => {
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
-                        id={item.id}
+                        deleteAction={() => deleteAction(item.id)}
                         title={item.title}
                     />
                 ))}
