@@ -7,7 +7,7 @@ type ModeSelectorProps = { mode: "email" | "username"; setMode: () => void };
 const UserSelectMode = ({ mode, setMode }: ModeSelectorProps) => {
     const [expanded, setexpanded] = useState(false);
     return (
-        <div className="flex z-20 bg-background dark:bg-dbackground relative flex-col  min-w-24 w-28">
+        <div className="ms-2 flex relative z-20 flex-col w-28 bg-background min-w-24 dark:bg-dbackground">
             <button
                 onClick={() => setexpanded((prev) => !prev)}
                 className="flex gap-1 justify-between items-center w-full"
@@ -30,7 +30,7 @@ const UserSelectMode = ({ mode, setMode }: ModeSelectorProps) => {
                                 setMode();
                                 setexpanded(false);
                             }}
-                            className="flex gap-1 justify-between items-center p-2 rounded-b-xl border-b border-lightBorder dark:border-dlightBorder border-x"
+                            className="flex gap-1 justify-between items-center p-2 rounded-b-xl border-b border-lightBorder border-x dark:border-dlightBorder"
                         >
                             <p className="relative font-semibold">
                                 {mode === "username"

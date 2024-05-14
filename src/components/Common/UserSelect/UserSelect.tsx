@@ -65,10 +65,17 @@ const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
                                         set(item.id);
                                         setexpanded(false);
                                         if (inputRef.current)
-                                            inputRef.current.value = item.name;
+                                            inputRef.current.value =
+                                                mode === "email"
+                                                    ? item.email
+                                                    : item.name;
                                     }}
                                 >
-                                    {item.name} | {item.email}
+                                    {item.name}
+                                    <span className="px-2 text-lightBorder dark:text-dlightBorder">
+                                        |
+                                    </span>
+                                    {item.email}
                                 </button>
                             )
                         )}
