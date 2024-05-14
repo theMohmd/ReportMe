@@ -6,12 +6,12 @@ import { useAuth } from "contexts/Auth/useAuth";
 
 import Login from "components/Login/Login";
 import Loader from "components/ui/Loader";
-import NotFound from "components/NotFound/NotFound";
+import NotFound from "components/Common/NotFound/NotFound";
 import Layout from "components/Layout/Layout";
+import Relogin from "components/Common/ReLogin/ReLogin";
 
 import { useGetUser } from "hooks/useGetUser";
-import Relogin from "./components/ReLogin/ReLogin";
-import { useGetSubusers } from "./components/Projects/hooks/useGetSubusers";
+import { useGetSubusers } from "components/Projects/hooks/useGetSubusers";
 
 const App = () => {
     const { theme } = useTheme();
