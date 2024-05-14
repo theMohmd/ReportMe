@@ -12,14 +12,14 @@ const ErrorPage = ({ children, error }: ErrorPageProps) => {
     const navigate = useNavigate();
     const { logOut } = useAuth();
     useEffect(() => {
-        if (error.response.status === 401) {
+        if (error.response && error.response.status === 401) {
             logOut();
             navigate("/relogin");
         }
     });
 
     return (
-        <div className="flex flex-col justify-center items-center pb-48 grow text-primary ">
+        <div className="flex flex-col justify-center items-center pb-48 grow text-primary dark:text-dprimary ">
             <p className="relative text-8xl font-black">ERROR</p>
             {children && true}
         </div>
