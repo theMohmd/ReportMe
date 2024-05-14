@@ -1,14 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
+
 import { apiGetProjects } from "api/projects/apiGetProjects";
+import { customError } from "types/customError";
+import { useDeleteProject } from "./hooks/useDeleteProject";
+
 import CustomButton from "components/ui/CustomButton";
 import Loader from "components/ui/Loader";
-import ErrorPage from "../ui/ErrorPage";
-import { customError } from "src/types/customError";
+import ErrorPage from "components/ui/ErrorPage";
 import AssginProject from "./AssginProject";
 import ProjectUsers from "./ProjectUsers";
-import { useDeleteProject } from "./hooks/useDeleteProject";
+import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
 
 //ProjectView component
 const ProjectView = () => {
@@ -37,7 +39,6 @@ const ProjectView = () => {
             <Loader size={100} className="text-primary dark:text-dprimary" />
         );
     if (error) return <ErrorPage error={error as customError} />;
-    console.log(data.data.id);
     return (
         <>
             {data && (
