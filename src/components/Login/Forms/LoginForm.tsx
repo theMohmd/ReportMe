@@ -45,7 +45,7 @@ const LoginForm = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
             exit={{ opacity: 0 }}
-            className=" text-primary dark:text-dprimary flex flex-col gap-2 justify-center overflow-y-auto py-16 px-5 size-full rounded-xl grow bg-background2 dark:bg-dbackground2"
+            className=" text-primary dark:text-dprimary flex flex-col gap-2 justify-center overflow-y-auto p-5 size-full rounded-xl grow bg-background2 dark:bg-dbackground2"
             onSubmit={handleSubmit(onSubmit)}
         >
             <div className="flex gap-2 flex-col sm:flex-row sm:items-center justify-center">
@@ -97,7 +97,7 @@ const LoginForm = () => {
             )}
             <button
                 type="submit"
-                className="flex justify-center max-h-12 items-center p-3 text-base mt-5 font-bold rounded-lg bg-primary dark:bg-dprimary text-background dark:text-dbackground "
+                className="flex justify-center max-h-12 items-center p-3 text-base mt-5 font-bold rounded-lg bg-dbutton text-background "
                 disabled={isSubmitting}
             >
                 {isSubmitting ? <Loader /> : t("login.login")}
