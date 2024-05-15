@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { signUpDataType as FormFields } from "types/signUpDataType";
+import { signUpDataType as FormFields } from "api/login/apiRegister";
 import { useAuth } from "contexts/Auth/useAuth";
 import Loader from "components/ui/Loader";
 import { t } from "i18next";

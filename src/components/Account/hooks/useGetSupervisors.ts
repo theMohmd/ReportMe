@@ -1,7 +1,9 @@
 import { apiGetUserSupervisor } from "api/projects/apiGetUserSupervisor";
 import { useAuth } from "contexts/Auth/useAuth";
-import { userType } from "types/auth";
+import { userType } from "types/userType";
+
 type data = {
+    //todo
     created_at: string;
     id: number;
     supervisor: userType;

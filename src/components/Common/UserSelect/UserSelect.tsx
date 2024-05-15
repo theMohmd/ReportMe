@@ -1,9 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
 import { useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { t } from "i18next";
+
+import { userType } from "types/userType";
+import useOutsideClick from "hooks/useOutsideClick";
+
 import UserSelectMode from "./UserSelectMode";
-import { userType } from "src/types/auth";
-import useOutsideClick from "src/hooks/useOutsideClick";
+
 //Select component
 type UserSelectProps = {
     query: (input: string, mode: string) => Promise<userType[]>;

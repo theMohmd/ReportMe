@@ -11,9 +11,11 @@ import ErrorPage from "components/ui/ErrorPage";
 import AssignProject from "./AssignProject";
 import ProjectUsers from "./ProjectUsers";
 import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
+import { useAuth } from "src/contexts/Auth/useAuth";
 
 //ProjectView component
 const ProjectView = () => {
+    const { user } = useAuth();
     const { id } = useParams();
     const { data, error, isLoading } = useQuery({
         queryKey: ["projects", id],
@@ -50,19 +52,27 @@ const ProjectView = () => {
                             </p>
                         </div>
                         <div className="flex gap-2">
-                            <CustomButton onClick={() => navigate(-1)}>
-                                <SquarePenIcon size={30} />
-                            </CustomButton>
-                            <CustomButton onClick={deleteAction}>
-                                <Trash2Icon size={30} />
-                            </CustomButton>
+                            {user?.id === data.data.user.id && (
+                                <>
+                                    <CustomButton onClick={() => navigate(-1)}>
+                                        <SquarePenIcon size={30} />
+                                    </CustomButton>
+                                    <CustomButton onClick={deleteAction}>
+                                        <Trash2Icon size={30} />
+                                    </CustomButton>
+                                </>
+                            )}
                             <CustomButton onClick={() => navigate(-1)}>
                                 <ChevronLeftIcon size={30} />
                             </CustomButton>
                         </div>
                     </div>
-                    <AssignProject id={data.data.id} />
-                    <ProjectUsers id={data.data.id} />
+                    {user?.id === data.data.user.id && (
+                        <>
+                            <AssignProject id={data.data.id} />
+                            <ProjectUsers id={data.data.id} />
+                        </>
+                    )}
                     <div className="p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
                         {data.data.description}
                     </div>

@@ -1,7 +1,7 @@
 import axios from "axios";
-import { loginDataType } from "types/loginDataType";
 
 //login request
+export type loginDataType = { email: string; password: string };
 export const apiLogin = async (data: loginDataType) => {
     return axios.post("http://127.0.0.1:8000/api/auth/login", data, {
         headers: {

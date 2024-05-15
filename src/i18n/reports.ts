@@ -1,13 +1,13 @@
 
 export const reports_en = {
-    reports:"Reportable Projects",
+    reports:"Reports",
     report:"Report",
     reportsPerProject:"Report's of",
     newReport:"New report",
     project:"Project",
 }
 export const reports_fa = {
-    reports:"پروژه‌های قابل گزارش",
+    reports:"گزارش‌ها",
     report:"گزارش",
     reportsPerProject:"گزارش‌های",
     newReport:"گزارش جدید",

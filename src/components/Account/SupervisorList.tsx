@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { customError } from "types/customError";
 import { useGetSupervisors } from "./hooks/useGetSupervisors";
-import { userType } from "types/auth";
+import { userType } from "src/types/userType";
 
 import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";

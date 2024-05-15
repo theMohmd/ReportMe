@@ -1,12 +1,14 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { apiGetUsers } from "src/api/messages/apiGetUsers";
-import UserSelect from "../Common/UserSelect/UserSelect";
-import CustomButton from "../ui/CustomButton";
-import { PlusIcon } from "lucide-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { t } from "i18next";
-import { apiPostUserSupervisor } from "src/api/user-supervisor/apiPostUserSupervisor";
-import { postUserSupervisorType } from "src/types/postUserSupervisorType";
+
+import { apiGetUsers } from "api/messages/apiGetUsers";
+import { apiPostUserSupervisor } from "api/user-supervisor/apiPostUserSupervisor";
+import { postUserSupervisorType } from "api/user-supervisor/apiPostUserSupervisor";
+
+import UserSelect from "components/Common/UserSelect/UserSelect";
+import CustomButton from "components/ui/CustomButton";
+import { PlusIcon } from "lucide-react";
 
 //AddSupervisor component
 const AddSupervisor = () => {

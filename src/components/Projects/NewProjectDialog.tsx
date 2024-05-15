@@ -1,11 +1,13 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import Dialog from "components/Common/Dialog";
 import { t } from "i18next";
-import Loader from "components/ui/Loader";
-import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
-import Input from "components/ui/Input";
-import { postProjectType as FormFields } from "src/types/projects/postProjectType";
+
+import { postProjectType as FormFields } from "api/projects/apiPostProject";
 import { usePostProjects } from "./hooks/usePostProject";
+
+import { SubmitHandler, useForm } from "react-hook-form";
+import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
+import Dialog from "components/Common/Dialog";
+import Loader from "components/ui/Loader";
+import Input from "components/ui/Input";
 
 //NewProjectDialog component
 const NewProjectDialog = ({ close }: { close: () => void }) => {

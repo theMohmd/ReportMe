@@ -1,10 +1,12 @@
+import { t } from "i18next";
+import { useQuery } from "@tanstack/react-query";
+import { customError } from "types/customError";
+
+import { apiGetUserProjects } from "api/user-projects/apiGetUserProjects";
+import { userType } from "types/userType";
+
 import Loader from "../ui/Loader";
 import ErrorPage from "../ui/ErrorPage";
-import { customError } from "src/types/customError";
-import { apiGetUserProjects } from "src/api/user-projects/apiGetUserProjects";
-import { userType } from "src/types/auth";
-import { useQuery } from "@tanstack/react-query";
-import { t } from "i18next";
 
 //ProjectUsers component
 type ProjectUsersProps = { id: number };

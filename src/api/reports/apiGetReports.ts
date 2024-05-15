@@ -4,11 +4,12 @@ import { getCookie } from "utils/cookie";
 //get reports
 //if id in input: get specific report with given id
 //if page in input: get specific page of reports
-export const apiGetReports = async (input: {
+export type getReportsType = {
     project?: number;
     id?: number;
     page?: number;
-}) => {
+};
+export const apiGetReports = async (input: getReportsType) => {
     return axios
         .get(
             `http://127.0.0.1:8000/api/reports${

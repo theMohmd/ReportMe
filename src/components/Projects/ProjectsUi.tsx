@@ -1,16 +1,19 @@
 import { t } from "i18next";
-import { Plus } from "lucide-react";
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+
+import { apiDataType } from "types/apiDataType";
+import { projectType } from "types/projectType";
+import { useDeleteProject } from "./hooks/useDeleteProject";
+
+import { AnimatePresence } from "framer-motion";
+import { Plus } from "lucide-react";
+
 import CustomButton from "components/ui/CustomButton";
 import List from "components/Common/List/List";
 import ListItem from "components/Common/List/ListItem";
 import NewProjectDialog from "./NewProjectDialog";
-import { apiDataType } from "types/apiDataType";
-import { projectType } from "src/types/projects/projectType";
 import Pagination from "components/ui/Pagination";
-import { useDeleteProject } from "./hooks/useDeleteProject";
 
 type ProjectsUiProps = {
     data: apiDataType<projectType>;

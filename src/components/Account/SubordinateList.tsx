@@ -1,14 +1,15 @@
+import { t } from "i18next";
 import { useQuery } from "@tanstack/react-query";
 
 import { customError } from "types/customError";
 import { useGetSubordinates } from "./hooks/useGetSubordinates";
-import { userType } from "types/auth";
+import { userType } from "types/userType";
+import { useDeleteSubordinate } from "./hooks/useDeleteSubordinate";
 
+import { Trash2Icon } from "lucide-react";
 import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
-import { Trash2Icon } from "lucide-react";
-import { useDeleteSubordinate } from "./hooks/useDeleteSubordinate";
-import { t } from "i18next";
+
 type data = userType & { USid: number };
 
 //SubordinateList component

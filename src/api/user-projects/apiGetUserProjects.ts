@@ -1,11 +1,12 @@
 import axios from "axios";
 import { getCookie } from "utils/cookie";
 
-export const apiGetUserProjects = async (input: {
+export type getUserProjectsType = {
     id?: number;
     page?: number;
     project?: number;
-}={}) => {
+};
+export const apiGetUserProjects = async (input: getUserProjectsType = {}) => {
     return axios
         .get(
             `http://127.0.0.1:8000/api/user-projects${

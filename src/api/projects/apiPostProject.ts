@@ -1,8 +1,8 @@
 import axios from "axios";
-import { postProjectType } from "src/types/projects/postProjectType";
 import { getCookie } from "utils/cookie";
 
 //project post request
+export type postProjectType = { title: string; description: string; };
 export const apiPostProject = async (data: postProjectType) => {
     return axios.post("http://127.0.0.1:8000/api/projects", data, {
         headers: {

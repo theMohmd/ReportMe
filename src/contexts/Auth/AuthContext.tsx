@@ -1,12 +1,21 @@
 import { createContext, useState, ReactNode } from "react";
+import { userType } from "src/types/userType";
 import { deleteCookie, setCookie } from "utils/cookie";
-import { AuthContextType, userType } from "types/auth";
+export type AuthContextType = {
+    user: userType | null;
+    setUser: (input: userType | null) => void;
+    setToken: (token: string) => void;
+    logOut: () => void;
+};
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [user, setUser] = useState<userType | null>(null);
+    const [user, setuser] = useState<userType | null>(null);
 
+    const setUser = (input: userType | null) => {
+        setuser(input);
+    };
     const setToken = (token: string) => {
         setCookie("token", token);
     };
