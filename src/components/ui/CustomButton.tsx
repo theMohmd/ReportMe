@@ -9,7 +9,7 @@ const CustomButton = ({ children, onClick }: SmallButtonProps) => {
     return (
         <button
             onClick={onClick}
-            className="flex justify-center font-bold gap-2 items-center bg-primary dark:bg-dprimary text-background dark:text-dbackground p-2 rounded-lg "
+            className="flex justify-center font-bold gap-2 items-center hover:shadow-cshadow bg-dbutton text-background p-2 rounded-lg "
         >
             {children}
         </button>

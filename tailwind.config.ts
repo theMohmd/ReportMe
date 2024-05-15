@@ -6,7 +6,8 @@ export const color = {
     lightBorder: "#CCD4FF",
     dbackground: "#090C1B",
     dbackground2: "#060813",
-    dprimary: "#aeb7eb",
+    dprimary: "#bfc7f2",
+    dbutton: "#182678",
     dlightBorder: "#0D1126",
 };
 export default {
@@ -17,8 +18,7 @@ export default {
             fontFamily: { vazir: ["Vazir", "sans"] },
             colors: color,
             boxShadow: {
-                cshadow: " 0px 1px 8px 0px rgba(204, 214, 255)",
-                dcshadow: " 0px 1px 8px 0px rgba(13, 18, 41)",
+                cshadow: " 0px 0px 4px 0px rgba(24, 38, 120,0.5) ",
             },
         },
     },
