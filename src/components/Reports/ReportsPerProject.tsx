@@ -12,13 +12,13 @@ import { apiGetUserProjects } from "src/api/user-projects/apiGetUserProjects";
 
 //ReportsPerProject component
 const ReportsPerProject = () => {
-    const { id } = useParams(); //user-project id
+    const { user_project_id } = useParams(); //user-project id
     const [page, setpage] = useState(0);
     const { data, error, isLoading } = useQuery({
-        queryKey: ["Reports", "Projects", id, page],
+        queryKey: ["Reports", "Projects", user_project_id, page],
         queryFn: async () => {
             const user_project = await apiGetUserProjects({
-                id: id ? parseInt(id) : undefined,
+                id: user_project_id ? parseInt(user_project_id) : undefined,
             }).then((res) => res.data);
             console.log("id",user_project.project.id)
             const reports = await apiGetReports({

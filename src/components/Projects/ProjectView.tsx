@@ -16,7 +16,6 @@ import { useAuth } from "src/contexts/Auth/useAuth";
 //ProjectView component
 const ProjectView = () => {
     const { id } = useParams();
-    const { user } = useAuth();
     const { data, error, isLoading } = useQuery({
         queryKey: ["projects", id],
         queryFn: () => apiGetProjects({ id: id ? parseInt(id) : undefined }),

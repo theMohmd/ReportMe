@@ -1,24 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { customError } from "types/customError";
 
 import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
-import { apiGetUserProjects } from "src/api/user-projects/apiGetUserProjects";
 import { useState } from "react";
 import { t } from "i18next";
 import CustomButton from "../ui/CustomButton";
-import { ClipboardPenIcon } from "lucide-react";
+import { ChevronLeftIcon } from "lucide-react";
+import { apiGetReports } from "src/api/reports/apiGetReports";
 
 //ReportView component
 const ReportView = () => {
-    const { id } = useParams();
-    const [mode, setmode] = useState<"project" | "report">("project");
+    const { id } = useParams();//report id
+    const navigate = useNavigate();
     const { data, error, isLoading } = useQuery({
         queryKey: ["Reports", id],
         queryFn: () =>
-            apiGetUserProjects({ id: id ? parseInt(id) : undefined }),
+            apiGetReports({ id: id ? parseInt(id) : undefined }),
     });
     // const { mutate: deleteRequest } = useDeleteReport();
     // const navigate = useNavigate();
@@ -40,6 +40,7 @@ const ReportView = () => {
             <Loader size={100} className="text-primary dark:text-dprimary" />
         );
     if (error) return <ErrorPage error={error as customError} />;
+    console.log("hello?")
     return (
         <>
             {data && (
@@ -49,44 +50,18 @@ const ReportView = () => {
                             <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                                 {data.data.project.user.email} :
                             </p>
-                            <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
+                            <Link to={`/projects/${data.data.project.id}`} className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                                 {data.data.project.title}
-                            </p>
+                            </Link>
                         </div>
                         <div className="flex gap-2">
-                            <CustomButton onClick={() => console.log(-1)}>
-                                <ClipboardPenIcon size={30} />
-                                {t("Reports.newReport")}
+                            <CustomButton onClick={() => navigate(-1)}>
+                                <ChevronLeftIcon size={30} />
                             </CustomButton>
                         </div>
                     </div>
                     <div className="p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
-                        <div className="flex mb-5 gap-2 font-semibold">
-                            <button
-                                onClick={() => setmode("project")}
-                                className={
-                                    mode === "project"
-                                        ? "opacity-100"
-                                        : "opacity-50"
-                                }
-                            >
-                                {t("Reports.project")}
-                            </button>
-                            <span>/</span>
-                            <button
-                                onClick={() => setmode("report")}
-                                className={
-                                    mode === "report"
-                                        ? "opacity-100"
-                                        : "opacity-50"
-                                }
-                            >
-                                {t("Reports.report")}
-                            </button>
-                        </div>
-                        {mode === "project" && (
                             <p> {data.data.project.description}</p>
-                        )}
                     </div>
                 </div>
             )}
