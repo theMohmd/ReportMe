@@ -14,8 +14,8 @@ type data = {
 //a hook that return a function which utelizes api to return list of subordinate
 export const useGetSubordinates = () => {
     const { user } = useAuth();
-    return () =>
-        apiGetUserSupervisor("", "").then((res) => {
+    return (input:string, mode:string) =>
+        apiGetUserSupervisor(input,mode).then((res) => {
             return res.data.data[0].data
                 .filter((item: data) => {
                     return item.supervisor.id === user?.id;
