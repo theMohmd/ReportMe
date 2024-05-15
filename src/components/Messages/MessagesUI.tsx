@@ -45,7 +45,7 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
                     />
                 )}
             </AnimatePresence>
-            <div className="flex justify-between items-center px-2 mb-5">
+            <div className="flex justify-between items-center mb-5">
                 <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                     {t("Messages.messages")}
                 </p>

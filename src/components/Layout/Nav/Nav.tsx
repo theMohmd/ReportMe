@@ -16,7 +16,7 @@ import { useAuth } from "src/contexts/Auth/useAuth";
 const Nav = () => {
     const { user } = useAuth();//todo delete
     return (
-        <div className="flex flex-col gap-4 p-4 grow w-[200px] bg-background dark:bg-dbackground">
+        <div className="flex flex-col gap-2 p-4 grow w-[200px] bg-background dark:bg-dbackground">
             <NavButton to="reports">
                 <ClipboardPenIcon />
                 {t("nav.reports")}
@@ -38,7 +38,7 @@ const Nav = () => {
                 {user?.name}
                 {/*{t("nav.account")}*/}
             </NavButton>
-            <div className="mt-auto flex gap-2 ">
+            <div className="mt-auto flex gap-1 justify-start ">
                 <LangButton />
                 <ThemeButton />
                 <LogoutButton />

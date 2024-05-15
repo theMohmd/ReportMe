@@ -40,7 +40,7 @@ const AssginProject = ({ id }: AssginProjectProps) => {
                 <p className="font-medium text-primary dark:text-dprimary ps-2">
                     {t("Projects.assign")}
                 </p>
-                <div className="flex grow gap-2 md:w-fit w-full">
+                <div className="flex grow gap-1 md:w-fit w-full">
                     <UserSelect
                         queryKey="getSubUsers"
                         query={query}

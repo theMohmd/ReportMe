@@ -39,7 +39,7 @@ const ReportsPerProjectUi = ({
                     />
                 )}
             </AnimatePresence>
-            <div className="flex justify-between items-center px-2 mb-5 h-12">
+            <div className="flex justify-between items-center mb-5 h-12">
                 <div className="flex gap-2">
                     <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                         {t("Reports.reportsPerProject")}

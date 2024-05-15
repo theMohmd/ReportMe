@@ -41,11 +41,11 @@ const MessageView = () => {
         <>
             {data && (
                 <div className="flex flex-col gap-2 grow">
-                    <div className="flex justify-between items-center px-2 mb-5">
+                    <div className="flex justify-between items-center mb-5">
                         <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                             {data.data.data.title}
                         </p>
-                        <div className="flex gap-2">
+                        <div className="flex gap-1">
                             <CustomButton onClick={() => navigate(-1)}>
                                 <SquarePenIcon />
                             </CustomButton>
