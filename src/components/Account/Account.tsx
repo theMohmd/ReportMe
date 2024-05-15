@@ -4,6 +4,7 @@ import CustomButton from "../ui/CustomButton";
 import { SquarePenIcon } from "lucide-react";
 import AddSupervisor from "./AddSupervisor";
 import SupervisorList from "./SupervisorList";
+import SubordinateList from "./SubordinateList";
 
 //Account component
 const Account = () => {
@@ -45,17 +46,27 @@ const Account = () => {
                     </div>
                 </div>
 
-                {/*supervisors*/}
-                <div className="flex flex-col gap-2 p-5 rounded-xl border grow text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
-                    <div className="flex gap-2 justify-between items-center mb-3 sticky top-0">
-                        <p className="text-lg font-semibold">
-                            {t("Account.supervisors")}
-                        </p>
-                    </div>
-                    <AddSupervisor />
+                {/*supervisors / subordinates*/}
+                <div className="flex gap-2 grow text-primary flex-col lg:flex-row ">
+                    <div className="flex flex-col gap-2 p-5 rounded-xl border grow text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                        <div className="flex gap-2 justify-between items-center mb-3 sticky top-0">
+                            <p className="text-lg font-semibold">
+                                {t("Account.supervisors")}
+                            </p>
+                        </div>
+                        <AddSupervisor />
 
-                    <div className="flex mt-5 grow overflow-y-auto h-0">
-                        <SupervisorList />
+                        <div className="flex mt-5 grow overflow-y-auto h-0">
+                            <SupervisorList />
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-2 p-5 rounded-xl border grow text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                        <div className="flex gap-2 justify-between items-center mb-3 sticky top-0">
+                            <p className="text-lg font-semibold">
+                                {t("Account.subordinates")}
+                            </p>
+                        </div>
+                        <SubordinateList />
                     </div>
                 </div>
             </div>
