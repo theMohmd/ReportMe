@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import NavButton from "./NavButton";
 import {
     ClipboardPenIcon,
@@ -10,10 +9,12 @@ import {
 import LangButton from "components/Common/LangButton";
 import ThemeButton from "components/Common/ThemeButton";
 import LogoutButton from "components/Common/LogoutButton";
+import { t } from "i18next";
+import { useAuth } from "src/contexts/Auth/useAuth";
 
 //Nav component
 const Nav = () => {
-    const { t } = useTranslation();
+    const { user } = useAuth();//todo delete
     return (
         <div className="flex flex-col gap-4 p-4 grow w-[200px] md:w-[250px] bg-background dark:bg-dbackground">
             <NavButton to="reports">
@@ -34,7 +35,8 @@ const Nav = () => {
             </NavButton>
             <NavButton to="account">
                 <UserRound size={32} />
-                {t("nav.account")}
+                {user?.name}
+                {/*{t("nav.account")}*/}
             </NavButton>
             <div className="mt-auto flex gap-2 ">
                 <LangButton />

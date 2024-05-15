@@ -8,6 +8,8 @@ import ErrorPage from "components/ui/ErrorPage";
 import { apiGetUserProjects } from "src/api/user-projects/apiGetUserProjects";
 import { useState } from "react";
 import { t } from "i18next";
+import CustomButton from "../ui/CustomButton";
+import { ClipboardPenIcon } from "lucide-react";
 
 //ReportView component
 const ReportView = () => {
@@ -45,11 +47,17 @@ const ReportView = () => {
                     <div className="flex justify-between items-center px-2 mb-5">
                         <div className="flex flex-col md:flex-row">
                             <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
-                                {data.data.user.email} :
+                                {data.data.project.user.email} :
                             </p>
                             <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                                 {data.data.project.title}
                             </p>
+                        </div>
+                        <div className="flex gap-2">
+                            <CustomButton onClick={() => console.log(-1)}>
+                                <ClipboardPenIcon size={30} />
+                                {t("Reports.newReport")}
+                            </CustomButton>
                         </div>
                     </div>
                     <div className="p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">

@@ -7,6 +7,7 @@ import MessageView from "components/Messages/MessageView";
 import ProjectView from "components/Projects/ProjectView";
 import Reports from "components/Reports/Reports";
 import ReportView from "components/Reports/ReportView";
+import ReportsPerProject from "../Reports/ReportsPerProject";
 
 //Routes for layout component
 const LayoutRoutes = () => {
@@ -14,7 +15,8 @@ const LayoutRoutes = () => {
         <Routes>
             <Route path="/" element={<Navigate to="projects" />} />
             <Route path="reports" element={<Reports />} />
-            <Route path="reports/:id" element={<ReportView />} />
+            <Route path="reports/:id" element={<ReportsPerProject />} />
+            <Route path="reports/*/:id" element={<ReportView />} />
             <Route path="projects" element={<Projects />} />
             <Route path="projects/:id" element={<ProjectView />} />
             <Route path="messages" element={<Messages />} />

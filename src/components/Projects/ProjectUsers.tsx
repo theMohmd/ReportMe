@@ -16,7 +16,7 @@ const ProjectUsers = ({ id }: ProjectUsersProps) => {
     console.log("data",data); //todo
     return (
         <div className="p-5 rounded-xl border text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
-            ProjectUsers
+            {id}
         </div>
     );
 };

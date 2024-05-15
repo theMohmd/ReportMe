@@ -21,16 +21,13 @@ const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
                 </p>
             </div>
             <List>
-                {data.data.map(
-                    (item) =>
-                        item.project && (
-                            <ListItem
-                                onClick={() => navigate(item.id.toString())}
-                                key={item.id}
-                                title={item.project.title}
-                            />
-                        )
-                )}
+                {data.data.map((item) => (
+                    <ListItem
+                        onClick={() => navigate(item.project.id.toString())}
+                        key={item.id}
+                        title={item.project.title}
+                    />
+                ))}
             </List>
             <Pagination
                 initialPage={page}

@@ -47,37 +47,24 @@ const ProjectView = () => {
                 <div className="flex flex-col gap-2 p-5 pt-10 size-full">
                     <div className="flex justify-between items-center px-2 mb-5">
                         <div className="flex ">
-                            {data.data.user.id !== user?.id && (
-                                <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
-                                    {data.data.user.email} :
-                                </p>
-                            )}
                             <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                                 {data.data.title}
                             </p>
                         </div>
                         <div className="flex gap-2">
-                            {data.data.user.id === user?.id && (
-                                <>
-                                    <CustomButton onClick={() => navigate(-1)}>
-                                        <SquarePenIcon size={30} />
-                                    </CustomButton>
-                                    <CustomButton onClick={deleteAction}>
-                                        <Trash2Icon size={30} />
-                                    </CustomButton>
-                                    <CustomButton onClick={() => navigate(-1)}>
-                                        <ChevronLeftIcon size={30} />
-                                    </CustomButton>
-                                </>
-                            )}
+                            <CustomButton onClick={() => navigate(-1)}>
+                                <SquarePenIcon size={30} />
+                            </CustomButton>
+                            <CustomButton onClick={deleteAction}>
+                                <Trash2Icon size={30} />
+                            </CustomButton>
+                            <CustomButton onClick={() => navigate(-1)}>
+                                <ChevronLeftIcon size={30} />
+                            </CustomButton>
                         </div>
                     </div>
-                    {data.data.user.id === user?.id && (
-                        <>
-                            <AssignProject id={data.data.id} />
-                            <ProjectUsers id={data.data.id} />
-                        </>
-                    )}
+                    <AssignProject id={data.data.id} />
+                    <ProjectUsers id={data.data.id} />
                     <div className="p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
                         {data.data.description}
                     </div>
