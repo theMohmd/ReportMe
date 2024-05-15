@@ -23,7 +23,7 @@ const LayoutRoutes = () => {
             <Route path="messages/:id" element={<MessageView />} />
             <Route path="tickets" element={<Tickets />} />
             <Route path="account" element={<Account />} />
-            {/*<Route path="*" element={<Navigate to="404" />} /> todo*/}
+            <Route path="*" element={<Navigate to="404" />} /> 
         </Routes>
     );
 };

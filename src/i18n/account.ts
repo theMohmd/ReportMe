@@ -9,6 +9,7 @@ export const account_en = {
     subordinates:"Subordinates",
     addSubordinate:"Add subordinate",
     noSubordinates:"You don't have any subordinates",
+    noSupervisor:"You haven't selected a supervisor"
 };
 export const account_fa = {
     account:"حساب کاربری",
@@ -21,4 +22,5 @@ export const account_fa = {
     subordinates:"زیردست ها",
     addSubordinate:"اضافه کردن زیردست",
     noSubordinates:"زیردست ندارید",
+    noSupervisor:"کارفرما انتخاب نکرده‌اید"
 };

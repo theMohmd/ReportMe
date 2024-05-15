@@ -7,7 +7,8 @@ export const projects_en = {
     descriptionEmptyError: "Description can't be empty",
     create: "Create project",
     assign: "Assign new user",
-    noUsers: "No user is assigned to this project"
+    noUsers: "No user is assigned to this project",
+    noUser: "You haven't selected a user",
 };
 export const projects_fa = {
     projects: "پروژه‌ها",
@@ -18,5 +19,6 @@ export const projects_fa = {
     descriptionEmptyError: "توضیحات نمی‌تواند خالی باشد",
     create: "ایجاد پروژه",
     assign: "تعیین کاربر جدید",
-    noUsers: "هیچ کاربری برای این پروژه تعیین نشده"
+    noUsers: "هیچ کاربری برای این پروژه تعیین نشده",
+    noUser: "کاربر انتخاب نکرده‌اید",
 };

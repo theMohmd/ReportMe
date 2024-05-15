@@ -13,6 +13,7 @@ import { PlusIcon } from "lucide-react";
 //AddSupervisor component
 const AddSupervisor = () => {
     const [userToAdd, setuserToAdd] = useState<number | null>(null);
+    const [error, seterror] = useState("");
 
     const selectQuery = (input: string, mode: string) =>
         apiGetUsers(input, mode);
@@ -28,12 +29,15 @@ const AddSupervisor = () => {
     });
     const postFunction = () => {
         if (!userToAdd) {
-            return;//todo
+            seterror(t("Account.noSupervisor")); //todo i18n
+            return;
+        } else {
+            seterror("");
         }
         mutate({ supervisor_id: userToAdd });
     };
     return (
-        <div className="flex ">
+        <div className="flex flex-col">
             <div className="flex grow flex-col gap-2 justify-center items-start md:flex-row md:items-center">
                 <p className="font-medium ">{t("Account.addSupervisor")}</p>
                 <div className="flex grow gap-2 md:w-fit w-full">
@@ -47,6 +51,14 @@ const AddSupervisor = () => {
                     </CustomButton>
                 </div>
             </div>
+            {!!error && (
+                <div className="flex gap-2 py-2">
+                    <p className="font-medium invisible ">
+                        {t("Account.addSupervisor")}
+                    </p>
+                    <p className="ps-4 text-red-600">{error}</p>
+                </div>
+            )}
         </div>
     );
 };

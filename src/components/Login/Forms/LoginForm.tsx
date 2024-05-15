@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { loginDataType as FormFields } from "types/loginDataType";
+import { loginDataType as FormFields } from "api/login/apiLogin";
 import Loader from "components/ui/Loader";
 import { t } from "i18next";
 import { motion } from "framer-motion";
@@ -82,7 +82,6 @@ const LoginForm = () => {
                             message: t("login.passwordMinError"),
                         },
                     })}
-                    value={"password"} //todo delete
                     type="password"
                 />
             </div>

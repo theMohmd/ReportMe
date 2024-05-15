@@ -57,13 +57,13 @@ const Account = () => {
                         </div>
                         <AddSupervisor />
 
-                        <div className="flex mt-5 grow overflow-y-auto h-0">
+                        <div className="flex grow overflow-y-auto h-0">
                             <SupervisorList />
                         </div>
                     </div>
                     {/*subordinates*/}
                     <div className="flex flex-col gap-2 p-5 rounded-xl border grow text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
-                        <div className="flex gap-2 justify-between items-center mb-3 sticky top-0">
+                        <div className="flex gap-2 justify-between items-center sticky top-0">
                             <p className="text-lg font-semibold">
                                 {t("Account.subordinates")}
                             </p>

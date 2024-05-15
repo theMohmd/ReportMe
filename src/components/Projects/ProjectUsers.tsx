@@ -14,7 +14,7 @@ const ProjectUsers = ({ id }: ProjectUsersProps) => {
     const { data, error, isLoading } = useQuery({
         queryKey: ["user-projects", id],
         queryFn: () =>
-            apiGetUserProjects({ project: id }).then((res) => res.data[0].data), //todo param?
+            apiGetUserProjects({ project: id }).then((res) => res.data[0].data),
     });
     if (isLoading) <Loader size={40} />;
     if (error) <ErrorPage error={error as customError} />;
