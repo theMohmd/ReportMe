@@ -6,12 +6,12 @@ const DesktopLayout = () => {
     return (
         <div className="flex">
             <div className="flex flex-col">
-                <div className="bg-background dark:bg-dbackground text-primary dark:text-dprimary w-full text-center font-black text-[40px]">
+                <div className="w-full font-black pt-10 text-center bg-background text-primary text-[40px] dark:bg-dbackground dark:text-dprimary">
                     ReportMe
                 </div>
                 <Nav />
             </div>
-            <div className="max-w-[1200px] flex size-full mx-auto">
+            <div className="flex overflow-y-auto p-5 pt-10 mx-auto max-w-[1200px] size-full">
                 <LayoutRoutes />
             </div>
         </div>

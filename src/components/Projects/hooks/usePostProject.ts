@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { apiPostProject } from "src/api/projects/apiPostProject";
-import { postProjectType } from "src/types/projects/postProjectType";
+import { postProjectType,apiPostProject } from "src/api/projects/apiPostProject";
 
 export const usePostProjects = () => {
     const queryClient = useQueryClient();

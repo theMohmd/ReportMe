@@ -28,7 +28,7 @@ const ReportsPerProjectUi = ({
     const navigate = useNavigate();
     const [dialog, setdialog] = useState(false);
     return (
-        <div className="flex overflow-y-auto flex-col gap-2 p-5 pt-10 size-full">
+        <div className="flex flex-col gap-2 grow">
             <AnimatePresence>
                 {dialog && (
                     <NewReportDialog
@@ -39,7 +39,7 @@ const ReportsPerProjectUi = ({
                     />
                 )}
             </AnimatePresence>
-            <div className="h-12 flex justify-between items-center px-2 mb-5">
+            <div className="flex justify-between items-center px-2 mb-5 h-12">
                 <div className="flex gap-2">
                     <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                         {t("Reports.reportsPerProject")}

@@ -4,7 +4,7 @@ import ListItem from "../Common/List/ListItem";
 import Pagination from "../ui/Pagination";
 import { apiDataType } from "src/types/apiDataType";
 import { useNavigate } from "react-router-dom";
-import { reportType } from "src/types/reports/reportType";
+import { reportType } from "types/reportType";
 type ReportsUiProps = {
     data: apiDataType<reportType>;
     setPage: (input: number) => void;
@@ -14,8 +14,8 @@ type ReportsUiProps = {
 const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
     const navigate = useNavigate();
     return (
-        <div className="flex overflow-y-auto flex-col gap-2 p-5 pt-10 size-full">
-            <div className="h-12 flex justify-between items-center px-2 mb-5">
+        <div className="flex flex-col gap-2 grow">
+            <div className="flex justify-between items-center px-2 mb-5 h-12">
                 <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                     {t("Reports.reports")}
                 </p>

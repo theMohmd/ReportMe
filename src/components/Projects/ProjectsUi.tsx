@@ -38,7 +38,7 @@ const ProjectsUi = ({ data, setPage, page }: ProjectsUiProps) => {
         );
     };
     return (
-        <div className="flex overflow-y-auto flex-col gap-2 p-5 pt-10 size-full">
+        <div className="flex flex-col gap-2 grow">
             <AnimatePresence>
                 {dialog && (
                     <NewProjectDialog

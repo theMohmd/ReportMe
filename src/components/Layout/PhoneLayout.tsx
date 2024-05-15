@@ -25,7 +25,7 @@ const PhoneLayout = () => {
                 </button>
                 <span>ReportMe</span>
             </div>
-            <div className="grow overflow-auto">
+            <div className="flex p-2 grow overflow-auto">
                 <LayoutRoutes />
             </div>
             <AnimatePresence>

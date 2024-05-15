@@ -10,7 +10,7 @@ import SubordinateList from "./SubordinateList";
 const Account = () => {
     const { user } = useAuth();
     return (
-        <div className="flex flex-col gap-2 p-5 pt-10 size-full">
+        <div className="flex flex-col gap-2 grow">
             {/*title*/}
             <div className="flex justify-between items-center px-2 mb-5">
                 <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
