@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Dialog from "components/Common/Dialog";
 import { t } from "i18next";
 import Loader from "components/ui/Loader";
-import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
+import { PaperclipIcon  } from "lucide-react";
 import { useCallback, useState } from "react";
 import { usePostMessage } from "./hooks/usePostMessage";
 import Input from "components/ui/Input";
@@ -95,14 +95,14 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                     {/*todo send file*/}
                     <button
                         type="button"
-                        className="flex justify-center items-center p-3 mt-5 max-h-16 font-bold rounded-lg bg-primary text-background dark:bg-dprimary dark:text-dbackground"
+                        className="flex justify-center max-h-16 items-center p-3 mt-5 font-bold rounded-lg bg-dbutton text-background "
                         disabled={isSubmitting}
                     >
                         <PaperclipIcon />
                     </button>
                     <button
                         type="submit"
-                        className="flex gap-2 justify-center items-center p-3 mt-5 max-h-12 font-bold rounded-lg grow bg-primary text-background dark:bg-dprimary dark:text-dbackground"
+                        className="flex justify-center gap-2 grow max-h-12 items-center p-3 mt-5 font-bold rounded-lg bg-dbutton text-background "
                         disabled={isSubmitting}
                     >
                         {isSubmitting ? (
@@ -110,7 +110,6 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                         ) : (
                             <>
                                 {t("Messages.send")}
-                                <SendHorizonalIcon />
                             </>
                         )}
                     </button>
