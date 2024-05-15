@@ -51,7 +51,7 @@ const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
                     />
                 </div>
                 {!data ? null : !expanded ? null : data.length ? (
-                    <div className="flex flex-col py-2">
+                    <div className="flex flex-col pt-2">
                         {data.map(
                             (item: {
                                 id: number;
@@ -59,7 +59,7 @@ const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
                                 email: string;
                             }) => (
                                 <button
-                                    className="py-2 px-2 overflow-hidden text-ellipsis border-t text-start border-lightBorder dark:border-dlightBorder"
+                                    className="pt-2 px-2 overflow-hidden text-ellipsis border-t text-start border-lightBorder dark:border-dlightBorder"
                                     key={item.id}
                                     onClick={() => {
                                         set(item.id);
