@@ -26,7 +26,7 @@ const NavButton = ({ children, to }: NavButtonProps) => {
                         : "",
                 };
             }}
-            className="flex justify-between items-center py-2 px-4 font-semibold rounded-lg hover:shadow-lg text-primary dark:text-dprimary"
+            className="flex justify-between items-center py-2 px-4 font-semibold rounded-lg hover:shadow-cshadow dark:hover:shadow-dcshadow text-primary dark:text-dprimary"
         >
             {children}
         </NavLink>

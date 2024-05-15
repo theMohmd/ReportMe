@@ -17,7 +17,7 @@ const ListItem = ({
     return (
         <div
             onClick={onClick ? onClick : undefined}
-            className="flex py-2 justify-start gap-2 cursor-pointer items-center px-4 rounded-lg border bg-background border-lightBorder text-primary dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+            className="hover:shadow-cshadow dark:hover:shadow-dcshadow flex py-2 justify-start gap-2 cursor-pointer items-center px-4 rounded-lg border bg-background border-lightBorder text-primary dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
         >
             {title && <p className="line-clamp-1 grow">{title}</p>}
             {children}
