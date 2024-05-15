@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Dialog from "components/Common/Dialog";
 import { t } from "i18next";
 import Loader from "components/ui/Loader";
-import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
+import { PaperclipIcon } from "lucide-react";
 import { usePostReports } from "./hooks/usePostReports";
 import { postReportType as FormFields } from "src/api/reports/apiPostReports";
 

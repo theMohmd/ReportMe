@@ -15,7 +15,7 @@ const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
     const navigate = useNavigate();
     return (
         <div className="flex flex-col gap-2 grow">
-            <div className="flex justify-between items-center px-2 mb-5 h-12">
+            <div className="flex justify-between items-center px-2 mb-5 h-[40px] shrink-0">
                 <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                     {t("Reports.reports")}
                 </p>

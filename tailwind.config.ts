@@ -6,7 +6,7 @@ export const color = {
     lightBorder: "#CCD4FF",
     dbackground: "#090C1B",
     dbackground2: "#060813",
-    dprimary: "#C7CEF5",
+    dprimary: "#aeb7eb",
     dlightBorder: "#0D1126",
 };
 export default {

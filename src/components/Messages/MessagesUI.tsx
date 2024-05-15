@@ -35,7 +35,7 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
         );
     };
     return (
-        <div className="flex flex-col grow">
+        <div className="flex flex-col gap-2 grow">
             <AnimatePresence>
                 {dialog && (
                     <NewMessageDialog

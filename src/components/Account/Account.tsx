@@ -12,7 +12,7 @@ const Account = () => {
     return (
         <div className="flex flex-col gap-2 grow">
             {/*title*/}
-            <div className="flex justify-between items-center px-2 mb-5">
+            <div className="flex justify-between items-center px-2 mb-5 shrink-0 h-[40px]">
                 <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                     {t("Account.account")}
                 </p>
