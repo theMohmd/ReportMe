@@ -4,13 +4,14 @@ import ListItem from "../Common/List/ListItem";
 import Pagination from "../ui/Pagination";
 import { apiDataType } from "src/types/apiDataType";
 import { Link, useNavigate } from "react-router-dom";
-import { reportType } from "src/types/reportType"; 
+import { reportType } from "src/types/reportType";
 import CustomButton from "../ui/CustomButton";
 import { ChevronLeftIcon, Plus } from "lucide-react";
-import { projectType } from "src/types/projectType"; 
+import { projectType } from "src/types/projectType";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import NewReportDialog from "./NewReportDialog";
+import { useAuth } from "src/contexts/Auth/useAuth";
 
 type ReportsUiProps = {
     data: apiDataType<reportType>;
@@ -26,6 +27,7 @@ const ReportsPerProjectUi = ({
     page,
 }: ReportsUiProps) => {
     const navigate = useNavigate();
+    const { user } = useAuth();
     const [dialog, setdialog] = useState(false);
     return (
         <div className="flex flex-col gap-2 grow">
@@ -53,10 +55,12 @@ const ReportsPerProjectUi = ({
                     </Link>
                 </div>
                 <div className="flex gap-2">
+                {user?.id !== user_project.project.user.id &&
                     <CustomButton onClick={() => setdialog(true)}>
                         <p className="px-1">{t("Reports.newReport")}</p>
                         <Plus />
                     </CustomButton>
+                    }
                     <CustomButton onClick={() => navigate(-1)}>
                         <ChevronLeftIcon />
                     </CustomButton>
