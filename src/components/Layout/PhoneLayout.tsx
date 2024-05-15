@@ -23,7 +23,7 @@ const PhoneLayout = () => {
                 >
                     {navVisibility ? <X /> : <Menu />}
                 </button>
-                <span>ReportMe</span>
+                <span>Report<span className="text-dbutton">Me</span></span>
             </div>
             <div className="flex p-2 grow overflow-auto">
                 <LayoutRoutes />
