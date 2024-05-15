@@ -16,8 +16,6 @@ type ReportsUiProps = {
 //ReportsUi component
 const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
     const navigate = useNavigate();
-    console.log(data.data)
-    console.log([...new Set(data.data)])
     return (
         <div className="flex flex-col gap-2 grow">
             <div className="flex justify-between items-center px-2 mb-5 h-[40px] shrink-0">
@@ -26,13 +24,18 @@ const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
                 </p>
             </div>
             <List>
-                {data.data.map((item) => (
-                    <ListItem
-                        onClick={() => navigate(item.id.toString())}
-                        key={item.id}
-                        title={item.project.title}
-                    />
-                ))}
+                {data.data//filter out duplicate projects
+                    .filter(
+                        (obj, index, self) =>
+                            index === self.findIndex((t) => t.project.id === obj.project.id)
+                    )
+                    .map((item) => (
+                        <ListItem
+                            onClick={() => navigate(item.id.toString())}
+                            key={item.id}
+                            title={item.project.title}
+                        />
+                    ))}
             </List>
             <Pagination
                 initialPage={page}
