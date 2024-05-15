@@ -60,9 +60,8 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
                         deleteAction={() => deleteAction(item.id)}
-                        title={item.sender.email}
                     >
-
+                        <p>{item.sender.email}</p>
                         <p>:</p>
                         <p>{item.title}</p>
                     </ListItem>

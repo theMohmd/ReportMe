@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 //ListItem component
 type ListItemProps = {
-    title: string;
+    title?: string;
     onClick?: () => void;
     children?: ReactNode;
     deleteAction?: () => void;
@@ -19,7 +19,7 @@ const ListItem = ({
             onClick={onClick ? onClick : undefined}
             className="flex py-2 justify-start gap-2 cursor-pointer items-center px-4 rounded-lg border bg-background border-lightBorder text-primary dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
         >
-            <p className="line-clamp-1 w-1/2">{title}</p>
+            {title && <p className="line-clamp-1 grow">{title}</p>}
             {children}
             <div className="ms-auto">
                 {deleteAction && (
