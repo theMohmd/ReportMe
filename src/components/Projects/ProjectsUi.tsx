@@ -54,7 +54,7 @@ const ProjectsUi = ({ data, setPage, page }: ProjectsUiProps) => {
                 </p>
                 <CustomButton onClick={() => setdialog(true)}>
                     <p className="px-1">{t("Projects.newProject")}</p>
-                    <Plus size={30} />
+                    <Plus />
                 </CustomButton>
             </div>
             <List>

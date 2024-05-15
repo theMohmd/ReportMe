@@ -16,25 +16,25 @@ import { useAuth } from "src/contexts/Auth/useAuth";
 const Nav = () => {
     const { user } = useAuth();//todo delete
     return (
-        <div className="flex flex-col gap-4 p-4 grow w-[200px] md:w-[250px] bg-background dark:bg-dbackground">
+        <div className="flex flex-col gap-4 p-4 grow w-[200px] bg-background dark:bg-dbackground">
             <NavButton to="reports">
-                <ClipboardPenIcon size={32} />
+                <ClipboardPenIcon />
                 {t("nav.reports")}
             </NavButton>
             <NavButton to="projects">
-                <FolderGit2Icon size={32} />
+                <FolderGit2Icon />
                 {t("nav.projects")}
             </NavButton>
             <NavButton to="messages">
-                <Mail size={32} />
+                <Mail />
                 {t("nav.messages")}
             </NavButton>
             <NavButton to="tickets">
-                <Ticket size={32} />
+                <Ticket />
                 {t("nav.tickets")}
             </NavButton>
             <NavButton to="account">
-                <UserRound size={32} />
+                <UserRound />
                 {user?.name}
                 {/*{t("nav.account")}*/}
             </NavButton>

@@ -51,7 +51,7 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
                 </p>
                 <CustomButton onClick={() => setdialog(true)}>
                     <p className="px-1">{t("Messages.newMessage")}</p>
-                    <Plus size={30} />
+                    <Plus />
                 </CustomButton>
             </div>
             <List>

@@ -55,10 +55,10 @@ const ReportsPerProjectUi = ({
                 <div className="flex gap-2">
                     <CustomButton onClick={() => setdialog(true)}>
                         <p className="px-1">{t("Reports.newReport")}</p>
-                        <Plus size={30} />
+                        <Plus />
                     </CustomButton>
                     <CustomButton onClick={() => navigate(-1)}>
-                        <ChevronLeftIcon size={30} />
+                        <ChevronLeftIcon />
                     </CustomButton>
                 </div>
             </div>

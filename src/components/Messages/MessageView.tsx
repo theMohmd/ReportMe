@@ -47,13 +47,13 @@ const MessageView = () => {
                         </p>
                         <div className="flex gap-2">
                             <CustomButton onClick={() => navigate(-1)}>
-                                <SquarePenIcon size={30} />
+                                <SquarePenIcon />
                             </CustomButton>
                             <CustomButton onClick={deleteAction}>
-                                <Trash2Icon size={30} />
+                                <Trash2Icon />
                             </CustomButton>
                             <CustomButton onClick={() => navigate(-1)}>
-                                <ChevronLeftIcon size={30} />
+                                <ChevronLeftIcon />
                             </CustomButton>
                         </div>
                     </div>

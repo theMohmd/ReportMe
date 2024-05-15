@@ -53,7 +53,7 @@ const ReportView = () => {
                         </div>
                         <div className="flex gap-2">
                             <CustomButton onClick={() => navigate(-1)}>
-                                <ChevronLeftIcon size={30} />
+                                <ChevronLeftIcon />
                             </CustomButton>
                         </div>
                     </div>
