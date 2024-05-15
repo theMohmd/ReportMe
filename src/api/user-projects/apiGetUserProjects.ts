@@ -15,7 +15,7 @@ export const apiGetUserProjects = async (input: getUserProjectsType = {}) => {
             {
                 params: {
                     page: input.page ? input.page : undefined,
-                    project: input.project ? input.project : undefined,
+                    project_id: input.project ? input.project : undefined,
                 },
                 headers: {
                     "Content-Type": "application/json",
