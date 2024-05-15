@@ -6,15 +6,13 @@ import { customError } from "types/customError";
 import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
 import ReportsUi from "./ReportsUi";
-//import { apiGetReports } from "src/api/reports/apiGetReports"; todo
 import { apiGetUserProjects } from "src/api/user-projects/apiGetUserProjects";
 
 //all project to report
 const Reports = () => {
     const [page, setpage] = useState(0);
     const { data, error, isLoading } = useQuery({
-        queryKey: ["Reports", page],
-        //queryFn: () => apiGetReports({ page: page + 1 }), todo
+        queryKey: ["user-projects", page],
         queryFn: () => apiGetUserProjects({ page: page + 1 }),
     });
     if (isLoading)

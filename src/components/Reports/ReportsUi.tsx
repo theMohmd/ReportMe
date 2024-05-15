@@ -23,7 +23,7 @@ const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
             <List>
                 {data.data.map((item) => (
                     <ListItem
-                        onClick={() => navigate(item.project.id.toString())}
+                        onClick={() => navigate(item.id.toString())}
                         key={item.id}
                         title={item.project.title}
                     />

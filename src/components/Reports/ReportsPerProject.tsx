@@ -8,14 +8,29 @@ import ErrorPage from "components/ui/ErrorPage";
 import ReportsPerProjectUi from "./ReportsPerProjectUi";
 import { useParams } from "react-router-dom";
 import { apiGetReports } from "src/api/reports/apiGetReports";
+import { apiGetUserProjects } from "src/api/user-projects/apiGetUserProjects";
 
 //ReportsPerProject component
 const ReportsPerProject = () => {
-    const { id } = useParams();
+    const { id } = useParams(); //user-project id
     const [page, setpage] = useState(0);
     const { data, error, isLoading } = useQuery({
         queryKey: ["Reports", "Projects", id, page],
-        queryFn: () => apiGetReports({ page: page + 1}),
+        queryFn: async () => {
+            const user_project = await apiGetUserProjects({
+                id: id ? parseInt(id) : undefined,
+            }).then((res) => res.data);
+            console.log("id",user_project.project.id)
+            const reports = await apiGetReports({
+                page: page + 1,
+                //project: user_project.project.id, //todo
+            });
+            console.log("reports",reports)
+            return {
+                data: reports,
+                user_project: user_project,
+            };
+        },
     });
     if (isLoading)
         return (
@@ -28,7 +43,8 @@ const ReportsPerProject = () => {
             <ReportsPerProjectUi
                 setPage={(input: number) => setpage(input)}
                 page={page}
-                data={data.data[0]}
+                data={data.data.data[0]}
+                user_project={data.user_project}
             />
         )
     );
