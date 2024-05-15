@@ -6,7 +6,7 @@ const LangButton = () => {
     const { setLang } = useLang();
     return (
         <CustomButton onClick={() => setLang()}>
-            <Languages size={32} />
+            <Languages />
         </CustomButton>
     );
 };

@@ -39,7 +39,7 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
             >
                 <textarea
                     className="Input resize-none grow"
-                    placeholder={t("Reports.description")}
+                    placeholder={t("Reports.report")}
                     {...register("description", {
                         required: t("Reports.descriptionEmptyError"),
                     })}
@@ -69,7 +69,6 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
                         ) : (
                             <>
                                 {t("Reports.create")}
-                                <SendHorizonalIcon />
                             </>
                         )}
                     </button>

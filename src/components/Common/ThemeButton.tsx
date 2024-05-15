@@ -7,7 +7,7 @@ const ThemeButton = () => {
     const { changeTheme } = useTheme();
     return (
         <CustomButton onClick={changeTheme}>
-            <SunMoon size={32} />
+            <SunMoon />
         </CustomButton>
     );
 };

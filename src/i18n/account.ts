@@ -6,7 +6,7 @@ export const account_en = {
     supervisors:"Supervisors",
     addSupervisor:"Add supervisor",
     noSupervisors:"You don't have any supervisors",
-    subordinates:"Supervisors",
+    subordinates:"Subordinates",
     addSubordinate:"Add subordinate",
     noSubordinates:"You don't have any subordinates",
 };

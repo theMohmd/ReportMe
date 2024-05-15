@@ -7,7 +7,7 @@ const LogoutButton = () => {
     const { logOut } = useAuth();
     return (
         <CustomButton onClick={() => logOut()}>
-            <LogOut size={32} />
+            <LogOut />
         </CustomButton>
     );
 };

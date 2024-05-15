@@ -33,7 +33,7 @@ const AssginProject = ({ id }: AssginProjectProps) => {
     return (
         <div className="flex ">
             <div className="flex grow flex-col gap-2 justify-center items-start md:flex-row md:items-center">
-                <p className="font-medium ps-2">{t("Projects.assign")}</p>
+                <p className="font-medium text-primary dark:text-dprimary ps-2">{t("Projects.assign")}</p>
                 <div className="flex grow gap-2 md:w-fit w-full">
                     <UserSelect
                         queryKey="getSubUsers"
