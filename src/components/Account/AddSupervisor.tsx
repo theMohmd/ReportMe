@@ -22,13 +22,11 @@ const AddSupervisor = () => {
             apiPostUserSupervisor(data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["user-supervisor"] });
-            console.log("succees");
         },
     });
     const postFunction = () => {
         if (!userToAdd) {
-            console.log("err");
-            return;
+            return;//todo
         }
         mutate({ supervisor_id: userToAdd });
     };

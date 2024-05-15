@@ -5,8 +5,6 @@ import { customError } from "types/customError";
 
 import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
-import { useState } from "react";
-import { t } from "i18next";
 import CustomButton from "../ui/CustomButton";
 import { ChevronLeftIcon } from "lucide-react";
 import { apiGetReports } from "src/api/reports/apiGetReports";
@@ -40,7 +38,6 @@ const ReportView = () => {
             <Loader size={100} className="text-primary dark:text-dprimary" />
         );
     if (error) return <ErrorPage error={error as customError} />;
-    console.log("hello?")
     return (
         <>
             {data && (

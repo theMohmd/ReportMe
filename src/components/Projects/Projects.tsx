@@ -20,7 +20,6 @@ const Projects = () => {
             <Loader size={100} className="text-primary dark:text-dprimary" />
         );
     if (error) return <ErrorPage error={error as customError} />; //todo
-        console.log(data)
     return (
         data && (
             <ProjectsUi

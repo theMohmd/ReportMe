@@ -11,7 +11,6 @@ import ErrorPage from "components/ui/ErrorPage";
 import AssignProject from "./AssignProject";
 import ProjectUsers from "./ProjectUsers";
 import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
-import { useAuth } from "src/contexts/Auth/useAuth";
 
 //ProjectView component
 const ProjectView = () => {

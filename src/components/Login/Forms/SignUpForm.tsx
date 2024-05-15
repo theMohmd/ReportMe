@@ -29,7 +29,6 @@ const SignupForm = () => {
             });
             navigate("/");
         } catch (error) {
-            console.log(error);
             setError("root", {
                 type: "422",
                 message: t("login.signupError"),

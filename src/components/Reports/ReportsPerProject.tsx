@@ -20,12 +20,10 @@ const ReportsPerProject = () => {
             const user_project = await apiGetUserProjects({
                 id: user_project_id ? parseInt(user_project_id) : undefined,
             }).then((res) => res.data);
-            console.log("id",user_project.project.id)
             const reports = await apiGetReports({
                 page: page + 1,
                 //project: user_project.project.id, //todo
             });
-            console.log("reports",reports)
             return {
                 data: reports,
                 user_project: user_project,

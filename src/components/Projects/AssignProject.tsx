@@ -20,16 +20,13 @@ const AssginProject = ({ id }: AssginProjectProps) => {
         mutationKey: ["user-project"],
         mutationFn: async (data: postUserProjectType) =>
             apiPostUserProject(data),
-        onSuccess: (res) => {
+        onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["user-project"] });
-            console.log("succees");
-            console.log(res);
         },
     });
     const postFunction = () => {
         if (!userToAdd) {
-            console.log("err");
-            return;
+            return;//todo
         }
         mutate({ user_id: userToAdd, project_id: id });
     };

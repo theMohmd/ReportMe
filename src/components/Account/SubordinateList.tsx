@@ -32,7 +32,6 @@ const SubordinateList = () => {
     if (isLoading)
         return <Loader size={40} className="text-primary dark:text-dprimary" />;
     if (error) return <ErrorPage error={error as customError} />;
-    console.log(data.length);
     return (
         <div className="flex grow flex-col ">
             {data && data.length < 1 ? (

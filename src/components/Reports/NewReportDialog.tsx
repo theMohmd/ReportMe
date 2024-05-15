@@ -25,7 +25,7 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
         return mutate(
             { ...data, user_project_id: user_project_id },
             {
-                onSuccess:(data)=>{console.log(data); close()},
+                onSuccess:()=> close,
                 onError: () => console.log("error"),
             }
         );
