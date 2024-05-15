@@ -19,26 +19,32 @@ const ProjectUsers = ({ id }: ProjectUsersProps) => {
     if (isLoading) <Loader size={40} />;
     if (error) <ErrorPage error={error as customError} />;
 
-console.log(data)
-console.log(id)
     //todo delete user
     return (
         <div className="px-5 rounded-xl border text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
             {data && data.length ? (
-                data.map((item: { id: number; user: userType }) => (
-                    <p
-                        className=" py-2 border-b border-lightBorder dark:border-dlightBorder"
-                        key={item.id}
-                    >
-                        {item.user.name}
-                        <span className="px-2 text-lightBorder dark:text-dlightBorder">
-                            |
-                        </span>
-                        {item.user.email}
-                    </p>
+                data.map((item: { id: number; user: userType },index:number) => (
+                    <div key={item.user.id} className="flex flex-col">
+                        <p className=" py-2 ">
+                            {item.user.name}
+                            <span className="px-2 text-lightBorder dark:text-dlightBorder">
+                                |
+                            </span>
+                            {item.user.email}
+                        </p>
+
+                        {
+                            index < data.length-1 &&
+                            <span
+                                className="border-b border-lightBorder dark:border-dlightBorder"
+                            ></span>
+                        }
+                    </div>
                 ))
             ) : (
-                <p className=" py-2 dark:border-dlightBorder">{t("Projects.noUsers")}</p>
+                <p className=" py-2 dark:border-dlightBorder">
+                    {t("Projects.noUsers")}
+                </p>
             )}
         </div>
     );
