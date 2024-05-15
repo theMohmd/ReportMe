@@ -39,24 +39,24 @@ const SupervisorList = () => {
                     {t("Account.noSupervisors")}
                 </p>
             ) : (
-                data.map((item: data) => (
-                    <div
-                        key={item.USid}
-                        className="flex gap-2 justify-between py-2 border-t border-lightBorder dark:border-dlightBorder"
-                    >
-                        <div className="flex">
+                data.map((item: data, index: number) => (
+                    <div key={item.USid} className="flex flex-col">
+                        <div className="flex gap-2 justify-between py-2 ">
                             <p> {item.name} </p>
                             <span className="px-2 text-lightBorder dark:text-dlightBorder">
                                 |
                             </span>
                             <p> {item.email} </p>
+                            <button
+                                onClick={() => deleteAction(item.USid)}
+                                className="hover:text-red-600 ms-auto"
+                            >
+                                <Trash2Icon size={20} />
+                            </button>
                         </div>
-                        <button
-                            onClick={() => deleteAction(item.USid)}
-                            className="hover:text-red-600"
-                        >
-                            <Trash2Icon size={20} />
-                        </button>
+                        {index < data.length - 1 && (
+                            <span className="border-t border-lightBorder dark:border-dlightBorder" />
+                        )}
                     </div>
                 ))
             )}
