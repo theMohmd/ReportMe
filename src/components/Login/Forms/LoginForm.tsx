@@ -1,13 +1,19 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { loginDataType as FormFields } from "api/login/apiLogin";
-import Loader from "components/ui/Loader";
 import { t } from "i18next";
 import { motion } from "framer-motion";
-import { apiLogin } from "api/login/apiLogin";
-import { useAuth } from "contexts/Auth/useAuth";
-import { apiGetUser } from "api/login/apiGetUser";
 import { useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+import {
+    apiLogin,
+    apiLoginOutputType,
+    apiLoginInputType as FormFields,
+} from "api/auth/apiLogin";
+import { useAuth } from "contexts/Auth/useAuth";
+import { apiGetAuth, apiGetAuthOutputType } from "api/auth/apiGetUser";
+
 import Input from "components/ui/Input";
+import Loader from "components/ui/Loader";
+
 const LoginForm = () => {
     const {
         register,
@@ -21,17 +27,16 @@ const LoginForm = () => {
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         try {
-            const response = await apiLogin(data);
-            setToken(response.data.token);
-            await apiGetUser()
-                .then((res) => {
-                    setUser({
-                        email: res.data.user.email,
-                        name: res.data.user.name,
-                        id: res.data.user.id,
-                    });
+            apiLogin(data)
+                .then((res: apiLoginOutputType) => {
+                    setToken(res);
                 })
-                .then(() => navigate("/"));
+                .then(() => {
+                    apiGetAuth().then((res: apiGetAuthOutputType) => {
+                        setUser(res);
+                        navigate("/");
+                    });
+                });
         } catch (error) {
             console.error(error);
             setError("root", {

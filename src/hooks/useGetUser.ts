@@ -1,21 +1,19 @@
-import { apiGetUser } from "api/login/apiGetUser";
 import { useQuery } from "@tanstack/react-query";
+
+import { apiGetAuth, apiGetAuthOutputType } from "api/auth/apiGetUser";
 import { useAuth } from "contexts/Auth/useAuth";
+
 export const useGetUser = () => {
     const { setUser } = useAuth();
     return useQuery({
         queryFn: async () => {
             try {
-                await apiGetUser().then((res) => {
-                    setUser({
-                        email: res.data.user.email,
-                        name: res.data.user.name,
-                        id: res.data.user.id,
-                    });
+                await apiGetAuth().then((res:apiGetAuthOutputType) => {
+                    setUser(res);
                 });
                 return "ready";
             } catch (err) {
-                return "noUser"
+                return "noUser";
             }
         },
         retry: 1,

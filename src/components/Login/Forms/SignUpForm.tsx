@@ -1,11 +1,16 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { signUpDataType as FormFields } from "api/login/apiRegister";
-import { useAuth } from "contexts/Auth/useAuth";
-import Loader from "components/ui/Loader";
 import { t } from "i18next";
 import { motion } from "framer-motion";
-import { apiRegister } from "api/login/apiRegister";
 import { useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+import { useAuth } from "contexts/Auth/useAuth";
+import {
+    apiRegister,
+    apiRegisterOutputType,
+    apiRegisterInputType as FormFields,
+} from "api/auth/apiRegister";
+
+import Loader from "components/ui/Loader";
 import Input from "components/ui/Input";
 
 const SignupForm = () => {
@@ -20,14 +25,11 @@ const SignupForm = () => {
     const navigate = useNavigate();
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         try {
-            const response = await apiRegister(data);
-            setToken(response.data.token);
-            setUser({
-                email: response.data.user.email,
-                name: response.data.user.name,
-                id: response.data.user.id,
+            apiRegister(data).then((res: apiRegisterOutputType) => {
+                setToken(res.token);
+                setUser(res.user);
+                navigate("/");
             });
-            navigate("/");
         } catch (error) {
             setError("root", {
                 type: "422",
@@ -95,7 +97,7 @@ const SignupForm = () => {
                             message: t("login.passwrodMinError"),
                         },
                     })}
-                    type= "password"
+                    type="password"
                 />
             </div>
             {errors.password && (
