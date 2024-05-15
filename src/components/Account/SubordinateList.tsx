@@ -17,7 +17,7 @@ const SubordinateList = () => {
     const query = useGetSubordinates();
     const { data, isLoading, error } = useQuery({
         queryKey: ["user-subordinate"],
-        queryFn: query,
+        queryFn: () => query(),
     });
     const { mutate: deleteRequest } = useDeleteSubordinate();
     const deleteAction = (id: number) => {
