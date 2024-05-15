@@ -13,19 +13,20 @@ const Reports = () => {
     const [page, setpage] = useState(0);
     const { data, error, isLoading } = useQuery({
         queryKey: ["user-projects", page],
-        queryFn: () => apiGetUserProjects({ page: page + 1 }),
+        queryFn: () => apiGetUserProjects({ page: page + 1 }).then((res)=>res.data[0]),
     });
     if (isLoading)
         return (
             <Loader size={100} className="text-primary dark:text-dprimary" />
         );
     if (error) return <ErrorPage error={error as customError} />; //todo
+        console.log(data)
     return (
         data && (
             <ReportsUi
                 setPage={(input: number) => setpage(input)}
                 page={page}
-                data={data.data[0]}
+                data={data}
             />
         )
     );

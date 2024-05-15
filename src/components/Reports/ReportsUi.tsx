@@ -1,18 +1,23 @@
 import { t } from "i18next";
-import List from "../Common/List/List";
-import ListItem from "../Common/List/ListItem";
-import Pagination from "../ui/Pagination";
-import { apiDataType } from "src/types/apiDataType";
 import { useNavigate } from "react-router-dom";
-import { reportType } from "types/reportType";
+
+import { apiDataType } from "types/apiDataType";
+import { userProjectType } from "types/userProjectType";
+
+import List from "components/Common/List/List";
+import ListItem from "components/Common/List/ListItem";
+import Pagination from "components/ui/Pagination";
+
 type ReportsUiProps = {
-    data: apiDataType<reportType>;
+    data: apiDataType<userProjectType>;
     setPage: (input: number) => void;
     page: number;
 };
 //ReportsUi component
 const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
     const navigate = useNavigate();
+    console.log(data.data)
+    console.log([...new Set(data.data)])
     return (
         <div className="flex flex-col gap-2 grow">
             <div className="flex justify-between items-center px-2 mb-5 h-[40px] shrink-0">
