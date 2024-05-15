@@ -4,7 +4,6 @@ import { getCookie } from "src/utils/cookie";
 //Report post request
 export type postReportType = {
     user_project_id: number;
-    title: string;
     description: string;
 };
 export const apiPostReport = async (data: postReportType) => {

@@ -19,7 +19,7 @@ const ListItem = ({
             onClick={onClick ? onClick : undefined}
             className="flex py-2 justify-start gap-2 cursor-pointer items-center px-4 rounded-lg border bg-background border-lightBorder text-primary dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
         >
-            <p>{title}</p>
+            <p className="line-clamp-1 w-1/2">{title}</p>
             {children}
             <div className="ms-auto">
                 {deleteAction && (

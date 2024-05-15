@@ -3,7 +3,6 @@ import Dialog from "components/Common/Dialog";
 import { t } from "i18next";
 import Loader from "components/ui/Loader";
 import { PaperclipIcon, SendHorizonalIcon } from "lucide-react";
-import Input from "components/ui/Input";
 import { usePostReports } from "./hooks/usePostReports";
 import { postReportType as FormFields } from "src/api/reports/apiPostReports";
 
@@ -38,18 +37,6 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
                 className="size-full flex flex-col mt-2 text-primary dark:text-dprimary gap-2"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <Input
-                    {...register("title", {
-                        required: t("Reports.titleEmptyError"),
-                    })}
-                    placeholder={t("Reports.title")}
-                    type="text"
-                />
-                {errors.title && (
-                    <p className="font-medium ps-2 text-red-600 ">
-                        {errors.title.message}
-                    </p>
-                )}
                 <textarea
                     className="Input resize-none grow"
                     placeholder={t("Reports.description")}
