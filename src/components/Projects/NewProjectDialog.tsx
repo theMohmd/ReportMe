@@ -8,11 +8,13 @@ import { PaperclipIcon } from "lucide-react";
 import Dialog from "components/Common/Dialog";
 import Loader from "components/ui/Loader";
 import Input from "components/ui/Input";
+import { useNavigate } from "react-router-dom";
 
 //NewProjectDialog component
 const NewProjectDialog = ({ close }: { close: () => void }) => {
     //post project
     const { mutate } = usePostProjects();
+    const navigate = useNavigate();
 
     //handle form
     const {
@@ -25,7 +27,9 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         //send request
         return mutate(data, {
-            onSuccess: close,
+            onSuccess: (res) => {
+                navigate(res.data.data.id.toString());
+            },
             onError: () => console.log("error"),
         });
     };
@@ -65,22 +69,20 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                     {/*todo send file*/}
                     <button
                         type="button"
-                        className="flex justify-center max-h-16 items-center p-3 mt-5 font-bold rounded-lg bg-dbutton text-background "
+                        className="flex justify-center max-h-16 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
                         disabled={isSubmitting}
                     >
                         <PaperclipIcon />
                     </button>
                     <button
                         type="submit"
-                        className="flex justify-center gap-2 grow max-h-12 items-center p-3 mt-5 font-bold rounded-lg bg-dbutton text-background "
+                        className="flex justify-center gap-2 grow max-h-12 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
                         disabled={isSubmitting}
                     >
                         {isSubmitting ? (
                             <Loader />
                         ) : (
-                            <>
-                                {t("Projects.create")}
-                            </>
+                            <>{t("Projects.create")}</>
                         )}
                     </button>
                 </div>

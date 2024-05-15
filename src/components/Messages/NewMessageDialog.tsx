@@ -2,13 +2,14 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Dialog from "components/Common/Dialog";
 import { t } from "i18next";
 import Loader from "components/ui/Loader";
-import { PaperclipIcon  } from "lucide-react";
+import { PaperclipIcon } from "lucide-react";
 import { useCallback, useState } from "react";
 import { usePostMessage } from "./hooks/usePostMessage";
 import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
 import UserSelect from "components/Common/UserSelect/UserSelect";
 import { apiGetUsers } from "api/messages/apiGetUsers";
+import { useNavigate } from "react-router-dom";
 
 type FormFields = { title: string; content: string };
 
@@ -17,6 +18,8 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
     //handle recepient id and it's errors
     const [recipientId, setrecipientId] = useState<number | null>(null);
     const [toError, settoError] = useState<string | null>(null);
+
+    const navigate = useNavigate();
 
     //post message
     const { mutate } = usePostMessage();
@@ -40,7 +43,9 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
         return mutate(
             { ...data, receiver_id: recipientId },
             {
-                onSuccess: close,
+                onSuccess: (res) => {
+                    navigate(res.data.data.id.toString());
+                },
                 onError: () => console.log("error"),
             }
         );
@@ -68,7 +73,10 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                 <Input
                     {...register("title", {
                         required: t("Messages.titleEmptyError"),
-                        maxLength: { value: 255, message: t("Messages.titleLongError")},
+                        maxLength: {
+                            value: 255,
+                            message: t("Messages.titleLongError"),
+                        },
                     })}
                     placeholder={t("Messages.subject")}
                     type="text"
@@ -95,23 +103,17 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                     {/*todo send file*/}
                     <button
                         type="button"
-                        className="flex justify-center max-h-16 items-center p-3 mt-5 font-bold rounded-lg bg-dbutton text-background "
+                        className="flex justify-center max-h-16 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
                         disabled={isSubmitting}
                     >
                         <PaperclipIcon />
                     </button>
                     <button
                         type="submit"
-                        className="flex justify-center gap-2 grow max-h-12 items-center p-3 mt-5 font-bold rounded-lg bg-dbutton text-background "
+                        className="flex justify-center gap-2 grow max-h-12 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? (
-                            <Loader />
-                        ) : (
-                            <>
-                                {t("Messages.send")}
-                            </>
-                        )}
+                        {isSubmitting ? <Loader /> : <>{t("Messages.send")}</>}
                     </button>
                 </div>
             </form>

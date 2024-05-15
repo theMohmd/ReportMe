@@ -5,6 +5,7 @@ import Loader from "components/ui/Loader";
 import { PaperclipIcon } from "lucide-react";
 import { usePostReports } from "./hooks/usePostReports";
 import { postReportType as FormFields } from "src/api/reports/apiPostReports";
+import { useNavigate } from "react-router-dom";
 
 type NewReportDialogProps = { close: () => void; user_project_id: number };
 //NewReportDialog component
@@ -12,6 +13,7 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
     //post report
     const { mutate } = usePostReports();
 
+    const navigate = useNavigate();
     //handle form
     const {
         register,
@@ -25,7 +27,9 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
         return mutate(
             { ...data, user_project_id: user_project_id },
             {
-                onSuccess:close,
+                onSuccess: (res) => {
+                    navigate(res.data.data.id.toString());
+                },
                 onError: () => console.log("error"),
             }
         );
@@ -54,23 +58,17 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
                     {/*todo send file*/}
                     <button
                         type="button"
-                        className="flex justify-center max-h-16 items-center p-3 mt-5 font-bold rounded-lg bg-dbutton text-background "
+                        className="flex justify-center max-h-16 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
                         disabled={isSubmitting}
                     >
                         <PaperclipIcon />
                     </button>
                     <button
                         type="submit"
-                        className="flex justify-center gap-2 grow max-h-12 items-center p-3 mt-5 font-bold rounded-lg bg-dbutton text-background "
+                        className="flex justify-center gap-2 grow max-h-12 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? (
-                            <Loader />
-                        ) : (
-                            <>
-                                {t("Reports.create")}
-                            </>
-                        )}
+                        {isSubmitting ? <Loader /> : <>{t("Reports.create")}</>}
                     </button>
                 </div>
             </form>

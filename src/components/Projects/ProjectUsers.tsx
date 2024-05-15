@@ -27,7 +27,7 @@ console.log(id)
             {data && data.length ? (
                 data.map((item: { id: number; user: userType }) => (
                     <p
-                        className="relative py-2 border-b top-[1px] border-lightBorder dark:border-dlightBorder"
+                        className=" py-2 border-b border-lightBorder dark:border-dlightBorder"
                         key={item.id}
                     >
                         {item.user.name}
@@ -38,7 +38,7 @@ console.log(id)
                     </p>
                 ))
             ) : (
-                <p className="relative py-2 border-b top-[1px] border-lightBorder dark:border-dlightBorder">{t("Projects.noUsers")}</p>
+                <p className=" py-2 dark:border-dlightBorder">{t("Projects.noUsers")}</p>
             )}
         </div>
     );
