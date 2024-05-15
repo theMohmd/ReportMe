@@ -6,14 +6,14 @@ import UserSelect from "components/Common/UserSelect/UserSelect";
 import CustomButton from "components/ui/CustomButton";
 import { PlusIcon } from "lucide-react";
 
-import { useGetSubusers } from "./hooks/useGetSubusers";
 import { apiPostUserProject } from "api/projects/apiPostUserProject";
 import { postUserProjectType } from "types/projects/postUserProjectType";
+import { useGetSubordinates } from "../Account/hooks/useGetSubordinates";
 
 type AssginProjectProps = { id: number };
 //AssginProject component
 const AssginProject = ({ id }: AssginProjectProps) => {
-    const query = useGetSubusers();
+    const query = useGetSubordinates();
     const [userToAdd, setuserToAdd] = useState<number | null>(null);
     const queryClient = useQueryClient();
     const { mutate } = useMutation({

@@ -11,14 +11,12 @@ import Layout from "components/Layout/Layout";
 import Relogin from "components/Common/ReLogin/ReLogin";
 
 import { useGetUser } from "hooks/useGetUser";
-import { useGetSubusers } from "components/Projects/hooks/useGetSubusers";
 
 const App = () => {
     const { theme } = useTheme();
     const { lang } = useLang();
     const { user } = useAuth();
     const { isLoading } = useGetUser();
-    const deleteme = useGetSubusers();
 
     return (
         <div
@@ -30,8 +28,6 @@ const App = () => {
             <button
                 className="hidden absolute top-5 right-5 z-50 bg-red-600 p-2 text-white"
                 onClick={async () => {
-                    const a = await deleteme("", "");
-                    console.log(a);
                 }}
             >
                 click me
