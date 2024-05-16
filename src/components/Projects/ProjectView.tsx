@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { apiGetProjects } from "api/projects/apiGetProjects";
 import { customError } from "types/customError";
 import { useDeleteProject } from "./hooks/useDeleteProject";
+import { useAuth } from "contexts/Auth/useAuth";
+import { apiGetProjectsId } from "api/projects/apiGetProjectsId";
 
 import CustomButton from "components/ui/CustomButton";
 import Loader from "components/ui/Loader";
@@ -11,7 +12,6 @@ import ErrorPage from "components/ui/ErrorPage";
 import AssignProject from "./AssignProject";
 import ProjectUsers from "./ProjectUsers";
 import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
-import { useAuth } from "src/contexts/Auth/useAuth";
 
 //ProjectView component
 const ProjectView = () => {
@@ -19,13 +19,14 @@ const ProjectView = () => {
     const { id } = useParams();
     const { data, error, isLoading } = useQuery({
         queryKey: ["projects", id],
-        queryFn: () => apiGetProjects({ id: id ? parseInt(id) : undefined }),
+        queryFn: () => apiGetProjectsId({ id: id ? parseInt(id) : -1 }),
     });
     const { mutate: deleteRequest } = useDeleteProject();
     const navigate = useNavigate();
     const deleteAction = () => {
+        if (!data) return;
         deleteRequest(
-            { id: data.data.id },
+            { id: data.id },
             {
                 onSuccess() {
                     navigate(-1);
@@ -48,11 +49,11 @@ const ProjectView = () => {
                     <div className="flex justify-between items-center mb-5">
                         <div className="flex">
                             <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
-                                {data.data.title}
+                                {data.title}
                             </p>
                         </div>
                         <div className="flex gap-1">
-                            {user?.id === data.data.user.id && (
+                            {user?.id === data.user.id && (
                                 <>
                                     <CustomButton onClick={() => navigate(-1)}>
                                         <SquarePenIcon />
@@ -67,14 +68,14 @@ const ProjectView = () => {
                             </CustomButton>
                         </div>
                     </div>
-                    {user?.id === data.data.user.id && (
+                    {user?.id === data.user.id && (
                         <>
-                            <AssignProject id={data.data.id} />
-                            <ProjectUsers id={data.data.id} />
+                            <AssignProject id={data.id} />
+                            <ProjectUsers id={data.id} />
                         </>
                     )}
                     <div className="p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
-                        {data.data.description}
+                        {data.description}
                     </div>
                 </div>
             )}

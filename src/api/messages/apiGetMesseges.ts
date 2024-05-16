@@ -3,13 +3,13 @@ import { apiDataType } from "src/types/apiDataType";
 import { messageType } from "src/types/messageType";
 import { getCookie } from "utils/cookie";
 
-//get message with id
+//get messages with page
 export type apiGetMessegesInputType = { page: number };
 export type apiGetMessegesOutputType = apiDataType<messageType>;
 
-export const apiGetMesseges = async (
-    input: apiGetMessegesInputType = { page: 1 }
-) => {
+export const apiGetMesseges: (
+    input: apiGetMessegesInputType
+) => Promise<apiGetMessegesOutputType> = async (input = { page: 1 }) => {
     return axios
         .get("http://127.0.0.1:8000/api/messages", {
             params: { page: input.page },

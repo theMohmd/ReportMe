@@ -25,7 +25,7 @@ const Projects = () => {
             <ProjectsUi
                 setPage={(input: number) => setpage(input)}
                 page={page}
-                data={data.data[0]}
+                data={data}
             />
         )
     );
