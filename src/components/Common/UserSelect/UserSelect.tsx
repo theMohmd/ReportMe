@@ -50,6 +50,7 @@ const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
                         className="min-w-0 outline-none grow bg-background dark:bg-dbackground w-fit"
                         onChange={(e) => {
                             set(null);
+                            setexpanded(true)
                             setInput(e.target.value);
                         }}
                     />
