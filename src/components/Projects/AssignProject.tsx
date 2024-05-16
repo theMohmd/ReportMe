@@ -26,7 +26,7 @@ const AssginProject = ({ id }: AssginProjectProps) => {
     });
     const assignAction = () => {
         if (!userToAdd) {
-            seterror(t("Projects.noUser")); //todo i18n
+            seterror(t("Projects.noUser"));
             return;
         } else {
             seterror("");

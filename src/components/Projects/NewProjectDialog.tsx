@@ -81,7 +81,6 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                     </p>
                 )}
                 <div className="flex gap-2">
-                    {/*todo send file*/}
                     <button
                         type="button"
                         className="flex justify-center max-h-16 items-center p-3 font-bold rounded-lg bg-dbutton text-background "

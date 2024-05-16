@@ -30,7 +30,7 @@ const AddSupervisor = () => {
     });
     const postFunction = () => {
         if (!userToAdd) {
-            seterror(t("Account.noSupervisor")); //todo i18n
+            seterror(t("Account.noSupervisor"));
             return;
         } else {
             seterror("");

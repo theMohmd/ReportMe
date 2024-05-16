@@ -17,7 +17,7 @@ const ReportView = () => {
     const navigate = useNavigate();
     const { data, error, isLoading } = useQuery({
         queryKey: ["reports", id],
-        queryFn: () => apiGetReportsId({ id: id ? parseInt(id) : -1 }), //todo isnumber
+        queryFn: () => apiGetReportsId({ id: id ? parseInt(id) : -1 }),
     });
     const { user } = useAuth();
     //todo delete

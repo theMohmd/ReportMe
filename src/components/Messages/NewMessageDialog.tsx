@@ -117,7 +117,6 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                     </p>
                 )}
                 <div className="flex gap-2 flex-col md:flex-row">
-                    {/*todo send file*/}
                     <button
                         type="button"
                         className="md:max-w-[50%] flex justify-center gap-2 items-center p-3 max-h-16 font-bold rounded-lg bg-dbutton text-background"

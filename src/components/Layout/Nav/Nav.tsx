@@ -14,7 +14,7 @@ import { useAuth } from "src/contexts/Auth/useAuth";
 
 //Nav component
 const Nav = () => {
-    const { user } = useAuth();//todo delete
+    const { user } = useAuth();
     return (
         <div className="flex flex-col gap-2 p-2 border-e border-lightBorder dark:border-dlightBorder grow w-[200px] bg-background dark:bg-dbackground">
             <NavButton to="reports">

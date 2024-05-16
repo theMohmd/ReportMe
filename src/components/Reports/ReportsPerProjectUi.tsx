@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "contexts/Auth/useAuth";
 import { reportType } from "types/reportType";
 import { apiDataType } from "types/apiDataType";
-import { projectType } from "types/projectType";
 
 import { AnimatePresence } from "framer-motion";
 import { ChevronLeftIcon, Plus } from "lucide-react";
@@ -14,12 +13,13 @@ import ListItem from "components/Common/List/ListItem";
 import Pagination from "components/ui/Pagination";
 import CustomButton from "components/ui/CustomButton";
 import NewReportDialog from "./NewReportDialog";
+import { userProjectType } from "src/types/userProjectType";
 
 type ReportsUiProps = {
     reports: apiDataType<reportType>;
     setPage: (input: number) => void;
     page: number;
-    user_project: { id: number; project: projectType }; //todo add type
+    user_project: userProjectType;
 };
 //ReportsPerProjectUi component
 const ReportsPerProjectUi = ({
