@@ -1,17 +1,16 @@
-import { useState } from "react";
 import { t } from "i18next";
+import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { apiPostUserProject } from "src/api/user-projects/apiPostUserProject";
-import { postUserProjectType } from "src/api/user-projects/apiPostUserProject";
 import { useGetSubordinates } from "components/Account/hooks/useGetSubordinates";
+import { apiPostUserProjects, apiPostUserProjectsInputType } from "api/user-projects/apiPostUserProjects";
 
-import UserSelect from "components/Common/UserSelect/UserSelect";
-import CustomButton from "components/ui/CustomButton";
 import { PlusIcon } from "lucide-react";
+import CustomButton from "components/ui/CustomButton";
+import UserSelect from "components/Common/UserSelect/UserSelect";
 
-type AssginProjectProps = { id: number };
 //AssginProject component
+type AssginProjectProps = { id: number };
 const AssginProject = ({ id }: AssginProjectProps) => {
     const query = useGetSubordinates();
     const [userToAdd, setuserToAdd] = useState<number | null>(null);
@@ -19,8 +18,8 @@ const AssginProject = ({ id }: AssginProjectProps) => {
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
         mutationKey: ["user-projects"],
-        mutationFn: async (data: postUserProjectType) =>
-            apiPostUserProject(data),
+        mutationFn: async (data: apiPostUserProjectsInputType) =>
+            apiPostUserProjects(data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["user-projects"] });
         },
