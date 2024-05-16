@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { t } from "i18next";
@@ -12,16 +12,21 @@ import Loader from "components/ui/Loader";
 import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
 import UserSelect from "components/Common/UserSelect/UserSelect";
+import { apiPostMessageInputType } from "src/api/messages/apiPostMessages";
 
-type FormFields = { title: string; content: string };
-
+type FormFields = {
+    title: string;
+    content: string;
+};
 //NewMessageDialog component
 const NewMessageDialog = ({ close }: { close: () => void }) => {
     //handle recepient id and it's errors
     const [recipientId, setrecipientId] = useState<number | null>(null);
     const [toError, settoError] = useState<string | null>(null);
+    const [file, setFile] = useState<File | null>(null);
 
     const navigate = useNavigate();
+    const fileRef = useRef<HTMLInputElement | null>(null);
 
     //post message
     const { mutate } = usePostMessage();
@@ -41,16 +46,23 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
             return;
         }
 
+        //create input data
+        const newData: apiPostMessageInputType = {
+            ...data,
+            receiver_id: recipientId,
+            file: undefined,
+        };
+
+        //add file if exists
+        if (file) newData.file = file;
+
         //send post request
-        return mutate(
-            { ...data, receiver_id: recipientId },
-            {
-                onSuccess: (res) => {
-                    navigate(res.id.toString());
-                },
-                onError: () => console.log("error"),
-            }
-        );
+        return mutate(newData, {
+            onSuccess: (res) => {
+                navigate(res.id.toString());
+            },
+            onError: () => console.log("error"),
+        });
     };
 
     return (
@@ -103,6 +115,13 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                         {errors.content.message}
                     </p>
                 )}
+                <input
+                    type="file"
+                    ref={fileRef}
+                    onChange={(e) =>
+                        setFile(e.target.files ? e.target.files[0] : null)
+                    }
+                />
                 <div className="flex gap-2">
                     {/*todo send file*/}
                     <button

@@ -40,6 +40,7 @@ const MessageView = () => {
             <Loader size={100} className="text-primary dark:text-dprimary" />
         );
     if (error) return <ErrorPage error={error as customError} />;
+    console.log(data)
     return (
         <>
             {data && (
