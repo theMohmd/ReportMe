@@ -1,26 +1,17 @@
-import { apiGetUserSupervisor } from "src/api/user-supervisors/apiGetUserSupervisor";
 import { useAuth } from "contexts/Auth/useAuth";
-import { userType } from "types/userType";
+import { userSupervisorType } from "types/userSupervisorType";
+import { apiGetUserSupervisors } from "api/user-supervisors/apiGetUserSupervisors";
 
-type data = {
-    //todo
-    created_at: string;
-    id: number;
-    supervisor: userType;
-    updated_at: string;
-    user: userType;
-};
-
-//a hook that return a function which utelizes api to return list of supervisor
+//a hook that return a function which utilizes api to return list of supervisor
 export const useGetSupervisors = () => {
     const { user } = useAuth();
     return () =>
-        apiGetUserSupervisor("", "").then((res) => {
-            return res.data.data[0].data
-                .filter((item: data) => {
+        apiGetUserSupervisors().then((res) => {
+            return res.data
+                .filter((item: userSupervisorType) => {
                     return item.user.id === user?.id;
                 })
-                .map((item: data) => {
+                .map((item: userSupervisorType) => {
                     return { USid: item.id, ...item.supervisor };
                 });
         });

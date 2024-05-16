@@ -1,26 +1,17 @@
 import { useAuth } from "contexts/Auth/useAuth";
-import { apiGetUserSupervisor } from "src/api/user-supervisors/apiGetUserSupervisor";
-import { userType } from "types/userType";
+import { userSupervisorType } from "types/userSupervisorType";
+import { apiGetUserSupervisors } from "api/user-supervisors/apiGetUserSupervisors";
 
-type data = {
-    //todo
-    id: number;
-    supervisor: userType;
-    user: userType;
-    created_at: string;
-    updated_at: string;
-};
-
-//a hook that return a function which utelizes api to return list of subordinate
+//a hook that return a function which utilizes api to return list of subordinate
 export const useGetSubordinates = () => {
     const { user } = useAuth();
-    return (input:string="", mode:string="") =>
-        apiGetUserSupervisor(input,mode).then((res) => {
-            return res.data.data[0].data
-                .filter((item: data) => {
+    return (input: string = "", mode: string = "") =>
+        apiGetUserSupervisors({ input: input, mode: mode }).then((res) => {
+            return res.data
+                .filter((item: userSupervisorType) => {
                     return item.supervisor.id === user?.id;
                 })
-                .map((item: data) => {
+                .map((item: userSupervisorType) => {
                     return { USid: item.id, ...item.user };
                 });
         });
