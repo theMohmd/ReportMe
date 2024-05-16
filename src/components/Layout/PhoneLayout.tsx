@@ -25,7 +25,7 @@ const PhoneLayout = () => {
                 </button>
                 <span>Report<span className="text-dbutton">Me</span></span>
             </div>
-            <div className="flex p-2 grow overflow-auto">
+            <div className="flex p-2 pt-5 grow overflow-auto">
                 <LayoutRoutes />
             </div>
             <AnimatePresence>
@@ -34,7 +34,7 @@ const PhoneLayout = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute backdrop-blur-sm flex w-full h-[calc(100dvh-40px)] top-[40px]"
+                        className="absolute z-[100] backdrop-blur-sm flex w-full h-[calc(100dvh-40px)] top-[40px]"
                     >
                         <div className="flex h-full">
                             <Nav />
