@@ -6,7 +6,7 @@ const DesktopLayout = () => {
     return (
         <div className="flex">
             <div className="flex flex-col">
-                <div className="w-full font-black pt-10 pb-2 text-center bg-background text-primary text-[30px] dark:bg-dbackground dark:text-dprimary">
+                <div className="border-e border-lightBorder dark:border-dlightBorder w-full font-black pt-10 pb-2 text-center bg-background text-primary text-[30px] dark:bg-dbackground dark:text-dprimary">
                     Report<span className="text-dbutton">Me</span>
                 </div>
                 <Nav />

@@ -16,7 +16,7 @@ const PhoneLayout = () => {
     }, [location]);
     return (
         <div className="flex flex-col">
-            <div className="grid grid-cols-3 items-center justify-center w-full font-black text-center h-[40px] bg-background text-primary text-[20px] dark:bg-dbackground dark:text-dprimary">
+            <div className="border-b border-lightBorder dark:border-dlightBorder grid grid-cols-3 items-center justify-center w-full font-black text-center h-[40px] bg-background text-primary text-[20px] dark:bg-dbackground dark:text-dprimary">
                 <button
                     className="px-2"
                     onClick={() => setnavVisibility((prev) => !prev)}
