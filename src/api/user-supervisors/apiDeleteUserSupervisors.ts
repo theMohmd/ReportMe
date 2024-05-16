@@ -9,7 +9,7 @@ export const apiDeleteUserSupervisors
 : ( input: apiDeleteUserSupervisorsInputType ) => Promise<apiDeleteUserSupervisorsOutputType>
 = async (input) => {
     return axios
-    .delete(`http://127.0.0.1:/api/user-supervisors/${input.user_supervisor}`,
+    .delete(`http://127.0.0.1:8000/api/user-supervisors/${input.user_supervisor}`,
         {
             headers:{
                 "Content-Type": "application/json",
