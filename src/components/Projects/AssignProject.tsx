@@ -1,13 +1,14 @@
 import { t } from "i18next";
+import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { useGetSubordinates } from "components/Account/hooks/useGetSubordinates";
 import { apiPostUserProjects, apiPostUserProjectsInputType } from "api/user-projects/apiPostUserProjects";
 
-import { PlusIcon } from "lucide-react";
-import CustomButton from "components/ui/CustomButton";
+import Loader from "components/ui/Loader";
 import UserSelect from "components/Common/UserSelect/UserSelect";
+import CustomButton from "components/ui/CustomButton";
 
 //AssginProject component
 type AssginProjectProps = { id: number };
@@ -16,7 +17,7 @@ const AssginProject = ({ id }: AssginProjectProps) => {
     const [userToAdd, setuserToAdd] = useState<number | null>(null);
     const [error, seterror] = useState("");
     const queryClient = useQueryClient();
-    const { mutate } = useMutation({
+    const { mutate,isPending } = useMutation({
         mutationKey: ["user-projects"],
         mutationFn: async (data: apiPostUserProjectsInputType) =>
             apiPostUserProjects(data),
@@ -46,7 +47,7 @@ const AssginProject = ({ id }: AssginProjectProps) => {
                         set={(i) => setuserToAdd(i)}
                     />
                     <CustomButton onClick={assignAction}>
-                        <PlusIcon />
+                        {isPending ? <Loader size={24} /> : <PlusIcon />}
                     </CustomButton>
                 </div>
             </div>
