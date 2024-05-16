@@ -10,8 +10,7 @@ export const apiPostMessage
 : ( input: apiPostMessageInputType ) => Promise<apiPostMessageOutputType>
 = async (input) => {
     return axios
-    .post("http://127.0.0.1:8000/api/messages",
-        input, {
+    .post("http://127.0.0.1:8000/api/messages", input, {
         headers:{
             'Content-Type': 'multipart/form-data',
             Accept: "application/json",
