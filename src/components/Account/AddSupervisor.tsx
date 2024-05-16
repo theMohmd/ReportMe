@@ -20,7 +20,7 @@ const AddSupervisor = () => {
 
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
-        mutationKey: ["user-supervisor"],
+        mutationKey: ["user-supervisors","post"],
         mutationFn: async (data: postUserSupervisorType) =>
             apiPostUserSupervisor(data),
         onSuccess: () => {

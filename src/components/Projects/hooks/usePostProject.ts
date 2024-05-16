@@ -7,7 +7,7 @@ import {
 export const usePostProjects = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationKey: ["Projects", "post"],
+        mutationKey: ["projects", "post"],
         mutationFn: async (data: apiPostProjectsInputType) =>
             apiPostProjects(data),
         onSuccess: () => {

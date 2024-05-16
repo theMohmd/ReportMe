@@ -7,7 +7,7 @@ import {
 export const useDeleteMessage = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationKey: ["Messages", "delete"],
+        mutationKey: ["messages", "delete"],
         mutationFn: async (data: apiDeleteMessagesInputType) =>
             apiDeleteMessages(data),
         onSuccess: () => {
