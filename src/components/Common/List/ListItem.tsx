@@ -17,18 +17,18 @@ const ListItem = ({
     return (
         <div
             onClick={onClick ? onClick : undefined}
-            className="hover:shadow-cshadow flex py-2 justify-start gap-2 cursor-pointer items-center px-4 rounded-lg border bg-background border-lightBorder text-primary dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+            className="flex gap-2 justify-start items-center py-2 px-4 rounded-lg border cursor-pointer bg-background border-lightBorder text-primary dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder hover:shadow-cshadow"
         >
             {title && <p className="line-clamp-1 grow">{title}</p>}
             {children}
-            <div className="ms-auto">
+            <div className="ms-auto ps-4">
                 {deleteAction && (
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
                             deleteAction();
                         }}
-                        className="hover:text-red-600 flex items-center justify-center"
+                        className="flex justify-center items-center hover:text-red-600"
                     >
                         <Trash2 />
                     </button>

@@ -2,6 +2,8 @@ import { t } from "i18next";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
+import { useAuth } from "contexts/Auth/useAuth";
+import { dateFormat } from "utils/dateFormat";
 import { useNavigate } from "react-router-dom";
 import { messageType } from "types/messageType";
 import { apiDataType } from "types/apiDataType";
@@ -24,6 +26,7 @@ type MessagesUiProps = {
 const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
     const [dialog, setdialog] = useState(false);
     const navigate = useNavigate();
+    const { user } = useAuth();
 
     const { mutate: deleteRequest } = useDeleteMessage();
     const deleteAction = (id: number) => {
@@ -63,9 +66,19 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
                         key={item.id}
                         deleteAction={() => deleteAction(item.id)}
                     >
-                        <p>{item.sender.email}</p>
-                        <p>:</p>
-                        <p>{item.title}</p>
+                        <div className="flex [&>*]:shrink-0 grow items-center justify-start gap-2">
+                            <span className="w-1/5 line-clamp-1">
+                                {user?.id === item.receiver.id
+                                    ? item.sender.name
+                                    : item.receiver.name}
+                            </span>
+                            <span className="w-0 text-sm font-thin grow line-clamp-1">
+                                {item.title}
+                            </span>
+                            <span className="hidden text-sm font-thin ms-auto md:line-clamp-1">
+                                {dateFormat(item.updated_at)}
+                            </span>
+                        </div>
                     </ListItem>
                 ))}
             </List>

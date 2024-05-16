@@ -2,6 +2,7 @@ import { t } from "i18next";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { dateFormat } from "utils/dateFormat";
 import { apiDataType } from "types/apiDataType";
 import { projectType } from "types/projectType";
 import { useDeleteProject } from "./hooks/useDeleteProject";
@@ -63,8 +64,14 @@ const ProjectsUi = ({ data, setPage, page }: ProjectsUiProps) => {
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
                         deleteAction={() => deleteAction(item.id)}
-                        title={item.title}
-                    />
+                    >
+                        <div className="flex [&>*]:shrink-0 grow items-center justify-center gap-2">
+                            <span className="line-clamp-1 grow w-0">{item.title}</span>
+                            <span className="text-sm font-thin line-clamp-1 ms-auto">
+                                {dateFormat(item.updated_at)}
+                            </span>
+                        </div>
+                    </ListItem>
                 ))}
             </List>
             <Pagination

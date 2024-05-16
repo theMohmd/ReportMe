@@ -4,7 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "contexts/Auth/useAuth";
 import { reportType } from "types/reportType";
+import { dateFormat } from "src/utils/dateFormat";
 import { apiDataType } from "types/apiDataType";
+import { userProjectType } from "types/userProjectType";
 
 import { AnimatePresence } from "framer-motion";
 import { ChevronLeftIcon, Plus } from "lucide-react";
@@ -13,7 +15,6 @@ import ListItem from "components/Common/List/ListItem";
 import Pagination from "components/ui/Pagination";
 import CustomButton from "components/ui/CustomButton";
 import NewReportDialog from "./NewReportDialog";
-import { userProjectType } from "src/types/userProjectType";
 
 type ReportsUiProps = {
     reports: apiDataType<reportType>;
@@ -73,8 +74,21 @@ const ReportsPerProjectUi = ({
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
-                        title={item.description}
-                    />
+                    >
+                        <div className="flex [&>*]:shrink-0 grow items-center justify-center gap-2">
+                            {user?.id !== item.user.id && (
+                                <span className="line-clamp-1 w-1/4">
+                                    {item.user.name}
+                                </span>
+                            )}
+                            <span className="line-clamp-1 grow w-0">
+                                {item.description}
+                            </span>
+                            <span className="text-sm line-clamp-1 font-thin ms-auto">
+                                {dateFormat(item.updated_at)}
+                            </span>
+                        </div>
+                    </ListItem>
                 ))}
             </List>
             <Pagination

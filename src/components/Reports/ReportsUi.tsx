@@ -1,6 +1,7 @@
 import { t } from "i18next";
 import { useNavigate } from "react-router-dom";
 
+import { dateFormat } from "utils/dateFormat";
 import { apiDataType } from "types/apiDataType";
 import { userProjectType } from "types/userProjectType";
 
@@ -36,8 +37,14 @@ const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
                         <ListItem
                             onClick={() => navigate(item.id.toString())}
                             key={item.id}
-                            title={item.project.title}
-                        />
+                        >
+                        <div className="flex [&>*]:shrink-0 grow items-center justify-center gap-2">
+                            <span className="grow w-0 line-clamp-1">{item.project.title}</span>
+                            <span className="text-sm font-thin line-clamp-1 ms-auto">
+                                {dateFormat(item.updated_at)}
+                            </span>
+                        </div>
+                        </ListItem>
                     ))}
             </List>
             <Pagination
