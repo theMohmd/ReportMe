@@ -1,14 +1,16 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import Dialog from "components/Common/Dialog";
 import { t } from "i18next";
+import { useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+import { usePostReports } from "./hooks/usePostReports";
+import { apiPostReportsInputType as FormFields } from "api/reports/apiPostReports";
+
+import Dialog from "components/Common/Dialog";
 import Loader from "components/ui/Loader";
 import { PaperclipIcon } from "lucide-react";
-import { usePostReports } from "./hooks/usePostReports";
-import { postReportType as FormFields } from "src/api/reports/apiPostReports";
-import { useNavigate } from "react-router-dom";
 
-type NewReportDialogProps = { close: () => void; user_project_id: number };
 //NewReportDialog component
+type NewReportDialogProps = { close: () => void; user_project_id: number };
 const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
     //post report
     const { mutate } = usePostReports();
@@ -25,10 +27,10 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         //send request
         return mutate(
-            { ...data, user_project_id: user_project_id },
+            { description: data.description, user_project_id: user_project_id },
             {
                 onSuccess: (res) => {
-                    navigate(res.data.data.id.toString());
+                    navigate(res.id.toString());
                 },
                 onError: () => console.log("error"),
             }
