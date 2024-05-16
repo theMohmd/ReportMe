@@ -15,7 +15,7 @@ const ReportsPerProject = () => {
     const { user_project_id } = useParams(); //user-project id
     const [page, setpage] = useState(0);
     const { data, error, isLoading } = useQuery({
-        queryKey: ["Reports", "Projects", user_project_id, page],
+        queryKey: ["user-projects", "projects", user_project_id, page],
         queryFn: async () => {
             const user_project = await apiGetUserProjects({
                 id: user_project_id ? parseInt(user_project_id) : undefined,

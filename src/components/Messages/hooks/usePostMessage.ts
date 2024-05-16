@@ -10,7 +10,7 @@ export const usePostMessage = () => {
         mutationKey: ["messages"],
         mutationFn: async (data: apiPostMessageInputType) => apiPostMessage(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["Messages"] });
+            queryClient.invalidateQueries({ queryKey: ["messages"] });
         },
     });
 };

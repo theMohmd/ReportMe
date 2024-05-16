@@ -7,7 +7,7 @@ export const usePostReports = () => {
         mutationKey: ["Reports","post"],
         mutationFn: async (data: postReportType) => apiPostReport(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["Reports"] });
+            queryClient.invalidateQueries({ queryKey: ["reports"] });
         },
     });
 };

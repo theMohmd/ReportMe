@@ -12,7 +12,7 @@ import ErrorPage from "components/ui/ErrorPage";
 const Projects = () => {
     const [page, setpage] = useState(0);
     const { data, error, isLoading } = useQuery({
-        queryKey: ["Projects", page],
+        queryKey: ["projects", page],
         queryFn: () => apiGetProjects({ page: page + 1 }),
     });
     if (isLoading)

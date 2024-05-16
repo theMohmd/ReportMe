@@ -7,7 +7,7 @@ export const useDeleteMessage = () => {
         mutationKey: ["Messages", "delete"],
         mutationFn: async (data: apiDeleteMessageInputType) => apiDeleteMessages(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["Messages"] });
+            queryClient.invalidateQueries({ queryKey: ["messages"] });
         },
     });
 };

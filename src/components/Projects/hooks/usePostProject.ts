@@ -11,7 +11,7 @@ export const usePostProjects = () => {
         mutationFn: async (data: apiPostProjectsInputType) =>
             apiPostProjects(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["Projects"] });
+            queryClient.invalidateQueries({ queryKey: ["projects"] });
         },
     });
 };

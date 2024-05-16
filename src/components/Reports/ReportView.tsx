@@ -15,7 +15,7 @@ const ReportView = () => {
     const { id } = useParams();//report id
     const navigate = useNavigate();
     const { data, error, isLoading } = useQuery({
-        queryKey: ["Reports", id],
+        queryKey: ["reports", id],
         queryFn: () =>
             apiGetReports({ id: id ? parseInt(id) : undefined }),//todo isnumber
     });

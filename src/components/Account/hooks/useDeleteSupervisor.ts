@@ -7,11 +7,11 @@ import {
 export const useDeleteSupervisor = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationKey: ["user-supervisor", "delete"],
+        mutationKey: ["user-supervisors", "delete"],
         mutationFn: async (data: deleteUserSupervisorType) =>
             apiDeleteUserSupervisor(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["user-supervisor"] });
+            queryClient.invalidateQueries({ queryKey: ["user-supervisors"] });
         },
     });
 };

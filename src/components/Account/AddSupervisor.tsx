@@ -24,7 +24,7 @@ const AddSupervisor = () => {
         mutationFn: async (data: postUserSupervisorType) =>
             apiPostUserSupervisor(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["user-supervisor"] });
+            queryClient.invalidateQueries({ queryKey: ["user-supervisors"] });
         },
     });
     const postFunction = () => {

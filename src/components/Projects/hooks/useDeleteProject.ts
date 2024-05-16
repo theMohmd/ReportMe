@@ -8,7 +8,7 @@ export const useDeleteProject = () => {
         mutationKey: ["Projects", "delete"],
         mutationFn: async (data: deleteProjectType) => apiDeleteProject(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["Projects"] });
+            queryClient.invalidateQueries({ queryKey: ["projects"] });
         },
     });
 };
