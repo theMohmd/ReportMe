@@ -13,7 +13,7 @@ const Reports = () => {
     const [page, setpage] = useState(0);
     const { data, error, isLoading } = useQuery({
         queryKey: ["user-projects", page],
-        queryFn: () => apiGetUserProjects({ page: page + 1 }).then((res)=>res.data[0]),
+        queryFn: () => apiGetUserProjects({ page: page + 1 }),
     });
     if (isLoading)
         return (
