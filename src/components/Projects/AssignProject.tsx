@@ -24,7 +24,7 @@ const AssginProject = ({ id }: AssginProjectProps) => {
             queryClient.invalidateQueries({ queryKey: ["user-projects"] });
         },
     });
-    const postFunction = () => {
+    const assignAction = () => {
         if (!userToAdd) {
             seterror(t("Projects.noUser")); //todo i18n
             return;
@@ -45,7 +45,7 @@ const AssginProject = ({ id }: AssginProjectProps) => {
                         query={query}
                         set={(i) => setuserToAdd(i)}
                     />
-                    <CustomButton onClick={postFunction}>
+                    <CustomButton onClick={assignAction}>
                         <PlusIcon />
                     </CustomButton>
                 </div>

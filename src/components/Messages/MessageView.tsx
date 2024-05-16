@@ -10,6 +10,8 @@ import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
 import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
 import { messageType } from "src/types/messageType";
+import { t } from "i18next";
+import { dateFormat } from "src/utils/dateFormat";
 
 //MessageView component
 const MessageView = () => {
@@ -22,7 +24,7 @@ const MessageView = () => {
     const navigate = useNavigate();
     const deleteAction = () => {
         deleteRequest(
-            { id: data?.id },
+            { id: data ? data.id : -1 },
             {
                 onSuccess() {
                     navigate(-1);
@@ -59,12 +61,15 @@ const MessageView = () => {
                         </div>
                     </div>
                     <div className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
-                        <p className="py-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
-                            {data.sender.email}
-                        </p>
-                        <p className="overflow-auto grow h-0">
-                            {data.content}
-                        </p>
+                        <div className=" flex gap-1 pb-2 text-lg font-medium items-center border-b border-lightBorder dark:border-dlightBorder">
+                            <span>{data.sender.name}</span>
+                            <span className="font-thin text-sm">({data.sender.email})</span>
+                            <span>{t("Messages.to")}</span>
+                            <span>{data.receiver.name}</span>
+                            <span className="font-thin text-sm">({data.receiver.email})</span>
+                            <span className="font-thin text-sm ms-auto">{dateFormat(data.updated_at)}</span>
+                        </div>
+                        <p className="overflow-auto grow h-0">{data.content}</p>
                     </div>
                 </div>
             )}

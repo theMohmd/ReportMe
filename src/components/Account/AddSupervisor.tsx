@@ -9,6 +9,7 @@ import { postUserSupervisorType } from "src/api/user-supervisors/apiPostUserSupe
 import UserSelect from "components/Common/UserSelect/UserSelect";
 import CustomButton from "components/ui/CustomButton";
 import { PlusIcon } from "lucide-react";
+import Loader from "../ui/Loader";
 
 //AddSupervisor component
 const AddSupervisor = () => {
@@ -19,8 +20,8 @@ const AddSupervisor = () => {
         apiGetUsers({ input: input, mode: mode });
 
     const queryClient = useQueryClient();
-    const { mutate } = useMutation({
-        mutationKey: ["user-supervisors","post"],
+    const { mutate, isPending } = useMutation({
+        mutationKey: ["user-supervisors", "post"],
         mutationFn: async (data: postUserSupervisorType) =>
             apiPostUserSupervisor(data),
         onSuccess: () => {
@@ -47,7 +48,7 @@ const AddSupervisor = () => {
                         set={(i) => setuserToAdd(i)}
                     />
                     <CustomButton onClick={postFunction}>
-                        <PlusIcon />
+                        {isPending ? <Loader size={24} /> : <PlusIcon />}
                     </CustomButton>
                 </div>
             </div>

@@ -12,6 +12,7 @@ import ErrorPage from "components/ui/ErrorPage";
 import AssignProject from "./AssignProject";
 import ProjectUsers from "./ProjectUsers";
 import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
+import { dateFormat } from "src/utils/dateFormat";
 
 //ProjectView component
 const ProjectView = () => {
@@ -74,8 +75,13 @@ const ProjectView = () => {
                             <ProjectUsers id={data.id} />
                         </>
                     )}
-                    <div className="p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
-                        {data.description}
+                    <div className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                        <div className=" flex gap-1 pb-2 text-lg font-medium items-center border-b border-lightBorder dark:border-dlightBorder">
+                            <span>{data.user.name}</span>
+                            <span className="font-thin text-sm">({data.user.email})</span>
+                            <span className="font-thin text-sm ms-auto">{dateFormat(data.updated_at)}</span>
+                        </div>
+                        <p className="overflow-auto grow h-0">{data.description}</p>
                     </div>
                 </div>
             )}

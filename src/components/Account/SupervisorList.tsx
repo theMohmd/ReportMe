@@ -16,7 +16,7 @@ type data = userType & { USid: number };
 const SupervisorList = () => {
     const query = useGetSupervisors();
     const { data, isLoading, error } = useQuery({
-        queryKey: ["user-supervisor"],
+        queryKey: ["user-supervisors"],
         queryFn: query,
     });
     const { mutate: deleteRequest } = useDeleteSupervisor();

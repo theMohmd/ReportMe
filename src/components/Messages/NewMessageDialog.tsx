@@ -57,7 +57,7 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
         <Dialog close={close} title={t("Messages.sendTitle")}>
             <div className="flex flex-col gap-2 justify-center items-start md:flex-row md:items-center">
                 <p className="font-medium text-primary dark:text-dprimary ps-2">
-                    {t("Messages.to")}
+                    {t("Messages.sendTo")}
                 </p>
                 <UserSelect
                     queryKey="newMessage"

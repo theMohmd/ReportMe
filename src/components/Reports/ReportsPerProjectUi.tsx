@@ -44,14 +44,14 @@ const ReportsPerProjectUi = ({
                 )}
             </AnimatePresence>
             <div className="flex justify-between items-center mb-5 h-12">
-                <div className="flex gap-2">
+                <div className="flex ">
                     <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                         {t("Reports.reportsPerProject")}
                     </p>
 
                     <Link
                         to={`/projects/${user_project.project.id}`}
-                        className="px-2 text-3xl font-semibold text-primary dark:text-dprimary"
+                        className="text-3xl font-semibold text-primary dark:text-dprimary"
                     >
                         {user_project.project.title}
                     </Link>
@@ -59,8 +59,8 @@ const ReportsPerProjectUi = ({
                 <div className="flex gap-2">
                     {user?.id !== user_project.project.user.id && (
                         <CustomButton onClick={() => setdialog(true)}>
+                        <Plus />
                             <p className="px-1">{t("Reports.newReport")}</p>
-                            <Plus />
                         </CustomButton>
                     )}
                     <CustomButton onClick={() => navigate(-1)}>
