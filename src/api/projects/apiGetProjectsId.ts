@@ -1,6 +1,6 @@
 import axios from "axios";
-import { projectType } from "src/types/projectType";
-import { getCookie } from "src/utils/cookie";
+import { projectType } from "types/projectType";
+import { getCookie } from "utils/cookie";
 
 //get projects
 export type apiGetProjectsIdInputType = { id: number };

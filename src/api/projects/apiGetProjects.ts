@@ -1,6 +1,6 @@
 import axios from "axios";
-import { apiDataType } from "src/types/apiDataType";
-import { projectType } from "src/types/projectType";
+import { apiDataType } from "types/apiDataType";
+import { projectType } from "types/projectType";
 import { getCookie } from "utils/cookie";
 
 //get projects with page

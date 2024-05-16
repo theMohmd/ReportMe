@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { apiDeleteProject, deleteProjectType } from "api/projects/apiDeleteProject";
+import { apiDeleteProjects, apiDeleteProjectsInputType } from "src/api/projects/apiDeleteProjects";
 
 export const useDeleteProject = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationKey: ["projects", "delete"],
-        mutationFn: async (data: deleteProjectType) => apiDeleteProject(data),
+        mutationFn: async (data: apiDeleteProjectsInputType) => apiDeleteProjects(data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["projects"] });
         },
