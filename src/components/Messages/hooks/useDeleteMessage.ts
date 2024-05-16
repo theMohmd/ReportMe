@@ -1,11 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { apiDeleteMessageInputType, apiDeleteMessages } from "src/api/messages/apiDeleteMessage";
+import {
+    apiDeleteMessages,
+    apiDeleteMessagesInputType,
+} from "src/api/messages/apiDeleteMessages";
 
 export const useDeleteMessage = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationKey: ["Messages", "delete"],
-        mutationFn: async (data: apiDeleteMessageInputType) => apiDeleteMessages(data),
+        mutationFn: async (data: apiDeleteMessagesInputType) =>
+            apiDeleteMessages(data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["messages"] });
         },
