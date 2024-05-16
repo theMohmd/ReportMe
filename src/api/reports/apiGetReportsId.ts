@@ -18,6 +18,6 @@ export const apiGetReportsId
                 Authorization: "Bearer " + getCookie("token"),
         },
     })
-    .then(res=>res.data)
+    .then(res=>res.data.data)
 }
 
