@@ -49,7 +49,7 @@ const ReportView = () => {
                     <div className="flex justify-between items-center mb-5">
                             <Link
                                 to={`/projects/${data.project.id}`}
-                                className="px-2 text-3xl font-semibold text-primary dark:text-dprimary"
+                                className="px-2 text-3xl line-clamp-1 font-semibold text-primary dark:text-dprimary"
                             >
                                 {data.project.title}
                             </Link>

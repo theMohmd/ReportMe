@@ -46,7 +46,7 @@ const MessageView = () => {
             {data && (
                 <div className="flex flex-col gap-2 grow">
                     <div className="flex justify-between items-center mb-5">
-                        <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
+                        <p className="px-2 line-clamp-1 text-3xl font-semibold text-primary dark:text-dprimary">
                             {data.title}
                         </p>
                         <div className="flex gap-1">

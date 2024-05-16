@@ -14,7 +14,7 @@ const Pagination = ({ setPage, pageCount, initialPage }: PaginationProps) => {
         <ReactPaginate
             containerClassName="flex font-semibold m-2 font-vazir justify-center gap-2 text-primary dark:text-dprimary list-none "
             pageClassName={
-                "rounded-full size-8 flex items-center justify-center [&>*]:left-[1px] [&>*]:top-[2px] [&>*]:relative "
+                "rounded-full size-8 flex items-center justify-center [&>*]:left-[1px] [&>*]:top-[2px] z-[0] [&>*]:relative "
             }
             activeClassName="bg-dbutton text-background "
             onPageChange={(event) => setPage(event.selected)}

@@ -13,7 +13,7 @@ const Dialog = ({ children, title, close }: DialogProps) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex absolute bg-black bg-opacity-75 top-0 left-0 justify-center p-5 md:p-10 h-dvh w-dvw backdrop-blur-sm"
+            className="flex z-50 absolute bg-black bg-opacity-75 top-0 left-0 justify-center p-5 md:p-10 h-dvh w-dvw backdrop-blur-sm"
         >
             <motion.div
                 initial={{ scale: 0.5 }}
