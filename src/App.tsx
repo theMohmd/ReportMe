@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useLang } from "contexts/Lang/useLang";
 import { useTheme } from "contexts/Theme/useTheme";
 import { useAuth } from "contexts/Auth/useAuth";
+import { useQueryGetUser } from "./hooks/useQueryGetUser";
 
 import Login from "components/Login/Login";
 import Loader from "components/ui/Loader";
@@ -10,13 +11,12 @@ import NotFound from "components/Common/NotFound/NotFound";
 import Layout from "components/Layout/Layout";
 import Relogin from "components/Common/ReLogin/ReLogin";
 
-import { useGetUser } from "hooks/useGetUser";
 
 const App = () => {
     const { theme } = useTheme();
     const { lang } = useLang();
     const { user } = useAuth();
-    const { isLoading } = useGetUser();
+    const { isLoading } = useQueryGetUser();
 
     return (
         <div

@@ -1,18 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import { apiGetMesseges } from "api/messages/apiGetMesseges";
 import MessagesUi from "./MessagesUI";
 import Loader from "components/ui/Loader";
-import { useState } from "react";
 import { customError } from "src/types/customError";
 import ErrorPage from "../ui/ErrorPage";
+import { useQueryGetMessages } from "./hooks/useQueryGetMessages";
 
 //Messages component
 const Messages = () => {
-    const [page, setpage] = useState(0);
-    const { data, error, isLoading } = useQuery({
-        queryKey: ["messages", page],
-        queryFn: () => apiGetMesseges({ page: page + 1 }),
-    });
+    const { data, error, isLoading, page, setpage } = useQueryGetMessages();
     if (isLoading)
         return (
             <Loader size={100} className="text-primary dark:text-dprimary" />
