@@ -1,10 +1,10 @@
+import { t } from "i18next";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { t } from "i18next";
 
 import { apiGetUsers } from "api/users/apiGetUsers";
-import { apiPostUserSupervisor } from "api/user-supervisor/apiPostUserSupervisor";
-import { postUserSupervisorType } from "api/user-supervisor/apiPostUserSupervisor";
+import { apiPostUserSupervisor } from "src/api/user-supervisors/apiPostUserSupervisor";
+import { postUserSupervisorType } from "src/api/user-supervisors/apiPostUserSupervisor";
 
 import UserSelect from "components/Common/UserSelect/UserSelect";
 import CustomButton from "components/ui/CustomButton";

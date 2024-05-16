@@ -1,4 +1,4 @@
-import { apiGetUserSupervisor } from "api/projects/apiGetUserSupervisor";
+import { apiGetUserSupervisor } from "src/api/user-supervisors/apiGetUserSupervisor";
 import { useAuth } from "contexts/Auth/useAuth";
 import { userType } from "types/userType";
 

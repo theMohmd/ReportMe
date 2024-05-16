@@ -2,8 +2,8 @@ import { useState } from "react";
 import { t } from "i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { apiPostUserProject } from "api/projects/apiPostUserProject";
-import { postUserProjectType } from "api/projects/apiPostUserProject";
+import { apiPostUserProject } from "src/api/user-projects/apiPostUserProject";
+import { postUserProjectType } from "src/api/user-projects/apiPostUserProject";
 import { useGetSubordinates } from "components/Account/hooks/useGetSubordinates";
 
 import UserSelect from "components/Common/UserSelect/UserSelect";

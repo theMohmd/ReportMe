@@ -1,5 +1,5 @@
 import { useAuth } from "contexts/Auth/useAuth";
-import { apiGetUserSupervisor } from "api/projects/apiGetUserSupervisor";
+import { apiGetUserSupervisor } from "src/api/user-supervisors/apiGetUserSupervisor";
 import { userType } from "types/userType";
 
 type data = {

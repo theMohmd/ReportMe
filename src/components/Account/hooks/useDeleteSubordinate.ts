@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
     deleteUserSupervisorType,
     apiDeleteUserSupervisor,
-} from "api/user-supervisor/apiDeleteUserSupervisor";
+} from "api/user-supervisors/apiDeleteUserSupervisor";
 
 export const useDeleteSubordinate = () => {
     const queryClient = useQueryClient();
