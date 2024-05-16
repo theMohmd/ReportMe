@@ -18,16 +18,19 @@ const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
     const navigate = useNavigate();
     return (
         <div className="flex flex-col gap-2 grow">
-            <div className="flex justify-between items-center px-2 mb-5 h-[40px] shrink-0">
+            <div className="flex justify-between items-end mb-5 h-10 shrink-0">
                 <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                     {t("Reports.reports")}
                 </p>
             </div>
             <List>
-                {data.data//filter out duplicate projects
+                {data.data //filter out duplicate projects
                     .filter(
                         (obj, index, self) =>
-                            index === self.findIndex((t) => t.project.id === obj.project.id)
+                            index ===
+                            self.findIndex(
+                                (t) => t.project.id === obj.project.id
+                            )
                     )
                     .map((item) => (
                         <ListItem

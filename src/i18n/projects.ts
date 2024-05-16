@@ -9,7 +9,6 @@ export const projects_en = {
     assign: "Assign new user",
     noUsers: "No user is assigned to this project",
     noUser: "You haven't selected a user",
-    by: "by",
 };
 export const projects_fa = {
     projects: "پروژه‌ها",
@@ -22,5 +21,4 @@ export const projects_fa = {
     assign: "تعیین کاربر جدید",
     noUsers: "هیچ کاربری برای این پروژه تعیین نشده",
     noUser: "کاربر انتخاب نکرده‌اید",
-    by: "by",
 };

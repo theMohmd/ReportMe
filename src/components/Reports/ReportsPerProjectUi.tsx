@@ -43,7 +43,7 @@ const ReportsPerProjectUi = ({
                     />
                 )}
             </AnimatePresence>
-            <div className="flex justify-between items-center mb-5 h-12">
+            <div className="flex justify-between items-end mb-5 h-10 shrink-0">
                 <div className="flex ">
                     <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                         {t("Reports.reportsPerProject")}
@@ -59,7 +59,7 @@ const ReportsPerProjectUi = ({
                 <div className="flex gap-2">
                     {user?.id !== user_project.project.user.id && (
                         <CustomButton onClick={() => setdialog(true)}>
-                        <Plus />
+                            <Plus />
                             <p className="px-1">{t("Reports.newReport")}</p>
                         </CustomButton>
                     )}

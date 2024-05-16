@@ -28,7 +28,7 @@ const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
     return (
         <div
             ref={ref}
-            className=" grow flex relative flex-col h-10 w-full md:w-fit"
+            className=" grow flex relative flex-col h-[42px] w-full md:w-fit"
         >
             <div className="flex absolute z-20 flex-col w-full text-primary Input dark:text-dprimary">
                 <div className="flex gap-2 items-center flex-row">

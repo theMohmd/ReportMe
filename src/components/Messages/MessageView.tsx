@@ -1,17 +1,17 @@
+import { t } from "i18next";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { dateFormat } from "utils/dateFormat";
+import { messageType } from "types/messageType";
 import { customError } from "types/customError";
 import { useDeleteProject } from "components/Projects/hooks/useDeleteProject";
 import { apiGetMessegesId } from "api/messages/apiGetMessagesId";
 
-import CustomButton from "components/ui/CustomButton";
 import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
+import CustomButton from "components/ui/CustomButton";
 import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
-import { messageType } from "src/types/messageType";
-import { t } from "i18next";
-import { dateFormat } from "src/utils/dateFormat";
 
 //MessageView component
 const MessageView = () => {
@@ -62,16 +62,27 @@ const MessageView = () => {
                         </div>
                     </div>
                     <div className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
-                        <div className=" flex gap-1 pb-2 text-lg font-medium items-center border-b border-lightBorder dark:border-dlightBorder">
+                        <div className="flex gap-1 items-center pb-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
                             <span>{data.sender.name}</span>
-                            <span className="font-thin text-sm">({data.sender.email})</span>
+                            <span className="text-sm font-thin">
+                                ({data.sender.email})
+                            </span>
                             <span>{t("Messages.to")}</span>
                             <span>{data.receiver.name}</span>
-                            <span className="font-thin text-sm">({data.receiver.email})</span>
-                            <span className="font-thin text-sm ms-auto">{dateFormat(data.updated_at)}</span>
+                            <span className="text-sm font-thin">
+                                ({data.receiver.email})
+                            </span>
+                            <span className="text-sm font-thin ms-auto">
+                                {dateFormat(data.updated_at)}
+                            </span>
                         </div>
-                        <p className="overflow-auto grow h-0">{data.content}</p>
+                        <p className="overflow-auto h-0 grow">{data.content}</p>
                     </div>
+                    {data.file !== "/storage/" && (
+                        <div className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                        <a href={"http://127.0.0.1:8000/download"+data.file} download="name">file</a>
+                        </div>
+                    )}
                 </div>
             )}
         </>

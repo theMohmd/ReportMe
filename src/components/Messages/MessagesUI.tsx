@@ -1,16 +1,18 @@
 import { t } from "i18next";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+
+import { useNavigate } from "react-router-dom";
+import { messageType } from "types/messageType";
+import { apiDataType } from "types/apiDataType";
+import { useDeleteMessage } from "./hooks/useDeleteMessage";
+
 import { Plus } from "lucide-react";
-import CustomButton from "components/ui/CustomButton";
 import List from "components/Common/List/List";
 import ListItem from "components/Common/List/ListItem";
-import { useState } from "react";
-import NewMessageDialog from "./NewMessageDialog";
-import { AnimatePresence } from "framer-motion";
-import { messageType } from "types/messageType";
-import { useNavigate } from "react-router-dom";
-import { apiDataType } from "src/types/apiDataType";
 import Pagination from "components/ui/Pagination";
-import { useDeleteMessage } from "./hooks/useDeleteMessage";
+import CustomButton from "components/ui/CustomButton";
+import NewMessageDialog from "./NewMessageDialog";
 
 type MessagesUiProps = {
     data: apiDataType<messageType>;
@@ -45,13 +47,13 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
                     />
                 )}
             </AnimatePresence>
-            <div className="flex justify-between items-center mb-5">
+            <div className="flex justify-between items-end mb-5 h-10">
                 <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
                     {t("Messages.messages")}
                 </p>
                 <CustomButton onClick={() => setdialog(true)}>
-                    <p className="px-1">{t("Messages.newMessage")}</p>
                     <Plus />
+                    <p className="px-1">{t("Messages.newMessage")}</p>
                 </CustomButton>
             </div>
             <List>

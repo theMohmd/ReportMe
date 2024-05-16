@@ -1,21 +1,29 @@
 import { t } from "i18next";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { usePostReports } from "./hooks/usePostReports";
-import { apiPostReportsInputType as FormFields } from "api/reports/apiPostReports";
+import { apiPostReportsInputType } from "api/reports/apiPostReports";
 
 import Dialog from "components/Common/Dialog";
 import Loader from "components/ui/Loader";
-import { PaperclipIcon } from "lucide-react";
+import { PaperclipIcon, Trash2Icon } from "lucide-react";
+import { useRef, useState } from "react";
+
+type FormFields = { description: string };
 
 //NewReportDialog component
 type NewReportDialogProps = { close: () => void; user_project_id: number };
 const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
+    const [file, setFile] = useState<File | null>(null);
+    const fileRef = useRef<HTMLInputElement | null>(null);
+
     //post report
     const { mutate } = usePostReports();
 
     const navigate = useNavigate();
+
     //handle form
     const {
         register,
@@ -25,9 +33,19 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
 
     //form submit funciton
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
+        //create input data
+        const newData: apiPostReportsInputType = {
+            ...data,
+            user_project_id: user_project_id,
+            file: undefined,
+        };
+
+        //add file if exists
+        if (file) newData.file = file;
+
         //send request
         return mutate(
-            { description: data.description, user_project_id: user_project_id },
+            newData,
             {
                 onSuccess: (res) => {
                     navigate(res.id.toString());
@@ -60,10 +78,36 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
                     {/*todo send file*/}
                     <button
                         type="button"
-                        className="flex justify-center max-h-16 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
+                        className="md:max-w-[50%] flex justify-center gap-2 items-center p-3 max-h-16 font-bold rounded-lg bg-dbutton text-background"
                         disabled={isSubmitting}
+                        onClick={() => {
+                            if (file) setFile(null);
+                            else fileRef.current?.click();
+                        }}
                     >
-                        <PaperclipIcon />
+                        <input
+                            className="hidden"
+                            type="file"
+                            ref={fileRef}
+                            onChange={(e) =>
+                                setFile(
+                                    e.target.files ? e.target.files[0] : null
+                                )
+                            }
+                        />
+                        {file ? <Trash2Icon /> : <PaperclipIcon />}
+                        <AnimatePresence>
+                            {file && (
+                                <motion.span
+                                    initial={{ width: 0 }}
+                                    animate={{ width: 200, maxWidth: "50%" }}
+                                    exit={{ width: 0 }}
+                                    className="relative overflow-hidden line-clamp-1 text-ellipsis top-[2px]"
+                                >
+                                    {file.name}
+                                </motion.span>
+                            )}
+                        </AnimatePresence>
                     </button>
                     <button
                         type="submit"

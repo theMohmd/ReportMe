@@ -16,7 +16,7 @@ import { useAuth } from "src/contexts/Auth/useAuth";
 const Nav = () => {
     const { user } = useAuth();//todo delete
     return (
-        <div className="flex flex-col gap-2 p-2 pt-4 border-e border-lightBorder dark:border-dlightBorder grow w-[200px] bg-background dark:bg-dbackground">
+        <div className="flex flex-col gap-2 p-2 border-e border-lightBorder dark:border-dlightBorder grow w-[200px] bg-background dark:bg-dbackground">
             <NavButton to="reports">
                 <ClipboardPenIcon />
                 {t("nav.reports")}
