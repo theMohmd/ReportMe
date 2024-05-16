@@ -6,13 +6,14 @@ import { t } from "i18next";
 import { usePostMessage } from "./hooks/usePostMessage";
 import { apiGetUsers } from "api/users/apiGetUsers";
 
-import { PaperclipIcon } from "lucide-react";
+import { PaperclipIcon, Trash2Icon } from "lucide-react";
 import Dialog from "components/Common/Dialog";
 import Loader from "components/ui/Loader";
 import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
 import UserSelect from "components/Common/UserSelect/UserSelect";
 import { apiPostMessageInputType } from "src/api/messages/apiPostMessages";
+import { AnimatePresence, motion } from "framer-motion";
 
 type FormFields = {
     title: string;
@@ -68,7 +69,7 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
     return (
         <Dialog close={close} title={t("Messages.sendTitle")}>
             <div className="flex flex-col gap-2 justify-center items-start md:flex-row md:items-center">
-                <p className="font-medium text-primary dark:text-dprimary ps-2">
+                <p className="font-medium text-primary ps-2 dark:text-dprimary">
                     {t("Messages.sendTo")}
                 </p>
                 <UserSelect
@@ -116,24 +117,41 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                     </p>
                 )}
                 <input
+                    className="hidden"
                     type="file"
                     ref={fileRef}
                     onChange={(e) =>
                         setFile(e.target.files ? e.target.files[0] : null)
                     }
                 />
-                <div className="flex gap-2">
+                <div className="flex gap-2 flex-col md:flex-row">
                     {/*todo send file*/}
                     <button
                         type="button"
-                        className="flex justify-center max-h-16 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
+                        className="md:max-w-[50%] flex justify-center gap-2 items-center p-3 max-h-16 font-bold rounded-lg bg-dbutton text-background"
                         disabled={isSubmitting}
+                        onClick={() => {
+                            if (file) setFile(null);
+                            else fileRef.current?.click();
+                        }}
                     >
-                        <PaperclipIcon />
+                        {file ? <Trash2Icon /> : <PaperclipIcon />}
+                        <AnimatePresence>
+                            {file && (
+                                <motion.span
+                                    initial={{ width: 0 }}
+                                    animate={{ width: 200,maxWidth:"50%" }}
+                                    exit={{ width: 0 }}
+                                    className="relative overflow-hidden line-clamp-1 text-ellipsis top-[2px]"
+                                >
+                                    {file.name}
+                                </motion.span>
+                            )}
+                        </AnimatePresence>
                     </button>
                     <button
                         type="submit"
-                        className="flex justify-center gap-2 grow max-h-12 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
+                        className="flex gap-2 justify-center items-center p-3 max-h-12 font-bold rounded-lg grow bg-dbutton text-background"
                         disabled={isSubmitting}
                     >
                         {isSubmitting ? <Loader /> : <>{t("Messages.send")}</>}
