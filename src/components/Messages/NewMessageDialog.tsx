@@ -46,7 +46,7 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
             { ...data, receiver_id: recipientId },
             {
                 onSuccess: (res) => {
-                    navigate(res.data.data.id.toString());
+                    navigate(res.id.toString());
                 },
                 onError: () => console.log("error"),
             }

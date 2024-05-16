@@ -1,12 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { apiPostMessage } from "api/messages/apiPostMessage";
-import { postMessageType } from "types/postMessageType";
+import {
+    apiPostMessage,
+    apiPostMessageInputType,
+} from "api/messages/apiPostMessages";
 
 export const usePostMessage = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationKey: ["messages"],
-        mutationFn: async (data: postMessageType) => apiPostMessage(data),
+        mutationFn: async (data: apiPostMessageInputType) => apiPostMessage(data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["Messages"] });
         },

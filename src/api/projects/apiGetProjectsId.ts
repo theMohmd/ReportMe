@@ -6,9 +6,9 @@ import { getCookie } from "src/utils/cookie";
 export type apiGetProjectsIdInputType = { id: number };
 export type apiGetProjectsIdOutputType = projectType;
 
-export const apiGetProjectsId: (
-    input: apiGetProjectsIdInputType
-) => Promise<apiGetProjectsIdOutputType> = async (input) => {
+export const apiGetProjectsId
+: ( input: apiGetProjectsIdInputType) => Promise<apiGetProjectsIdOutputType>
+= async (input) => {
     return axios
         .get(`http://127.0.0.1:8000/api/projects/${input.id}`, {
             headers: {

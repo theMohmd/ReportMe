@@ -6,7 +6,9 @@ import { getCookie } from "utils/cookie";
 export type apiGetMessegesIdInputType = { id: number };
 export type apiGetMessegesIdIdOutputType = messageType;
 
-export const apiGetMessegesId = async (input: apiGetMessegesIdInputType) => {
+export const apiGetMessegesId
+:(input: apiGetMessegesIdInputType) => Promise<apiGetMessegesIdIdOutputType>
+= async (input) => {
     return axios
         .get(`http://127.0.0.1:8000/api/messages/${input.id}`, {
             headers: {
