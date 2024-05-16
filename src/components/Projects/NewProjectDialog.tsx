@@ -1,20 +1,26 @@
 import { t } from "i18next";
+import { useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { AnimatePresence, motion } from "framer-motion";
 
-import { apiPostProjectsInputType as FormFields } from "api/projects/apiPostProjects";
+import { apiPostProjectsInputType } from "api/projects/apiPostProjects";
 import { usePostProjects } from "./hooks/usePostProject";
 
-import { SubmitHandler, useForm } from "react-hook-form";
-import { PaperclipIcon } from "lucide-react";
+import { PaperclipIcon, Trash2Icon } from "lucide-react";
 import Dialog from "components/Common/Dialog";
 import Loader from "components/ui/Loader";
 import Input from "components/ui/Input";
-import { useNavigate } from "react-router-dom";
+
+type FormFields = { title: string; description: string };
 
 //NewProjectDialog component
 const NewProjectDialog = ({ close }: { close: () => void }) => {
     //post project
     const { mutate } = usePostProjects();
     const navigate = useNavigate();
+    const [file, setFile] = useState<File | null>(null);
+    const fileRef = useRef<HTMLInputElement | null>(null);
 
     //handle form
     const {
@@ -25,8 +31,17 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
 
     //form submit funciton
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
+        //create input data
+        const newData: apiPostProjectsInputType = {
+            ...data,
+            file: undefined,
+        };
+
+        //add file if exists
+        if (file) newData.file = file;
+
         //send request
-        return mutate(data, {
+        return mutate(newData, {
             onSuccess: (res) => {
                 navigate(res.id.toString());
             },
@@ -71,8 +86,34 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                         type="button"
                         className="flex justify-center max-h-16 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
                         disabled={isSubmitting}
+                        onClick={() => {
+                            if (file) setFile(null);
+                            else fileRef.current?.click();
+                        }}
                     >
-                        <PaperclipIcon />
+                        <input
+                            className="hidden"
+                            type="file"
+                            ref={fileRef}
+                            onChange={(e) =>
+                                setFile(
+                                    e.target.files ? e.target.files[0] : null
+                                )
+                            }
+                        />
+                        {file ? <Trash2Icon /> : <PaperclipIcon />}
+                        <AnimatePresence>
+                            {file && (
+                                <motion.span
+                                    initial={{ width: 0 }}
+                                    animate={{ width: 200, maxWidth: "50%" }}
+                                    exit={{ width: 0 }}
+                                    className="relative overflow-hidden line-clamp-1 text-ellipsis top-[2px]"
+                                >
+                                    {file.name}
+                                </motion.span>
+                            )}
+                        </AnimatePresence>
                     </button>
                     <button
                         type="submit"

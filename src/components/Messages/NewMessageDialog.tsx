@@ -1,10 +1,12 @@
-import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { t } from "i18next";
+import { useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { AnimatePresence, motion } from "framer-motion";
 
-import { usePostMessage } from "./hooks/usePostMessage";
 import { apiGetUsers } from "api/users/apiGetUsers";
+import { usePostMessage } from "./hooks/usePostMessage";
+import { apiPostMessageInputType } from "api/messages/apiPostMessages";
 
 import { PaperclipIcon, Trash2Icon } from "lucide-react";
 import Dialog from "components/Common/Dialog";
@@ -12,8 +14,6 @@ import Loader from "components/ui/Loader";
 import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
 import UserSelect from "components/Common/UserSelect/UserSelect";
-import { apiPostMessageInputType } from "src/api/messages/apiPostMessages";
-import { AnimatePresence, motion } from "framer-motion";
 
 type FormFields = {
     title: string;
@@ -116,14 +116,6 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                         {errors.content.message}
                     </p>
                 )}
-                <input
-                    className="hidden"
-                    type="file"
-                    ref={fileRef}
-                    onChange={(e) =>
-                        setFile(e.target.files ? e.target.files[0] : null)
-                    }
-                />
                 <div className="flex gap-2 flex-col md:flex-row">
                     {/*todo send file*/}
                     <button
@@ -135,12 +127,22 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                             else fileRef.current?.click();
                         }}
                     >
+                        <input
+                            className="hidden"
+                            type="file"
+                            ref={fileRef}
+                            onChange={(e) =>
+                                setFile(
+                                    e.target.files ? e.target.files[0] : null
+                                )
+                            }
+                        />
                         {file ? <Trash2Icon /> : <PaperclipIcon />}
                         <AnimatePresence>
                             {file && (
                                 <motion.span
                                     initial={{ width: 0 }}
-                                    animate={{ width: 200,maxWidth:"50%" }}
+                                    animate={{ width: 200, maxWidth: "50%" }}
                                     exit={{ width: 0 }}
                                     className="relative overflow-hidden line-clamp-1 text-ellipsis top-[2px]"
                                 >
