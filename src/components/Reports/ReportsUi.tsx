@@ -1,6 +1,7 @@
 import { t } from "i18next";
 import { useNavigate } from "react-router-dom";
 
+import { useAuth } from "contexts/Auth/useAuth";
 import { dateFormat } from "utils/dateFormat";
 import { apiDataType } from "types/apiDataType";
 import { userProjectType } from "types/userProjectType";
@@ -17,6 +18,7 @@ type ReportsUiProps = {
 //ReportsUi component
 const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
     const navigate = useNavigate();
+    const { user } = useAuth();
     return (
         <div className="flex flex-col gap-2 grow">
             <div className="flex justify-between items-end mb-5 h-10 shrink-0">
@@ -38,12 +40,19 @@ const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
                             onClick={() => navigate(item.id.toString())}
                             key={item.id}
                         >
-                        <div className="flex [&>*]:shrink-0 grow items-center justify-center gap-2">
-                            <span className="grow w-0 line-clamp-1">{item.project.title}</span>
-                            <span className="text-sm font-thin line-clamp-1 ms-auto">
-                                {dateFormat(item.updated_at)}
-                            </span>
-                        </div>
+                            <div className="flex [&>*]:shrink-0 grow items-center justify-center gap-2">
+                                {user?.id === item.user.id && (
+                                    <span className="line-clamp-1 w-[10ch]">
+                                        {item.project.user.name}
+                                    </span>
+                                )}
+                                <span className="grow w-0 line-clamp-1">
+                                    {item.project.title}
+                                </span>
+                                <span className="text-sm font-thin line-clamp-1 ms-auto">
+                                    {dateFormat(item.updated_at)}
+                                </span>
+                            </div>
                         </ListItem>
                     ))}
             </List>

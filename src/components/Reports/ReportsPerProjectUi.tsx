@@ -1,6 +1,8 @@
 import { t } from "i18next";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import { ChevronLeftIcon, Plus } from "lucide-react";
 
 import { useAuth } from "contexts/Auth/useAuth";
 import { reportType } from "types/reportType";
@@ -8,8 +10,6 @@ import { dateFormat } from "src/utils/dateFormat";
 import { apiDataType } from "types/apiDataType";
 import { userProjectType } from "types/userProjectType";
 
-import { AnimatePresence } from "framer-motion";
-import { ChevronLeftIcon, Plus } from "lucide-react";
 import List from "components/Common/List/List";
 import ListItem from "components/Common/List/ListItem";
 import Pagination from "components/ui/Pagination";
@@ -76,11 +76,11 @@ const ReportsPerProjectUi = ({
                         key={item.id}
                     >
                         <div className="flex [&>*]:shrink-0 grow items-center justify-center gap-2">
-                            {user?.id !== item.user.id && (
-                                <span className="line-clamp-1 w-1/4">
-                                    {item.user.name}
-                                </span>
-                            )}
+                            <span className="line-clamp-1 w-[10ch]">
+                                {user?.id !== item.user.id
+                                    ? item.user.name
+                                    : item.project.user.name}
+                            </span>
                             <span className="line-clamp-1 grow w-0">
                                 {item.description}
                             </span>

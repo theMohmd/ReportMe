@@ -67,7 +67,7 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
                         deleteAction={() => deleteAction(item.id)}
                     >
                         <div className="flex [&>*]:shrink-0 grow items-center justify-start gap-2">
-                            <span className="w-1/5 line-clamp-1">
+                            <span className="w-[10ch] line-clamp-1">
                                 {user?.id === item.receiver.id
                                     ? item.sender.name
                                     : item.receiver.name}
