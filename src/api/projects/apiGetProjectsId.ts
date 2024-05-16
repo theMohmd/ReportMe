@@ -10,12 +10,12 @@ export const apiGetProjectsId
 : ( input: apiGetProjectsIdInputType) => Promise<apiGetProjectsIdOutputType>
 = async (input) => {
     return axios
-        .get(`http://127.0.0.1:8000/api/projects/${input.id}`, {
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                Authorization: "Bearer " + getCookie("token"),
-            },
-        })
-        .then((res) => res.data.data);
+    .get(`http://127.0.0.1:8000/api/projects/${input.id}`, {
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: "Bearer " + getCookie("token"),
+        },
+    })
+    .then((res) => res.data.data);
 };
