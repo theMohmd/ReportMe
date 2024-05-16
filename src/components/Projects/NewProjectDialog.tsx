@@ -1,6 +1,6 @@
 import { t } from "i18next";
 
-import { postProjectType as FormFields } from "api/projects/apiPostProject";
+import { apiPostProjectsInputType as FormFields } from "api/projects/apiPostProjects";
 import { usePostProjects } from "./hooks/usePostProject";
 
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -28,7 +28,7 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
         //send request
         return mutate(data, {
             onSuccess: (res) => {
-                navigate(res.data.data.id.toString());
+                navigate(res.id.toString());
             },
             onError: () => console.log("error"),
         });
