@@ -12,3 +12,4 @@ export type apiDataType<T> = {
     to: number;
     total: number;
 };
+

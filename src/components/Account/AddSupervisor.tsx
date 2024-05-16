@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { t } from "i18next";
 
-import { apiGetUsers } from "api/messages/apiGetUsers";
+import { apiGetUsers } from "api/users/apiGetUsers";
 import { apiPostUserSupervisor } from "api/user-supervisor/apiPostUserSupervisor";
 import { postUserSupervisorType } from "api/user-supervisor/apiPostUserSupervisor";
 
@@ -16,7 +16,7 @@ const AddSupervisor = () => {
     const [error, seterror] = useState("");
 
     const selectQuery = (input: string, mode: string) =>
-        apiGetUsers(input, mode);
+        apiGetUsers({ input: input, mode: mode });
 
     const queryClient = useQueryClient();
     const { mutate } = useMutation({

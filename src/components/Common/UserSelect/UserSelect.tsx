@@ -19,8 +19,9 @@ const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
     const [expanded, setexpanded] = useState(false);
 
     const ref = useOutsideClick(() => setexpanded(false));
+    //usertype[]
     const { data } = useQuery({
-        queryKey: ["get user list", input, mode, queryKey],
+        queryKey: ["userSelect", input, mode, queryKey],
         queryFn: () => query(input, mode),
     });
     const inputRef = useRef<HTMLInputElement | null>(null);

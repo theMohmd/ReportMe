@@ -1,15 +1,17 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
-import Dialog from "components/Common/Dialog";
 import { t } from "i18next";
-import Loader from "components/ui/Loader";
-import { PaperclipIcon } from "lucide-react";
-import { useCallback, useState } from "react";
+
 import { usePostMessage } from "./hooks/usePostMessage";
+import { apiGetUsers } from "api/users/apiGetUsers";
+
+import { PaperclipIcon } from "lucide-react";
+import Dialog from "components/Common/Dialog";
+import Loader from "components/ui/Loader";
 import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
 import UserSelect from "components/Common/UserSelect/UserSelect";
-import { apiGetUsers } from "api/messages/apiGetUsers";
-import { useNavigate } from "react-router-dom";
 
 type FormFields = { title: string; content: string };
 
@@ -54,12 +56,14 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
     return (
         <Dialog close={close} title={t("Messages.sendTitle")}>
             <div className="flex flex-col gap-2 justify-center items-start md:flex-row md:items-center">
-                <p className="font-medium text-primary dark:text-dprimary ps-2">{t("Messages.to")}</p>
+                <p className="font-medium text-primary dark:text-dprimary ps-2">
+                    {t("Messages.to")}
+                </p>
                 <UserSelect
                     queryKey="newMessage"
-                    query={useCallback((input, mode) => {
-                        return apiGetUsers(input, mode);
-                    }, [])}
+                    query={(input, mode) =>
+                        apiGetUsers({ input: input, mode: mode })
+                    }
                     set={(input) => setrecipientId(input)}
                 />
             </div>
