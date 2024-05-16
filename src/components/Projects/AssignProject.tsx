@@ -34,12 +34,12 @@ const AssginProject = ({ id }: AssginProjectProps) => {
         mutate({ user_id: userToAdd, project_id: id });
     };
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col h-[42px] justify-center ">
             <div className="flex flex-col gap-2 justify-center items-start md:flex-row md:items-center">
-                <p className="font-medium text-primary dark:text-dprimary ps-2">
+                <p className="font-medium text-primary ps-2 dark:text-dprimary">
                     {t("Projects.assign")}
                 </p>
-                <div className="flex grow gap-1 md:w-fit w-full">
+                <div className="flex gap-1 w-full grow md:w-fit">
                     <UserSelect
                         queryKey="getSubUsers"
                         query={query}
@@ -52,10 +52,10 @@ const AssginProject = ({ id }: AssginProjectProps) => {
             </div>
             {!!error && (
                 <div className="flex gap-2 py-2">
-                    <p className="font-medium invisible ps-2">
+                    <p className="invisible font-medium ps-2">
                         {t("Projects.assign")}
                     </p>
-                    <p className="ps-4 text-red-600">{error}</p>
+                    <p className="text-red-600 ps-4">{error}</p>
                 </div>
             )}
         </div>
