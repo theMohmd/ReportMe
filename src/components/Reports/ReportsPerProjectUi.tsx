@@ -1,27 +1,29 @@
 import { t } from "i18next";
-import List from "../Common/List/List";
-import ListItem from "../Common/List/ListItem";
-import Pagination from "../ui/Pagination";
-import { apiDataType } from "src/types/apiDataType";
-import { Link, useNavigate } from "react-router-dom";
-import { reportType } from "src/types/reportType";
-import CustomButton from "../ui/CustomButton";
-import { ChevronLeftIcon, Plus } from "lucide-react";
-import { projectType } from "src/types/projectType";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useAuth } from "contexts/Auth/useAuth";
+import { reportType } from "types/reportType";
+import { apiDataType } from "types/apiDataType";
+import { projectType } from "types/projectType";
+
 import { AnimatePresence } from "framer-motion";
+import { ChevronLeftIcon, Plus } from "lucide-react";
+import List from "components/Common/List/List";
+import ListItem from "components/Common/List/ListItem";
+import Pagination from "components/ui/Pagination";
+import CustomButton from "components/ui/CustomButton";
 import NewReportDialog from "./NewReportDialog";
-import { useAuth } from "src/contexts/Auth/useAuth";
 
 type ReportsUiProps = {
-    data: apiDataType<reportType>;
+    reports: apiDataType<reportType>;
     setPage: (input: number) => void;
     page: number;
     user_project: { id: number; project: projectType }; //todo add type
 };
 //ReportsPerProjectUi component
 const ReportsPerProjectUi = ({
-    data,
+    reports,
     user_project,
     setPage,
     page,
@@ -55,19 +57,19 @@ const ReportsPerProjectUi = ({
                     </Link>
                 </div>
                 <div className="flex gap-2">
-                {user?.id !== user_project.project.user.id &&
-                    <CustomButton onClick={() => setdialog(true)}>
-                        <p className="px-1">{t("Reports.newReport")}</p>
-                        <Plus />
-                    </CustomButton>
-                    }
+                    {user?.id !== user_project.project.user.id && (
+                        <CustomButton onClick={() => setdialog(true)}>
+                            <p className="px-1">{t("Reports.newReport")}</p>
+                            <Plus />
+                        </CustomButton>
+                    )}
                     <CustomButton onClick={() => navigate(-1)}>
                         <ChevronLeftIcon />
                     </CustomButton>
                 </div>
             </div>
             <List>
-                {data.data.map((item) => (
+                {reports.data.map((item) => (
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
@@ -78,7 +80,7 @@ const ReportsPerProjectUi = ({
             <Pagination
                 initialPage={page}
                 setPage={setPage}
-                pageCount={Math.ceil(data.total / 10)}
+                pageCount={Math.ceil(reports.total / 10)}
             />
         </div>
     );

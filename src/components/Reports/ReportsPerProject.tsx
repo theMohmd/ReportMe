@@ -7,12 +7,12 @@ import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
 import ReportsPerProjectUi from "./ReportsPerProjectUi";
 import { useParams } from "react-router-dom";
-import { apiGetReports } from "src/api/reports/apiGetReports";
-import { apiGetUserProjects } from "src/api/user-projects/apiGetUserProjects";
+import { apiGetReports } from "api/reports/apiGetReports";
+import { apiGetUserProjects } from "api/user-projects/apiGetUserProjects";
 
 //ReportsPerProject component
 const ReportsPerProject = () => {
-    const { user_project_id } = useParams(); //user-project id
+    const { user_project_id } = useParams();
     const [page, setpage] = useState(0);
     const { data, error, isLoading } = useQuery({
         queryKey: ["user-projects", "projects", user_project_id, page],
@@ -25,7 +25,7 @@ const ReportsPerProject = () => {
                 //project: user_project.project.id, //todo
             });
             return {
-                data: reports,
+                reports: reports,
                 user_project: user_project,
             };
         },
@@ -41,7 +41,7 @@ const ReportsPerProject = () => {
             <ReportsPerProjectUi
                 setPage={(input: number) => setpage(input)}
                 page={page}
-                data={data.data.data[0]}
+                reports={data.reports}
                 user_project={data.user_project}
             />
         )
