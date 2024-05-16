@@ -1,6 +1,6 @@
 import axios from "axios";
-import { apiDataType } from "src/types/apiDataType";
-import { messageType } from "src/types/messageType";
+import { apiDataType } from "types/apiDataType";
+import { messageType } from "types/messageType";
 import { getCookie } from "utils/cookie";
 
 //get messages with page
