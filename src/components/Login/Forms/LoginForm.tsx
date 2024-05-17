@@ -26,24 +26,22 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        try {
-            apiLogin(data)
-                .then((res: apiLoginOutputType) => {
-                    setToken(res);
-                })
-                .then(() => {
-                    apiGetAuth().then((res: apiGetAuthOutputType) => {
-                        setUser(res);
-                        navigate("/");
-                    });
+        apiLogin(data)
+            .then((res: apiLoginOutputType) => {
+                setToken(res);
+            })
+            .then(() => {
+                apiGetAuth().then((res: apiGetAuthOutputType) => {
+                    setUser(res);
+                    navigate("/");
                 });
-        } catch (error) {
-            console.error(error);
-            setError("root", {
-                type: "400",
-                message: t("login.credentialError"),
+            })
+            .catch(() => {
+                setError("root", {
+                    type: "400",
+                    message: t("login.credentialError"),
+                });
             });
-        }
     };
     return (
         <motion.form
@@ -66,7 +64,7 @@ const LoginForm = () => {
                             message: t("login.emailValidError"),
                         },
                     })}
-                    type="email"
+                    type="text"
                 />
             </div>
             {errors.email && (

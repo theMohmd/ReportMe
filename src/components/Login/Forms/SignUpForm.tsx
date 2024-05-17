@@ -24,18 +24,18 @@ const SignupForm = () => {
 
     const navigate = useNavigate();
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        try {
-            apiRegister(data).then((res: apiRegisterOutputType) => {
+        apiRegister(data)
+            .then((res: apiRegisterOutputType) => {
                 setToken(res.token);
                 setUser(res.user);
                 navigate("/");
+            })
+            .catch(() => {
+                setError("root", {
+                    type: "422",
+                    message: t("login.signupError"),
+                });
             });
-        } catch (error) {
-            setError("root", {
-                type: "422",
-                message: t("login.signupError"),
-            });
-        }
     };
     return (
         <motion.form
