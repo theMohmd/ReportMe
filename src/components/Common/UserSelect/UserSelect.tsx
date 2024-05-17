@@ -14,12 +14,12 @@ type UserSelectProps = {
     queryKey: string;
 };
 const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
+    const [expanded, setexpanded] = useState(false);
     const [input, setInput] = useState("");
     const [mode, setmode] = useState<"username" | "email">("username");
-    const [expanded, setexpanded] = useState(false);
 
     const ref = useOutsideClick(() => setexpanded(false));
-    //usertype[]
+
     const { data } = useQuery({
         queryKey: ["userSelect", input, mode, queryKey],
         queryFn: () => query(input, mode),
@@ -28,7 +28,7 @@ const UserSelect = ({ set, query, queryKey }: UserSelectProps) => {
     return (
         <div
             ref={ref}
-            className="overflow-hidden grow flex relative flex-col h-[42px] w-full md:w-fit"
+            className="grow flex relative flex-col h-[42px] w-full md:w-fit"
         >
             <div className="flex absolute z-20 flex-col w-full text-primary Input dark:text-dprimary">
                 <div className="flex gap-2 items-center flex-row">
