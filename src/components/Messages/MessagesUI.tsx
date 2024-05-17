@@ -64,7 +64,11 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
-                        deleteAction={() => deleteAction(item.id)}
+                        deleteAction={
+                            user?.id === item.sender.id
+                                ? () => deleteAction(item.id)
+                                : undefined
+                        }
                     >
                         <div className="flex [&>*]:shrink-0 grow items-center justify-start gap-2">
                             <span className="w-[10ch] line-clamp-1">
