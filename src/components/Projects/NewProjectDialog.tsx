@@ -52,7 +52,7 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
     return (
         <Dialog close={close} title={t("Projects.newProject")}>
             <form
-                className="size-full flex flex-col mt-2 text-primary dark:text-dprimary gap-2"
+                className="flex flex-col gap-2 mt-2 size-full text-primary dark:text-dprimary"
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <Input
@@ -63,12 +63,12 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                     type="text"
                 />
                 {errors.title && (
-                    <p className="font-medium ps-2 text-red-600 ">
+                    <p className="font-medium text-red-600 ps-2">
                         {errors.title.message}
                     </p>
                 )}
                 <textarea
-                    className="Input resize-none grow"
+                    className="resize-none Input grow"
                     placeholder={t("Projects.description")}
                     {...register("description", {
                         required: t("Projects.descriptionEmptyError"),
@@ -76,14 +76,14 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                 ></textarea>
 
                 {errors.description && (
-                    <p className="font-medium ps-2 text-red-600 ">
+                    <p className="font-medium text-red-600 ps-2">
                         {errors.description.message}
                     </p>
                 )}
                 <div className="flex gap-2">
                     <button
                         type="button"
-                        className="flex justify-center max-h-16 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
+                        className="flex max-w-[50%] justify-center items-center p-3 max-h-16 font-bold rounded-lg bg-dbutton text-background"
                         disabled={isSubmitting}
                         onClick={() => {
                             if (file) setFile(null);
@@ -105,9 +105,9 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                             {file && (
                                 <motion.span
                                     initial={{ width: 0 }}
-                                    animate={{ width: 200, maxWidth: "50%" }}
+                                    animate={{ width: 200 }}
                                     exit={{ width: 0 }}
-                                    className="relative overflow-hidden line-clamp-1 text-ellipsis top-[2px]"
+                                    className="overflow-hidden relative line-clamp-1 text-ellipsis top-[2px]"
                                 >
                                     {file.name}
                                 </motion.span>
@@ -116,7 +116,7 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                     </button>
                     <button
                         type="submit"
-                        className="flex justify-center gap-2 grow max-h-12 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
+                        className="flex gap-2 justify-center items-center p-3 max-h-12 font-bold rounded-lg grow bg-dbutton text-background"
                         disabled={isSubmitting}
                     >
                         {isSubmitting ? (

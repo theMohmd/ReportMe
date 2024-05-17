@@ -99,7 +99,7 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
                             {file && (
                                 <motion.span
                                     initial={{ width: 0 }}
-                                    animate={{ width: 200, maxWidth: "50%" }}
+                                    animate={{ width: 200 }}
                                     exit={{ width: 0 }}
                                     className="relative overflow-hidden line-clamp-1 text-ellipsis top-[2px]"
                                 >

@@ -116,7 +116,7 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                         {errors.content.message}
                     </p>
                 )}
-                <div className="flex gap-2 flex-col md:flex-row">
+                <div className="flex flex-col gap-2 md:flex-row">
                     <button
                         type="button"
                         className="md:max-w-[50%] flex justify-center gap-2 items-center p-3 max-h-16 font-bold rounded-lg bg-dbutton text-background"
@@ -141,9 +141,9 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                             {file && (
                                 <motion.span
                                     initial={{ width: 0 }}
-                                    animate={{ width: 200, maxWidth: "50%" }}
+                                    animate={{ width: 200 }}
                                     exit={{ width: 0 }}
-                                    className="relative overflow-hidden line-clamp-1 text-ellipsis top-[2px]"
+                                    className="overflow-hidden relative line-clamp-1 text-ellipsis top-[2px]"
                                 >
                                     {file.name}
                                 </motion.span>
