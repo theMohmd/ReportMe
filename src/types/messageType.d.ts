@@ -4,9 +4,9 @@ export type messageType = {
     id: number;
     title: string;
     content: string;
-    file: string;
+    file: string | null;
     sender: userType;
     receiver: userType;
-    updated_at: string;
     created_at: string;
+    updated_at: string;
 };

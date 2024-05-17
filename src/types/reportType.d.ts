@@ -3,12 +3,11 @@ import { projectType } from "types/projects/projectType";
 
 export type reportType = {
     id: number;
-    created_at: string;
+    description: string;
+    file: string | null;
+    score: number | null;
+    user: userType;
     project: projectType;
     updated_at: string;
-    user: userType;
-    description: string;
-    file: string;
-    score: number | null;
-    updated_at: string;
+    created_at: string;
 };

@@ -5,7 +5,7 @@ export type ticketType = {
     user: userType;
     title: string;
     description: string;
-    file: string;
+    file: string | null;
     updated_at: string;
     created_at: string;
 };

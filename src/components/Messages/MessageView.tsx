@@ -117,7 +117,7 @@ const MessageView = () => {
                     {/******************************************************************************
                     file if exists
                     ******************************************************************************/}
-                    {data.file !== "/storage/" && (
+                    {data.file && (
                         <motion.div
                             variants={scaleVariants}
                             className="flex flex-col gap-2 p-5 rounded-xl border bg-background grow border-lightBorder dark:bg-dbackground dark:border-dlightBorder"
