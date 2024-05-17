@@ -10,7 +10,9 @@ const Login = () => {
     const [mode, setmode] = useState<"login" | "signup">("login");
     return (
         <div className="flex flex-col justify-center overflow-y-auto items-center p-5 bg-background2 dark:bg-dbackground2 ">
-            <p className="p-5 text-5xl font-black text-primary dark:text-dprimary ">Report<span className="text-dbutton">Me</span></p>
+            <p className="p-5 text-5xl font-black text-primary dark:text-dprimary ">
+                Report<span className="text-dbutton">Me</span>
+            </p>
             <div className="flex flex-col items-center w-full max-h-[600px] max-w-[800px]">
                 <AnimatePresence>
                     {mode === "login" ? <LoginForm /> : <SignupForm />}
