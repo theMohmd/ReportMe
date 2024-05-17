@@ -62,29 +62,29 @@ const Account = () => {
                 </motion.div>
 
                 {/*supervisors / subordinates*/}
-                <div className="flex gap-2 grow text-primary flex-col lg:flex-row ">
+                <div className="flex flex-col gap-2 lg:flex-row grow text-primary">
                     {/*supervisors*/}
                     <motion.div
                         variants={variants}
-                        className="flex flex-col gap-2 p-5 rounded-xl border grow text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                        className="flex flex-col gap-2 p-5 rounded-xl border grow shrink-0 lg:w-0 text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
                     >
-                        <div className="flex gap-2 justify-between items-center mb-3 sticky top-0">
+                        <div className="flex sticky top-0 gap-2 justify-between items-center mb-3">
                             <p className="text-lg font-semibold">
                                 {t("Account.supervisors")}
                             </p>
                         </div>
                         <AddSupervisor />
 
-                        <div className="flex grow overflow-y-auto h-0">
+                        <div className="flex overflow-y-auto h-0 grow">
                             <SupervisorList />
                         </div>
                     </motion.div>
                     {/*subordinates*/}
                     <motion.div
                         variants={variants}
-                        className="flex flex-col gap-2 p-5 rounded-xl border grow text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                        className="flex flex-col gap-2 p-5 rounded-xl border grow shrink-0 lg:w-0 text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
                     >
-                        <div className="flex gap-2 justify-between items-center sticky top-0">
+                        <div className="flex sticky top-0 gap-2 justify-between items-center">
                             <p className="text-lg font-semibold">
                                 {t("Account.subordinates")}
                             </p>

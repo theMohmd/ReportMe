@@ -119,7 +119,7 @@ const NewMessageDialog = ({ close }: { close: () => void }) => {
                 <div className="flex flex-col gap-2 md:flex-row">
                     <button
                         type="button"
-                        className="md:max-w-[50%] flex justify-center gap-2 items-center p-3 max-h-16 font-bold rounded-lg bg-dbutton text-background"
+                        className="md:max-w-[50%] flex justify-center gap-2 items-center p-3 max-h-16 font-bold rounded-lg bg-background dark:bg-dbackground border border-lightBorder dark:border-dlightBorder text-primary dark:text-dprimary "
                         disabled={isSubmitting}
                         onClick={() => {
                             if (file) setFile(null);
