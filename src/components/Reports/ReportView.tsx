@@ -1,7 +1,9 @@
+import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useAuth } from "contexts/Auth/useAuth";
+import { dateFormat } from "utils/dateFormat";
 import { customError } from "types/customError";
 import { apiGetReportsId } from "api/reports/apiGetReportsId";
 
@@ -9,7 +11,7 @@ import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
 import CustomButton from "components/ui/CustomButton";
 import { ChevronLeftIcon, Trash2Icon } from "lucide-react";
-import { dateFormat } from "utils/dateFormat";
+import { scaleVariants } from "src/utils/motionVariants";
 
 //ReportView component
 const ReportView = () => {
@@ -46,6 +48,7 @@ const ReportView = () => {
         <>
             {data && (
                 <div className="flex flex-col gap-2 grow">
+                    {/*top bar*/}
                     <div className="flex justify-between items-center mb-5">
                             <Link
                                 to={`/projects/${data.project.id}`}
@@ -64,14 +67,15 @@ const ReportView = () => {
                             </CustomButton>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                    {/*content*/}
+                    <motion.div variants={scaleVariants} initial="initial" animate="animate" className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
                         <div className="flex gap-1 items-center pb-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
                             <span>{data.user.name}</span>
                             <span className="text-sm font-thin">({data.user.email})</span>
                             <span className="text-sm font-thin ms-auto">{dateFormat(data.updated_at)}</span>
                         </div>
                         <p className="overflow-auto h-0 grow">{data.description}</p>
-                    </div>
+                    </motion.div>
                 </div>
             )}
         </>

@@ -1,7 +1,14 @@
 import { t } from "i18next";
-import { useAuth } from "src/contexts/Auth/useAuth";
-import CustomButton from "../ui/CustomButton";
+import { motion } from "framer-motion";
 import { SquarePenIcon } from "lucide-react";
+
+import { useAuth } from "contexts/Auth/useAuth";
+import {
+    parentStaggerVariants,
+    scaleVariants as variants,
+} from "src/utils/motionVariants";
+
+import CustomButton from "components/ui/CustomButton";
 import AddSupervisor from "./AddSupervisor";
 import SupervisorList from "./SupervisorList";
 import SubordinateList from "./SubordinateList";
@@ -18,9 +25,17 @@ const Account = () => {
                 </p>
             </div>
 
-            <div className="flex flex-col gap-2 grow size-full">
+            <motion.div
+                variants={parentStaggerVariants}
+                initial="initial"
+                animate="animate"
+                className="flex flex-col gap-2 grow size-full"
+            >
                 {/*personal info*/}
-                <div className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                <motion.div
+                    variants={variants}
+                    className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                >
                     <div className="flex gap-2 justify-between items-center mb-3">
                         <p className="text-lg font-semibold">
                             {t("Account.info")}
@@ -44,12 +59,15 @@ const Account = () => {
                             {user?.email}
                         </p>
                     </div>
-                </div>
+                </motion.div>
 
                 {/*supervisors / subordinates*/}
                 <div className="flex gap-2 grow text-primary flex-col lg:flex-row ">
                     {/*supervisors*/}
-                    <div className="flex flex-col gap-2 p-5 rounded-xl border grow text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                    <motion.div
+                        variants={variants}
+                        className="flex flex-col gap-2 p-5 rounded-xl border grow text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                    >
                         <div className="flex gap-2 justify-between items-center mb-3 sticky top-0">
                             <p className="text-lg font-semibold">
                                 {t("Account.supervisors")}
@@ -60,18 +78,21 @@ const Account = () => {
                         <div className="flex grow overflow-y-auto h-0">
                             <SupervisorList />
                         </div>
-                    </div>
+                    </motion.div>
                     {/*subordinates*/}
-                    <div className="flex flex-col gap-2 p-5 rounded-xl border grow text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                    <motion.div
+                        variants={variants}
+                        className="flex flex-col gap-2 p-5 rounded-xl border grow text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                    >
                         <div className="flex gap-2 justify-between items-center sticky top-0">
                             <p className="text-lg font-semibold">
                                 {t("Account.subordinates")}
                             </p>
                         </div>
                         <SubordinateList />
-                    </div>
+                    </motion.div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 };

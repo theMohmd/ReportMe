@@ -1,4 +1,5 @@
 import { t } from "i18next";
+import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { customError } from "types/customError";
 
@@ -7,6 +8,7 @@ import { apiGetUserProjects } from "api/user-projects/apiGetUserProjects";
 
 import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
+import { scaleVariants } from "src/utils/motionVariants";
 
 //ProjectUsers component
 type ProjectUsersProps = { id: number };
@@ -20,7 +22,7 @@ const ProjectUsers = ({ id }: ProjectUsersProps) => {
 
     //todo delete user
     return (
-        <div className="px-5 rounded-xl border text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+        <motion.div variants={scaleVariants} className="px-5 rounded-xl border text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
             {data && data.data.length ? (
                 data.data.map(
                     (item: { id: number; user: userType }, index: number) => (
@@ -44,7 +46,7 @@ const ProjectUsers = ({ id }: ProjectUsersProps) => {
                     {t("Projects.noUsers")}
                 </p>
             )}
-        </div>
+        </motion.div>
     );
 };
 

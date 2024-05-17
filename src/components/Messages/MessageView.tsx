@@ -12,6 +12,8 @@ import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
 import CustomButton from "components/ui/CustomButton";
 import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
+import { motion } from "framer-motion";
+import { parentStaggerVariants, scaleVariants } from "src/utils/motionVariants";
 
 //MessageView component
 const MessageView = () => {
@@ -44,7 +46,7 @@ const MessageView = () => {
     return (
         <>
             {data && (
-                <div className="flex flex-col gap-2 grow">
+                <motion.div variants={parentStaggerVariants} initial="initial" animate="animate"  className="flex flex-col gap-2 grow">
                     <div className="flex justify-between items-center mb-5">
                         <p className="px-2 line-clamp-1 text-3xl font-semibold text-primary dark:text-dprimary">
                             {data.title}
@@ -61,7 +63,7 @@ const MessageView = () => {
                             </CustomButton>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                    <motion.div variants={scaleVariants} className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
                         <div className="flex gap-1 items-center pb-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
                             <span>{data.sender.name}</span>
                             <span className="text-sm font-thin">
@@ -77,13 +79,13 @@ const MessageView = () => {
                             </span>
                         </div>
                         <p className="overflow-auto h-0 grow">{data.content}</p>
-                    </div>
+                    </motion.div>
                     {data.file !== "/storage/" && (
-                        <div className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                        <motion.div variants={scaleVariants} className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
                         <a href={"http://127.0.0.1:8000/download"+data.file} download="name">file</a>
-                        </div>
+                        </motion.div>
                     )}
-                </div>
+                </motion.div>
             )}
         </>
     );

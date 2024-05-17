@@ -1,5 +1,8 @@
+import { motion } from "framer-motion";
 import { Trash2 } from "lucide-react";
 import { ReactNode } from "react";
+import { useLang } from "src/contexts/Lang/useLang";
+import { slideVariants } from "src/utils/motionVariants";
 
 //ListItem component
 type ListItemProps = {
@@ -14,8 +17,11 @@ const ListItem = ({
     onClick,
     deleteAction,
 }: ListItemProps) => {
+    const { lang } = useLang();
+    const variants = slideVariants(lang);
     return (
-        <div
+        <motion.div
+            variants={variants}
             onClick={onClick ? onClick : undefined}
             className="flex gap-2 justify-start items-center py-2 px-4 rounded-lg border cursor-pointer bg-background border-lightBorder text-primary dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder hover:shadow-cshadow"
         >
@@ -34,7 +40,7 @@ const ListItem = ({
                     </button>
                 </div>
             )}
-        </div>
+        </motion.div>
     );
 };
 

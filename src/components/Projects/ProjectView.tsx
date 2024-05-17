@@ -1,5 +1,7 @@
+import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
+import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
 
 import { useAuth } from "contexts/Auth/useAuth";
 import { dateFormat } from "utils/dateFormat";
@@ -12,7 +14,7 @@ import ErrorPage from "components/ui/ErrorPage";
 import CustomButton from "components/ui/CustomButton";
 import ProjectUsers from "./ProjectUsers";
 import AssignProject from "./AssignProject";
-import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
+import { parentStaggerVariants, scaleVariants } from "src/utils/motionVariants";
 
 //ProjectView component
 const ProjectView = () => {
@@ -46,7 +48,13 @@ const ProjectView = () => {
     return (
         <>
             {data && (
-                <div className="flex flex-col gap-2 grow">
+                <motion.div
+                    variants={parentStaggerVariants}
+                    initial="initial"
+                    animate="animate"
+                    className="flex flex-col gap-2 grow"
+                >
+                    {/*top bar*/}
                     <div className="flex justify-between items-center mb-5">
                         <div className="flex">
                             <p className="px-2 line-clamp-1 text-3xl font-semibold text-primary dark:text-dprimary">
@@ -69,21 +77,46 @@ const ProjectView = () => {
                             </CustomButton>
                         </div>
                     </div>
+                    {/*content*/}
                     {user?.id === data.user.id && (
                         <>
                             <AssignProject id={data.id} />
                             <ProjectUsers id={data.id} />
                         </>
                     )}
-                    <div className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                    <motion.div
+                        variants={scaleVariants}
+                        className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                    >
                         <div className="flex gap-1 items-center pb-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
                             <span>{data.user.name}</span>
-                            <span className="text-sm font-thin">({data.user.email})</span>
-                            <span className="text-sm font-thin ms-auto">{dateFormat(data.updated_at)}</span>
+                            <span className="text-sm font-thin">
+                                ({data.user.email})
+                            </span>
+                            <span className="text-sm font-thin ms-auto">
+                                {dateFormat(data.updated_at)}
+                            </span>
                         </div>
-                        <p className="overflow-auto h-0 grow">{data.description}</p>
-                    </div>
-                </div>
+                        <p className="overflow-auto h-0 grow">
+                            {data.description}
+                        </p>
+                    </motion.div>
+                    {data.file !== "/storage/" && (
+                        <motion.div
+                            variants={scaleVariants}
+                            className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                        >
+                            <a
+                                href={
+                                    "http://127.0.0.1:8000/download" + data.file
+                                }
+                                download="name"
+                            >
+                                file
+                            </a>
+                        </motion.div>
+                    )}
+                </motion.div>
             )}
         </>
     );

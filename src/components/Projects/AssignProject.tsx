@@ -1,14 +1,19 @@
 import { t } from "i18next";
+import { motion } from "framer-motion";
 import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { useGetSubordinates } from "components/Account/hooks/useGetSubordinates";
-import { apiPostUserProjects, apiPostUserProjectsInputType } from "api/user-projects/apiPostUserProjects";
+import {
+    apiPostUserProjects,
+    apiPostUserProjectsInputType,
+} from "api/user-projects/apiPostUserProjects";
 
 import Loader from "components/ui/Loader";
 import UserSelect from "components/Common/UserSelect/UserSelect";
 import CustomButton from "components/ui/CustomButton";
+import { scaleVariants } from "src/utils/motionVariants";
+import { useGetSubordinates } from "./hooks/useGetSubordinates";
 
 //AssginProject component
 type AssginProjectProps = { id: number };
@@ -17,7 +22,7 @@ const AssginProject = ({ id }: AssginProjectProps) => {
     const [userToAdd, setuserToAdd] = useState<number | null>(null);
     const [error, seterror] = useState("");
     const queryClient = useQueryClient();
-    const { mutate,isPending } = useMutation({
+    const { mutate, isPending } = useMutation({
         mutationKey: ["user-projects"],
         mutationFn: async (data: apiPostUserProjectsInputType) =>
             apiPostUserProjects(data),
@@ -35,7 +40,10 @@ const AssginProject = ({ id }: AssginProjectProps) => {
         mutate({ user_id: userToAdd, project_id: id });
     };
     return (
-        <div className="flex flex-col h-[42px] justify-center ">
+        <motion.div
+            variants={scaleVariants}
+            className="flex flex-col h-[42px] justify-center "
+        >
             <div className="flex flex-col gap-2 justify-center items-start md:flex-row md:items-center">
                 <p className="font-medium text-primary ps-2 dark:text-dprimary">
                     {t("Projects.assign")}
@@ -43,7 +51,7 @@ const AssginProject = ({ id }: AssginProjectProps) => {
                 <div className="flex gap-1 w-full grow md:w-fit">
                     <UserSelect
                         queryKey="getSubUsers"
-                        query={query}
+                        query={(input,mode)=>query(input,mode)}
                         set={(i) => setuserToAdd(i)}
                     />
                     <CustomButton onClick={assignAction}>
@@ -59,7 +67,7 @@ const AssginProject = ({ id }: AssginProjectProps) => {
                     <p className="text-red-600 ps-4">{error}</p>
                 </div>
             )}
-        </div>
+        </motion.div>
     );
 };
 
