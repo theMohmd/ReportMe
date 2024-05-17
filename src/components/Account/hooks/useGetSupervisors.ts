@@ -5,14 +5,19 @@ import { apiGetUserSupervisors } from "api/user-supervisors/apiGetUserSupervisor
 //a hook that return a function which utilizes api to return list of supervisor
 export const useGetSupervisors = () => {
     const { user } = useAuth();
-    return () =>
-        apiGetUserSupervisors().then((res) => {
-            return res.data
-                .filter((item: userSupervisorType) => {
-                    return item.user.id === user?.id;
-                })
-                .map((item: userSupervisorType) => {
-                    return { USid: item.id, ...item.supervisor };
-                });
-        });
+    return (page: number = 1) =>
+        apiGetUserSupervisors({ input: "", mode: "", page: page }).then(
+            (res) => {
+                return {
+                    total: res.total,
+                    data: res.data
+                        .filter((item: userSupervisorType) => {
+                            return item.user.id === user?.id;
+                        })
+                        .map((item: userSupervisorType) => {
+                            return { USid: item.id, ...item.supervisor };
+                        }),
+                };
+            }
+        );
 };
