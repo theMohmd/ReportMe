@@ -40,7 +40,7 @@ const ReportView = () => {
     // };
     if (isLoading)
         return (
-            <Loader size={100} className="text-primary dark:text-dprimary" />
+            <Loader size={100} />
         );
     if (error) return <ErrorPage error={error as customError} />;
     console.log(data);
@@ -52,7 +52,7 @@ const ReportView = () => {
                     <div className="flex justify-between items-center mb-5">
                             <Link
                                 to={`/projects/${data.project.id}`}
-                                className="px-2 text-3xl line-clamp-1 font-semibold text-primary dark:text-dprimary"
+                                className="px-2 text-3xl line-clamp-1 font-semibold "
                             >
                                 {data.project.title}
                             </Link>
@@ -68,7 +68,7 @@ const ReportView = () => {
                         </div>
                     </div>
                     {/*content*/}
-                    <motion.div variants={scaleVariants} initial="initial" animate="animate" className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+                    <motion.div variants={scaleVariants} initial="initial" animate="animate" className="flex flex-col gap-2 p-5 rounded-xl border bg-background grow border-lightBorder dark:bg-dbackground dark:border-dlightBorder">
                         <div className="flex gap-1 items-center pb-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
                             <span>{data.user.name}</span>
                             <span className="text-sm font-thin">({data.user.email})</span>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 //NotFound component
 const NotFound = () => {
     return (
-        <div className="flex flex-col justify-center items-center pb-48 grow text-primary dark:text-dprimary">
+        <div className="flex flex-col justify-center items-center pb-48 grow ">
             <p className="text-8xl font-black">404</p>
             <p className="text-4xl">{t("common.pageNotFound")}</p>
             <Link to="/" className="mt-2 text-xl">

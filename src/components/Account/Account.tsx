@@ -20,7 +20,7 @@ const Account = () => {
         <div className="flex flex-col gap-2 grow">
             {/*title*/}
             <div className="flex justify-between items-center px-2 mb-5 shrink-0 h-[40px]">
-                <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
+                <p className="px-2 text-3xl font-semibold ">
                     {t("Account.account")}
                 </p>
             </div>
@@ -34,7 +34,7 @@ const Account = () => {
                 {/*personal info*/}
                 <motion.div
                     variants={variants}
-                    className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                    className="flex flex-col gap-2 p-5 rounded-xl border bg-background border-lightBorder dark:bg-dbackground dark:border-dlightBorder"
                 >
                     <div className="flex gap-2 justify-between items-center mb-3">
                         <p className="text-lg font-semibold">
@@ -62,11 +62,11 @@ const Account = () => {
                 </motion.div>
 
                 {/*supervisors / subordinates*/}
-                <div className="flex flex-col gap-2 lg:flex-row grow text-primary">
+                <div className="flex flex-col gap-2 lg:flex-row grow ">
                     {/*supervisors*/}
                     <motion.div
                         variants={variants}
-                        className="flex flex-col gap-2 p-5 rounded-xl border grow shrink-0 lg:w-0 text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                        className="flex flex-col gap-2 p-5 rounded-xl border grow shrink-0 lg:w-0 bg-background border-lightBorder dark:bg-dbackground dark:border-dlightBorder"
                     >
                         <div className="flex sticky top-0 gap-2 justify-between items-center mb-3">
                             <p className="text-lg font-semibold">
@@ -82,7 +82,7 @@ const Account = () => {
                     {/*subordinates*/}
                     <motion.div
                         variants={variants}
-                        className="flex flex-col gap-2 p-5 rounded-xl border grow shrink-0 lg:w-0 text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                        className="flex flex-col gap-2 p-5 rounded-xl border grow shrink-0 lg:w-0 bg-background border-lightBorder dark:bg-dbackground dark:border-dlightBorder"
                     >
                         <div className="flex sticky top-0 gap-2 justify-between items-center">
                             <p className="text-lg font-semibold">

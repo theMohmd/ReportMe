@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 //Dialog component
 type DialogProps = {
     children: ReactNode;
-    title?:string;
+    title?: string;
     close: () => void;
 };
 const Dialog = ({ children, title, close }: DialogProps) => {
@@ -22,12 +22,14 @@ const Dialog = ({ children, title, close }: DialogProps) => {
                 className="flex flex-col p-5 rounded-xl border bg-background2 grow max-w-[1200px] border-lightBorder dark:border-dlightBorder dark:bg-dbackground2"
             >
                 <div className="grid justify-center items-center mb-5 grid-cols-[32px_1fr_32px]">
-                    <p className="col-start-2 justify-self-center text-xl font-semibold text-primary dark:text-dprimary">{title}</p>
-                    <button onClick={close} className="col-start-3 justify-self-end w-fit">
-                        <XIcon
-                            className="text-primary dark:text-dprimary"
-                            size={32}
-                        />
+                    <p className="col-start-2 justify-self-center text-xl font-semibold ">
+                        {title}
+                    </p>
+                    <button
+                        onClick={close}
+                        className="col-start-3 justify-self-end w-fit"
+                    >
+                        <XIcon size={32} />
                     </button>
                 </div>
                 {children}

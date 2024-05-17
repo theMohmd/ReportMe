@@ -10,7 +10,7 @@ const Login = () => {
     const [mode, setmode] = useState<"login" | "signup">("login");
     return (
         <div className="flex flex-col justify-center overflow-y-auto items-center p-5 bg-background2 dark:bg-dbackground2 ">
-            <p className="p-5 text-5xl font-black text-primary dark:text-dprimary ">
+            <p className="p-5 text-5xl font-black ">
                 Report<span className="text-dbutton">Me</span>
             </p>
             <div className="flex flex-col items-center w-full max-h-[600px] max-w-[800px]">
@@ -23,7 +23,7 @@ const Login = () => {
                 {/******************************************************************************
                 change form
                 ******************************************************************************/}
-                <div className="flex gap-2 dark:text-dprimary mt-2 text-primary ">
+                <div className="flex gap-2 mt-2 ">
                     <p>
                         {mode === "login"
                             ? t("login.signupQuestion")

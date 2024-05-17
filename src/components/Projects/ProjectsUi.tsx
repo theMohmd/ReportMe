@@ -50,7 +50,7 @@ const ProjectsUi = ({ data, setPage, page }: ProjectsUiProps) => {
                 )}
             </AnimatePresence>
             <div className="flex justify-between items-end mb-5 h-10 shrink-0">
-                <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
+                <p className="px-2 text-3xl font-semibold ">
                     {t("Projects.projects")}
                 </p>
                 <CustomButton onClick={() => setdialog(true)}>

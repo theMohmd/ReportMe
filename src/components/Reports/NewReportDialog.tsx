@@ -58,7 +58,7 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
     return (
         <Dialog close={close} title={t("Reports.newReport")}>
             <form
-                className="size-full flex flex-col mt-2 text-primary dark:text-dprimary gap-2"
+                className="size-full flex flex-col mt-2 gap-2"
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <textarea
@@ -77,7 +77,7 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
                 <div className="flex flex-col gap-2 md:flex-row">
                     <button
                         type="button"
-                        className="md:max-w-[50%] flex justify-center gap-2 items-center p-3 max-h-16 font-bold rounded-lg bg-background dark:bg-dbackground border border-lightBorder dark:border-dlightBorder text-primary dark:text-dprimary "
+                        className="md:max-w-[50%] flex justify-center gap-2 items-center p-3 max-h-16 font-bold rounded-lg bg-background dark:bg-dbackground border border-lightBorder dark:border-dlightBorder "
                         disabled={isSubmitting}
                         onClick={() => {
                             if (file) setFile(null);

@@ -14,7 +14,7 @@ const DesktopLayout = () => {
                 animate={{ opacity: 1, x: 0 }}
                 className="flex flex-col"
             >
-                <div className="pt-10 pb-5 w-full font-black text-center border-e border-lightBorder bg-background text-primary dark:border-dlightBorder dark:bg-dbackground dark:text-dprimary">
+                <div className="pt-10 pb-5 w-full font-black text-center border-e border-lightBorder bg-background dark:border-dlightBorder dark:bg-dbackground ">
                     <p className="text-3xl h-10 flex justify-center items-end">
                         Report<span className="text-dbutton">Me</span>
                     </p>

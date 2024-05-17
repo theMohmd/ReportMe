@@ -22,7 +22,7 @@ const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
     return (
         <div className="flex flex-col gap-2 grow">
             <div className="flex justify-between items-end mb-5 h-10 shrink-0">
-                <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
+                <p className="px-2 text-3xl font-semibold ">
                     {t("Reports.reports")}
                 </p>
             </div>

@@ -11,7 +11,6 @@ import NotFound from "components/Common/NotFound/NotFound";
 import Layout from "components/Layout/Layout";
 import Relogin from "components/Common/ReLogin/ReLogin";
 
-
 const App = () => {
     const { theme } = useTheme();
     const { lang } = useLang();
@@ -28,16 +27,12 @@ const App = () => {
             {/* todo delete */}
             <button
                 className="hidden absolute top-5 right-5 z-50 bg-red-600 p-2 text-white"
-                onClick={async () => {
-                }}
+                onClick={async () => {}}
             >
                 click me
             </button>
             {isLoading ? (
-                <Loader
-                    className="text-primary dark:text-dprimary"
-                    size={100}
-                />
+                <Loader size={100} />
             ) : (
                 <Routes>
                     <Route

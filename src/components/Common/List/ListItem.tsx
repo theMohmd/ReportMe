@@ -23,7 +23,7 @@ const ListItem = ({
         <motion.div
             variants={variants}
             onClick={onClick ? onClick : undefined}
-            className="flex gap-2 justify-start items-center py-2 px-4 rounded-lg border cursor-pointer bg-background border-lightBorder text-primary dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder hover:shadow-cshadow"
+            className="flex gap-2 justify-start items-center py-2 px-4 rounded-lg border cursor-pointer bg-background border-lightBorder dark:bg-dbackground dark:border-dlightBorder hover:shadow-cshadow"
         >
             {title && <p className="line-clamp-1 grow">{title}</p>}
             {children}

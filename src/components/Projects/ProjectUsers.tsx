@@ -22,7 +22,7 @@ const ProjectUsers = ({ id }: ProjectUsersProps) => {
 
     //todo delete user
     return (
-        <motion.div variants={scaleVariants} className="px-5 rounded-xl border text-primary bg-background border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
+        <motion.div variants={scaleVariants} className="px-5 rounded-xl border bg-background border-lightBorder dark:bg-dbackground dark:border-dlightBorder">
             {data && data.data.length ? (
                 data.data.map(
                     (item: { id: number; user: userType }, index: number) => (

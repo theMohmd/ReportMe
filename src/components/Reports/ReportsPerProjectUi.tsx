@@ -46,13 +46,13 @@ const ReportsPerProjectUi = ({
             </AnimatePresence>
             <div className="flex justify-between items-end mb-5 h-10 shrink-0">
                 <div className="flex grow">
-                    <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
+                    <p className="px-2 text-3xl font-semibold ">
                         {t("Reports.reportsPerProject")}
                     </p>
 
                     <Link
                         to={`/projects/${user_project.project.id}`}
-                        className="text-3xl line-clamp-1 grow w-0 font-semibold text-primary dark:text-dprimary"
+                        className="text-3xl line-clamp-1 grow w-0 font-semibold "
                     >
                         {user_project.project.title}
                     </Link>

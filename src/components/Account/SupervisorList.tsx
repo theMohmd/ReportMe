@@ -18,8 +18,7 @@ const SupervisorList = () => {
         queryFn: () => query(page + 1),
     });
 
-    if (isLoading)
-        return <Loader size={40} className="text-primary dark:text-dprimary" />;
+    if (isLoading) return <Loader size={40} />;
     if (error) return <ErrorPage error={error as customError} />;
     return (
         data && (

@@ -20,7 +20,7 @@ const ErrorPage = ({ children, error }: ErrorPageProps) => {
     });
 
     return (
-        <div className="flex flex-col justify-center items-center pb-48 grow text-primary dark:text-dprimary ">
+        <div className="flex flex-col justify-center items-center pb-48 grow ">
             <p className="relative text-8xl font-black">ERROR</p>
             {children && true}
         </div>

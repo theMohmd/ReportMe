@@ -15,10 +15,7 @@ const Reports = () => {
         queryKey: ["user-projects", page],
         queryFn: () => apiGetUserProjects({ page: page + 1 }),
     });
-    if (isLoading)
-        return (
-            <Loader size={100} className="text-primary dark:text-dprimary" />
-        );
+    if (isLoading) return <Loader size={100} />;
     if (error) return <ErrorPage error={error as customError} />;
     return (
         data && (

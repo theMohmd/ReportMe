@@ -7,10 +7,7 @@ import { useQueryGetMessages } from "./hooks/useQueryGetMessages";
 //Messages component
 const Messages = () => {
     const { data, error, isLoading, page, setpage } = useQueryGetMessages();
-    if (isLoading)
-        return (
-            <Loader size={100} className="text-primary dark:text-dprimary" />
-        );
+    if (isLoading) return <Loader size={100} />;
     if (error) return <ErrorPage error={error as customError} />;
     return (
         data && (

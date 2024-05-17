@@ -20,7 +20,7 @@ const ReportsPerProject = () => {
         queryFn: async () => {
             const user_project = await apiGetUserProjectsId({
                 id: user_project_id ? parseInt(user_project_id) : -1,
-            })
+            });
             const reports = await apiGetReports({
                 page: page + 1,
                 //project: user_project.project.id, //todo
@@ -31,10 +31,7 @@ const ReportsPerProject = () => {
             };
         },
     });
-    if (isLoading)
-        return (
-            <Loader size={100} className="text-primary dark:text-dprimary" />
-        );
+    if (isLoading) return <Loader size={100} />;
     if (error) return <ErrorPage error={error as customError} />;
 
     return (

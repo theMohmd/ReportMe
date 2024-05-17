@@ -51,7 +51,7 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
                 )}
             </AnimatePresence>
             <div className="flex justify-between items-end mb-5 h-10">
-                <p className="px-2 text-3xl font-semibold text-primary dark:text-dprimary">
+                <p className="px-2 text-3xl font-semibold ">
                     {t("Messages.messages")}
                 </p>
                 <CustomButton onClick={() => setdialog(true)}>

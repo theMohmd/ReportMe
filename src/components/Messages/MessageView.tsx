@@ -37,10 +37,7 @@ const MessageView = () => {
             }
         );
     };
-    if (isLoading)
-        return (
-            <Loader size={100} className="text-primary dark:text-dprimary" />
-        );
+    if (isLoading) return <Loader size={100} />;
     if (error) return <ErrorPage error={error as customError} />;
     console.log(data);
     return (
@@ -56,7 +53,7 @@ const MessageView = () => {
                     top bar
                     ******************************************************************************/}
                     <div className="flex justify-between items-center mb-5">
-                        <p className="px-2 grow w-0 overflow-hidden line-clamp-1 text-3xl font-semibold text-primary dark:text-dprimary">
+                        <p className="px-2 grow w-0 overflow-hidden line-clamp-1 text-3xl font-semibold ">
                             {data.title}
                         </p>
                         <div className="flex gap-1">
@@ -77,7 +74,7 @@ const MessageView = () => {
                     ******************************************************************************/}
                     <motion.div
                         variants={scaleVariants}
-                        className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                        className="flex flex-col gap-2 p-5 rounded-xl border bg-background grow border-lightBorder dark:bg-dbackground dark:border-dlightBorder"
                     >
                         <div className="flex flex-col md:flex-row md:gap-1 items-start md:items-center pb-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
                             {/******************************************************************************
@@ -123,7 +120,7 @@ const MessageView = () => {
                     {data.file !== "/storage/" && (
                         <motion.div
                             variants={scaleVariants}
-                            className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                            className="flex flex-col gap-2 p-5 rounded-xl border bg-background grow border-lightBorder dark:bg-dbackground dark:border-dlightBorder"
                         >
                             <a
                                 href={

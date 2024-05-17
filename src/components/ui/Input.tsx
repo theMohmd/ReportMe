@@ -29,7 +29,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 {type === "password" && (
                     <button
                         type="button"
-                        className="absolute end-2 top-2 text-primary dark:text-dprimary "
+                        className="absolute end-2 top-2 "
                         onClick={() => setvisiblePassword((prev) => !prev)}
                     >
                         {visiblePassword ? <EyeOff /> : <Eye />}
