@@ -14,22 +14,24 @@ const Login = () => {
                 Report<span className="text-dbutton">Me</span>
             </p>
             <div className="flex flex-col items-center w-full max-h-[600px] max-w-[800px]">
+                {/******************************************************************************
+                form
+                ******************************************************************************/}
                 <AnimatePresence>
                     {mode === "login" ? <LoginForm /> : <SignupForm />}
                 </AnimatePresence>
-                <div className="flex">
-                    <p className="p-2 mt-2 text-center text-primary dark:text-dprimary ">
+                {/******************************************************************************
+                change form
+                ******************************************************************************/}
+                <div className="flex gap-2 dark:text-dprimary mt-2 text-primary ">
+                    <p>
                         {mode === "login"
                             ? t("login.signupQuestion")
                             : t("login.loginQuestion")}
                     </p>
                     <button
-                        onClick={() =>
-                            setmode((prev) =>
-                                prev === "login" ? "signup" : "login"
-                            )
-                        }
-                        className="p-2 mt-2 font-bold text-center dark:text-dprimary text-primary "
+                        onClick={() => setmode((prev) => prev === "login" ? "signup" : "login") }
+                        className="font-bold"
                     >
                         {mode === "login"
                             ? t("login.signup")

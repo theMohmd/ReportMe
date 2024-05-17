@@ -42,7 +42,7 @@ const SignupForm = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
             exit={{ opacity: 0 }}
-            className=" text-primary dark:text-dprimary flex overflow-y-auto flex-col gap-2 justify-center p-5 w-full rounded-xl grow bg-background2 dark:bg-dbackground2 "
+            className="flex overflow-y-auto flex-col gap-2 justify-center w-full grow"
             onSubmit={handleSubmit(onSubmit)}
         >
             <div className="flex gap-2 [&>input]:grow flex-col sm:flex-row sm:items-center justify-center">
@@ -83,7 +83,7 @@ const SignupForm = () => {
                     {errors.email.message}
                 </p>
             )}
-            <div className="flex gap-2 relative flex-col sm:flex-row sm:items-center justify-center">
+            <div className="flex relative flex-col gap-2 justify-center sm:flex-row sm:items-center">
                 <p className="flex w-20 font-semibold sm:justify-end">
                     {t("login.password")}
                 </p>
@@ -112,7 +112,7 @@ const SignupForm = () => {
             )}
             <button
                 type="submit"
-                className="flex justify-center max-h-12 items-center p-3 mt-5 font-bold rounded-lg bg-dbutton text-background "
+                className="flex justify-center items-center p-3 mt-5 max-h-12 font-bold rounded-lg bg-dbutton text-background"
                 disabled={isSubmitting}
             >
                 {isSubmitting ? <Loader /> : t("login.signup")}

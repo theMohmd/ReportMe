@@ -22,6 +22,7 @@ const App = () => {
         <div
             dir={lang == "fa" ? "rtl" : "ltr"}
             className={`${theme === "dark" ? "dark" : null}
+            text-primary dark:text-dprimary
             bg-background2 font-vazir dark:bg-dbackground2 flex overflow-hidden h-dvh w-screen [&>*]:grow `}
         >
             {/* todo delete */}
