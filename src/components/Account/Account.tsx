@@ -48,14 +48,14 @@ const Account = () => {
 
                     <div className="flex gap-2 justify-start items-center">
                         <p className="font-medium">{t("Account.username")}</p>
-                        <p className="py-2 px-4 rounded-xl border border-lightBorder grow dark:border-dlightBorder">
+                        <p className="py-2 px-4 rounded-xl border border-lightBorder w-0 grow overflow-hidden text-ellipsis dark:border-dlightBorder">
                             {user?.name}
                         </p>
                     </div>
 
                     <div className="flex gap-2 justify-start items-center">
                         <p className="font-medium">{t("Account.email")}</p>
-                        <p className="py-2 px-4 rounded-xl border border-lightBorder grow dark:border-dlightBorder">
+                        <p className="py-2 px-4 rounded-xl border border-lightBorder w-0 grow overflow-hidden text-ellipsis dark:border-dlightBorder">
                             {user?.email}
                         </p>
                     </div>

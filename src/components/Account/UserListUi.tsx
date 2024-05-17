@@ -52,21 +52,23 @@ const UserListUi = ({ page, setPage, data }: UserListUiProps) => {
                                     className="flex flex-col"
                                     key={item.USid}
                                 >
-                                    <div className="flex gap-2 justify-between py-2 ">
-                                        <p> {item.name} </p>
+                                    <div className="flex gap-2 py-2 max-w-full">
+                                    <p className="w-0 grow overflow-hidden text-ellipsis h-6">
+                                    {/*<p className="w-0 grow line-clamp-1 text-ellipsis overflow-hidden">*/}
+                                        {item.name} </p>
                                         <span className="px-2 text-lightBorder dark:text-dlightBorder">
                                             |
                                         </span>
-                                        <p> {item.email} </p>
+                                        <p className="w-0 grow-[2] text-ellipsis overflow-hidden "> {item.email} </p>
                                         <button
                                             onClick={() =>
                                                 deleteAction(item.USid)
                                             }
-                                            className="ms-auto hover:text-red-600"
+                                            className="hover:text-red-600 "
                                         >
                                             <Trash2Icon size={20} />
                                         </button>
-                                    </div>
+                                        </div>
                                     {index < data.data.length - 1 && (
                                         <span className="border-t border-lightBorder dark:border-dlightBorder" />
                                     )}

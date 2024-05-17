@@ -34,8 +34,11 @@ const Nav = () => {
                 {t("nav.tickets")}
             </NavButton>
             <NavButton to="account">
+        
                 <UserRound />
+                <p className="max-w-[70%] overflow-hidden text-ellipsis">
                 {user?.name}
+            </p>
                 {/*{t("nav.account")}*/}
             </NavButton>
             <div className="mt-auto flex gap-1 justify-start ">

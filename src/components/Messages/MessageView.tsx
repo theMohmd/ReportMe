@@ -42,13 +42,21 @@ const MessageView = () => {
             <Loader size={100} className="text-primary dark:text-dprimary" />
         );
     if (error) return <ErrorPage error={error as customError} />;
-    console.log(data)
+    console.log(data);
     return (
         <>
             {data && (
-                <motion.div variants={parentStaggerVariants} initial="initial" animate="animate"  className="flex flex-col gap-2 grow">
+                <motion.div
+                    variants={parentStaggerVariants}
+                    initial="initial"
+                    animate="animate"
+                    className="flex flex-col gap-2 grow"
+                >
+                    {/******************************************************************************
+                    top bar
+                    ******************************************************************************/}
                     <div className="flex justify-between items-center mb-5">
-                        <p className="px-2 line-clamp-1 text-3xl font-semibold text-primary dark:text-dprimary">
+                        <p className="px-2 grow w-0 overflow-hidden line-clamp-1 text-3xl font-semibold text-primary dark:text-dprimary">
                             {data.title}
                         </p>
                         <div className="flex gap-1">
@@ -63,26 +71,68 @@ const MessageView = () => {
                             </CustomButton>
                         </div>
                     </div>
-                    <motion.div variants={scaleVariants} className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
-                        <div className="flex gap-1 items-center pb-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
-                            <span>{data.sender.name}</span>
-                            <span className="text-sm font-thin">
-                                ({data.sender.email})
-                            </span>
+
+                    {/******************************************************************************
+                    content
+                    ******************************************************************************/}
+                    <motion.div
+                        variants={scaleVariants}
+                        className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                    >
+                        <div className="flex flex-col md:flex-row md:gap-1 items-start md:items-center pb-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
+                            {/******************************************************************************
+                            name
+                            ******************************************************************************/}
+                            <div className="flex items-center">
+                                <span className="max-w-40 overflow-hidden text-ellipsis">
+                                    {data.sender.name}
+                                </span>
+                                <span className="text-sm font-thin max-w-40 overflow-hidden text-ellipsis">
+                                    ({data.sender.email})
+                                </span>
+                            </div>
+
                             <span>{t("Messages.to")}</span>
-                            <span>{data.receiver.name}</span>
-                            <span className="text-sm font-thin">
-                                ({data.receiver.email})
-                            </span>
-                            <span className="text-sm font-thin ms-auto">
+
+                            {/******************************************************************************
+                            email
+                            ******************************************************************************/}
+                            <div className="flex items-center">
+                                <span>{data.receiver.name}</span>
+                                <span className="text-sm font-thin max-w-40 overflow-hidden text-ellipsis">
+                                    ({data.receiver.email})
+                                </span>
+                            </div>
+
+                            {/******************************************************************************
+                            date
+                            ******************************************************************************/}
+                            <span className="line-clamp-1 w-40 text-end text-sm font-thin ms-auto">
                                 {dateFormat(data.updated_at)}
                             </span>
                         </div>
+
+                        {/******************************************************************************
+                        message content
+                        ******************************************************************************/}
                         <p className="overflow-auto h-0 grow">{data.content}</p>
                     </motion.div>
+                    {/******************************************************************************
+                    file if exists
+                    ******************************************************************************/}
                     {data.file !== "/storage/" && (
-                        <motion.div variants={scaleVariants} className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder">
-                        <a href={"http://127.0.0.1:8000/download"+data.file} download="name">file</a>
+                        <motion.div
+                            variants={scaleVariants}
+                            className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
+                        >
+                            <a
+                                href={
+                                    "http://127.0.0.1:8000/download" + data.file
+                                }
+                                download="name"
+                            >
+                                file
+                            </a>
                         </motion.div>
                     )}
                 </motion.div>

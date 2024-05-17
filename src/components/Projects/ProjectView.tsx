@@ -54,13 +54,13 @@ const ProjectView = () => {
                     animate="animate"
                     className="flex flex-col gap-2 grow"
                 >
-                    {/*top bar*/}
-                    <div className="flex justify-between items-center mb-5">
-                        <div className="flex">
-                            <p className="px-2 line-clamp-1 text-3xl font-semibold text-primary dark:text-dprimary">
-                                {data.title}
-                            </p>
-                        </div>
+                    {/******************************************************************************
+                    top bar
+                    ******************************************************************************/}
+                    <div className="flex gap-2 justify-between items-center mb-5">
+                        <p className="px-2 grow w-0 overflow-hidden line-clamp-1 text-3xl font-semibold text-primary dark:text-dprimary">
+                            {data.title}
+                        </p>
                         <div className="flex gap-1">
                             {user?.id === data.user.id && (
                                 <>
@@ -77,23 +77,39 @@ const ProjectView = () => {
                             </CustomButton>
                         </div>
                     </div>
-                    {/*content*/}
+                    {/******************************************************************************
+                    assigne user
+                    ******************************************************************************/}
                     {user?.id === data.user.id && (
                         <>
                             <AssignProject id={data.id} />
                             <ProjectUsers id={data.id} />
                         </>
                     )}
+                    {/******************************************************************************
+                    content
+                    ******************************************************************************/}
                     <motion.div
                         variants={scaleVariants}
                         className="flex flex-col gap-2 p-5 rounded-xl border text-primary bg-background grow border-lightBorder dark:text-dprimary dark:bg-dbackground dark:border-dlightBorder"
                     >
                         <div className="flex gap-1 items-center pb-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
-                            <span>{data.user.name}</span>
-                            <span className="text-sm font-thin">
-                                ({data.user.email})
-                            </span>
-                            <span className="text-sm font-thin ms-auto">
+                            {/******************************************************************************
+                            name
+                            ******************************************************************************/}
+                            <div className="flex items-center">
+                                <span className="max-w-40 overflow-hidden text-ellipsis">
+                                    {data.user.name}
+                                </span>
+                                <span className="text-sm font-thin w-30 overflow-hidden text-ellipsis">
+                                    ({data.user.email})
+                                </span>
+                            </div>
+
+                            {/******************************************************************************
+                            date
+                            ******************************************************************************/}
+                            <span className="line-clamp-1 w-30 shrink-0 text-end text-sm font-thin ms-auto">
                                 {dateFormat(data.updated_at)}
                             </span>
                         </div>
