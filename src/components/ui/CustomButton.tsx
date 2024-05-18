@@ -3,7 +3,7 @@ import { MouseEventHandler, ReactNode } from "react";
 //SmallButton component
 type SmallButtonProps = {
     children: ReactNode;
-    onClick: MouseEventHandler<HTMLButtonElement>;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 const CustomButton = ({ children, onClick }: SmallButtonProps) => {
     return (

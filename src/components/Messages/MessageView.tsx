@@ -1,8 +1,10 @@
 import { t } from "i18next";
-import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
+import { useAuth } from "contexts/Auth/useAuth";
 import { dateFormat } from "utils/dateFormat";
 import { messageType } from "types/messageType";
 import { customError } from "types/customError";
@@ -13,18 +15,20 @@ import { parentStaggerVariants, scaleVariants } from "utils/motionVariants";
 import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
 import CustomButton from "components/ui/CustomButton";
-import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
+import {
+    ChevronLeftIcon,
+    DownloadIcon,
+    SquarePenIcon,
+    Trash2Icon,
+} from "lucide-react";
 import EditMessageDialog from "./EditMessageDialog";
-import { useState } from "react";
-import { useAuth } from "src/contexts/Auth/useAuth";
 
 //MessageView component
 const MessageView = () => {
     const [editDialog, setEditDialog] = useState(false);
 
     const { id } = useParams();
-
-    const {user} = useAuth()
+    const { user } = useAuth();
     const { data, error, isLoading } = useQuery<messageType>({
         queryKey: ["messages", id],
         queryFn: () => apiGetMessagesId({ id: id ? parseInt(id) : -1 }),
@@ -77,16 +81,35 @@ const MessageView = () => {
                             {data.title}
                         </p>
                         <div className="flex gap-1">
-                            {user?.id === data.sender.id && (
-                                <CustomButton
-                                    onClick={() => setEditDialog(true)}
-                                >
-                                    <SquarePenIcon />
+                            {/******************************************************************************
+                            file download button if exists
+                            ******************************************************************************/}
+                            {data.file && (
+                                <CustomButton>
+                                    <a
+                                        href={
+                                            "http://127.0.0.1:8000" + //todo make it variable
+                                            data.file
+                                        }
+                                        target="_blank"
+                                        download={data.title + "_file"}
+                                    >
+                                        <DownloadIcon />
+                                    </a>
                                 </CustomButton>
                             )}
-                            <CustomButton onClick={deleteAction}>
-                                <Trash2Icon />
-                            </CustomButton>
+                            {user?.id === data.sender.id && (
+                                <>
+                                    <CustomButton
+                                        onClick={() => setEditDialog(true)}
+                                    >
+                                        <SquarePenIcon />
+                                    </CustomButton>
+                                    <CustomButton onClick={deleteAction}>
+                                        <Trash2Icon />
+                                    </CustomButton>
+                                </>
+                            )}
                             <CustomButton onClick={() => navigate(-1)}>
                                 <ChevronLeftIcon />
                             </CustomButton>
@@ -138,24 +161,6 @@ const MessageView = () => {
                         ******************************************************************************/}
                         <p className="overflow-auto h-0 grow">{data.content}</p>
                     </motion.div>
-                    {/******************************************************************************
-                    file if exists
-                    ******************************************************************************/}
-                    {data.file && (
-                        <motion.div
-                            variants={scaleVariants}
-                            className="flex flex-col gap-2 p-5 rounded-xl border bg-background grow border-lightBorder dark:bg-dbackground dark:border-dlightBorder"
-                        >
-                            <a
-                                href={
-                                    "http://127.0.0.1:8000/download" + data.file
-                                }
-                                download="name"
-                            >
-                                file
-                            </a>
-                        </motion.div>
-                    )}
                 </motion.div>
             )}
         </>

@@ -21,6 +21,7 @@ type FormFields = {
 type EditMessageDialogProps = { close: () => void; data: messageType };
 const EditMessageDialog = ({ close, data }: EditMessageDialogProps) => {
     const [file, setFile] = useState<File | null>(null);
+    const [fileDeleted, setFileDeleted] = useState(false);
     const fileRef = useRef<HTMLInputElement | null>(null);
 
     //patch message
@@ -37,18 +38,24 @@ const EditMessageDialog = ({ close, data }: EditMessageDialogProps) => {
     const onSubmit: SubmitHandler<FormFields> = async (formData) => {
         //create input data
         const newData: apiPatchMessagesInputType = {
-            ...formData,
             id: data.id,
-            file: undefined,
+            title: undefined,
+            content: undefined,
+            file: fileDeleted ? "": undefined,
         };
+        //add title if exists
+        if (formData.title) newData.title = formData.title;
+
+        //add content if exists
+        if (formData.content) newData.content = formData.content;
 
         //add file if exists
-        if (file) newData.file = file;
+        if (file) newData.file = file
 
         //send patch request
         return mutate(newData, {
             onSuccess: () => {
-                close()
+                close();
             },
             onError: () => console.log("error"),
         });
@@ -61,7 +68,7 @@ const EditMessageDialog = ({ close, data }: EditMessageDialogProps) => {
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <Input
-                    placeholder={t("Messages.subject")+ ": " +data.title}
+                    placeholder={t("Messages.subject") + ": " + data.title}
                     {...register("title", {
                         maxLength: {
                             value: 255,
@@ -77,8 +84,8 @@ const EditMessageDialog = ({ close, data }: EditMessageDialogProps) => {
                 )}
                 <Textarea
                     className="resize-none Input grow"
-                    placeholder={t("Messages.message")+ ": " +data.content}
-                    {...register("content" )}
+                    placeholder={t("Messages.message") + ": " + data.content}
+                    {...register("content")}
                 />
 
                 {errors.content && (
@@ -92,8 +99,10 @@ const EditMessageDialog = ({ close, data }: EditMessageDialogProps) => {
                         className="md:max-w-[50%] flex justify-center gap-2 items-center p-3 max-h-16 font-bold rounded-lg bg-background dark:bg-dbackground border border-lightBorder dark:border-dlightBorder "
                         disabled={isSubmitting}
                         onClick={() => {
-                            if (file) setFile(null);
-                            else fileRef.current?.click();
+                            if (file || (data.file && !fileDeleted)) {
+                                setFileDeleted(true)
+                                setFile(null);
+                            } else fileRef.current?.click();
                         }}
                     >
                         <input
@@ -106,16 +115,16 @@ const EditMessageDialog = ({ close, data }: EditMessageDialogProps) => {
                                 )
                             }
                         />
-                        {file ? <Trash2Icon /> : <PaperclipIcon />}
+                        {file || (data.file && !fileDeleted) ? <Trash2Icon /> : <PaperclipIcon />}
                         <AnimatePresence>
-                            {file && (
+                            {(file || (data.file && !fileDeleted)) && (
                                 <motion.span
                                     initial={{ width: 0 }}
                                     animate={{ width: 200 }}
                                     exit={{ width: 0 }}
                                     className="overflow-hidden relative line-clamp-1 text-ellipsis top-[2px]"
                                 >
-                                    {file.name}
+                                    {data.file && !fileDeleted ? "file" : file?.name}
                                 </motion.span>
                             )}
                         </AnimatePresence>

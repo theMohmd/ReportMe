@@ -3,7 +3,7 @@ import { messageType } from "types/messageType";
 import { getCookie } from "utils/cookie";
 
 //patch messages
-export type apiPatchMessagesInputType = { id: number; content?: string; title?: string; file?: File | "null" }
+export type apiPatchMessagesInputType = { id: number; content?: string; title?: string; file?: File | "" }
 export type apiPatchMessagesOutputType = messageType
 
 export const apiPatchMessages
