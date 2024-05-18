@@ -4,11 +4,11 @@ import { messageType } from "types/messageType";
 import { getCookie } from "utils/cookie";
 
 //get messages with page
-export type apiGetMessegesInputType = { page: number };
-export type apiGetMessegesOutputType = apiDataType<messageType>;
+export type apiGetMessagesInputType = { page: number };
+export type apiGetMessagesOutputType = apiDataType<messageType>;
 
-export const apiGetMesseges
-: ( input: apiGetMessegesInputType) => Promise<apiGetMessegesOutputType>
+export const apiGetMessages
+: ( input: apiGetMessagesInputType) => Promise<apiGetMessagesOutputType>
 = async (input = { page: 1 }) => {
     return axios
     .get("http://127.0.0.1:8000/api/messages", {

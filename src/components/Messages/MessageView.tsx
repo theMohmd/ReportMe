@@ -1,4 +1,5 @@
 import { t } from "i18next";
+import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -6,21 +7,20 @@ import { dateFormat } from "utils/dateFormat";
 import { messageType } from "types/messageType";
 import { customError } from "types/customError";
 import { useDeleteProject } from "components/Projects/hooks/useDeleteProject";
-import { apiGetMessegesId } from "api/messages/apiGetMessagesId";
+import { apiGetMessagesId } from "api/messages/apiGetMessagesId";
+import { parentStaggerVariants, scaleVariants } from "utils/motionVariants";
 
 import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
 import CustomButton from "components/ui/CustomButton";
 import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
-import { motion } from "framer-motion";
-import { parentStaggerVariants, scaleVariants } from "src/utils/motionVariants";
 
 //MessageView component
 const MessageView = () => {
     const { id } = useParams();
     const { data, error, isLoading } = useQuery<messageType>({
         queryKey: ["messages", id],
-        queryFn: () => apiGetMessegesId({ id: id ? parseInt(id) : -1 }),
+        queryFn: () => apiGetMessagesId({ id: id ? parseInt(id) : -1 }),
     });
     const { mutate: deleteRequest } = useDeleteProject();
     const navigate = useNavigate();

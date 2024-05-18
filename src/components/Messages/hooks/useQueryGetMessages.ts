@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { apiGetMesseges } from "src/api/messages/apiGetMesseges";
+import { apiGetMessages } from "src/api/messages/apiGetMessages";
 
 export const useQueryGetMessages = () => {
     const [page, setpage] = useState(0);
@@ -9,7 +9,7 @@ export const useQueryGetMessages = () => {
         page: page,
         ...useQuery({
             queryKey: ["messages", page],
-            queryFn: () => apiGetMesseges({ page: page + 1 }),
+            queryFn: () => apiGetMessages({ page: page + 1 }),
         }),
     };
 };
