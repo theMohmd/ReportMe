@@ -4,7 +4,7 @@ import {
     apiPostProjects,
 } from "api/projects/apiPostProjects";
 
-export const usePostProjects = () => {
+export const usePostProject = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationKey: ["projects", "post"],
