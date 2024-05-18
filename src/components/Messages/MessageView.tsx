@@ -1,5 +1,5 @@
 import { t } from "i18next";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -14,10 +14,17 @@ import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
 import CustomButton from "components/ui/CustomButton";
 import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
+import EditMessageDialog from "./EditMessageDialog";
+import { useState } from "react";
+import { useAuth } from "src/contexts/Auth/useAuth";
 
 //MessageView component
 const MessageView = () => {
+    const [editDialog, setEditDialog] = useState(false);
+
     const { id } = useParams();
+
+    const {user} = useAuth()
     const { data, error, isLoading } = useQuery<messageType>({
         queryKey: ["messages", id],
         queryFn: () => apiGetMessagesId({ id: id ? parseInt(id) : -1 }),
@@ -50,6 +57,19 @@ const MessageView = () => {
                     className="flex flex-col gap-2 grow"
                 >
                     {/******************************************************************************
+                    edit dialog
+                    ******************************************************************************/}
+                    <AnimatePresence>
+                        {editDialog && (
+                            <EditMessageDialog
+                                data={data}
+                                close={() => {
+                                    setEditDialog(false);
+                                }}
+                            />
+                        )}
+                    </AnimatePresence>
+                    {/******************************************************************************
                     top bar
                     ******************************************************************************/}
                     <div className="flex justify-between items-center mb-5">
@@ -57,9 +77,13 @@ const MessageView = () => {
                             {data.title}
                         </p>
                         <div className="flex gap-1">
-                            <CustomButton onClick={() => navigate(-1)}>
-                                <SquarePenIcon />
-                            </CustomButton>
+                            {user?.id === data.sender.id && (
+                                <CustomButton
+                                    onClick={() => setEditDialog(true)}
+                                >
+                                    <SquarePenIcon />
+                                </CustomButton>
+                            )}
                             <CustomButton onClick={deleteAction}>
                                 <Trash2Icon />
                             </CustomButton>

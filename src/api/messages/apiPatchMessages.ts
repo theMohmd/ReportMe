@@ -9,8 +9,10 @@ export type apiPatchMessagesOutputType = messageType
 export const apiPatchMessages
 : ( input: apiPatchMessagesInputType ) => Promise<apiPatchMessagesOutputType>
 = async ( input ) => {
+    const {id, ...rest} = input
     return axios
-    .patch("http://127.0.0.1:8000/api/messages", input, {
+    .post(`http://127.0.0.1:8000/api/messages/${id}`, rest, {
+        params:{_method:"put"},
         headers:{
             "Content-Type": "multipart/form-data",
             Accept: "application/json",
