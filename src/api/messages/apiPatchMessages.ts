@@ -3,7 +3,7 @@ import { messageType } from "types/messageType";
 import { getCookie } from "utils/cookie";
 
 //patch messages
-export type apiPatchMessagesInputType = { id: number; description?: string; title?: string; file?: File }
+export type apiPatchMessagesInputType = { id: number; content?: string; title?: string; file?: File | "null" }
 export type apiPatchMessagesOutputType = messageType
 
 export const apiPatchMessages
@@ -21,4 +21,5 @@ export const apiPatchMessages
     })
     .then(res=>res.data.data)
 }
+
 
