@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { ChevronLeftIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
+import { ChevronLeftIcon, DownloadIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
 
 import { useAuth } from "contexts/Auth/useAuth";
 import { dateFormat } from "utils/dateFormat";
@@ -15,9 +15,12 @@ import CustomButton from "components/ui/CustomButton";
 import ProjectUsers from "./ProjectUsers";
 import AssignProject from "./AssignProject";
 import { parentStaggerVariants, scaleVariants } from "src/utils/motionVariants";
+import EditProjectDialog from "./EditProjectDialog";
+import { useState } from "react";
 
 //ProjectView component
 const ProjectView = () => {
+    const [editDialog, setEditDialog] = useState(false);
     const { user } = useAuth();
     const { id } = useParams();
     const { data, error, isLoading } = useQuery({
@@ -52,6 +55,19 @@ const ProjectView = () => {
                     className="flex flex-col gap-2 grow"
                 >
                     {/******************************************************************************
+                    edit dialog
+                    ******************************************************************************/}
+                    <AnimatePresence>
+                        {editDialog && (
+                            <EditProjectDialog
+                                data={data}
+                                close={() => {
+                                    setEditDialog(false);
+                                }}
+                            />
+                        )}
+                    </AnimatePresence>
+                    {/******************************************************************************
                     top bar
                     ******************************************************************************/}
                     <div className="flex gap-2 justify-between items-center mb-5">
@@ -59,9 +75,29 @@ const ProjectView = () => {
                             {data.title}
                         </p>
                         <div className="flex gap-1">
+                            {/******************************************************************************
+                            file download button if exists
+                            ******************************************************************************/}
+                            {data.file && (
+                                <CustomButton>
+                                    <a
+                                        href={
+                                            "http://127.0.0.1:8000" + //todo make it variable
+                                            data.file
+                                        }
+                                        target="_blank"
+                                        download={data.title + "_file"}
+                                    >
+                                        <DownloadIcon />
+                                    </a>
+                                </CustomButton>
+                            )}
+
                             {user?.id === data.user.id && (
                                 <>
-                                    <CustomButton onClick={() => navigate(-1)}>
+                                    <CustomButton
+                                        onClick={() => setEditDialog(true)}
+                                    >
                                         <SquarePenIcon />
                                     </CustomButton>
                                     <CustomButton onClick={deleteAction}>

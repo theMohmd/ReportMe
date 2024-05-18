@@ -68,7 +68,7 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <Input
-                    placeholder={t("Projects.subject") + ": " + data.title}
+                    placeholder={t("Projects.title") + ": " + data.title}
                     {...register("title", {
                         maxLength: {
                             value: 255,
@@ -84,7 +84,7 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
                 )}
                 <Textarea
                     className="resize-none Input grow"
-                    placeholder={t("Projects.message") + ": " + data.description}
+                    placeholder={t("Projects.description") + ": " + data.description}
                     {...register("description")}
                 />
 

@@ -4,14 +4,14 @@ import {
     apiPostProjects,
 } from "api/projects/apiPostProjects";
 
-export const usePostProject = () => {
+export const usePostProjects = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationKey: ["projects", "post"],
+        mutationKey: ["Projects", "post"],
         mutationFn: async (data: apiPostProjectsInputType) =>
             apiPostProjects(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["projects"] });
+            queryClient.invalidateQueries({ queryKey: ["Projects"] });
         },
     });
 };
