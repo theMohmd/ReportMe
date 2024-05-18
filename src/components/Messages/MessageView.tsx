@@ -125,13 +125,13 @@ const MessageView = () => {
                     >
                         <div className="flex flex-col md:flex-row md:gap-1 items-start md:items-center pb-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
                             {/******************************************************************************
-                            name
+                            sender
                             ******************************************************************************/}
                             <div className="flex items-center">
-                                <span className="max-w-40 overflow-hidden text-ellipsis">
-                                    {data.sender.name}
+                                <span className="line-clamp-1 overflow-hidden text-ellipsis">
+                                    {data.sender.name} testing todo delete
                                 </span>
-                                <span className="text-sm font-thin max-w-40 overflow-hidden text-ellipsis">
+                                <span className="text-sm font-thin overflow-hidden text-ellipsis">
                                     ({data.sender.email})
                                 </span>
                             </div>
@@ -139,11 +139,13 @@ const MessageView = () => {
                             <span>{t("Messages.to")}</span>
 
                             {/******************************************************************************
-                            email
+                            receiver
                             ******************************************************************************/}
                             <div className="flex items-center">
-                                <span>{data.receiver.name}</span>
-                                <span className="text-sm font-thin max-w-40 overflow-hidden text-ellipsis">
+                                <span className="line-clamp-1 overflow-hidden text-ellipsis">
+                                    {data.receiver.name}
+                                </span>
+                                <span className="text-sm font-thin overflow-hidden text-ellipsis">
                                     ({data.receiver.email})
                                 </span>
                             </div>
