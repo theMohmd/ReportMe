@@ -150,21 +150,6 @@ const ProjectView = () => {
                             {data.description}
                         </p>
                     </motion.div>
-                    {data.file && (
-                        <motion.div
-                            variants={scaleVariants}
-                            className="flex flex-col gap-2 p-5 rounded-xl border bg-background grow border-lightBorder dark:bg-dbackground dark:border-dlightBorder"
-                        >
-                            <a
-                                href={
-                                    "http://127.0.0.1:8000/download" + data.file
-                                }
-                                download="name"
-                            >
-                                file
-                            </a>
-                        </motion.div>
-                    )}
                 </motion.div>
             )}
         </>
