@@ -9,6 +9,9 @@ import Reports from "components/Reports/Reports";
 import ReportView from "components/Reports/ReportView";
 import ReportsPerProject from "../Reports/ReportsPerProject";
 import TicketView from "../Tickets/TicketView";
+import WarningView from "../Warnings/WarningView";
+import WarningsPerProject from "../Warnings/WarningsPerProject";
+import Warnings from "../Warnings/Warnings";
 
 //Routes for layout component
 const LayoutRoutes = () => {
@@ -22,6 +25,9 @@ const LayoutRoutes = () => {
             <Route path="projects/:id" element={<ProjectView />} />
             <Route path="messages" element={<Messages />} />
             <Route path="messages/:id" element={<MessageView />} />
+            <Route path="warnings" element={<Warnings />} />
+            <Route path="warnings/:user_project_id" element={<WarningsPerProject />} />
+            <Route path="warnings/:user_project_id/:id" element={<WarningView/>} />
             <Route path="tickets" element={<Tickets />} />
             <Route path="tickets/:id" element={<TicketView />} />
             <Route path="account" element={<Account />} />

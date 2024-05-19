@@ -33,6 +33,10 @@ const Nav = () => {
                 <Ticket />
                 {t("nav.tickets")}
             </NavButton>
+            <NavButton to="warnings">
+                <Ticket />
+                {t("nav.warnings")}
+            </NavButton>
             <NavButton to="account">
         
                 <UserRound />
