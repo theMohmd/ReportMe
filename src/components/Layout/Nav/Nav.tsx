@@ -2,9 +2,10 @@ import NavButton from "./NavButton";
 import {
     ClipboardPenIcon,
     FolderGit2Icon,
-    Mail,
-    Ticket,
-    UserRound,
+    MailIcon,
+    TicketIcon,
+    TriangleAlertIcon,
+    UserRoundIcon,
 } from "lucide-react";
 import LangButton from "components/Common/LangButton";
 import ThemeButton from "components/Common/ThemeButton";
@@ -26,20 +27,20 @@ const Nav = () => {
                 {t("nav.projects")}
             </NavButton>
             <NavButton to="messages">
-                <Mail />
+                <MailIcon />
                 {t("nav.messages")}
             </NavButton>
             <NavButton to="tickets">
-                <Ticket />
+                <TicketIcon />
                 {t("nav.tickets")}
             </NavButton>
             <NavButton to="warnings">
-                <Ticket />
+                <TriangleAlertIcon />
                 {t("nav.warnings")}
             </NavButton>
             <NavButton to="account">
         
-                <UserRound />
+                <UserRoundIcon />
                 <p className="max-w-[70%] overflow-hidden text-ellipsis">
                 {user?.name}
             </p>

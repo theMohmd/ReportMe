@@ -15,7 +15,7 @@ export const useGetSupervisors = () => {
                             return item.user.id === user?.id;
                         })
                         .map((item: userSupervisorType) => {
-                            return { USid: item.id, ...item.supervisor };
+                            return { deleteId: item.id, ...item.supervisor };
                         }),
                 };
             }

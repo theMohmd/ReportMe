@@ -9,6 +9,7 @@ export const warnings_en = {
     assign: "Assign new user",
     noUsers: "No user is assigned to this warning",
     noUser: "You haven't selected a user",
+    WarningsPerProject:"",
 };
 export const warnings_fa = {
     warnings: "اخطار‌ها",

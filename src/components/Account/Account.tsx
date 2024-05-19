@@ -1,5 +1,5 @@
 import { t } from "i18next";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { SquarePenIcon } from "lucide-react";
 
 import { useAuth } from "contexts/Auth/useAuth";
@@ -12,12 +12,30 @@ import CustomButton from "components/ui/CustomButton";
 import AddSupervisor from "./AddSupervisor";
 import SupervisorList from "./SupervisorList";
 import SubordinateList from "./SubordinateList";
+import { useState } from "react";
+import EditAccountDialog from "./EditAccountDialog";
 
 //Account component
 const Account = () => {
+    const [editDialog, setEditDialog] = useState(false);
     const { user } = useAuth();
     return (
         <div className="flex flex-col gap-2 grow">
+            {/******************************************************************************
+            edit dialog
+            ******************************************************************************/}
+            <AnimatePresence>
+                {editDialog && (
+                    <EditAccountDialog
+                        close={() => {
+                            setEditDialog(false);
+                        }}
+                    />
+                )}
+            </AnimatePresence>
+            {/******************************************************************************
+                    top bar
+                    ******************************************************************************/}
             {/*title*/}
             <div className="flex justify-between items-center px-2 mb-5 shrink-0 h-[40px]">
                 <p className="px-2 text-3xl font-semibold ">
@@ -41,7 +59,7 @@ const Account = () => {
                             {t("Account.info")}
                         </p>
 
-                        <CustomButton onClick={() => console.log(-1)}>
+                        <CustomButton onClick={() => setEditDialog(true)}>
                             <SquarePenIcon size={16} />
                         </CustomButton>
                     </div>

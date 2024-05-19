@@ -7,6 +7,8 @@ import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
 import { useState } from "react";
 import UserListUi from "./UserListUi";
+import { useDeleteUserSupervisors } from "./hooks/useDeleteSupervisor";
+import { t } from "i18next";
 
 //SubordinateList component
 const SubordinateList = () => {
@@ -17,6 +19,17 @@ const SubordinateList = () => {
         queryKey: ["user-supervisors", "subordinates", page],
         queryFn: () => query(page + 1),
     });
+    const { mutate: deleteRequest } = useDeleteUserSupervisors();
+    const deleteAction = (id: number) => {
+        deleteRequest(
+            { user_supervisor: id },
+            {
+                onError() {
+                    console.log("error");
+                },
+            }
+        );
+    };
 
     if (isLoading) return <Loader size={40} />;
     if (error) return <ErrorPage error={error as customError} />;
@@ -26,6 +39,8 @@ const SubordinateList = () => {
                 data={data}
                 page={page}
                 setPage={(input: number) => setPage(input)}
+                deleteAction={deleteAction}
+                emptyMessage={t("Account.noSubordinates")}
             />
         )
     );

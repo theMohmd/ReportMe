@@ -10,10 +10,16 @@ import { apiGetReportsId } from "api/reports/apiGetReportsId";
 import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
 import CustomButton from "components/ui/CustomButton";
-import { ChevronLeftIcon, DownloadIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
+import {
+    ChevronLeftIcon,
+    DownloadIcon,
+    SquarePenIcon,
+    Trash2Icon,
+} from "lucide-react";
 import { parentStaggerVariants, scaleVariants } from "src/utils/motionVariants";
 import { useState } from "react";
 import EditReportDialog from "./EditReportDialog";
+import { useDeleteReport } from "./hooks/useDeleteReport";
 
 //ReportView component
 const ReportView = () => {
@@ -25,22 +31,7 @@ const ReportView = () => {
         queryFn: () => apiGetReportsId({ id: id ? parseInt(id) : -1 }),
     });
     const { user } = useAuth();
-    //todo delete
-    // const { mutate: deleteRequest } = useDeleteReport();
-    // const navigate = useNavigate();
-    // const deleteAction = () => {
-    //     deleteRequest(
-    //         { id: data.data.id },
-    //         {
-    //             onSuccess() {
-    //                 navigate(-1);
-    //             },
-    //             onError() {
-    //                 console.log("error");
-    //             },
-    //         }
-    //     );
-    // };
+    const deleteReport = useDeleteReport();
     if (isLoading) return <Loader size={100} />;
     if (error) return <ErrorPage error={error as customError} />;
     return (
@@ -105,7 +96,12 @@ const ReportView = () => {
                                     >
                                         <SquarePenIcon />
                                     </CustomButton>
-                                    <CustomButton onClick={() => navigate(-1)}>
+                                    <CustomButton
+                                        onClick={() => {
+                                            deleteReport(data.id);
+                                            navigate(-1);
+                                        }}
+                                    >
                                         <Trash2Icon />
                                     </CustomButton>
                                 </>

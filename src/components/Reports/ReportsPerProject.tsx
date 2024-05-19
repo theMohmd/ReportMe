@@ -16,14 +16,13 @@ const ReportsPerProject = () => {
     const [page, setpage] = useState(0);
     const { data, error, isLoading } = useQuery({
         //todo fix this sh
-        queryKey: ["user-projects", "projects", user_project_id, page],
+        queryKey: ["user-projects", "reports", user_project_id, page],
         queryFn: async () => {
             const user_project = await apiGetUserProjectsId({
                 id: user_project_id ? parseInt(user_project_id) : -1,
             });
             const reports = await apiGetReports({
                 page: page + 1,
-                //project: user_project.project.id, //todo
             });
             return {
                 reports: reports,

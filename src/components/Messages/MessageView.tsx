@@ -8,7 +8,6 @@ import { useAuth } from "contexts/Auth/useAuth";
 import { dateFormat } from "utils/dateFormat";
 import { messageType } from "types/messageType";
 import { customError } from "types/customError";
-import { useDeleteProject } from "components/Projects/hooks/useDeleteProject";
 import { apiGetMessagesId } from "api/messages/apiGetMessagesId";
 import { parentStaggerVariants, scaleVariants } from "utils/motionVariants";
 
@@ -22,6 +21,7 @@ import {
     Trash2Icon,
 } from "lucide-react";
 import EditMessageDialog from "./EditMessageDialog";
+import { useDeleteMessage } from "./hooks/useDeleteMessage";
 
 //MessageView component
 const MessageView = () => {
@@ -33,7 +33,7 @@ const MessageView = () => {
         queryKey: ["messages", id],
         queryFn: () => apiGetMessagesId({ id: id ? parseInt(id) : -1 }),
     });
-    const { mutate: deleteRequest } = useDeleteProject();
+    const { mutate: deleteRequest } = useDeleteMessage();
     const navigate = useNavigate();
     const deleteAction = () => {
         deleteRequest(
@@ -129,7 +129,7 @@ const MessageView = () => {
                             ******************************************************************************/}
                             <div className="flex items-center">
                                 <span className="line-clamp-1 overflow-hidden text-ellipsis">
-                                    {data.sender.name} testing todo delete
+                                    {data.sender.name}
                                 </span>
                                 <span className="text-sm font-thin overflow-hidden text-ellipsis">
                                     ({data.sender.email})

@@ -15,6 +15,7 @@ import ListItem from "components/Common/List/ListItem";
 import Pagination from "components/ui/Pagination";
 import CustomButton from "components/ui/CustomButton";
 import NewReportDialog from "./NewReportDialog";
+import { useDeleteReport } from "./hooks/useDeleteReport";
 
 type ReportsUiProps = {
     reports: apiDataType<reportType>;
@@ -32,6 +33,7 @@ const ReportsPerProjectUi = ({
     const navigate = useNavigate();
     const { user } = useAuth();
     const [dialog, setdialog] = useState(false);
+    const deleteReport = useDeleteReport()
     return (
         <div className="flex flex-col gap-2 grow">
             <AnimatePresence>
@@ -74,6 +76,7 @@ const ReportsPerProjectUi = ({
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
+                        deleteAction={item.user.id === user?.id?()=>deleteReport(item.id):undefined}
                     >
                         <div className="flex [&>*]:shrink-0 grow items-center justify-center gap-2">
                             <span className="line-clamp-1 w-[10ch]">

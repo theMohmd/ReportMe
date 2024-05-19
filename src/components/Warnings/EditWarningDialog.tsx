@@ -123,7 +123,11 @@ const EditWarningDialog = ({ close, data }: EditWarningDialogProps) => {
                         className="flex gap-2 justify-center items-center p-3 max-h-12 font-bold rounded-lg grow bg-dbutton text-background"
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? <Loader /> : <>{t("Warnings.create")}</>}
+                        {isSubmitting ? (
+                            <Loader />
+                        ) : (
+                            <>{t("Warnings.create")}</>
+                        )}
                     </button>
                 </div>
             </form>
