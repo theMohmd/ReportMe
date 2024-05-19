@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getCookie } from "src/utils/cookie";
 import { apiDataType } from "types/apiDataType";
 import { ticketType } from "types/ticketType";
 
@@ -15,6 +16,7 @@ export const apiGetTickets
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
+            Authorization: "Bearer " + getCookie("token"),
         },
     })
     .then((res) => res.data.data[0]);

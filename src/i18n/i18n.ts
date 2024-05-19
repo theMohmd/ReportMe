@@ -6,6 +6,7 @@ import { projects_en, projects_fa } from "./projects";
 import { login_en, login_fa } from "./login";
 import { account_en, account_fa } from "./account";
 import { reports_en, reports_fa } from "./reports";
+import { tickets_en, tickets_fa } from "./tickets";
 // Define translations
 const resources = {
     en: {
@@ -13,6 +14,7 @@ const resources = {
             nav: nav_en,
             Messages: messages_en,
             Projects: projects_en,
+            Tickets: tickets_en,
             Reports: reports_en,
             Account: account_en,
             login: login_en,
@@ -29,6 +31,7 @@ const resources = {
             nav: nav_fa,
             Messages: messages_fa,
             Projects: projects_fa,
+            Tickets: tickets_fa,
             Reports: reports_fa,
             Account: account_fa,
             login: login_fa,

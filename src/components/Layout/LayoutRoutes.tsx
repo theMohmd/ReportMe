@@ -8,6 +8,7 @@ import ProjectView from "components/Projects/ProjectView";
 import Reports from "components/Reports/Reports";
 import ReportView from "components/Reports/ReportView";
 import ReportsPerProject from "../Reports/ReportsPerProject";
+import TicketView from "../Tickets/TicketView";
 
 //Routes for layout component
 const LayoutRoutes = () => {
@@ -22,6 +23,7 @@ const LayoutRoutes = () => {
             <Route path="messages" element={<Messages />} />
             <Route path="messages/:id" element={<MessageView />} />
             <Route path="tickets" element={<Tickets />} />
+            <Route path="tickets/:id" element={<TicketView />} />
             <Route path="account" element={<Account />} />
             <Route path="*" element={<Navigate to="404" />} /> 
         </Routes>
