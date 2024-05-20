@@ -10,10 +10,16 @@ import { apiGetWarningsId } from "api/warnings/apiGetWarningsId";
 import Loader from "components/ui/Loader";
 import ErrorPage from "components/ui/ErrorPage";
 import CustomButton from "components/ui/CustomButton";
-import { ChevronLeftIcon, DownloadIcon, SquarePenIcon, Trash2Icon } from "lucide-react";
+import {
+    ChevronLeftIcon,
+    DownloadIcon,
+    SquarePenIcon,
+    Trash2Icon,
+} from "lucide-react";
 import { parentStaggerVariants, scaleVariants } from "src/utils/motionVariants";
 import { useState } from "react";
 import EditWarningDialog from "./EditWarningDialog";
+import { useDeleteWarning } from "./hooks/useDeleteWarning";
 
 //WarningView component
 const WarningView = () => {
@@ -25,22 +31,7 @@ const WarningView = () => {
         queryFn: () => apiGetWarningsId({ id: id ? parseInt(id) : -1 }),
     });
     const { user } = useAuth();
-    //todo delete
-    // const { mutate: deleteRequest } = useDeleteWarning();
-    // const navigate = useNavigate();
-    // const deleteAction = () => {
-    //     deleteRequest(
-    //         { id: data.data.id },
-    //         {
-    //             onSuccess() {
-    //                 navigate(-1);
-    //             },
-    //             onError() {
-    //                 console.log("error");
-    //             },
-    //         }
-    //     );
-    // };
+    const deleteAction = useDeleteWarning();
     if (isLoading) return <Loader size={100} />;
     if (error) return <ErrorPage error={error as customError} />;
     return (
@@ -98,14 +89,22 @@ const WarningView = () => {
                                     </a>
                                 </CustomButton>
                             )}
-                            {user?.id === data.user.id && (
+                            {/******************************************************************************
+                            show if project of the warning belongs to user
+                            ******************************************************************************/}
+                            {user?.id === data.project.user.id && (
                                 <>
                                     <CustomButton
                                         onClick={() => setEditDialog(true)}
                                     >
                                         <SquarePenIcon />
                                     </CustomButton>
-                                    <CustomButton onClick={() => navigate(-1)}>
+                                    <CustomButton
+                                        onClick={() => {
+                                            deleteAction(data.id);
+                                            navigate(-1);
+                                        }}
+                                    >
                                         <Trash2Icon />
                                     </CustomButton>
                                 </>

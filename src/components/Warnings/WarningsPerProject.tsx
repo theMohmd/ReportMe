@@ -15,7 +15,6 @@ const WarningsPerProject = () => {
     const { user_project_id } = useParams();
     const [page, setpage] = useState(0);
     const { data, error, isLoading } = useQuery({
-        //todo fix this sh
         queryKey: ["user-projects", "projects", user_project_id, page],
         queryFn: async () => {
             const user_project = await apiGetUserProjectsId({
@@ -23,7 +22,6 @@ const WarningsPerProject = () => {
             });
             const warnings = await apiGetWarnings({
                 page: page + 1,
-                //project: user_project.project.id, //todo
             });
             return {
                 warnings: warnings,

@@ -3,7 +3,7 @@ import { ticketType } from "src/types/ticketType";
 import { getCookie } from "src/utils/cookie";
 
 //post tickets
-export type apiPostTicketsInputType = { title: string; desctription: string; file: File | undefined;  }
+export type apiPostTicketsInputType = { title: string; description: string; file: File | undefined;  }
 export type apiPostTicketsOutputType = ticketType
 
 export const apiPostTickets

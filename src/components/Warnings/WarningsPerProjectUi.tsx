@@ -58,7 +58,7 @@ const WarningsPerProjectUi = ({
                     </Link>
                 </div>
                 <div className="flex gap-2">
-                    {user?.id !== user_project.project.user.id && (
+                    {user?.id === user_project.project.user.id && (
                         <CustomButton onClick={() => setdialog(true)}>
                             <Plus />
                             <p className="px-1">{t("Warnings.newWarning")}</p>

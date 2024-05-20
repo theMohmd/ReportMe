@@ -3,7 +3,7 @@ import { warningType } from "src/types/warningType";
 import { getCookie } from "src/utils/cookie";
 
 //post warnings
-export type apiPostWarningsInputType = { title: string; desctription: string; file: File | undefined;  }
+export type apiPostWarningsInputType = { user_project_id: number; description: string; file: File | undefined;  }
 export type apiPostWarningsOutputType = warningType
 
 export const apiPostWarnings

@@ -9,7 +9,8 @@ export const warnings_en = {
     assign: "Assign new user",
     noUsers: "No user is assigned to this warning",
     noUser: "You haven't selected a user",
-    WarningsPerProject:"",
+    warningsPerProject:"Warnings of",
+    warning:"Warning",
 };
 export const warnings_fa = {
     warnings: "اخطار‌ها",
@@ -22,4 +23,6 @@ export const warnings_fa = {
     assign: "تعیین کاربر جدید",
     noUsers: "هیچ کاربری برای این اخطار تعیین نشده",
     noUser: "کاربر انتخاب نکرده‌اید",
+    warningsPerProject:"اخطار‌های",
+    warning:"اخطار",
 };

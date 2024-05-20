@@ -24,13 +24,7 @@ const App = () => {
             text-primary dark:text-dprimary
             bg-background2 font-vazir dark:bg-dbackground2 flex overflow-hidden h-dvh w-screen [&>*]:grow `}
         >
-            {/* todo delete */}
-            <button
-                className="hidden absolute top-5 right-5 z-50 bg-red-600 p-2 text-white"
-                onClick={async () => {}}
-            >
-                click me
-            </button>
+        {user?.name}
             {isLoading ? (
                 <Loader size={100} />
             ) : (

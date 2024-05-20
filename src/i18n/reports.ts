@@ -1,7 +1,7 @@
 export const reports_en = {
     reports: "Reports",
     report: "Report",
-    reportsPerProject: "Report's of",
+    reportsPerProject: "Reports of",
     newReport: "New report",
     project: "Project",
     descriptionEmptyError: "Report can't be empty",
