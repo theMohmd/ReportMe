@@ -3,7 +3,7 @@ import { getCookie } from "utils/cookie";
 import { projectType } from "types/projectType";
 
 //post projects
-export type apiPostProjectsInputType = { title: string, description: string; file: File | undefined;  }
+export type apiPostProjectsInputType = { title: string, description: string; file: File | undefined; deadline?: Date }
 export type apiPostProjectsOutputType = projectType
 
 export const apiPostProjects

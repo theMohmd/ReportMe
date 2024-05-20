@@ -17,6 +17,7 @@ import AssignProject from "./AssignProject";
 import { parentStaggerVariants, scaleVariants } from "src/utils/motionVariants";
 import EditProjectDialog from "./EditProjectDialog";
 import { useState } from "react";
+import { t } from "i18next";
 
 //ProjectView component
 const ProjectView = () => {
@@ -146,6 +147,23 @@ const ProjectView = () => {
                                 {dateFormat(data.updated_at)}
                             </span>
                         </div>
+                        {/******************************************************************************
+                        deadline
+                        ******************************************************************************/}
+                        {!!data.deadline &&
+                        <div className="flex flex-col md:flex-row md:gap-1 items-start md:items-center pb-2 font-medium border-b border-lightBorder dark:border-dlightBorder">
+                                <span className="line-clamp-1 overflow-hidden text-ellipsis">
+                                {t("Projects.deadline")}
+                                </span>
+                                <span className="line-clamp-1 overflow-hidden text-ellipsis">
+                                    {dateFormat(data.deadline)}
+                                </span>
+                        </div>
+                        }
+
+                        {/******************************************************************************
+                        description
+                        ******************************************************************************/}
                         <p className="overflow-auto h-0 grow">
                             {data.description}
                         </p>

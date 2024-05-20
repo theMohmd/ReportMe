@@ -16,6 +16,7 @@ import { projectType } from "src/types/projectType";
 type FormFields = {
     title: string;
     description: string;
+    deadline: Date;
 };
 //EditProjectDialog component
 type EditProjectDialogProps = { close: () => void; data: projectType };
@@ -41,7 +42,7 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
             id: data.id,
             title: undefined,
             description: undefined,
-            file: fileDeleted ? "": undefined,
+            file: fileDeleted ? "" : undefined,
         };
         //add title if exists
         if (formData.title) newData.title = formData.title;
@@ -50,7 +51,7 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
         if (formData.description) newData.description = formData.description;
 
         //add file if exists
-        if (file) newData.file = file
+        if (file) newData.file = file;
 
         //send patch request
         return mutate(newData, {
@@ -82,9 +83,24 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
                         {errors.title.message}
                     </p>
                 )}
+                {/******************************************************************************
+                date picker
+                ******************************************************************************/}
+                <div className=" items-center justify-center flex gap-2 ">
+                    <p>{t("Projects.deadline")}</p>
+                    <div className="grow">
+                        <Input
+                            type="datetime-local"
+                            placeholder="date"
+                            {...register("deadline")}
+                        />
+                    </div>
+                </div>
                 <Textarea
                     className="resize-none Input grow"
-                    placeholder={t("Projects.description") + ": " + data.description}
+                    placeholder={
+                        t("Projects.description") + ": " + data.description
+                    }
                     {...register("description")}
                 />
 
@@ -100,7 +116,7 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
                         disabled={isSubmitting}
                         onClick={() => {
                             if (file || (data.file && !fileDeleted)) {
-                                setFileDeleted(true)
+                                setFileDeleted(true);
                                 setFile(null);
                             } else fileRef.current?.click();
                         }}
@@ -115,7 +131,11 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
                                 )
                             }
                         />
-                        {file || (data.file && !fileDeleted) ? <Trash2Icon /> : <PaperclipIcon />}
+                        {file || (data.file && !fileDeleted) ? (
+                            <Trash2Icon />
+                        ) : (
+                            <PaperclipIcon />
+                        )}
                         <AnimatePresence>
                             {(file || (data.file && !fileDeleted)) && (
                                 <motion.span
@@ -124,7 +144,9 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
                                     exit={{ width: 0 }}
                                     className="overflow-hidden relative line-clamp-1 text-ellipsis top-[2px]"
                                 >
-                                    {data.file && !fileDeleted ? "file" : file?.name}
+                                    {data.file && !fileDeleted
+                                        ? "file"
+                                        : file?.name}
                                 </motion.span>
                             )}
                         </AnimatePresence>

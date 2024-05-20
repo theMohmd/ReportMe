@@ -12,7 +12,7 @@ import Dialog from "components/Common/Dialog";
 import Loader from "components/ui/Loader";
 import Input from "components/ui/Input";
 
-type FormFields = { title: string; description: string };
+type FormFields = { title: string; description: string; deadline: Date; };
 
 //NewProjectDialog component
 const NewProjectDialog = ({ close }: { close: () => void }) => {
@@ -67,6 +67,17 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                         {errors.title.message}
                     </p>
                 )}
+
+                {/******************************************************************************
+                date picker
+                ******************************************************************************/}
+                <div className=" items-center justify-center flex gap-2 ">
+                    <p>{t("Projects.deadline")}</p>
+                    <div className="grow">
+                    <Input type="datetime-local" placeholder="date" {...register("deadline")} />
+                    </div>
+                </div>
+
                 <textarea
                     className="resize-none Input grow"
                     placeholder={t("Projects.description")}
