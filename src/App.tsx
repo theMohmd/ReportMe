@@ -24,7 +24,6 @@ const App = () => {
             text-primary dark:text-dprimary
             bg-background2 font-vazir dark:bg-dbackground2 flex overflow-hidden h-dvh w-screen [&>*]:grow `}
         >
-        {user?.name}
             {isLoading ? (
                 <Loader size={100} />
             ) : (
