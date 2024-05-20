@@ -33,7 +33,7 @@ const ReportsPerProjectUi = ({
     const navigate = useNavigate();
     const { user } = useAuth();
     const [dialog, setdialog] = useState(false);
-    const deleteReport = useDeleteReport()
+    const deleteReport = useDeleteReport();
     return (
         <div className="flex flex-col gap-2 grow">
             <AnimatePresence>
@@ -63,7 +63,11 @@ const ReportsPerProjectUi = ({
                     {user?.id !== user_project.project.user.id && (
                         <CustomButton onClick={() => setdialog(true)}>
                             <Plus />
-                            <p className="px-1">{t("Reports.newReport")}</p>
+                            <p className="px-1">
+                                {t("Reports.new", {
+                                    what: t("Reports.report"),
+                                })}
+                            </p>
                         </CustomButton>
                     )}
                     <CustomButton onClick={() => navigate(-1)}>
@@ -76,7 +80,11 @@ const ReportsPerProjectUi = ({
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
-                        deleteAction={item.user.id === user?.id?()=>deleteReport(item.id):undefined}
+                        deleteAction={
+                            item.user.id === user?.id
+                                ? () => deleteReport(item.id)
+                                : undefined
+                        }
                     >
                         <div className="flex [&>*]:shrink-0 grow items-center justify-center gap-2">
                             <span className="line-clamp-1 w-[10ch]">

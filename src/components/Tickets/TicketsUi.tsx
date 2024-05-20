@@ -55,7 +55,7 @@ const TicketsUi = ({ data, setPage, page }: TicketsUiProps) => {
                 </p>
                 <CustomButton onClick={() => setdialog(true)}>
                     <Plus />
-                    <p className="px-1">{t("Tickets.newTicket")}</p>
+                    <p className="px-1">{t("Tickets.new",{what:t("Tickets.ticket")})}</p>
                 </CustomButton>
             </div>
             <List>

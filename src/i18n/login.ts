@@ -1,4 +1,7 @@
+import { common_en, common_fa } from "./common";
+
 export const login_en = {
+    ...common_en,
     login: "Log In",
     signup: "Sign Up",
     emailEmptyError: "Email can't be empty",
@@ -15,6 +18,7 @@ export const login_en = {
     signupError: "This email already has an account",
 };
 export const login_fa = {
+    ...common_fa,
     login: "ورود",
     signup: "ثبت نام",
     emailEmptyError: "ایمیل نمی‌تواند خالی باشد",

@@ -12,7 +12,7 @@ import Dialog from "components/Common/Dialog";
 import Loader from "components/ui/Loader";
 import Input from "components/ui/Input";
 
-type FormFields = { title: string; description: string; deadline: Date; };
+type FormFields = { title: string; description: string; deadline: Date };
 
 //NewProjectDialog component
 const NewProjectDialog = ({ close }: { close: () => void }) => {
@@ -50,7 +50,10 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
     };
 
     return (
-        <Dialog close={close} title={t("Projects.newProject")}>
+        <Dialog
+            close={close}
+            title={t("Projects.new", { what: t("Projects.project") })}
+        >
             <form
                 className="flex flex-col gap-2 mt-2 size-full "
                 onSubmit={handleSubmit(onSubmit)}
@@ -74,7 +77,11 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                 <div className=" items-center justify-center flex gap-2 ">
                     <p>{t("Projects.deadline")}</p>
                     <div className="grow">
-                    <Input type="datetime-local" placeholder="date" {...register("deadline")} />
+                        <Input
+                            type="datetime-local"
+                            placeholder="date"
+                            {...register("deadline")}
+                        />
                     </div>
                 </div>
 
@@ -133,7 +140,7 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                         {isSubmitting ? (
                             <Loader />
                         ) : (
-                            <>{t("Projects.create")}</>
+                            <>{t("Projects.create",{what:t("Projects.project")})}</>
                         )}
                     </button>
                 </div>

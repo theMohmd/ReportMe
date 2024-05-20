@@ -44,19 +44,19 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
         if (file) newData.file = file;
 
         //send request
-        return mutate(
-            newData,
-            {
-                onSuccess: (res) => {
-                    navigate(res.id.toString());
-                },
-                onError: () => console.log("error"),
-            }
-        );
+        return mutate(newData, {
+            onSuccess: (res) => {
+                navigate(res.id.toString());
+            },
+            onError: () => console.log("error"),
+        });
     };
 
     return (
-        <Dialog close={close} title={t("Reports.newReport")}>
+        <Dialog
+            close={close}
+            title={t("Reports.new", { what: t("Reports.report") })}
+        >
             <form
                 className="size-full flex flex-col mt-2 gap-2"
                 onSubmit={handleSubmit(onSubmit)}
@@ -113,7 +113,7 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
                         className="flex justify-center gap-2 grow max-h-12 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? <Loader /> : <>{t("Reports.create")}</>}
+                        {isSubmitting ? <Loader /> : <>{t("Reports.create",{what:t("Reports.report")})}</>}
                     </button>
                 </div>
             </form>

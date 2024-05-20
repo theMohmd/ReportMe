@@ -61,7 +61,7 @@ const WarningsPerProjectUi = ({
                     {user?.id === user_project.project.user.id && (
                         <CustomButton onClick={() => setdialog(true)}>
                             <Plus />
-                            <p className="px-1">{t("Warnings.newWarning")}</p>
+                            <p className="px-1">{t("Warnings.new",{what:t("Warnings.warning")})}</p>
                         </CustomButton>
                     )}
                     <CustomButton onClick={() => navigate(-1)}>

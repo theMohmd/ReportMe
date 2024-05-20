@@ -50,7 +50,10 @@ const NewTicketDialog = ({ close }: { close: () => void }) => {
     };
 
     return (
-        <Dialog close={close} title={t("Tickets.newTicket")}>
+        <Dialog
+            close={close}
+            title={t("Tickets.new", { what: t("Tickets.ticket") })}
+        >
             <form
                 className="flex flex-col gap-2 mt-2 size-full "
                 onSubmit={handleSubmit(onSubmit)}
@@ -119,11 +122,7 @@ const NewTicketDialog = ({ close }: { close: () => void }) => {
                         className="flex gap-2 justify-center items-center p-3 max-h-12 font-bold rounded-lg grow bg-dbutton text-background"
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? (
-                            <Loader />
-                        ) : (
-                            <>{t("Tickets.create")}</>
-                        )}
+                        {isSubmitting ? <Loader /> : <>{t("Tickets.create",{what:t("Tickets.ticket")})}</>}
                     </button>
                 </div>
             </form>

@@ -62,7 +62,7 @@ const EditMessageDialog = ({ close, data }: EditMessageDialogProps) => {
     };
 
     return (
-        <Dialog close={close} title={t("Messages.sendTitle")}>
+        <Dialog close={close} title={t("Messages.edit",{what:t("Messages.message")})}>
             <form
                 className="flex flex-col gap-2 mt-2 size-full "
                 onSubmit={handleSubmit(onSubmit)}

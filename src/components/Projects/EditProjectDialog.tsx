@@ -63,7 +63,7 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
     };
 
     return (
-        <Dialog close={close} title={t("Projects.sendTitle")}>
+        <Dialog close={close} title={t("Projects.edit",{what:t("Projects.project")})}>
             <form
                 className="flex flex-col gap-2 mt-2 size-full "
                 onSubmit={handleSubmit(onSubmit)}
@@ -156,7 +156,7 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
                         className="flex gap-2 justify-center items-center p-3 max-h-12 font-bold rounded-lg grow bg-dbutton text-background"
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? <Loader /> : <>{t("Projects.send")}</>}
+                        {isSubmitting ? <Loader /> : <>{t("Projects.submit")}</>}
                     </button>
                 </div>
             </form>

@@ -39,7 +39,6 @@ const resources = {
             Account: account_fa,
             login: login_fa,
             common: {
-                noUser:"",
                 pageNotFound: "صفحه مورد نظر یافت نشد!",
                 pageNotFoundLink: "برای برگشت به خانه اینجا کلیک کنید",
                 relogin: "باید دوباره وارد شوید",

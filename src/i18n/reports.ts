@@ -1,18 +1,12 @@
+import { common_en, common_fa } from "./common";
+
 export const reports_en = {
-    reports: "Reports",
-    report: "Report",
+    ...common_en,
     reportsPerProject: "Reports of",
-    newReport: "New report",
-    project: "Project",
     descriptionEmptyError: "Report can't be empty",
-    create:"Submit"
 };
 export const reports_fa = {
-    reports: "گزارش‌ها",
-    report: "گزارش",
+    ...common_fa,
     reportsPerProject: "گزارش‌های",
-    newReport: "گزارش جدید",
-    project: "پروژه",
     descriptionEmptyError: "گزارش نمی‌تواند خالی باشد",
-    create:"ثبت"
 };

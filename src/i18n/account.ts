@@ -1,5 +1,7 @@
+import { common_en, common_fa } from "./common";
+
 export const account_en = {
-    account: "Account",
+    ...common_en,
     info: "Personal info.",
     username: "Username",
     email: "Email",
@@ -10,11 +12,9 @@ export const account_en = {
     addSubordinate: "Add subordinate",
     noSubordinates: "You don't have any subordinates",
     noSupervisor: "You haven't selected a supervisor",
-    editTitle: "Edit Account",
-    submit:"Submit",
 };
 export const account_fa = {
-    account: "حساب کاربری",
+    ...common_fa,
     info: "اطلاعات شخصی",
     username: "نام کاربری",
     email: "ایمیل",
@@ -25,6 +25,4 @@ export const account_fa = {
     addSubordinate: "اضافه کردن زیردست",
     noSubordinates: "زیردست ندارید",
     noSupervisor: "کارفرما انتخاب نکرده‌اید",
-    editTitle: "ویرایش حساب کاربری",
-    submit:"ثبت",
 };

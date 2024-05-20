@@ -1,16 +1,8 @@
+import { common_en, common_fa } from "./common";
+
 export const nav_en = {
-    projects: "Projects",
-    messages: "Messages",
-    tickets: "Tickets",
-    warnings: "Warnings",
-    account: "Account",
-    reports: "Reports",
+    ...common_en,
 };
 export const nav_fa = {
-    projects: "پروژه‌ها",
-    messages: "پیام‌ها",
-    tickets: "تیکت‌ها",
-    warnings: "اخطار‌ها",
-    account: "حساب کاربری",
-    reports: "گزارش‌ها",
+    ...common_fa,
 };

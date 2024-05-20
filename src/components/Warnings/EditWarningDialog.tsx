@@ -58,7 +58,7 @@ const EditWarningDialog = ({ close, data }: EditWarningDialogProps) => {
     };
 
     return (
-        <Dialog close={close} title={t("Warnings.sendTitle")}>
+        <Dialog close={close} title={t("Warnings.edit",{what:t("Warnings.warning")})}>
             <form
                 className="flex flex-col gap-2 mt-2 size-full "
                 onSubmit={handleSubmit(onSubmit)}
@@ -126,7 +126,7 @@ const EditWarningDialog = ({ close, data }: EditWarningDialogProps) => {
                         {isSubmitting ? (
                             <Loader />
                         ) : (
-                            <>{t("Warnings.create")}</>
+                            <>{t("Warnings.submit")}</>
                         )}
                     </button>
                 </div>

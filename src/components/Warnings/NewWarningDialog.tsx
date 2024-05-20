@@ -15,7 +15,10 @@ type FormFields = { description: string };
 
 //NewWarningDialog component
 type NewWarningDialogProps = { close: () => void; user_project_id: number };
-const NewWarningDialog = ({ close, user_project_id }: NewWarningDialogProps) => {
+const NewWarningDialog = ({
+    close,
+    user_project_id,
+}: NewWarningDialogProps) => {
     const [file, setFile] = useState<File | null>(null);
     const fileRef = useRef<HTMLInputElement | null>(null);
 
@@ -44,19 +47,19 @@ const NewWarningDialog = ({ close, user_project_id }: NewWarningDialogProps) => 
         if (file) newData.file = file;
 
         //send request
-        return mutate(
-            newData,
-            {
-                onSuccess: (res) => {
-                    navigate(res.id.toString());
-                },
-                onError: () => console.log("error"),
-            }
-        );
+        return mutate(newData, {
+            onSuccess: (res) => {
+                navigate(res.id.toString());
+            },
+            onError: () => console.log("error"),
+        });
     };
 
     return (
-        <Dialog close={close} title={t("Warnings.newWarning")}>
+        <Dialog
+            close={close}
+            title={t("Warnings.new", { what: t("Warnings.warning") })}
+        >
             <form
                 className="size-full flex flex-col mt-2 gap-2"
                 onSubmit={handleSubmit(onSubmit)}
@@ -113,7 +116,11 @@ const NewWarningDialog = ({ close, user_project_id }: NewWarningDialogProps) => 
                         className="flex justify-center gap-2 grow max-h-12 items-center p-3 font-bold rounded-lg bg-dbutton text-background "
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? <Loader /> : <>{t("Warnings.create")}</>}
+                        {isSubmitting ? (
+                            <Loader />
+                        ) : (
+                            <>{t("Warnings.create",{what:t("Warnings.warning")})}</>
+                        )}
                     </button>
                 </div>
             </form>

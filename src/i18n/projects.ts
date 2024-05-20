@@ -1,24 +1,20 @@
+import { common_en, common_fa } from "./common";
+
 export const projects_en = {
-    projects: "Projects",
-    newProject: "New Project",
-    title: "Title",
+    ...common_en,
     titleEmptyError: "Title can't be empty",
     description: "Description",
     descriptionEmptyError: "Description can't be empty",
-    create: "Create project",
     assign: "Assign new user",
     noUsers: "No user is assigned to this project",
     noUser: "You haven't selected a user",
     deadline: "Deadline",
 };
 export const projects_fa = {
-    projects: "پروژه‌ها",
-    newProject: "پروژه جدید",
-    title: "عنوان",
+    ...common_fa,
     titleEmptyError: "عنوان نمی‌تواند خالی باشد",
     description: "توضیحات",
     descriptionEmptyError: "توضیحات نمی‌تواند خالی باشد",
-    create: "ایجاد پروژه",
     assign: "تعیین کاربر جدید",
     noUsers: "هیچ کاربری برای این پروژه تعیین نشده",
     noUser: "کاربر انتخاب نکرده‌اید",

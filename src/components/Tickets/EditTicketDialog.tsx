@@ -62,7 +62,7 @@ const EditTicketDialog = ({ close, data }: EditTicketDialogProps) => {
     };
 
     return (
-        <Dialog close={close} title={t("Tickets.sendTitle")}>
+        <Dialog close={close} title={t("Tickets.edit",{what:t("Tickets.tickets")})}>
             <form
                 className="flex flex-col gap-2 mt-2 size-full "
                 onSubmit={handleSubmit(onSubmit)}
@@ -134,7 +134,7 @@ const EditTicketDialog = ({ close, data }: EditTicketDialogProps) => {
                         className="flex gap-2 justify-center items-center p-3 max-h-12 font-bold rounded-lg grow bg-dbutton text-background"
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? <Loader /> : <>{t("Tickets.edit")}</>}
+                        {isSubmitting ? <Loader /> : <>{t("Tickets.send")}</>}
                     </button>
                 </div>
             </form>
