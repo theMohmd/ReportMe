@@ -17,6 +17,7 @@ type FormFields = { title: string; description: string; deadline: Date };
 //NewProjectDialog component
 const NewProjectDialog = ({ close }: { close: () => void }) => {
     //post project
+    const [dateError, setdateError] = useState("");
     const { mutate } = usePostProjects();
     const navigate = useNavigate();
     const [file, setFile] = useState<File | null>(null);
@@ -31,6 +32,10 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
 
     //form submit funciton
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
+        if (new Date(data.deadline).getTime() < new Date().getTime()) {
+            setdateError(t("Projects.dateError"));
+            return;
+        }
         //create input data
         const newData: apiPostProjectsInputType = {
             ...data,
@@ -45,7 +50,9 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
             onSuccess: (res) => {
                 navigate(res.id.toString());
             },
-            onError: () => console.log("error"),
+            onError: () => {
+                alert(t("Projects.dateError"));
+            },
         });
     };
 
@@ -84,6 +91,9 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                         />
                     </div>
                 </div>
+                {!!dateError && (
+                    <p className="font-medium text-red-600 ps-2">{dateError}</p>
+                )}
 
                 <textarea
                     className="resize-none Input grow"
@@ -140,7 +150,11 @@ const NewProjectDialog = ({ close }: { close: () => void }) => {
                         {isSubmitting ? (
                             <Loader />
                         ) : (
-                            <>{t("Projects.create",{what:t("Projects.project")})}</>
+                            <>
+                                {t("Projects.create", {
+                                    what: t("Projects.project"),
+                                })}
+                            </>
                         )}
                     </button>
                 </div>

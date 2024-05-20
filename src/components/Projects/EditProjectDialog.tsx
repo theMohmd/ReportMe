@@ -21,6 +21,7 @@ type FormFields = {
 //EditProjectDialog component
 type EditProjectDialogProps = { close: () => void; data: projectType };
 const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
+    const [dateError, setdateError] = useState("");
     const [file, setFile] = useState<File | null>(null);
     const [fileDeleted, setFileDeleted] = useState(false);
     const fileRef = useRef<HTMLInputElement | null>(null);
@@ -37,6 +38,10 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
 
     //form submit funciton
     const onSubmit: SubmitHandler<FormFields> = async (formData) => {
+        if (new Date(formData.deadline).getTime() < new Date().getTime()) {
+            setdateError(t("Projects.dateError"));
+            return;
+        }
         //create input data
         const newData: apiPatchProjectsInputType = {
             id: data.id,
@@ -63,11 +68,17 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
     };
 
     return (
-        <Dialog close={close} title={t("Projects.edit",{what:t("Projects.project")})}>
+        <Dialog
+            close={close}
+            title={t("Projects.edit", { what: t("Projects.project") })}
+        >
             <form
                 className="flex flex-col gap-2 mt-2 size-full "
                 onSubmit={handleSubmit(onSubmit)}
             >
+                {/******************************************************************************
+                title
+                ******************************************************************************/}
                 <Input
                     placeholder={t("Projects.title") + ": " + data.title}
                     {...register("title", {
@@ -96,6 +107,13 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
                         />
                     </div>
                 </div>
+                {!!dateError && (
+                    <p className="font-medium text-red-600 ps-2">{dateError}</p>
+                )}
+
+                {/******************************************************************************
+                description
+                ******************************************************************************/}
                 <Textarea
                     className="resize-none Input grow"
                     placeholder={
@@ -156,7 +174,11 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
                         className="flex gap-2 justify-center items-center p-3 max-h-12 font-bold rounded-lg grow bg-dbutton text-background"
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? <Loader /> : <>{t("Projects.submit")}</>}
+                        {isSubmitting ? (
+                            <Loader />
+                        ) : (
+                            <>{t("Projects.submit")}</>
+                        )}
                     </button>
                 </div>
             </form>
