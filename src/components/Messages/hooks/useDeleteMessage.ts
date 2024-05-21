@@ -4,9 +4,9 @@ import {
     apiDeleteMessagesInputType,
 } from "src/api/messages/apiDeleteMessages";
 
-export const useDeleteMessage = () => {
+export const useDeleteMessage = (onSuccessCallback?: () => void) => {
     const queryClient = useQueryClient();
-    return useMutation({
+    const { mutate } = useMutation({
         mutationKey: ["messages", "delete"],
         mutationFn: async (data: apiDeleteMessagesInputType) =>
             apiDeleteMessages(data),
@@ -14,4 +14,17 @@ export const useDeleteMessage = () => {
             queryClient.invalidateQueries({ queryKey: ["messages"] });
         },
     });
+    return (id: number) => {
+        mutate(
+            { id: id },
+            {
+                onSuccess() {
+                    if (onSuccessCallback) onSuccessCallback();
+                },
+                onError() {
+                    console.log("error");
+                },
+            }
+        );
+    };
 };

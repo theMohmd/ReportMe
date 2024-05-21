@@ -33,21 +33,9 @@ const MessageView = () => {
         queryKey: ["messages", id],
         queryFn: () => apiGetMessagesId({ id: id ? parseInt(id) : -1 }),
     });
-    const { mutate: deleteRequest } = useDeleteMessage();
     const navigate = useNavigate();
-    const deleteAction = () => {
-        deleteRequest(
-            { id: data ? data.id : -1 },
-            {
-                onSuccess() {
-                    navigate(-1);
-                },
-                onError() {
-                    console.log("error");
-                },
-            }
-        );
-    };
+    const deleteAction = useDeleteMessage(() => navigate(-1));
+
     if (isLoading) return <Loader size={100} />;
     if (error) return <ErrorPage error={error as customError} />;
     console.log(data);
@@ -105,7 +93,11 @@ const MessageView = () => {
                                     >
                                         <SquarePenIcon />
                                     </CustomButton>
-                                    <CustomButton onClick={deleteAction}>
+                                    <CustomButton
+                                        onClick={() =>
+                                            deleteAction(data ? data.id : -1)
+                                        }
+                                    >
                                         <Trash2Icon />
                                     </CustomButton>
                                 </>

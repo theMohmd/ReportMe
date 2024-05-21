@@ -28,17 +28,7 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
     const navigate = useNavigate();
     const { user } = useAuth();
 
-    const { mutate: deleteRequest } = useDeleteMessage();
-    const deleteAction = (id: number) => {
-        deleteRequest(
-            { id: id },
-            {
-                onError() {
-                    console.log("error");
-                },
-            }
-        );
-    };
+    const deleteAction = useDeleteMessage();
     return (
         <div className="flex flex-col gap-2 grow">
             <AnimatePresence>
