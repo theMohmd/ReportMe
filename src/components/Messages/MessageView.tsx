@@ -28,6 +28,7 @@ import MessageReplies from "./MessageReplies";
 //MessageView component
 const MessageView = () => {
     const [editDialog, setEditDialog] = useState(false);
+    const [replyDialog, setreplyDialog] = useState(false);
 
     const { id } = useParams();
     const { user } = useAuth();
@@ -49,8 +50,8 @@ const MessageView = () => {
                 className="flex flex-col gap-2 grow"
             >
                 {/******************************************************************************
-                    edit dialog
-                    ******************************************************************************/}
+                dialogs
+                ******************************************************************************/}
                 <AnimatePresence>
                     {editDialog && (
                         <EditMessageDialog
@@ -58,6 +59,12 @@ const MessageView = () => {
                             close={() => {
                                 setEditDialog(false);
                             }}
+                        />
+                    )}
+                    {replyDialog && (
+                        <NewReplyDialog
+                            messageId={data.id}
+                            close={() => setreplyDialog(false)}
                         />
                     )}
                 </AnimatePresence>
@@ -86,7 +93,7 @@ const MessageView = () => {
                                 </a>
                             </CustomButton>
                         )}
-                        <CustomButton>
+                        <CustomButton onClick={() => setreplyDialog(true)}>
                             <MessageSquareQuoteIcon />
                         </CustomButton>
                         {user?.id === data.sender.id && (
@@ -176,3 +183,4 @@ const MessageView = () => {
 };
 
 export default MessageView;
+import NewReplyDialog from "./NewReplyDialog";
