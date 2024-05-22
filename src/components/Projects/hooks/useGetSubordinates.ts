@@ -13,7 +13,7 @@ export const useGetSubordinates = () => {
                         return item.supervisor.id === user?.id;
                     })
                     .map((item: userSupervisorType) => {
-                        return { USid: item.id, ...item.user };
+                        return { ...item.user ,id: item.id};
                     });
             }
         );

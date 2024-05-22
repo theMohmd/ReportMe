@@ -18,7 +18,7 @@ import { useGetSubordinates } from "./hooks/useGetSubordinates";
 //AssginProject component
 type AssginProjectProps = { id: number };
 const AssginProject = ({ id }: AssginProjectProps) => {
-    const query = useGetSubordinates();
+    const selectQuery = useGetSubordinates();
     const [userToAdd, setuserToAdd] = useState<number | null>(null);
     const [error, seterror] = useState("");
     const queryClient = useQueryClient();
@@ -37,7 +37,7 @@ const AssginProject = ({ id }: AssginProjectProps) => {
         } else {
             seterror("");
         }
-        mutate({ user_id: userToAdd, project_id: id });
+        mutate({ user_supervisor_id: userToAdd, project_id: id });
     };
     return (
         <motion.div
@@ -45,13 +45,11 @@ const AssginProject = ({ id }: AssginProjectProps) => {
             className="flex flex-col justify-center "
         >
             <div className="flex flex-col gap-2 justify-center items-start md:flex-row md:items-center">
-                <p className="font-medium ps-2 ">
-                    {t("Projects.assign")}
-                </p>
+                <p className="font-medium ps-2 ">{t("Projects.assign")}</p>
                 <div className="flex h-[42px] gap-1 w-full grow md:w-fit">
                     <UserSelect
                         queryKey="getSubUsers"
-                        query={(input,mode)=>query(input,mode)}
+                        query={(input, mode) => selectQuery(input, mode)}
                         set={(i) => setuserToAdd(i)}
                     />
                     <CustomButton onClick={assignAction}>

@@ -3,7 +3,7 @@ import { getCookie } from "utils/cookie";
 import { userProjectType } from "types/userProjectType";
 
 //post user-projects
-export type apiPostUserProjectsInputType = { user_id: number; project_id: number }
+export type apiPostUserProjectsInputType = { user_supervisor_id: number; project_id: number }
 export type apiPostUserProjectsOutputType = userProjectType
 
 export const apiPostUserProjects
