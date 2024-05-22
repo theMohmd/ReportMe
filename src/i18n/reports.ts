@@ -10,5 +10,5 @@ export const reports_fa = {
     ...common_fa,
     reportsPerProject: "گزارش‌های",
     descriptionEmptyError: "گزارش نمی‌تواند خالی باشد",
-    score:"نمره‌دهی",
+    score:"نمره",
 };

@@ -13,6 +13,7 @@ const ReportScore = ({ id }: ReportScoreProps) => {
     const submit = () => {
         if (input === -1) return;
         mutate({ report: id, score: input });
+        setexpanded(false)
     };
     return (
         <div
@@ -42,7 +43,7 @@ const ReportScore = ({ id }: ReportScoreProps) => {
                             type="number"
                             onChange={(e) => setinput(parseInt(e.target.value))}
                         />
-                        <button onClick={submit}>
+                        <button onClick={e=>{e.stopPropagation();submit();}}>
                             <CheckIcon />
                         </button>
                     </motion.div>

@@ -21,6 +21,7 @@ import { useState } from "react";
 import EditReportDialog from "./EditReportDialog";
 import { useDeleteReport } from "./hooks/useDeleteReport";
 import ReportScore from "./ReportScore";
+import { t } from "i18next";
 
 //ReportView component
 const ReportView = () => {
@@ -150,6 +151,15 @@ const ReportView = () => {
                                 {dateFormat(data.updated_at)}
                             </span>
                         </div>
+                        {/******************************************************************************
+                        score
+                        ******************************************************************************/}
+                        {data.score && (
+                            <div className="flex gap-1 items-center pb-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
+                                <span>{t("Reports.score")}</span>
+                                <span>{data.score}</span>
+                            </div>
+                        )}
                         <p className="overflow-auto h-0 grow">
                             {data.description}
                         </p>
