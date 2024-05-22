@@ -9,7 +9,6 @@ import {
     apiLoginInputType as FormFields,
 } from "api/auth/apiLogin";
 import { useAuth } from "contexts/Auth/useAuth";
-import { apiGetAuth, apiGetAuthOutputType } from "api/auth/apiGetUser";
 
 import Input from "components/ui/Input";
 import Loader from "components/ui/Loader";
@@ -28,13 +27,9 @@ const LoginForm = () => {
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         apiLogin(data)
             .then((res: apiLoginOutputType) => {
-                setToken(res);
-            })
-            .then(() => {
-                apiGetAuth().then((res: apiGetAuthOutputType) => {
-                    setUser(res);
-                    navigate("/");
-                });
+                setToken(res.token);
+                setUser(res.user);
+                navigate("/");
             })
             .catch(() => {
                 setError("root", {
