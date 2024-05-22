@@ -17,11 +17,13 @@ import CustomButton from "components/ui/CustomButton";
 import {
     ChevronLeftIcon,
     DownloadIcon,
+    MessageSquareQuoteIcon,
     SquarePenIcon,
     Trash2Icon,
 } from "lucide-react";
 import EditMessageDialog from "./EditMessageDialog";
 import { useDeleteMessage } from "./hooks/useDeleteMessage";
+import MessageReplies from "./MessageReplies";
 
 //MessageView component
 const MessageView = () => {
@@ -85,6 +87,9 @@ const MessageView = () => {
                                     </a>
                                 </CustomButton>
                             )}
+                            <CustomButton>
+                                <MessageSquareQuoteIcon />
+                            </CustomButton>
                             {user?.id === data.sender.id && (
                                 <>
                                     <CustomButton
@@ -154,6 +159,18 @@ const MessageView = () => {
                         ******************************************************************************/}
                         <p className="overflow-auto h-0 grow">{data.content}</p>
                     </motion.div>
+
+                    {/******************************************************************************
+                    replies
+                    ******************************************************************************/}
+                    <div className="flex justify-between items-end h-10">
+                        <p className="px-2 text-xl font-semibold ">
+                            {t("Messages.replies")}
+                        </p>
+                    </div>
+                    <div className="flex rounded-xl flex-col max-h-[40%] overflow-x-hidden overflow-y-auto">
+                        <MessageReplies messageId={data.id} />
+                    </div>
                 </motion.div>
             )}
         </>
