@@ -38,7 +38,6 @@ const MessageView = () => {
 
     if (isLoading) return <Loader size={100} />;
     if (error) return <ErrorPage error={error as customError} />;
-    console.log(data);
     return (
         <>
             {data && (
