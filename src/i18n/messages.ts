@@ -15,6 +15,7 @@ export const messages_en = {
     selectInput:"Start typing to search",
     titleLongError:"Subject can't be longer than 255 characters",
     replies:"Replies",
+    replyto:"Reply to",
 };
 export const messages_fa = {
     ...common_fa,
@@ -31,4 +32,5 @@ export const messages_fa = {
     selectInput:"برای جست‌و‌جو تایپ کنید",
     titleLongError:"موضوع نمی‌تواند بیشتر از ۲۵۵ کاراکتر باشد",
     replies:"پاسخ‌ها",
+    replyto:"پاسخ به",
 };

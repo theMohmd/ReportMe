@@ -12,6 +12,7 @@ import TicketView from "../Tickets/TicketView";
 import WarningView from "../Warnings/WarningView";
 import WarningsPerProject from "../Warnings/WarningsPerProject";
 import Warnings from "../Warnings/Warnings";
+import MessageReplyView from "../Messages/MessageReplyView";
 
 //Routes for layout component
 const LayoutRoutes = () => {
@@ -25,6 +26,7 @@ const LayoutRoutes = () => {
             <Route path="projects/:id" element={<ProjectView />} />
             <Route path="messages" element={<Messages />} />
             <Route path="messages/:id" element={<MessageView />} />
+            <Route path="messages/:id/:reply_id" element={<MessageReplyView />} />
             <Route path="warnings" element={<Warnings />} />
             <Route path="warnings/:user_project_id" element={<WarningsPerProject />} />
             <Route path="warnings/:user_project_id/:id" element={<WarningView/>} />

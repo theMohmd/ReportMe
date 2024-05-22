@@ -1,45 +1,37 @@
-import { t } from "i18next";
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { apiGetMessageRepliesId } from "src/api/messages/message-replies/apiGetMessageRepliesId";
+import Loader from "../ui/Loader";
+import ErrorPage from "../ui/ErrorPage";
+import { customError } from "src/types/customError";
 import { AnimatePresence, motion } from "framer-motion";
-
-import { useAuth } from "contexts/Auth/useAuth";
-import { dateFormat } from "utils/dateFormat";
-import { messageType } from "types/messageType";
-import { customError } from "types/customError";
-import { apiGetMessagesId } from "api/messages/apiGetMessagesId";
-import { parentStaggerVariants, scaleVariants } from "utils/motionVariants";
-
-import Loader from "components/ui/Loader";
-import ErrorPage from "components/ui/ErrorPage";
-import CustomButton from "components/ui/CustomButton";
+import { parentStaggerVariants, scaleVariants } from "src/utils/motionVariants";
+import { useState } from "react";
+import CustomButton from "../ui/CustomButton";
 import {
     ChevronLeftIcon,
     DownloadIcon,
-    MessageSquareQuoteIcon,
     SquarePenIcon,
     Trash2Icon,
 } from "lucide-react";
-import EditMessageDialog from "./EditMessageDialog";
-import { useDeleteMessage } from "./hooks/useDeleteMessage";
-import MessageReplies from "./MessageReplies";
+import { useAuth } from "src/contexts/Auth/useAuth";
+import { t } from "i18next";
+import { dateFormat } from "src/utils/dateFormat";
 
-//MessageView component
-const MessageView = () => {
+//MessageReplyView component
+const MessageReplyView = () => {
     const [editDialog, setEditDialog] = useState(false);
-
-    const { id } = useParams();
     const { user } = useAuth();
-    const { data, error, isLoading } = useQuery<messageType>({
-        queryKey: ["messages", id],
-        queryFn: () => apiGetMessagesId({ id: id ? parseInt(id) : -1 }),
-    });
     const navigate = useNavigate();
-    const deleteAction = useDeleteMessage(() => navigate(-1));
-
-    if (isLoading) return <Loader size={100} />;
+    const { reply_id } = useParams();
+    const { data, isLoading, error } = useQuery({
+        queryKey: ["messageReply", reply_id],
+        queryFn: () =>
+            apiGetMessageRepliesId({ message_reply: reply_id ? reply_id : "" }),
+    });
+    if (isLoading) return <Loader size={40} />;
     if (error) return <ErrorPage error={error as customError} />;
+    console.log(data);
     return (
         data && (
             <motion.div
@@ -51,23 +43,18 @@ const MessageView = () => {
                 {/******************************************************************************
                     edit dialog
                     ******************************************************************************/}
-                <AnimatePresence>
-                    {editDialog && (
-                        <EditMessageDialog
-                            data={data}
-                            close={() => {
-                                setEditDialog(false);
-                            }}
-                        />
-                    )}
-                </AnimatePresence>
+                <AnimatePresence>{editDialog && <p>hi</p>}</AnimatePresence>
                 {/******************************************************************************
                     top bar
                     ******************************************************************************/}
                 <div className="flex justify-between items-center mb-5">
-                    <p className="px-2 grow w-0 overflow-hidden line-clamp-1 text-3xl font-semibold ">
-                        {data.title}
-                    </p>
+                    <Link
+                        to={`/messages/${data.message.id}`}
+                        className="px-2 grow w-0 overflow-hidden line-clamp-1 text-3xl font-semibold "
+                    >
+                        <span>{t("Messages.replyto")} </span>
+                        <span>{data.message.title}</span>
+                    </Link>
                     <div className="flex gap-1">
                         {/******************************************************************************
                             file download button if exists
@@ -80,16 +67,13 @@ const MessageView = () => {
                                         data.file
                                     }
                                     target="_blank"
-                                    download={data.title + "_file"}
+                                    download={data.message.title + "_file"}
                                 >
                                     <DownloadIcon />
                                 </a>
                             </CustomButton>
                         )}
-                        <CustomButton>
-                            <MessageSquareQuoteIcon />
-                        </CustomButton>
-                        {user?.id === data.sender.id && (
+                        {user?.id === data.user.id && (
                             <>
                                 <CustomButton
                                     onClick={() => setEditDialog(true)}
@@ -98,7 +82,8 @@ const MessageView = () => {
                                 </CustomButton>
                                 <CustomButton
                                     onClick={() =>
-                                        deleteAction(data ? data.id : -1)
+                                        //deleteAction(data ? data.id : -1)todo
+                                        console.log("todo")
                                     }
                                 >
                                     <Trash2Icon />
@@ -124,10 +109,10 @@ const MessageView = () => {
                             ******************************************************************************/}
                         <div className="flex items-center">
                             <span className="line-clamp-1 overflow-hidden text-ellipsis">
-                                {data.sender.name}
+                                {data.user.name}
                             </span>
                             <span className="text-sm font-thin overflow-hidden text-ellipsis">
-                                ({data.sender.email})
+                                ({data.user.email})
                             </span>
                         </div>
 
@@ -138,10 +123,10 @@ const MessageView = () => {
                             ******************************************************************************/}
                         <div className="flex items-center">
                             <span className="line-clamp-1 overflow-hidden text-ellipsis">
-                                {data.receiver.name}
+                                {data.user.name}
                             </span>
                             <span className="text-sm font-thin overflow-hidden text-ellipsis">
-                                ({data.receiver.email})
+                                ({data.user.email})
                             </span>
                         </div>
 
@@ -158,21 +143,9 @@ const MessageView = () => {
                         ******************************************************************************/}
                     <p className="overflow-auto h-0 grow">{data.content}</p>
                 </motion.div>
-
-                {/******************************************************************************
-                    replies
-                    ******************************************************************************/}
-                <div className="flex justify-between items-end h-10">
-                    <p className="px-2 text-xl font-semibold ">
-                        {t("Messages.replies")}
-                    </p>
-                </div>
-                <div className="flex rounded-xl flex-col max-h-[40%] overflow-x-hidden overflow-y-auto">
-                    <MessageReplies messageId={data.id} />
-                </div>
             </motion.div>
         )
     );
 };
 
-export default MessageView;
+export default MessageReplyView;
