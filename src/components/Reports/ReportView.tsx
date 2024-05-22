@@ -20,6 +20,7 @@ import { parentStaggerVariants, scaleVariants } from "src/utils/motionVariants";
 import { useState } from "react";
 import EditReportDialog from "./EditReportDialog";
 import { useDeleteReport } from "./hooks/useDeleteReport";
+import ReportScore from "./ReportScore";
 
 //ReportView component
 const ReportView = () => {
@@ -89,6 +90,15 @@ const ReportView = () => {
                                     </a>
                                 </CustomButton>
                             )}
+                            {/******************************************************************************
+                            score button for project owner
+                            ******************************************************************************/}
+                            {user?.id === data.project.user.id && (
+                                <ReportScore id={data.id} />
+                            )}
+                            {/******************************************************************************
+                            edit and delete for report author
+                            ******************************************************************************/}
                             {user?.id === data.user.id && (
                                 <>
                                     <CustomButton
