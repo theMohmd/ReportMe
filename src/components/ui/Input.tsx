@@ -21,7 +21,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                                 : "password"
                             : type
                     }
-                    className=" 
+                    className="
+                    dark:[color-scheme:dark]
                     autofill:[-webkit-text-fill-color:theme(colors.primary)]
                     dark:autofill:[-webkit-text-fill-color:theme(colors.dprimary)]
                     p-2 min-w-0 grow rounded-lg border outline-none bg-background border-lightBorder dark:bg-dbackground dark:border-dlightBorder"
