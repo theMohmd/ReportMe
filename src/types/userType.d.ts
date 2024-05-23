@@ -1,1 +1,1 @@
-export type userType = { name: string; email: string; id: number };
+export type userType = { name: string; email: string; id: number; role: string[] };

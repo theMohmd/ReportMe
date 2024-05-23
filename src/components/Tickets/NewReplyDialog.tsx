@@ -1,31 +1,36 @@
+import { t } from "i18next";
+import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { usePostTicket } from "./hooks/usePostTicket";
 
 import { PaperclipIcon, Trash2Icon } from "lucide-react";
 import Dialog from "components/Common/Dialog";
 import Loader from "components/ui/Loader";
-import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
-import { apiPostTicketsInputType } from "src/api/tickets/apiPostTickets";
-import { useNavigate } from "react-router-dom";
-import { t } from "i18next";
+import { usePostReply } from "./hooks/usePostReply";
+import { apiPostTicketRepliesInputType } from "src/api/tickets/ticket-replies/apiPostTicketReplies";
 
 type FormFields = {
-    title: string;
-    description: string;
+    content: string;
 };
-//NewTicketDialog component
-const NewTicketDialog = ({ close }: { close: () => void }) => {
-    const [file, setFile] = useState<File | null>(null);
+//NewReplyDialog component
+const NewReplyDialog = ({
+    close,
+    ticketId,
+}: {
+    ticketId: number;
+    close: () => void;
+}) => {
+    //handle recepient id and it's errors
 
     const navigate = useNavigate();
+    const [file, setFile] = useState<File | null>(null);
     const fileRef = useRef<HTMLInputElement | null>(null);
 
-    //post ticket
-    const { mutate } = usePostTicket();
+    //post reply
+    const { mutate } = usePostReply();
 
     //handle form
     const {
@@ -36,10 +41,10 @@ const NewTicketDialog = ({ close }: { close: () => void }) => {
 
     //form submit funciton
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-
         //create input data
-        const newData: apiPostTicketsInputType = {
+        const newData: apiPostTicketRepliesInputType = {
             ...data,
+            ticket_id: ticketId,
             file: undefined,
         };
 
@@ -57,42 +62,29 @@ const NewTicketDialog = ({ close }: { close: () => void }) => {
     return (
         <Dialog
             close={close}
-            title={t("Tickets.new", { what: t("Tickets.ticket") })}
+            title={t("Tickets.new", { what: t("Tickets.reply") })}
         >
             <form
                 className="flex flex-col gap-2 mt-2 size-full "
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <Input
-                    {...register("title", {
-                        required: t("Tickets.titleEmptyError"),
-                        maxLength: {
-                            value: 255,
-                            message: t("Tickets.titleLongError"),
-                        },
-                    })}
-                    placeholder={t("Tickets.title")}
-                    type="text"
-                />
-                {errors.title && (
-                    <p className="font-medium text-red-600 ps-2">
-                        {errors.title.message}
-                    </p>
-                )}
                 <Textarea
                     className="resize-none Input grow"
-                    placeholder={t("Tickets.ticket")}
-                    {...register("description", {
+                    placeholder={t("Tickets.reply")}
+                    {...register("content", {
                         required: t("Tickets.contentEmptyError"),
                     })}
                 />
 
-                {errors.description && (
+                {errors.content && (
                     <p className="font-medium text-red-600 ps-2">
-                        {errors.description.message}
+                        {errors.content.ticket}
                     </p>
                 )}
                 <div className="flex flex-col gap-2 md:flex-row">
+                    {/******************************************************************************
+                    file inpu
+                    ******************************************************************************/}
                     <button
                         type="button"
                         className="md:max-w-[50%] flex justify-center gap-2 items-center p-3 max-h-16 font-bold rounded-lg bg-background dark:bg-dbackground border border-lightBorder dark:border-dlightBorder "
@@ -126,6 +118,9 @@ const NewTicketDialog = ({ close }: { close: () => void }) => {
                             )}
                         </AnimatePresence>
                     </button>
+                    {/******************************************************************************
+                    submit button
+                    ******************************************************************************/}
                     <button
                         type="submit"
                         className="flex gap-2 justify-center items-center p-3 max-h-12 font-bold rounded-lg grow bg-dbutton text-background"
@@ -139,4 +134,4 @@ const NewTicketDialog = ({ close }: { close: () => void }) => {
     );
 };
 
-export default NewTicketDialog;
+export default NewReplyDialog;

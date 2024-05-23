@@ -1,17 +1,17 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-    apiDeleteTickets,
-    apiDeleteTicketsInputType,
-} from "src/api/tickets/apiDeleteTickets";
+    apiDeleteTicketReplies,
+    apiDeleteTicketRepliesInputType,
+} from "src/api/tickets/ticket-replies/apiDeleteTicketReplies";
 
-export const useDeleteTicket = (onSuccessCallback?: () => void) => {
+export const useDeleteTicketReply = (onSuccessCallback?: () => void) => {
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
         mutationKey: ["tickets", "delete"],
-        mutationFn: async (data: apiDeleteTicketsInputType) =>
-            apiDeleteTickets(data),
+        mutationFn: async (data: apiDeleteTicketRepliesInputType) =>
+            apiDeleteTicketReplies(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["tickets"] });
+            queryClient.invalidateQueries({ queryKey: ["ticketReply"] });
         },
     });
     return (id: number) => {

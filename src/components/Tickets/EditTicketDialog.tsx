@@ -15,7 +15,7 @@ import { ticketType } from "src/types/ticketType";
 
 type FormFields = {
     title: string;
-    description: string;
+    content: string;
 };
 //EditTicketDialog component
 type EditTicketDialogProps = { close: () => void; data: ticketType };
@@ -40,14 +40,14 @@ const EditTicketDialog = ({ close, data }: EditTicketDialogProps) => {
         const newData: apiPatchTicketsInputType = {
             id: data.id,
             title: undefined,
-            description: undefined,
+            content: undefined,
             file: fileDeleted ? "": undefined,
         };
         //add title if exists
         if (formData.title) newData.title = formData.title;
 
-        //add description if exists
-        if (formData.description) newData.description = formData.description;
+        //add content if exists
+        if (formData.content) newData.content = formData.content;
 
         //add file if exists
         if (file) newData.file = file
@@ -61,35 +61,35 @@ const EditTicketDialog = ({ close, data }: EditTicketDialogProps) => {
     };
 
     return (
-        <Dialog close={close} title={t("Tickets.edit",{what:t("Tickets.tickets")})}>
+        <Dialog close={close} title={t("Tickets.edit",{what:t("Tickets.ticket")})}>
             <form
                 className="flex flex-col gap-2 mt-2 size-full "
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <Input
-                    placeholder={t("Tickets.title") + ": " + data.title}
+                    placeholder={t("Tickets.subject") + ": " + data.title}
                     {...register("title", {
                         maxLength: {
                             value: 255,
-                            message: t("Tickets.titleLongError"),
+                            ticket: t("Tickets.titleLongError"),
                         },
                     })}
                     type="text"
                 />
                 {errors.title && (
                     <p className="font-medium text-red-600 ps-2">
-                        {errors.title.message}
+                        {errors.title.ticket}
                     </p>
                 )}
                 <Textarea
                     className="resize-none Input grow"
-                    placeholder={t("Tickets.description") + ": " + data.description}
-                    {...register("description")}
+                    placeholder={t("Tickets.ticket") + ": " + data.content}
+                    {...register("content")}
                 />
 
-                {errors.description && (
+                {errors.content && (
                     <p className="font-medium text-red-600 ps-2">
-                        {errors.description.message}
+                        {errors.content.ticket}
                     </p>
                 )}
                 <div className="flex flex-col gap-2 md:flex-row">

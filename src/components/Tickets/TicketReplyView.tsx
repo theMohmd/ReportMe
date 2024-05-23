@@ -1,46 +1,38 @@
-import { t } from "i18next";
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { apiGetTicketRepliesId } from "src/api/tickets/ticket-replies/apiGetTicketRepliesId";
+import Loader from "../ui/Loader";
+import ErrorPage from "../ui/ErrorPage";
+import { customError } from "src/types/customError";
 import { AnimatePresence, motion } from "framer-motion";
-
-import { useAuth } from "contexts/Auth/useAuth";
-import { dateFormat } from "utils/dateFormat";
-import { ticketType } from "types/ticketType";
-import { customError } from "types/customError";
-import { apiGetTicketsId } from "api/tickets/apiGetTicketsId";
-import { parentStaggerVariants, scaleVariants } from "utils/motionVariants";
-
-import Loader from "components/ui/Loader";
-import ErrorPage from "components/ui/ErrorPage";
-import CustomButton from "components/ui/CustomButton";
+import { parentStaggerVariants, scaleVariants } from "src/utils/motionVariants";
+import { useState } from "react";
+import CustomButton from "../ui/CustomButton";
 import {
     ChevronLeftIcon,
     DownloadIcon,
-    MessageSquareQuoteIcon,
     SquarePenIcon,
     Trash2Icon,
 } from "lucide-react";
-import EditTicketDialog from "./EditTicketDialog";
-import { useDeleteTicket } from "./hooks/useDeleteTicket";
-import TicketReplies from "./TicketReplies";
-import NewReplyDialog from "./NewReplyDialog";
+import { useAuth } from "src/contexts/Auth/useAuth";
+import { t } from "i18next";
+import { dateFormat } from "src/utils/dateFormat";
+import { useDeleteTicketReply } from "./hooks/useDeleteTicketReply";
+import EditReplyDialog from "./EditReplyDialog";
 
-//TicketView component
-const TicketView = () => {
+//TicketReplyView component
+const TicketReplyView = () => {
     const [editDialog, setEditDialog] = useState(false);
-    const [replyDialog, setreplyDialog] = useState(false);
-
-    const { id } = useParams();
     const { user } = useAuth();
-    const { data, error, isLoading } = useQuery<ticketType>({
-        queryKey: ["tickets", id],
-        queryFn: () => apiGetTicketsId({ id: id ? parseInt(id) : -1 }),
-    });
     const navigate = useNavigate();
-    const deleteAction = useDeleteTicket(() => navigate(-1));
-
-    if (isLoading) return <Loader size={100} />;
+    const { reply_id } = useParams();
+    const deleteAction = useDeleteTicketReply(() => navigate(-1));
+    const { data, isLoading, error } = useQuery({
+        queryKey: ["ticketReply", reply_id],
+        queryFn: () =>
+            apiGetTicketRepliesId({ ticket_reply: reply_id ? reply_id : "" }),
+    });
+    if (isLoading) return <Loader size={40} />;
     if (error) return <ErrorPage error={error as customError} />;
     return (
         data && (
@@ -51,21 +43,15 @@ const TicketView = () => {
                 className="flex flex-col gap-2 grow"
             >
                 {/******************************************************************************
-                dialogs
-                ******************************************************************************/}
+                    edit dialog
+                    ******************************************************************************/}
                 <AnimatePresence>
                     {editDialog && (
-                        <EditTicketDialog
+                        <EditReplyDialog
                             data={data}
                             close={() => {
                                 setEditDialog(false);
                             }}
-                        />
-                    )}
-                    {replyDialog && (
-                        <NewReplyDialog
-                            ticketId={data.id}
-                            close={() => setreplyDialog(false)}
                         />
                     )}
                 </AnimatePresence>
@@ -73,9 +59,13 @@ const TicketView = () => {
                     top bar
                     ******************************************************************************/}
                 <div className="flex justify-between items-center mb-5">
-                    <p className="px-2 grow w-0 overflow-hidden line-clamp-1 text-3xl font-semibold ">
-                        {data.title}
-                    </p>
+                    <Link
+                        to={`/tickets/${data.ticket.id}`}
+                        className="px-2 grow w-0 overflow-hidden line-clamp-1 text-3xl font-semibold "
+                    >
+                        <span>{t("Tickets.replyto")} </span>
+                        <span>{data.ticket.title}</span>
+                    </Link>
                     <div className="flex gap-1">
                         {/******************************************************************************
                             file download button if exists
@@ -88,15 +78,10 @@ const TicketView = () => {
                                         data.file
                                     }
                                     target="_blank"
-                                    download={data.title + "_file"}
+                                    download={data.ticket.title + "_file"}
                                 >
                                     <DownloadIcon />
                                 </a>
-                            </CustomButton>
-                        )}
-                        {user?.role[0] === "admin" && (
-                            <CustomButton onClick={() => setreplyDialog(true)}>
-                                <MessageSquareQuoteIcon />
                             </CustomButton>
                         )}
                         {user?.id === data.user.id && (
@@ -152,23 +137,11 @@ const TicketView = () => {
                     {/******************************************************************************
                         ticket content
                         ******************************************************************************/}
-                    <p className="overflow-auto h-0 grow">{data.description}</p>
+                    <p className="overflow-auto h-0 grow">{data.content}</p>
                 </motion.div>
-
-                {/******************************************************************************
-                    replies
-                    ******************************************************************************/}
-                <div className="flex justify-between items-end h-10">
-                    <p className="px-2 text-xl font-semibold ">
-                        {t("Tickets.replies")}
-                    </p>
-                </div>
-                <div className="flex rounded-xl flex-col max-h-[40%] overflow-x-hidden overflow-y-auto">
-                    <TicketReplies ticketId={data.id} />
-                </div>
             </motion.div>
         )
     );
 };
 
-export default TicketView;
+export default TicketReplyView;

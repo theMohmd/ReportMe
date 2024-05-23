@@ -1,20 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-
-import { apiGetTickets } from "api/tickets/apiGetTickets";
-import { customError } from "types/customError";
-
+import TicketsUi from "./TicketsUI";
 import Loader from "components/ui/Loader";
-import TicketsUi from "./TicketsUi";
-import ErrorPage from "components/ui/ErrorPage";
+import { customError } from "src/types/customError";
+import ErrorPage from "../ui/ErrorPage";
+import { useQueryGetTickets } from "./hooks/useQueryGetTickets";
 
-//Tickets page component
+//Tickets component
 const Tickets = () => {
-    const [page, setpage] = useState(0);
-    const { data, error, isLoading } = useQuery({
-        queryKey: ["tickets", page],
-        queryFn: () => apiGetTickets({ page: page + 1 }),
-    });
+    const { data, error, isLoading, page, setpage } = useQueryGetTickets();
     if (isLoading) return <Loader size={100} />;
     if (error) return <ErrorPage error={error as customError} />;
     return (

@@ -1,17 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-    apiPostTicketsInputType,
-    apiPostTickets,
-} from "api/tickets/apiPostTickets";
+import { apiPostTickets, apiPostTicketsInputType } from "src/api/tickets/apiPostTickets";
 
-export const usePostTickets = () => {
+export const usePostTicket = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationKey: ["Tickets", "post"],
-        mutationFn: async (data: apiPostTicketsInputType) =>
-            apiPostTickets(data),
+        mutationKey: ["tickets"],
+        mutationFn: async (data: apiPostTicketsInputType) => apiPostTickets(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["Tickets"] });
+            queryClient.invalidateQueries({ queryKey: ["tickets"] });
         },
     });
 };

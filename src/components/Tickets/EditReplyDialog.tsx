@@ -1,31 +1,34 @@
+import { t } from "i18next";
 import { useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { usePostTicket } from "./hooks/usePostTicket";
-
 import { PaperclipIcon, Trash2Icon } from "lucide-react";
 import Dialog from "components/Common/Dialog";
 import Loader from "components/ui/Loader";
-import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
-import { apiPostTicketsInputType } from "src/api/tickets/apiPostTickets";
-import { useNavigate } from "react-router-dom";
-import { t } from "i18next";
+import { ticketReplyType } from "src/types/ticketReplyType";
+import { apiPatchTicketRepliesInputType } from "src/api/tickets/ticket-replies/apiPatchTicketReplies";
+import { usePatchTicketReply } from "./hooks/usePatchTicketReply";
 
 type FormFields = {
-    title: string;
-    description: string;
+    content: string;
 };
-//NewTicketDialog component
-const NewTicketDialog = ({ close }: { close: () => void }) => {
-    const [file, setFile] = useState<File | null>(null);
+//EditReplyDialog component
+const EditReplyDialog = ({
+    close,
+    data,
+}: {
+    data: ticketReplyType;
+    close: () => void;
+}) => {
 
-    const navigate = useNavigate();
+    const [file, setFile] = useState<File | null>(null);
+    const [fileDeleted, setFileDeleted] = useState(false);
     const fileRef = useRef<HTMLInputElement | null>(null);
 
-    //post ticket
-    const { mutate } = usePostTicket();
+    //patch reply
+    const { mutate } = usePatchTicketReply();
 
     //handle form
     const {
@@ -35,21 +38,24 @@ const NewTicketDialog = ({ close }: { close: () => void }) => {
     } = useForm<FormFields>();
 
     //form submit funciton
-    const onSubmit: SubmitHandler<FormFields> = async (data) => {
-
+    const onSubmit: SubmitHandler<FormFields> = async (formData) => {
         //create input data
-        const newData: apiPostTicketsInputType = {
-            ...data,
+        const newData: apiPatchTicketRepliesInputType = {
+            content:undefined,
+            ticket_reply: data.id,
             file: undefined,
         };
+
+        //add content if exists
+        if (formData.content) newData.content = formData.content;
 
         //add file if exists
         if (file) newData.file = file;
 
         //send post request
         return mutate(newData, {
-            onSuccess: (res) => {
-                navigate(res.id.toString());
+            onSuccess: () => {
+                close();
             },
         });
     };
@@ -57,49 +63,36 @@ const NewTicketDialog = ({ close }: { close: () => void }) => {
     return (
         <Dialog
             close={close}
-            title={t("Tickets.new", { what: t("Tickets.ticket") })}
+            title={t("Tickets.edit", { what: t("Tickets.reply") })}
         >
             <form
                 className="flex flex-col gap-2 mt-2 size-full "
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <Input
-                    {...register("title", {
-                        required: t("Tickets.titleEmptyError"),
-                        maxLength: {
-                            value: 255,
-                            message: t("Tickets.titleLongError"),
-                        },
-                    })}
-                    placeholder={t("Tickets.title")}
-                    type="text"
-                />
-                {errors.title && (
-                    <p className="font-medium text-red-600 ps-2">
-                        {errors.title.message}
-                    </p>
-                )}
                 <Textarea
                     className="resize-none Input grow"
-                    placeholder={t("Tickets.ticket")}
-                    {...register("description", {
-                        required: t("Tickets.contentEmptyError"),
-                    })}
+                    placeholder={t("Tickets.reply") + ": " + data.content}
+                    {...register("content")}
                 />
 
-                {errors.description && (
+                {errors.content && (
                     <p className="font-medium text-red-600 ps-2">
-                        {errors.description.message}
+                        {errors.content.ticket}
                     </p>
                 )}
                 <div className="flex flex-col gap-2 md:flex-row">
+                    {/******************************************************************************
+                    file input
+                    ******************************************************************************/}
                     <button
                         type="button"
                         className="md:max-w-[50%] flex justify-center gap-2 items-center p-3 max-h-16 font-bold rounded-lg bg-background dark:bg-dbackground border border-lightBorder dark:border-dlightBorder "
                         disabled={isSubmitting}
                         onClick={() => {
-                            if (file) setFile(null);
-                            else fileRef.current?.click();
+                            if (file || (data.file && !fileDeleted)) {
+                                setFileDeleted(true)
+                                setFile(null);
+                            } else fileRef.current?.click();
                         }}
                     >
                         <input
@@ -112,26 +105,29 @@ const NewTicketDialog = ({ close }: { close: () => void }) => {
                                 )
                             }
                         />
-                        {file ? <Trash2Icon /> : <PaperclipIcon />}
+                        {file || (data.file && !fileDeleted) ? <Trash2Icon /> : <PaperclipIcon />}
                         <AnimatePresence>
-                            {file && (
+                            {(file || (data.file && !fileDeleted)) && (
                                 <motion.span
                                     initial={{ width: 0 }}
                                     animate={{ width: 200 }}
                                     exit={{ width: 0 }}
                                     className="overflow-hidden relative line-clamp-1 text-ellipsis top-[2px]"
                                 >
-                                    {file.name}
+                                    {data.file && !fileDeleted ? "file" : file?.name}
                                 </motion.span>
                             )}
                         </AnimatePresence>
                     </button>
+                    {/******************************************************************************
+                    submit button
+                    ******************************************************************************/}
                     <button
                         type="submit"
                         className="flex gap-2 justify-center items-center p-3 max-h-12 font-bold rounded-lg grow bg-dbutton text-background"
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? <Loader /> : <>{t("Tickets.send")}</>}
+                        {isSubmitting ? <Loader /> : <>{t("Tickets.submit")}</>}
                     </button>
                 </div>
             </form>
@@ -139,4 +135,4 @@ const NewTicketDialog = ({ close }: { close: () => void }) => {
     );
 };
 
-export default NewTicketDialog;
+export default EditReplyDialog;
