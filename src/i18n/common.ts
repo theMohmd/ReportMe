@@ -21,6 +21,7 @@ export const common_en = {
     new: "New {{what}}",
     edit: "Edit {{what}}",
     submit: "Submit",
+    emptyMessage: "{{what}} is empty",
 };
 export const common_fa = {
     projects: "پروژه‌ها",
@@ -40,4 +41,5 @@ export const common_fa = {
     new: "{{what}} جدید",
     edit: "ویرایش {{what}}",
     submit: "ثبت",
+    emptyMessage: "{{what}} خالی است",
 };

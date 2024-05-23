@@ -8,6 +8,10 @@ export const tickets_en = {
     assign: "Assign new user",
     noUsers: "No user is assigned to this ticket",
     noUser: "You haven't selected a user",
+    replies:"Replies",
+    replyto:"Reply to",
+    reply:"Reply",
+    send:"Send",
 };
 export const tickets_fa = {
     ...common_fa,
@@ -17,4 +21,8 @@ export const tickets_fa = {
     assign: "تعیین کاربر جدید",
     noUsers: "هیچ کاربری برای این تیکت تعیین نشده",
     noUser: "کاربر انتخاب نکرده‌اید",
+    replies:"پاسخ‌ها",
+    replyto:"پاسخ به",
+    reply:"پاسخ",
+    send:"ارسال",
 };

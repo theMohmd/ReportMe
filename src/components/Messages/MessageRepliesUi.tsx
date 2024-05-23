@@ -2,7 +2,6 @@ import { t } from "i18next";
 import { dateFormat } from "utils/dateFormat";
 import { useNavigate } from "react-router-dom";
 import { apiDataType } from "types/apiDataType";
-import { useDeleteMessage } from "./hooks/useDeleteMessage";
 
 import List from "components/Common/List/List";
 import ListItem from "components/Common/List/ListItem";
@@ -19,11 +18,10 @@ type MessageRepliesUiProps = {
 const MessageRepliesUi = ({ data, setPage, page }: MessageRepliesUiProps) => {
     const navigate = useNavigate();
 
-    const deleteAction = useDeleteMessage();
     return (
         <div className="flex flex-col gap-2 ">
             <List>
-                {data.data.map((item) => (
+                {!data.data.length ? <p>{t("Messages.emptyMessage",{what:t("Messages.replies")})}</p> :data.data.map((item) => (
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
