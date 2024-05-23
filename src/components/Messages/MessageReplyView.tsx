@@ -17,6 +17,8 @@ import {
 import { useAuth } from "src/contexts/Auth/useAuth";
 import { t } from "i18next";
 import { dateFormat } from "src/utils/dateFormat";
+import { useDeleteMessageReply } from "./hooks/useDeleteMessageReply";
+import EditReplyDialog from "./EditReplyDialog";
 
 //MessageReplyView component
 const MessageReplyView = () => {
@@ -24,6 +26,7 @@ const MessageReplyView = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const { reply_id } = useParams();
+    const deleteAction = useDeleteMessageReply(() => navigate(-1));
     const { data, isLoading, error } = useQuery({
         queryKey: ["messageReply", reply_id],
         queryFn: () =>
@@ -43,7 +46,16 @@ const MessageReplyView = () => {
                 {/******************************************************************************
                     edit dialog
                     ******************************************************************************/}
-                <AnimatePresence>{editDialog && <p>hi</p>}</AnimatePresence>
+                <AnimatePresence>
+                    {editDialog && (
+                        <EditReplyDialog
+                            data={data}
+                            close={() => {
+                                setEditDialog(false);
+                            }}
+                        />
+                    )}
+                </AnimatePresence>
                 {/******************************************************************************
                     top bar
                     ******************************************************************************/}
@@ -82,8 +94,7 @@ const MessageReplyView = () => {
                                 </CustomButton>
                                 <CustomButton
                                     onClick={() =>
-                                        //deleteAction(data ? data.id : -1)todo
-                                        console.log("todo")
+                                        deleteAction(data ? data.id : -1)
                                     }
                                 >
                                     <Trash2Icon />

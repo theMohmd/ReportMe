@@ -24,6 +24,7 @@ import {
 import EditMessageDialog from "./EditMessageDialog";
 import { useDeleteMessage } from "./hooks/useDeleteMessage";
 import MessageReplies from "./MessageReplies";
+import NewReplyDialog from "./NewReplyDialog";
 
 //MessageView component
 const MessageView = () => {
@@ -93,7 +94,9 @@ const MessageView = () => {
                                 </a>
                             </CustomButton>
                         )}
-                        <CustomButton onClick={() => setreplyDialog(true)}>
+                        <CustomButton
+                        onClick={()=>setreplyDialog(true)}
+                        >
                             <MessageSquareQuoteIcon />
                         </CustomButton>
                         {user?.id === data.sender.id && (
@@ -183,4 +186,3 @@ const MessageView = () => {
 };
 
 export default MessageView;
-import NewReplyDialog from "./NewReplyDialog";
