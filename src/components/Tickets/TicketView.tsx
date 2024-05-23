@@ -35,9 +35,6 @@ const TicketView = () => {
                 onSuccess() {
                     navigate(-1);
                 },
-                onError() {
-                    console.log("error");
-                },
             }
         );
     };

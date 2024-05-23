@@ -63,7 +63,6 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
             onSuccess: () => {
                 close();
             },
-            onError: () => console.log("error"),
         });
     };
 

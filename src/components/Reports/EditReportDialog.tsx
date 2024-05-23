@@ -53,7 +53,6 @@ const EditReportDialog = ({ close, data }: EditReportDialogProps) => {
             onSuccess: () => {
                 close();
             },
-            onError: () => console.log("error"),
         });
     };
 

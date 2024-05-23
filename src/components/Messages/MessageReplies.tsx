@@ -13,7 +13,6 @@ const MessageReplies = ({ messageId }: MessageRepliesProps) => {
         useGetMessageReplies(messageId);
     if (isLoading) return <Loader size={40} />;
     if (error) return <ErrorPage error={error as customError} />;
-    console.log(data);
     return (
         data && <MessageRepliesUi data={data} page={page} setPage={setPage} />
     );

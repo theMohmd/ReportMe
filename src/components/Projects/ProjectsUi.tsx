@@ -31,11 +31,6 @@ const ProjectsUi = ({ data, setPage, page }: ProjectsUiProps) => {
     const deleteAction = (id: number) => {
         deleteRequest(
             { id: id },
-            {
-                onError() {
-                    console.log("error");
-                },
-            }
         );
     };
     return (

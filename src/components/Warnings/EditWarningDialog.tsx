@@ -53,7 +53,6 @@ const EditWarningDialog = ({ close, data }: EditWarningDialogProps) => {
             onSuccess: () => {
                 close();
             },
-            onError: () => console.log("error"),
         });
     };
 

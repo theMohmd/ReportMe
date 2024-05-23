@@ -32,7 +32,6 @@ const EditAccountDialog = ({ close }: EditAccountDialogProps) => {
             onSuccess: () => {
                 close();
             },
-            onError: () => console.log("error"),
         });
     };
 

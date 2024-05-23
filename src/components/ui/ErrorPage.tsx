@@ -16,7 +16,6 @@ const ErrorPage = ({ children, error }: ErrorPageProps) => {
             logOut();
             navigate("/relogin");
         }
-        console.log(error)
     });
 
     return (

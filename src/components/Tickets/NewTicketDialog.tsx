@@ -45,7 +45,6 @@ const NewTicketDialog = ({ close }: { close: () => void }) => {
             onSuccess: (res) => {
                 navigate(res.id.toString());
             },
-            onError: () => console.log("error"),
         });
     };
 

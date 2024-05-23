@@ -18,11 +18,6 @@ const SupervisorList = () => {
     const deleteAction = (id: number) => {
         deleteRequest(
             { user_supervisor: id },
-            {
-                onError() {
-                    console.log("error");
-                },
-            }
         );
     };
 

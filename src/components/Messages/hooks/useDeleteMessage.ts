@@ -21,9 +21,6 @@ export const useDeleteMessage = (onSuccessCallback?: () => void) => {
                 onSuccess() {
                     if (onSuccessCallback) onSuccessCallback();
                 },
-                onError() {
-                    console.log("error");
-                },
             }
         );
     };

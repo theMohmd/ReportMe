@@ -57,7 +57,6 @@ const EditMessageDialog = ({ close, data }: EditMessageDialogProps) => {
             onSuccess: () => {
                 close();
             },
-            onError: () => console.log("error"),
         });
     };
 

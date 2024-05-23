@@ -48,7 +48,6 @@ const NewReportDialog = ({ close, user_project_id }: NewReportDialogProps) => {
             onSuccess: (res) => {
                 navigate(res.id.toString());
             },
-            onError: () => console.log("error"),
         });
     };
 

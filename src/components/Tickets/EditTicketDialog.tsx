@@ -57,7 +57,6 @@ const EditTicketDialog = ({ close, data }: EditTicketDialogProps) => {
             onSuccess: () => {
                 close();
             },
-            onError: () => console.log("error"),
         });
     };
 

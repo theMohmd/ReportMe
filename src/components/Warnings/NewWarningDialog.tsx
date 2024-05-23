@@ -51,7 +51,6 @@ const NewWarningDialog = ({
             onSuccess: (res) => {
                 navigate(res.id.toString());
             },
-            onError: () => console.log("error"),
         });
     };
 

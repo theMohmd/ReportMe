@@ -29,14 +29,7 @@ const TicketsUi = ({ data, setPage, page }: TicketsUiProps) => {
 
     const { mutate: deleteRequest } = useDeleteTicket();
     const deleteAction = (id: number) => {
-        deleteRequest(
-            { id: id },
-            {
-                onError() {
-                    console.log("error");
-                },
-            }
-        );
+        deleteRequest({ id: id });
     };
     return (
         <div className="flex flex-col gap-2 grow">
@@ -55,7 +48,9 @@ const TicketsUi = ({ data, setPage, page }: TicketsUiProps) => {
                 </p>
                 <CustomButton onClick={() => setdialog(true)}>
                     <Plus />
-                    <p className="px-1">{t("Tickets.new",{what:t("Tickets.ticket")})}</p>
+                    <p className="px-1">
+                        {t("Tickets.new", { what: t("Tickets.ticket") })}
+                    </p>
                 </CustomButton>
             </div>
             <List>
@@ -66,7 +61,9 @@ const TicketsUi = ({ data, setPage, page }: TicketsUiProps) => {
                         deleteAction={() => deleteAction(item.id)}
                     >
                         <div className="flex [&>*]:shrink-0 grow items-center justify-center gap-2">
-                            <span className="line-clamp-1 grow w-0">{item.title}</span>
+                            <span className="line-clamp-1 grow w-0">
+                                {item.title}
+                            </span>
                             <span className="text-sm font-thin line-clamp-1 ms-auto">
                                 {dateFormat(item.updated_at)}
                             </span>

@@ -35,11 +35,6 @@ const ProjectUsers = ({ id }: ProjectUsersProps) => {
     const deleteAction = (id: number) => {
         deleteRequest(
             { id: id },
-            {
-                onError() {
-                    console.log("error");
-                },
-            }
         );
     };
 

@@ -57,7 +57,6 @@ const EditReplyDialog = ({
             onSuccess: () => {
                 close();
             },
-            onError: () => console.log("error"),
         });
     };
 
