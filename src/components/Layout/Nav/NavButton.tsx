@@ -16,7 +16,7 @@ const NavButton = ({ children, to }: NavButtonProps) => {
                     backgroundColor: isActive ? color.dbutton : "",
                 };
             }}
-            className="flex justify-between items-center gap-2 py-2 px-4 font-semibold rounded-lg border border-opacity-0 border-black hover:shadow-cshadow"
+            className="flex gap-2 justify-between items-center py-2 px-4 font-semibold rounded-lg border border-black border-opacity-0 duration-200 hover:scale-105 hover:shadow-cshadow"
         >
             {children}
         </NavLink>
