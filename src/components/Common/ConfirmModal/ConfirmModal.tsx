@@ -26,11 +26,11 @@ const ConfirmModal = () => {
                 className="flex flex-col p-5 w-96 h-36 rounded-xl border bg-background2 border-lightBorder dark:border-dlightBorder dark:bg-dbackground2"
             >
                 <p className="grow text-xl font-bold">
-                    {t("Common.deleteMessage")}
+                    {t("common.deleteMessage")}
                 </p>
                 <div className="flex gap-2 [&>*]:grow">
                     <CustomButton mode="Secondary" onClick={close}>
-                        {t("Common.cancel")}
+                        {t("common.cancel")}
                     </CustomButton>
                     <CustomButton
                         mode="Red"
@@ -39,7 +39,7 @@ const ConfirmModal = () => {
                             close();
                         }}
                     >
-                        {t("Common.delete")}
+                        {t("common.delete")}
                     </CustomButton>
                 </div>
             </motion.div>
