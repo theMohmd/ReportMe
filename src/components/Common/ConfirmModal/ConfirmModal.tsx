@@ -29,10 +29,11 @@ const ConfirmModal = () => {
                     {t("Common.deleteMessage")}
                 </p>
                 <div className="flex gap-2 [&>*]:grow">
-                    <CustomButton onClick={close}>
+                    <CustomButton mode="Secondary" onClick={close}>
                         {t("Common.cancel")}
                     </CustomButton>
                     <CustomButton
+                        mode="Red"
                         onClick={() => {
                             action();
                             close();
