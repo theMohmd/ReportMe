@@ -18,12 +18,14 @@ import { parentStaggerVariants, scaleVariants } from "src/utils/motionVariants";
 import EditProjectDialog from "./EditProjectDialog";
 import { useState } from "react";
 import { t } from "i18next";
+import { useConfirm } from "../Common/ConfirmModal/useConfirm";
 
 //ProjectView component
 const ProjectView = () => {
     const [editDialog, setEditDialog] = useState(false);
     const { user } = useAuth();
     const { id } = useParams();
+    const {confirmModal} = useConfirm();
     const { data, error, isLoading } = useQuery({
         queryKey: ["projects", id],
         queryFn: () => apiGetProjectsId({ id: id ? parseInt(id) : -1 }),
@@ -98,7 +100,7 @@ const ProjectView = () => {
                                     >
                                         <SquarePenIcon />
                                     </CustomButton>
-                                    <CustomButton onClick={deleteAction}>
+                                    <CustomButton onClick={()=>confirmModal(deleteAction)}>
                                         <Trash2Icon />
                                     </CustomButton>
                                 </>

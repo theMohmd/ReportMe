@@ -10,12 +10,15 @@ import Loader from "components/ui/Loader";
 import NotFound from "components/Common/NotFound/NotFound";
 import Layout from "components/Layout/Layout";
 import Relogin from "components/Common/ReLogin/ReLogin";
+import { useConfirm } from "./components/Common/ConfirmModal/useConfirm";
+import ConfirmModal from "./components/Common/ConfirmModal/ConfirmModal";
 
 const App = () => {
     const { theme } = useTheme();
     const { lang } = useLang();
     const { user } = useAuth();
     const { isLoading } = useQueryGetUser();
+    const { displayed: confirmModal } = useConfirm();
 
     return (
         <div
@@ -24,6 +27,13 @@ const App = () => {
             text-primary dark:text-dprimary
             bg-background2 font-vazir dark:bg-dbackground2 flex overflow-hidden h-dvh w-screen [&>*]:grow `}
         >
+            {/******************************************************************************
+            confirm modal
+            ******************************************************************************/}
+            {confirmModal && <ConfirmModal />}
+            {/******************************************************************************
+            content
+            ******************************************************************************/}
             {isLoading ? (
                 <Loader size={100} />
             ) : (

@@ -4,6 +4,7 @@ import LangProvider from "contexts/Lang/LangContext";
 import ThemeProvider from "./Theme/ThemeContext";
 import AuthProvider from "./Auth/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ConfirmModalProvider from "src/components/Common/ConfirmModal/ConfirmModalContext";
 
 const queryClient = new QueryClient();
 
@@ -15,13 +16,15 @@ const Providers = ({ children }: ProvidersProps) => {
     return (
         <>
             <QueryClientProvider client={queryClient}>
-                <AuthProvider>
-                    <LangProvider>
-                        <ThemeProvider>
-                            <BrowserRouter>{children}</BrowserRouter>
-                        </ThemeProvider>
-                    </LangProvider>
-                </AuthProvider>
+                <ConfirmModalProvider>
+                    <AuthProvider>
+                        <LangProvider>
+                            <ThemeProvider>
+                                <BrowserRouter>{children}</BrowserRouter>
+                            </ThemeProvider>
+                        </LangProvider>
+                    </AuthProvider>
+                </ConfirmModalProvider>
             </QueryClientProvider>
         </>
     );
