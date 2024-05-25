@@ -20,7 +20,7 @@ const CustomButton = ({
                     : mode === "Secondary"
                       ? "p-1 bg-background dark:bg-dbackground border-[2px] border-dbutton text-dbutton"
                       : "p-2 bg-dbutton"
-            } text-background rounded-lg `}
+            } text-background rounded-lg hover:scale-105 duration-200`}
         >
             {children}
         </button>
