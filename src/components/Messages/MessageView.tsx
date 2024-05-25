@@ -129,7 +129,7 @@ const MessageView = () => {
                     ******************************************************************************/}
                 <motion.div
                     variants={scaleVariants}
-                    className="flex flex-col gap-2 p-5 rounded-xl border bg-background grow border-lightBorder dark:bg-dbackground dark:border-dlightBorder"
+                    className="flex overflow-auto flex-col gap-2 p-5 rounded-xl border bg-background grow border-lightBorder dark:bg-dbackground dark:border-dlightBorder"
                 >
                     <div className="flex flex-col md:flex-row md:gap-1 items-start md:items-center pb-2 text-lg font-medium border-b border-lightBorder dark:border-dlightBorder">
                         {/******************************************************************************
@@ -169,7 +169,7 @@ const MessageView = () => {
                     {/******************************************************************************
                         message content
                         ******************************************************************************/}
-                    <p className="overflow-auto h-0 grow">{data.content}</p>
+                    <p className="h-0 grow">{data.content}</p>
                 </motion.div>
 
                 {/******************************************************************************

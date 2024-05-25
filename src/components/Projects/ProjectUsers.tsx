@@ -41,7 +41,7 @@ const ProjectUsers = ({ id }: ProjectUsersProps) => {
     return (
         <motion.div
             variants={scaleVariants}
-            className="px-5 rounded-xl border bg-background border-lightBorder dark:bg-dbackground dark:border-dlightBorder"
+            className="px-5 rounded-xl min-h-10 border bg-background border-lightBorder dark:bg-dbackground dark:border-dlightBorder"
         >
             {data && (
                 <UserListUi
