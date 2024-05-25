@@ -17,6 +17,7 @@ type TicketRepliesUiProps = {
 //TicketsUI component
 const TicketRepliesUi = ({ data, setPage, page }: TicketRepliesUiProps) => {
     const navigate = useNavigate();
+    console.log(data)
 
     return (
         <div className="flex flex-col gap-2 ">
