@@ -4,18 +4,19 @@ import { motion } from "framer-motion";
 import { parentStaggerVariants, slideVariants } from "src/utils/motionVariants";
 import { useLang } from "src/contexts/Lang/useLang";
 import { userType } from "src/types/userType";
+import { useConfirm } from "../Common/ConfirmModal/useConfirm";
 
 //UserListUi component
 type type = userType & { deleteId: number };
 type UserListUiProps = {
     page: number;
-    emptyMessage:string,
+    emptyMessage: string;
     setPage: (input: number) => void;
     data: {
         total: number;
         data: type[];
     };
-    deleteAction: (id:number)=>void;
+    deleteAction: (id: number) => void;
 };
 const UserListUi = ({
     emptyMessage,
@@ -24,6 +25,7 @@ const UserListUi = ({
     data,
     deleteAction,
 }: UserListUiProps) => {
+    const { confirmModal } = useConfirm();
     const { lang } = useLang();
     const variants = slideVariants(lang);
     return (
@@ -61,7 +63,9 @@ const UserListUi = ({
                                         </p>
                                         <button
                                             onClick={() =>
-                                                deleteAction(item.deleteId)
+                                                confirmModal(() =>
+                                                    deleteAction(item.deleteId)
+                                                )
                                             }
                                             className="hover:text-red-600 "
                                         >

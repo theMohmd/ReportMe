@@ -25,11 +25,13 @@ import EditMessageDialog from "./EditMessageDialog";
 import { useDeleteMessage } from "./hooks/useDeleteMessage";
 import MessageReplies from "./MessageReplies";
 import NewReplyDialog from "./NewReplyDialog";
+import { useConfirm } from "../Common/ConfirmModal/useConfirm";
 
 //MessageView component
 const MessageView = () => {
     const [editDialog, setEditDialog] = useState(false);
     const [replyDialog, setreplyDialog] = useState(false);
+    const { confirmModal } = useConfirm();
 
     const { id } = useParams();
     const { user } = useAuth();
@@ -42,7 +44,7 @@ const MessageView = () => {
 
     if (isLoading) return <Loader size={100} />;
     if (error) return <ErrorPage error={error as customError} />;
-    console.log(data)
+    console.log(data);
     return (
         data && (
             <motion.div
@@ -95,9 +97,7 @@ const MessageView = () => {
                                 </a>
                             </CustomButton>
                         )}
-                        <CustomButton
-                        onClick={()=>setreplyDialog(true)}
-                        >
+                        <CustomButton onClick={() => setreplyDialog(true)}>
                             <MessageSquareQuoteIcon />
                         </CustomButton>
                         {user?.id === data.sender.id && (
@@ -109,7 +109,9 @@ const MessageView = () => {
                                 </CustomButton>
                                 <CustomButton
                                     onClick={() =>
-                                        deleteAction(data ? data.id : -1)
+                                        confirmModal(() =>
+                                            deleteAction(data ? data.id : -1)
+                                        )
                                     }
                                 >
                                     <Trash2Icon />

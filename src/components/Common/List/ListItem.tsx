@@ -3,6 +3,7 @@ import { Trash2 } from "lucide-react";
 import { ReactNode } from "react";
 import { useLang } from "src/contexts/Lang/useLang";
 import { slideVariants } from "src/utils/motionVariants";
+import { useConfirm } from "../ConfirmModal/useConfirm";
 
 //ListItem component
 type ListItemProps = {
@@ -17,6 +18,7 @@ const ListItem = ({
     onClick,
     deleteAction,
 }: ListItemProps) => {
+    const { confirmModal } = useConfirm();
     const { lang } = useLang();
     const variants = slideVariants(lang);
     return (
@@ -32,7 +34,7 @@ const ListItem = ({
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
-                            deleteAction();
+                            confirmModal(deleteAction);
                         }}
                         className="flex justify-center items-center hover:text-red-600"
                     >

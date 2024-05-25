@@ -19,9 +19,11 @@ import { t } from "i18next";
 import { dateFormat } from "src/utils/dateFormat";
 import { useDeleteTicketReply } from "./hooks/useDeleteTicketReply";
 import EditReplyDialog from "./EditReplyDialog";
+import { useConfirm } from "../Common/ConfirmModal/useConfirm";
 
 //TicketReplyView component
 const TicketReplyView = () => {
+    const { confirmModal } = useConfirm();
     const [editDialog, setEditDialog] = useState(false);
     const { user } = useAuth();
     const navigate = useNavigate();
@@ -93,7 +95,9 @@ const TicketReplyView = () => {
                                 </CustomButton>
                                 <CustomButton
                                     onClick={() =>
-                                        deleteAction(data ? data.id : -1)
+                                        confirmModal(() =>
+                                            deleteAction(data ? data.id : -1)
+                                        )
                                     }
                                 >
                                     <Trash2Icon />

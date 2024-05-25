@@ -19,11 +19,13 @@ import { t } from "i18next";
 import { dateFormat } from "src/utils/dateFormat";
 import { useDeleteMessageReply } from "./hooks/useDeleteMessageReply";
 import EditReplyDialog from "./EditReplyDialog";
+import { useConfirm } from "../Common/ConfirmModal/useConfirm";
 
 //MessageReplyView component
 const MessageReplyView = () => {
     const [editDialog, setEditDialog] = useState(false);
     const { user } = useAuth();
+    const { confirmModal } = useConfirm();
     const navigate = useNavigate();
     const { reply_id } = useParams();
     const deleteAction = useDeleteMessageReply(() => navigate(-1));
@@ -93,7 +95,9 @@ const MessageReplyView = () => {
                                 </CustomButton>
                                 <CustomButton
                                     onClick={() =>
-                                        deleteAction(data ? data.id : -1)
+                                        confirmModal(() =>
+                                            deleteAction(data ? data.id : -1)
+                                        )
                                     }
                                 >
                                     <Trash2Icon />

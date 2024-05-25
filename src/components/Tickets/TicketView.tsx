@@ -25,9 +25,11 @@ import EditTicketDialog from "./EditTicketDialog";
 import { useDeleteTicket } from "./hooks/useDeleteTicket";
 import TicketReplies from "./TicketReplies";
 import NewReplyDialog from "./NewReplyDialog";
+import { useConfirm } from "../Common/ConfirmModal/useConfirm";
 
 //TicketView component
 const TicketView = () => {
+    const { confirmModal } = useConfirm();
     const [editDialog, setEditDialog] = useState(false);
     const [replyDialog, setreplyDialog] = useState(false);
 
@@ -108,7 +110,9 @@ const TicketView = () => {
                                 </CustomButton>
                                 <CustomButton
                                     onClick={() =>
-                                        deleteAction(data ? data.id : -1)
+                                        confirmModal(() =>
+                                            deleteAction(data ? data.id : -1)
+                                        )
                                     }
                                 >
                                     <Trash2Icon />

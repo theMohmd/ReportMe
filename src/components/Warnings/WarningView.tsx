@@ -20,11 +20,13 @@ import { parentStaggerVariants, scaleVariants } from "src/utils/motionVariants";
 import { useState } from "react";
 import EditWarningDialog from "./EditWarningDialog";
 import { useDeleteWarning } from "./hooks/useDeleteWarning";
+import { useConfirm } from "../Common/ConfirmModal/useConfirm";
 
 //WarningView component
 const WarningView = () => {
     const [editDialog, setEditDialog] = useState(false);
     const { id } = useParams(); //warning id
+    const { confirmModal } = useConfirm();
     const navigate = useNavigate();
     const { data, error, isLoading } = useQuery({
         queryKey: ["warnings", id],
@@ -101,8 +103,10 @@ const WarningView = () => {
                                     </CustomButton>
                                     <CustomButton
                                         onClick={() => {
-                                            deleteAction(data.id);
-                                            navigate(-1);
+                                            confirmModal(() => {
+                                                deleteAction(data.id);
+                                                navigate(-1);
+                                            });
                                         }}
                                     >
                                         <Trash2Icon />

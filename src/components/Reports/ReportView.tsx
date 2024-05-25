@@ -22,9 +22,11 @@ import EditReportDialog from "./EditReportDialog";
 import { useDeleteReport } from "./hooks/useDeleteReport";
 import ReportScore from "./ReportScore";
 import { t } from "i18next";
+import { useConfirm } from "../Common/ConfirmModal/useConfirm";
 
 //ReportView component
 const ReportView = () => {
+    const { confirmModal } = useConfirm();
     const [editDialog, setEditDialog] = useState(false);
     const { id } = useParams(); //report id
     const navigate = useNavigate();
@@ -108,10 +110,12 @@ const ReportView = () => {
                                         <SquarePenIcon />
                                     </CustomButton>
                                     <CustomButton
-                                        onClick={() => {
-                                            deleteReport(data.id);
-                                            navigate(-1);
-                                        }}
+                                        onClick={() =>
+                                            confirmModal(() => {
+                                                deleteReport(data.id);
+                                                navigate(-1);
+                                            })
+                                        }
                                     >
                                         <Trash2Icon />
                                     </CustomButton>
