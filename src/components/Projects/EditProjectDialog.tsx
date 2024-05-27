@@ -47,10 +47,14 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
             id: data.id,
             title: undefined,
             description: undefined,
+            deadline: undefined,
             file: fileDeleted ? "" : undefined,
         };
         //add title if exists
         if (formData.title) newData.title = formData.title;
+
+        //add date if exists
+        if (formData.deadline) newData.deadline = formData.deadline;
 
         //add description if exists
         if (formData.description) newData.description = formData.description;
@@ -63,6 +67,7 @@ const EditProjectDialog = ({ close, data }: EditProjectDialogProps) => {
             onSuccess: () => {
                 close();
             },
+            onError: () => console.log("error"),
         });
     };
 
