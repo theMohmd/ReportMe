@@ -40,7 +40,7 @@ const Nav = () => {
                 <UserRoundIcon />
                 {t("nav.account")}
             </NavButton>
-            <div className="mt-auto flex gap-1 justify-start ">
+            <div className="mt-auto mb-3 flex gap-1 justify-start ">
                 <LangButton />
                 <ThemeButton />
                 <LogoutButton />
