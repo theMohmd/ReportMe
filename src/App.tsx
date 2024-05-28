@@ -12,6 +12,7 @@ import Layout from "components/Layout/Layout";
 import Relogin from "components/Common/ReLogin/ReLogin";
 import { useConfirm } from "./components/Common/ConfirmModal/useConfirm";
 import ConfirmModal from "./components/Common/ConfirmModal/ConfirmModal";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
     const { theme } = useTheme();
@@ -30,7 +31,9 @@ const App = () => {
             {/******************************************************************************
             confirm modal
             ******************************************************************************/}
+            <AnimatePresence>
             {confirmModal && <ConfirmModal />}
+            </AnimatePresence>
             {/******************************************************************************
             content
             ******************************************************************************/}

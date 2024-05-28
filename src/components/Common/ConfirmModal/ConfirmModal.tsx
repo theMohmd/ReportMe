@@ -17,7 +17,7 @@ const ConfirmModal = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex overflow-hidden absolute top-0 left-0 z-50 justify-center items-center p-5 h-dvh w-dvw backdrop-blur-sm"
+            className="flex overflow-hidden absolute top-0 left-0 z-50 justify-center items-center p-5 h-dvh w-dvw bg-black bg-opacity-75 backdrop-blur-sm"
         >
             <motion.div
                 initial={{ scale: 0.5 }}
