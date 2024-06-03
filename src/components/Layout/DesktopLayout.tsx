@@ -21,7 +21,7 @@ const DesktopLayout = () => {
                 </div>
                 <Nav />
             </motion.div>
-            <div className="flex overflow-y-auto pt-10 p-5 mx-auto max-w-[1200px] size-full">
+            <div className="flex flex-col overflow-y-auto overflow-x-hidden pt-10 p-5 mx-auto max-w-[1200px] size-full">
                 <LayoutRoutes />
             </div>
         </div>
