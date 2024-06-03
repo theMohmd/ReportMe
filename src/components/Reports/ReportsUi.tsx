@@ -27,7 +27,7 @@ const ReportsUi = ({ data, setPage, page }: ReportsUiProps) => {
                 </p>
             </div>
             <List>
-                {!data.data.length ? <p>{t("Reports.emptyMessage",{what:t("Reports.reports")})}</p> :data.data 
+                {!data.data.length ? <p className="p-2" >{t("Reports.emptyMessage",{what:t("Reports.reports")})}</p> :data.data 
                     .map((item) => (
                         <ListItem
                             onClick={() => navigate(item.id.toString())}

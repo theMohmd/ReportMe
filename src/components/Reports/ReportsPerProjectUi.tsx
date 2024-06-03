@@ -76,7 +76,7 @@ const ReportsPerProjectUi = ({
                 </div>
             </div>
             <List>
-                {!reports.data.length ? <p>{t("Reports.emptyMessage",{what:t("Reports.reports")})}</p> :reports.data.map((item) => (
+                {!reports.data.length ? <p className="p-2" >{t("Reports.emptyMessage",{what:t("Reports.reports")})}</p> :reports.data.map((item) => (
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}

@@ -27,7 +27,7 @@ const WarningsUi = ({ data, setPage, page }: WarningsUiProps) => {
                 </p>
             </div>
             <List>
-                {!data.data.length ? <p>{t("Warnings.emptyMessage",{what:t("Warnings.warnings")})}</p> :data.data
+                {!data.data.length ? <p className="p-2" >{t("Warnings.emptyMessage",{what:t("Warnings.warnings")})}</p> :data.data
                     .filter(//filter out duplicate projects
                         (obj, index, self) =>
                             index ===

@@ -70,7 +70,7 @@ const WarningsPerProjectUi = ({
                 </div>
             </div>
             <List>
-                {!warnings.data.length ? <p>{t("Warnings.emptyMessage",{what:t("Warnings.warnings")})}</p> :warnings.data.map((item) => (
+                {!warnings.data.length ? <p className="p-2" >{t("Warnings.emptyMessage",{what:t("Warnings.warnings")})}</p> :warnings.data.map((item) => (
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}

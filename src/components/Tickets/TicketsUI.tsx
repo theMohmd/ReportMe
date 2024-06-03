@@ -52,7 +52,7 @@ const TicketsUi = ({ data, setPage, page }: TicketsUiProps) => {
                 </CustomButton>
             </div>
             <List>
-                {!data.data.length ? <p>{t("Tickets.emptyMessage",{what:t("Tickets.tickets")})}</p> :data.data.map((item) => (
+                {!data.data.length ? <p className="p-2" >{t("Tickets.emptyMessage",{what:t("Tickets.tickets")})}</p> :data.data.map((item) => (
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}

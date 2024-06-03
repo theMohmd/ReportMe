@@ -52,7 +52,7 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
                 </CustomButton>
             </div>
             <List>
-                {!data.data.length ? <p>{t("Messages.emptyMessage",{what:t("Messages.messages")})}</p> :data.data.map((item) => (
+                {!data.data.length ? <p className="p-2" >{t("Messages.emptyMessage",{what:t("Messages.messages")})}</p> :data.data.map((item) => (
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}

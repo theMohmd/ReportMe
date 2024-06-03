@@ -21,7 +21,7 @@ const MessageRepliesUi = ({ data, setPage, page }: MessageRepliesUiProps) => {
     return (
         <div className="flex flex-col gap-2 ">
             <List>
-                {!data.data.length ? <p>{t("Messages.emptyMessage",{what:t("Messages.replies")})}</p> :data.data.map((item) => (
+                {!data.data.length ? <p className="p-2">{t("Messages.emptyMessage",{what:t("Messages.replies")})}</p> :data.data.map((item) => (
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}

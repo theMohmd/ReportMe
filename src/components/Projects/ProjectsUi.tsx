@@ -54,7 +54,7 @@ const ProjectsUi = ({ data, setPage, page }: ProjectsUiProps) => {
                 </CustomButton>
             </div>
             <List>
-                {!data.data.length ? <p>{t("Projects.emptyMessage",{what:t("Projects.projects")})}</p> :data.data.map((item) => (
+                {!data.data.length ? <p className="p-2" >{t("Projects.emptyMessage",{what:t("Projects.projects")})}</p> :data.data.map((item) => (
                     <ListItem
                         onClick={() => navigate(item.id.toString())}
                         key={item.id}
