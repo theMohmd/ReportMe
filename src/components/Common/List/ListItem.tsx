@@ -29,8 +29,8 @@ const ListItem = ({
         >
             {title && <p className="line-clamp-1 grow">{title}</p>}
             {children}
-            {deleteAction && (
-                <div className="ms-auto ps-4">
+                <div className="ms-auto size-6">
+                {deleteAction && (
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
@@ -40,8 +40,8 @@ const ListItem = ({
                     >
                         <Trash2 />
                     </button>
+                    )}
                 </div>
-            )}
         </motion.div>
     );
 };
