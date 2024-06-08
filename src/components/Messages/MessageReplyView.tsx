@@ -10,6 +10,7 @@ import { useState } from "react";
 import CustomButton from "../ui/CustomButton";
 import {
   CheckCheckIcon,
+  CheckIcon,
   ChevronLeftIcon,
   DownloadIcon,
   SquarePenIcon,
@@ -66,7 +67,7 @@ const MessageReplyView = () => {
             to={`/messages/${data.message.id}`}
             className="px-2 flex items-center gap-1 grow w-0 overflow-hidden line-clamp-1 text-3xl font-semibold "
           >
-            {data.seen_at ? <CheckCheckIcon /> : null}
+            {data.seen_at ? <CheckCheckIcon /> : <CheckIcon/>}
             <span>{t("Messages.replyto")} </span>
             <span>{data.message.title}</span>
           </Link>

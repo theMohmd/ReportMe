@@ -9,7 +9,7 @@ import { messageType } from "types/messageType";
 import { apiDataType } from "types/apiDataType";
 import { useDeleteMessage } from "./hooks/useDeleteMessage";
 
-import { CheckCheckIcon, Plus } from "lucide-react";
+import { CheckCheckIcon, CheckIcon, MailIcon, MailOpenIcon, Plus } from "lucide-react";
 import List from "components/Common/List/List";
 import ListItem from "components/Common/List/ListItem";
 import Pagination from "components/ui/Pagination";
@@ -28,7 +28,6 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  console.log(data);
   const deleteAction = useDeleteMessage();
   return (
     <div className="flex flex-col gap-2 grow">
@@ -69,6 +68,12 @@ const MessagesUi = ({ data, setPage, page }: MessagesUiProps) => {
               <div className="flex [&>*]:shrink-0 grow items-center justify-start gap-2">
                 {item.seen_at && item.sender.id === user?.id ? (
                   <CheckCheckIcon />
+                ) : !item.seen_at && item.sender.id === user?.id ? (
+                  <CheckIcon />
+                ) : item.seen_at && item.receiver.id === user?.id ? (
+                  <MailOpenIcon />
+                ) : !item.seen_at && item.receiver.id === user?.id ? (
+                  <MailIcon />
                 ) : null}
                 <span className="w-[10ch] line-clamp-1">
                   {user?.id === item.receiver.id

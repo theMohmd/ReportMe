@@ -7,7 +7,8 @@ import List from "components/Common/List/List";
 import ListItem from "components/Common/List/ListItem";
 import Pagination from "components/ui/Pagination";
 import { messageReplyType } from "src/types/messageReplyType";
-import { CheckCheckIcon } from "lucide-react";
+import { CheckCheckIcon, CheckIcon, MailIcon, MailOpenIcon } from "lucide-react";
+import { useAuth } from "src/contexts/Auth/useAuth";
 
 type MessageRepliesUiProps = {
   data: apiDataType<messageReplyType>;
@@ -19,7 +20,7 @@ type MessageRepliesUiProps = {
 const MessageRepliesUi = ({ data, setPage, page }: MessageRepliesUiProps) => {
   const navigate = useNavigate();
 
-  console.log(data);
+  const {user} = useAuth()
   return (
     <div className="flex flex-col gap-2 ">
       <List>
@@ -34,7 +35,16 @@ const MessageRepliesUi = ({ data, setPage, page }: MessageRepliesUiProps) => {
               key={item.id}
             >
               <div className="flex [&>*]:shrink-0 grow items-center justify-start gap-2">
-                {item.seen_at ? <CheckCheckIcon /> : null}
+
+                {item.seen_at && item.user.id === user?.id ? (
+                  <CheckCheckIcon />
+                ) : !item.seen_at && item.user.id === user?.id ? (
+                  <CheckIcon />
+                ) : item.seen_at ? (
+                  <MailOpenIcon />
+                ) : !item.seen_at ? (
+                  <MailIcon />
+                ) : null}
                 <span className="w-0 text-sm font-thin grow line-clamp-1">
                   {item.content}
                 </span>

@@ -16,6 +16,7 @@ import ErrorPage from "components/ui/ErrorPage";
 import CustomButton from "components/ui/CustomButton";
 import {
     CheckCheckIcon,
+  CheckIcon,
   ChevronLeftIcon,
   DownloadIcon,
   MessageSquareQuoteIcon,
@@ -76,7 +77,7 @@ const MessageView = () => {
                     top bar
                     ******************************************************************************/}
         <div className="flex justify-between items-center mb-5">
-          {data.seen_at && data.sender.id === user?.id ? <CheckCheckIcon /> : null}
+          {data.seen_at && data.sender.id === user?.id ? <CheckCheckIcon /> : <CheckIcon/>}
           <p className="px-2 grow w-0 overflow-hidden line-clamp-1 text-3xl font-semibold ">
             {data.title}
           </p>
