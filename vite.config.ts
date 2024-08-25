@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: "/reportme/",
+  base: "/ReportMe/",
   plugins: [react()],
   resolve: {
     alias: {
