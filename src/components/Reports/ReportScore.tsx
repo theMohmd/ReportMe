@@ -38,7 +38,7 @@ const ReportScore = ({ id }: ReportScoreProps) => {
                             <XIcon />
                         </button>
                         <input
-                            className="px-2 w-0 h-full rounded-md outline-none grow bg-background remove-arrow dark:bg-dbackground"
+                            className="text-primary dark:text-white px-2 w-0 h-full rounded-md outline-none grow bg-background remove-arrow dark:bg-dbackground"
                             name="score"
                             type="number"
                             onChange={(e) => setinput(parseInt(e.target.value))}

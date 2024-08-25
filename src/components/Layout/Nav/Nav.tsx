@@ -3,8 +3,8 @@ import {
     ClipboardPenIcon,
     FolderGit2Icon,
     MailIcon,
-    TicketIcon,
-    TriangleAlertIcon,
+    // TicketIcon,
+    // TriangleAlertIcon,
     UserRoundIcon,
 } from "lucide-react";
 import LangButton from "components/Common/LangButton";
@@ -28,6 +28,7 @@ const Nav = () => {
                 <MailIcon />
                 {t("nav.messages")}
             </NavButton>
+            {/*todo:
             <NavButton to="tickets">
                 <TicketIcon />
                 {t("nav.tickets")}
@@ -36,6 +37,7 @@ const Nav = () => {
                 <TriangleAlertIcon />
                 {t("nav.warnings")}
             </NavButton>
+              */}
             <NavButton to="account">
                 <UserRoundIcon />
                 {t("nav.account")}

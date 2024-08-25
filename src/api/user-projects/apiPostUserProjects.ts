@@ -2,6 +2,7 @@ import axios from "axios";
 import { getCookie } from "utils/cookie";
 import { userProjectType } from "types/userProjectType";
 
+//not used
 //post user-projects
 export type apiPostUserProjectsInputType = { user_supervisor_id: number; project_id: number }
 export type apiPostUserProjectsOutputType = userProjectType

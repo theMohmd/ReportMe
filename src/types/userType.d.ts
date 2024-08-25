@@ -1,1 +1,6 @@
-export type userType = { name: string; email: string; id: number; role: string[] };
+export type userType = {
+  name: string;
+  email: string;
+  id: number;
+  role: string[];
+};
