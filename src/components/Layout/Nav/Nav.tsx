@@ -16,15 +16,15 @@ import { t } from "i18next";
 const Nav = () => {
     return (
         <div className="flex flex-col gap-2 p-2 border-e border-lightBorder dark:border-dlightBorder grow w-[200px] bg-background dark:bg-dbackground">
-            <NavButton to="reports">
+            <NavButton to="reportme/reports">
                 <ClipboardPenIcon />
                 {t("nav.reports")}
             </NavButton>
-            <NavButton to="projects">
+            <NavButton to="reportme/projects">
                 <FolderGit2Icon />
                 {t("nav.projects")}
             </NavButton>
-            <NavButton to="messages">
+            <NavButton to="reportme/messages">
                 <MailIcon />
                 {t("nav.messages")}
             </NavButton>
@@ -38,7 +38,7 @@ const Nav = () => {
                 {t("nav.warnings")}
             </NavButton>
               */}
-            <NavButton to="account">
+            <NavButton to="reportme/account">
                 <UserRoundIcon />
                 {t("nav.account")}
             </NavButton>

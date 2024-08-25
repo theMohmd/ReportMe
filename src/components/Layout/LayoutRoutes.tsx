@@ -19,22 +19,22 @@ import TicketReplyView from "../Tickets/TicketReplyView";
 const LayoutRoutes = () => {
     return (
         <Routes>
-            <Route path="/" element={<Navigate to="projects" />} />
-            <Route path="reports" element={<Reports />} />
-            <Route path="reports/:user_project_id" element={<ReportsPerProject />} />
-            <Route path="reports/:user_project_id/:id" element={<ReportView/>} />
-            <Route path="projects" element={<Projects />} />
-            <Route path="projects/:id" element={<ProjectView />} />
-            <Route path="messages" element={<Messages />} />
-            <Route path="messages/:id" element={<MessageView />} />
-            <Route path="messages/:id/:reply_id" element={<MessageReplyView />} />
-            <Route path="warnings" element={<Warnings />} />
-            <Route path="warnings/:user_project_id" element={<WarningsPerProject />} />
-            <Route path="warnings/:user_project_id/:id" element={<WarningView/>} />
-            <Route path="tickets" element={<Tickets />} />
-            <Route path="tickets/:id" element={<TicketView />} />
-            <Route path="tickets/:id/:reply_id" element={<TicketReplyView />} />
-            <Route path="account" element={<Account />} />
+            <Route path="/reportme/" element={<Navigate to="projects" />} />
+            <Route path="/reportme/reports" element={<Reports />} />
+            <Route path="/reportme/reports/:user_project_id" element={<ReportsPerProject />} />
+            <Route path="/reportme/reports/:user_project_id/:id" element={<ReportView/>} />
+            <Route path="/reportme/projects" element={<Projects />} />
+            <Route path="/reportme/projects/:id" element={<ProjectView />} />
+            <Route path="/reportme/messages" element={<Messages />} />
+            <Route path="/reportme/messages/:id" element={<MessageView />} />
+            <Route path="/reportme/messages/:id/:reply_id" element={<MessageReplyView />} />
+            <Route path="/reportme/warnings" element={<Warnings />} />
+            <Route path="/reportme/warnings/:user_project_id" element={<WarningsPerProject />} />
+            <Route path="/reportme/warnings/:user_project_id/:id" element={<WarningView/>} />
+            <Route path="/reportme/tickets" element={<Tickets />} />
+            <Route path="/reportme/tickets/:id" element={<TicketView />} />
+            <Route path="/reportme/tickets/:id/:reply_id" element={<TicketReplyView />} />
+            <Route path="/reportme/account" element={<Account />} />
             <Route path="*" element={<Navigate to="404" />} />
         </Routes>
     );
