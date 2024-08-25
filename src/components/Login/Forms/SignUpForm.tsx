@@ -28,7 +28,7 @@ const SignupForm = () => {
             .then((res: apiRegisterOutputType) => {
                 setToken(res.token);
                 setUser(res.user);
-                navigate("/");
+                navigate("/reportme");
             })
             .catch(() => {
                 setError("root", {

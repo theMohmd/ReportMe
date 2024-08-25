@@ -29,7 +29,7 @@ const LoginForm = () => {
             .then((res: apiLoginOutputType) => {
                 setToken(res.token);
                 setUser(res.user);
-                navigate("/");
+                navigate("/reportme/");
             })
             .catch(() => {
                 setError("root", {
