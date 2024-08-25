@@ -40,14 +40,14 @@ const EditTicketDialog = ({ close, data }: EditTicketDialogProps) => {
         const newData: apiPatchTicketsInputType = {
             id: data.id,
             title: undefined,
-            content: undefined,
+            description: undefined,
             file: fileDeleted ? "": undefined,
         };
         //add title if exists
         if (formData.title) newData.title = formData.title;
 
         //add content if exists
-        if (formData.content) newData.content = formData.content;
+        if (formData.content) newData.description = formData.content;
 
         //add file if exists
         if (file) newData.file = file
@@ -71,25 +71,25 @@ const EditTicketDialog = ({ close, data }: EditTicketDialogProps) => {
                     {...register("title", {
                         maxLength: {
                             value: 255,
-                            ticket: t("Tickets.titleLongError"),
+                            message: t("Tickets.titleLongError"),
                         },
                     })}
                     type="text"
                 />
                 {errors.title && (
                     <p className="font-medium text-red-600 ps-2">
-                        {errors.title.ticket}
+                        {errors.title.message}
                     </p>
                 )}
                 <Textarea
                     className="resize-none Input grow"
-                    placeholder={t("Tickets.ticket") + ": " + data.content}
+                    placeholder={t("Tickets.ticket") + ": " + data.description}
                     {...register("content")}
                 />
 
                 {errors.content && (
                     <p className="font-medium text-red-600 ps-2">
-                        {errors.content.ticket}
+                        {errors.content.message}
                     </p>
                 )}
                 <div className="flex flex-col gap-2 md:flex-row">

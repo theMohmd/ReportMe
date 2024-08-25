@@ -78,7 +78,7 @@ const NewReplyDialog = ({
 
                 {errors.content && (
                     <p className="font-medium text-red-600 ps-2">
-                        {errors.content.ticket}
+                        {errors.content.message}
                     </p>
                 )}
                 <div className="flex flex-col gap-2 md:flex-row">
