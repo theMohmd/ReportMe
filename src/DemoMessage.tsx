@@ -14,6 +14,7 @@ const DemoMessage = () => {
           <p>
             This is a demo deployment of this project.
             <br /> You cant create or change data!
+            <br /> you can sign in with any data.
           </p>
           <CustomButton onClick={() => setvisible(false)}>
             Continue
